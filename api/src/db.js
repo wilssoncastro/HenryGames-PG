@@ -35,10 +35,7 @@ const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 
 // Aca vendrian las relaciones
 //Player.hasMany(Player)  En duda, es para amigos.
-Player.belongsToMany(Videogame, {through: 'Player_Videogame'})
 Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
-
-Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
 
 Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
