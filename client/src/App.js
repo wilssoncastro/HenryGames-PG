@@ -7,19 +7,39 @@ import Shopping_Cart from './components/Shopping-Cart/shopping_cart';
 import Profile from './components/Profile/profile';
 import Log_In from './components/Form/log_in';
 import Sign_Up from './components/Form/sign_up';
+import Store from './components/Store/store'
 
 function App() {
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <div className="App">
         <Routes>
+
+          {/* LANDING page que va a pedir Log In, ofrecer tambien un Sign Up, si por COOKIES detecta 
+              que ya esta loggeado, te manda directo al Home O ENTRAR COMO INVITADO */}
           <Route exact path='/' element={<Log_In/>}/>
+
+          {/* Muestra algunas categorias (a lo netflix) con los juegos promocionados en esa categoria en forma de BANNER */}
           <Route exact path='/home' element={<Home/>}/>
-          <Route exact path='/store' element={<Library/>}/>
+
+          {/* STORE es la tienda donde van a aparecer TODOS los juegos. Aca se van a poder FILTRAR */}
+          <Route exact path='/store' element={<Store/>}/>
+
+          {/* LIBRARY es la libreria de juegos que el USUARIO tiene comprados */}
+          <Route exact path='/library' element={<Library/>}/>
+
+          {/* Ingresar al detalle del juego cuando lo clickeas o pedis ver su detalle */}
           <Route exact path='/store/:id' element={<Detail/>}/>
+
+          {/* Te manda a un form para crear tu perfil que va a ser ingresado en la Base de Datos. AUTENTICACION!!!!!! */}
           <Route exact path='/sign_up' element={<Sign_Up/>}/>
+
+          {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile/>}/>
+
+          {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart/:id' element={<Shopping_Cart/>}/>
+          
         </Routes>
       </div>
     </BrowserRouter>
