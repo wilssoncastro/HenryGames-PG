@@ -40,5 +40,5 @@ module.exports = (sequelize) => {
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
-    })
+    },{timestamps:false})
 }
