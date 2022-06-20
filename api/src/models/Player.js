@@ -1,3 +1,4 @@
+const { timeStamp } = require('console');
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -40,5 +41,5 @@ module.exports = (sequelize) => {
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
-    })
+    },{timeStamps:false})
 }
