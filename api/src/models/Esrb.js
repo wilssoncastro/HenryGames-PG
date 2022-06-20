@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('esrb_rating', {
+    sequelize.define('esrb', {
         id: {
             type: DataTypes.UUID,
             allowNull: false,
