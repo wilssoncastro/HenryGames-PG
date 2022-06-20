@@ -1,8 +1,9 @@
+const { timeStamp } = require('console');
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('player',{
-        id:{
+    sequelize.define('player', {
+        id: {
             type: DataTypes.UUID,
             allowNull: false,
             primaryKey: true,
@@ -33,12 +34,16 @@ module.exports = (sequelize) => {
         adress: {
             type: DataTypes.STRING
         },
-        isDeveloper:{
+        isDeveloper: {
             type: DataTypes.BOOLEAN
         },
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
+<<<<<<< HEAD
+    },{timeStamps:false})
+=======
     },{timestamps:false})
+>>>>>>> nicogon
 }
