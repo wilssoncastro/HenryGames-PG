@@ -41,5 +41,9 @@ module.exports = (sequelize) => {
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
+<<<<<<< HEAD
     },{timeStamps:false})
+=======
+    },{timestamps:false})
+>>>>>>> nicogon
 }
