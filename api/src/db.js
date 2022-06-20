@@ -5,6 +5,7 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
+const  getAllApiGames = require('./services/services.js');
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrygames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -41,6 +42,22 @@ Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
 
 Esrb.hasMany(Videogame)
+
+
+let allVideogames = getAllApiGames()
+.then(response => 
+ response.map((e) => { Videogame.create({
+  name: e.name,
+  description: e.slug,
+  release_date: e.released,
+  image: e.background_image,
+  rating: e.rating,
+  tags: e.tags.map(t => t.name),
+  price: (Math.random()*10),
+  on_sale: (Math.random()*10) < 7 ? false : true,
+  free_to_play: e.tags.find(j => j.name === "Free to Play")
+})}
+))
 
 
 module.exports = {
