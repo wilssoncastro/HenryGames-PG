@@ -1,4 +1,4 @@
-const { timeStamp } = require('console');
+
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -21,6 +21,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        profile_pic:{
+            type: DataTypes.STRING
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false
@@ -36,14 +39,9 @@ module.exports = (sequelize) => {
         },
         isDeveloper: {
             type: DataTypes.BOOLEAN
-        },
+        }
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
-
-<<<<<<< HEAD
-    },{timeStamps:false})
-=======
     },{timestamps:false})
->>>>>>> nicogon
 }
