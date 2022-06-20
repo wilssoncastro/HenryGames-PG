@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function Searchbar() {
   return (
-    <div>searchbar</div>
+    <div>
+      <form>
+        <input type="text" placeholder='Busca tu juego favorito...' />
+      </form>
+    </div>
   )
 }
