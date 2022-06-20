@@ -8,9 +8,5 @@ const router = Router()
 
 //Rutas
 
-router.get('/videogames/:id', getVideogamesById)
-router.get('/videogames', getVideogamesByName)
-router.get('/videogames', getVideogames)
-
 
 module.exports = router
