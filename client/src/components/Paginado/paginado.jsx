@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Los parametros pasados a la funcion se resuelven en el componente que los renderice
 export default function Paginado({videogamesPerPage, allVideogames, paginado}) {
     const pageNumbers = [];
 
