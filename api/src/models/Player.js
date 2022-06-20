@@ -8,35 +8,35 @@ module.exports = (sequelize) => {
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
         },
-        nombre: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        apellido: {
+        lastname: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        usuario: {
+        user: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        mail: {
+        email: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        fecha_nacimiento: {
+        date_of_birth: {
             type: DataTypes.DATE,
         },
-        telefono: {
+        phone: {
             type: DataTypes.BIGINT
         },
-        direccion: {
+        adress: {
             type: DataTypes.STRING
         },
         isDeveloper:{
             type: DataTypes.BOOLEAN
         },
-        // amigos:{
+        // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
