@@ -10,11 +10,11 @@ router.post('/', async (req, res) => {
             name, description, release_date, image, rating, price, on_sale, free_to_play
         })
 
-        let esrbDb = await Esrb.findOne({
-            where: {name: esrb}
-        })
+        // let esrbDb = await Esrb.findOne({
+        //     where: {name: esrb}
+        // })
 
-        await videogameCreate.addEsrb(esrbDb)
+        // await videogameCreate.addEsrb(esrbDb)
         // let genresDb = await Genre.findAll({
         //     where: {name: genres}
         // })
