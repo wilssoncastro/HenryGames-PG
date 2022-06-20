@@ -36,7 +36,7 @@ const { Player, Videogame, Genre, Esrb_Rating} = sequelize.models;
 //Player.hasMany(Player)  En duda, es para amigos.
 Player.belongsToMany(Videogame, {through: 'Player_Videogame'})
 Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
-Esrb_Rating.belongsToMany(Videogame, {through: 'Esrb_Videogame'})
+Esrb_Rating.hasMany(Videogame)
 
 
 module.exports = {
