@@ -8,4 +8,5 @@ const router = Router()
 
 router.get('/videogames', getVideogames)
 
+
 module.exports = router
