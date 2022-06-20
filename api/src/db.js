@@ -33,7 +33,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Player } = sequelize.models;
 
 // Aca vendrian las relaciones
-//Player.hasMany(Player)//En duda, es para amigos.
+//Player.hasMany(Player)  En duda, es para amigos.
 
 
 module.exports = {
