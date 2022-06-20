@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('player',{
+    sequelize.define('player', {
         id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
         direccion: {
             type: DataTypes.STRING
         },
-        isDeveloper:{
+        isDeveloper: {
             type: DataTypes.BOOLEAN
         },
         // amigos:{
