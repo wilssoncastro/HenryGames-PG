@@ -46,7 +46,6 @@ Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 
 
 
-
  getAllApiGames()
 .then(response => 
  response.map((e) => { Videogame.create({
@@ -56,7 +55,7 @@ Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
   rating: e.rating,
   price: (Math.random()*10).toFixed(3),
   on_sale: (Math.random()*10) < 7 ? false : true,
-  free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false,
+  free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false
 })}
 ))
 
