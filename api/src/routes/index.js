@@ -4,12 +4,10 @@ const userRouters = require('../controllers/userRouters')
 
 //Importar todos los routers
 
+const {getVideogames} = require('../controllers/getVideogames')
 const postVideogames = require('../controllers/postVideogames')
 const getTags = require ('../controllers/getTags')
 const getEsrb = require('../controllers/getEsrb')
-
-//Rutas
-const router = Router()
 
 router.get('/videogames', getVideogames)
 router.use('/users', userRouters)
