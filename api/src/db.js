@@ -6,7 +6,6 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 const  getAllApiGames = require('./services/services.js');
-const Tag = require('./models/Tag.js');
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrygames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -32,7 +31,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Player, Videogame, Genre, Esrb,} = sequelize.models;
+const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 
 // Aca vendrian las relaciones
 //Player.hasMany(Player)  En duda, es para amigos.
@@ -42,13 +41,13 @@ Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
 Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
 
-/* Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
-Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'}) */
-
-Esrb.hasMany(Videogame)
+Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
+Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 
 
-let allVideogames = getAllApiGames()
+
+
+ getAllApiGames()
 .then(response => 
  response.map((e) => { Videogame.create({
   name: e.name,
@@ -57,7 +56,7 @@ let allVideogames = getAllApiGames()
   rating: e.rating,
   price: (Math.random()*10).toFixed(3),
   on_sale: (Math.random()*10) < 7 ? false : true,
-  free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false
+  free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false,
 })}
 ))
 
