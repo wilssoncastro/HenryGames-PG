@@ -6,6 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 const  getAllApiGames = require('./services/services.js');
+const Tag = require('./models/Tag.js');
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrygames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -31,7 +32,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Player, Videogame, Genre, Esrb} = sequelize.models;
+const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 
 // Aca vendrian las relaciones
 //Player.hasMany(Player)  En duda, es para amigos.
@@ -40,6 +41,9 @@ Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
 
 Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
+
+Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
+Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 
 Esrb.hasMany(Videogame)
 

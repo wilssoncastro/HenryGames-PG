@@ -28,10 +28,6 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        tags: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         price: {
             type: DataTypes.FLOAT,
             allowNull: false,
