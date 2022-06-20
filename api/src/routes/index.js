@@ -9,6 +9,6 @@ const { postVideogames } = require('../controllers/postVideogames.js')
 //Rutas
 
 router.get('/videogames', getVideogames)
-router.use('/postVideogame', postVideogames)
+router.use('/postVideogames', postVideogames)
 
 module.exports = router
