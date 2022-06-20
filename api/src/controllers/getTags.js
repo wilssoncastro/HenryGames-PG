@@ -5,7 +5,7 @@ const {API_KEY} = process.env;
 const { Tag } = require('../db.js')
 
 router.get('/', async (req, res) => {
-    let tagsFromApi = await axios.get(`https://api.rawg.io/api/tags?key=${API_KEY}`)
+    let tagsFromApi = await axios.get(`https://api.rawg.io/api/tags?key=${API_KEY}&page_size=40`)
 
     try {
         let allTags = tagsFromApi.data.results.map(tag => tag.name)
