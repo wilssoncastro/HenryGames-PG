@@ -3,7 +3,7 @@ const router = Router()
 
 //Importar todos los routers
 const { getVideogames } = require('../controllers/getVideogames')
-const { postVideogames } = require('../controllers/postVideogames.js')
+const postVideogames = require('../controllers/postVideogames')
 
 
 //Rutas
