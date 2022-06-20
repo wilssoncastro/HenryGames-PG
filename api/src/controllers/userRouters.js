@@ -7,11 +7,17 @@ const axios = require("axios")
 
 const router = Router();
 
-router.get('/:id', async (req, res) => {
-    const {id} = req.params
-    
+router.get('/', async (req, res) => {
+    const {id} = req.query
+
     try {
-        let data = await Player.findAll()
+        let data
+
+        if(id){
+            data = await Player.findByPk(id)
+        }else{
+            data = await Player.findAll()
+        }
 
         return res.json(data)
     } catch (error) {
