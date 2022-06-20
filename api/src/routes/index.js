@@ -5,7 +5,6 @@ const { getVideogames } = require('../controllers/getVideogames')
 const router = Router()
 
 //Rutas
-
 router.get('/videogames', getVideogames)
 
 module.exports = router
