@@ -14,7 +14,6 @@ module.exports = (sequelize) => {
         },
         description: {
             type: DataTypes.TEXT,
-            allowNull: false,
         },
         release_date: {
             type: DataTypes.STRING,
@@ -26,11 +25,6 @@ module.exports = (sequelize) => {
         },
         rating: {
             type: DataTypes.FLOAT,
-            allowNull: false,
-        },
-        tags: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         price: {
             type: DataTypes.FLOAT,
