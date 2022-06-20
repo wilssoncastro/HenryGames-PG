@@ -40,5 +40,9 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
+        free_to_play:{
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        }
     }, {timestamps: false})
 }
