@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function Log_In() {
+export default function LogIn() {
     return (
         <div>
 

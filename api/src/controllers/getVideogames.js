@@ -3,22 +3,38 @@ const { Op } = require("sequelize");
 const { Router } = require('express');
 const router = Router();
 
-
+//---------Query---------//
 router.get('/', async (req, res) => {
-  const name = req.query.name
+  const { name, page, limit, order, sort} = req.query
   if (name) {
     const videogames = await Videogame.findAll({
       where: {
         name: { [Op.iLike]: `${name}%` },
       },
     })
+    console.log("name")
     res.send(videogames);
-  } else {
-    const allVideogames = await Videogame.findAll();
-    res.send(allVideogames);
+  }
+  else if (sort && order) {
+    const videogames = await Videogame.findAll({
+      limit: limit, // cantidad de videogames por página
+      offset: page, // índice del primer videogame que se muestra en la página
+      order: [[sort, order]] // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+    })
+    console.log("sort && order")
+    res.send(videogames);
+  }
+  else {
+    const videogames = await Videogame.findAll({
+      limit: limit,
+      offset: page
+    });
+    console.log("else")
+    res.send(videogames);
   }
 })
 
+//---------Params---------//
 router.get('/:id', async (req, res) => {
   const id = req.params.id
   const videogames = await Videogame.findByPk(id);
