@@ -66,3 +66,17 @@ export function putVideogame(id, payload){
     }
 }
 
+export function addWishList(payload){
+    return {
+        type: "ADD_WISH_LIST",
+        payload
+    }
+}
+
+export function deleteFavorite(payload){
+    return {
+        type: "DELETE_WISH_LIST",
+        payload
+    }
+}
+
