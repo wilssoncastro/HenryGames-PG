@@ -41,6 +41,8 @@ Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
 
 Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
 Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
+Esrb.hasMany(Videogame)
+Videogame.belongsTo(Esrb)
 
 
 
