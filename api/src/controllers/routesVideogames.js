@@ -14,17 +14,17 @@ router.post('/', async (req, res) => {
         //     where: {name: esrb}
         // })
         
-        // let genresDb = await Genre.findAll({
-        //     where: {name: genres} 
-        // })
+        let genresDb = await Genre.findAll({
+            where: {name: genres} 
+        })
 
-        // let tagsDb = await Tag.findAll({
-        //     where: {name: tags}
-        // })
+        let tagsDb = await Tag.findAll({
+            where: {name: tags}
+        })
 
-        // videogameCreate.addGenre(genresDb)
-        // videogameCreate.addEsrb(tagsDb)
-        // videogameCreate.addEsrb(esrbDb)
+        videogameCreate.addGenre(genresDb)
+        videogameCreate.addTag(tagsDb)
+        //videogameCreate.addEsrb(tagsDb)
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
