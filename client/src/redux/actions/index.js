@@ -13,10 +13,7 @@ export function getAllVideogames() {
 
 export function postVideogame(payload) {
   return async function () {
-    var json = await axios.post(
-      "http://localhost:3001/postVideogames",
-      payload
-    );
+    var json = await axios.post("http://localhost:3001/postVideogames",payload);
     return json;
   };
 }
@@ -49,7 +46,6 @@ export function getVideogamesByName(name) {
   };
 }
 
-
 export function deleteVideogame(id){
     return async function(dispatch){
         var json = await axios.delete(`http://localhost:3001/videogames/:${id}`);
@@ -69,3 +65,4 @@ export function putVideogame(id, payload){
         })
     }
 }
+
