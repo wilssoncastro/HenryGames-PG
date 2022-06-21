@@ -34,7 +34,7 @@ async function getAllApiGames() {
         pageFive = await axios.get(nextPage);
         nextPage = pageFive.data.next;
         pageFive = [ ...pageFive.data.results ];
-
+        
         return [ ...pageOne, ...pageTwo, ...pageThree, ...pageFour, ...pageFive ];
     } catch (error) {
        console.log('Games not found and not save')
