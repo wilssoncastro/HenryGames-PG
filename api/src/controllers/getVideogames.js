@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
         name: { [Op.iLike]: `${name}%` },
       },
     })
-    console.log("name")
     res.send(videogames);
   }
   else if (sort && order) {
@@ -24,7 +23,6 @@ router.get('/', async (req, res) => {
       offset: page, // índice del primer videogame que se muestra en la página
       order: [[sort, order]] // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
     })
-    console.log("sort && order")
     res.send(videogames);
   }
   else {
@@ -32,7 +30,6 @@ router.get('/', async (req, res) => {
       limit: limit,
       offset: page
     });
-    console.log("else")
     res.send(videogames);
   }
 })
