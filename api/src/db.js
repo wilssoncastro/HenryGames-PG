@@ -3,9 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, API_KEY
 } = process.env;
 const  getAllApiGames = require('./services/services.js');
+const axios = require('axios');
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrygames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -56,6 +57,17 @@ Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 })}
 ))
 
+const allGenres = axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+  .then(response =>response.data.results)
+  allGenres.then(e=> {
+    e.map(g=>{
+      Genre.create({
+        name: g.name, 
+       
+      })
+    })
+  })
+ 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
