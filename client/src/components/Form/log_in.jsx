@@ -7,18 +7,18 @@ export default function Log_In() {
         <div>
           <form>
             <div>
-              <p>Usuario: </p>
+              <p>Username: </p>
               <input type='text' name='user' />
             </div>
             <div>
-              <p>Contraseña: </p>
+              <p>Password: </p>
               <input type='text' name='password' />
             </div>
             <div>
-              <input type="submit" value="">Entrar</input>
+              <input type="submit" value="">Login</input>
             </div>
             <div>
-              <p>¿No tienes una cuenta creada? Crea una <Link to='/sign_up'>aquí</Link></p>
+              <p>Not a member yet?<Link to='/sign_up'>Signup npw</Link></p>
             </div>
           </form>
         </div>
