@@ -29,15 +29,15 @@ router.post('/', async (req, res) => {
             videogameCreate.addTag(tagsDb)
         }
 
-        if(esrb){
-            let esrbPk = await Esrb.findByPk(esrb)
+        // if(esrb){
+        //     let esrbPk = await Esrb.findByPk(esrb)
 
-            if(!esrbPk){
-                res.status(404).send('No se encontró el id de la clasificacion ESRB')
-            }
+        //     if(!esrbPk){
+        //         res.status(404).send('No se encontró el id de la clasificacion ESRB')
+        //     }
 
-            let addEsrb = await Videogame.update({where: {esrbId: esrbPk}})
-        }
+        //     let addEsrb = await Videogame.update({where: {esrbId: esrbPk}})
+        // }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
