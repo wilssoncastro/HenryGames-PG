@@ -21,14 +21,31 @@ router.get('/:id', async(req, res) => {
             return res.send('No se encontro el usuario')
         }
 
-        return res.json(user)
+        return res.json(user.friends)
     } catch (error) {
-        
+        res.send('No se encontro el usuario')
     }
 })
 
-router.post('/addFriend', async(req, res) => {
-    
+router.post('/addFriend/:id/:idF', async(req, res) => {
+    const { id, idF } = req.params
+
+    try {
+        const user = await Player.findByPk(id)
+        const userF = await Player.findByPk(idF)
+
+        if(user && userF){
+            await user.addFriend(userF)
+            await userF.addFriend(user)
+        }else{
+            return res.send('No se encontro el usuario')
+        }
+
+        return res.send('Amigo agregado')
+
+    } catch (error) {
+        res.send(error)
+    }
 })
 
 module.exports = router
