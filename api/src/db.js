@@ -37,12 +37,15 @@ const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 //Player.hasMany(Player)  En duda, es para amigos.
 Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
-Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
-Videogame.hasMany(Esrb)
 
-getAllApiGames()
+Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
+Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
+
+
+
+ getAllApiGames()
 .then(response => 
-response.map((e) => { Videogame.create({
+ response.map((e) => { Videogame.create({
   name: e.name,
   release_date: e.released,
   image: e.background_image,
