@@ -1,7 +1,10 @@
 const { Router } = require('express');
 const router = Router();
+
+//import DB MODELS
 const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
+//------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
     const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
 
@@ -9,22 +12,32 @@ router.post('/', async (req, res) => {
         let videogameCreate = await Videogame.create({
             name, description, release_date, image, rating, price, on_sale, free_to_play
         })
-
-        // let esrbDb = await Esrb.findOne({
-        //     where: {name: esrb}
-        // })
         
-        let genresDb = await Genre.findAll({
-            where: {name: genres} 
-        })
+        if(genres){
+            let genresDb = await Genre.findAll({
+                where: {name: genres} 
+            })
 
-        let tagsDb = await Tag.findAll({
-            where: {name: tags}
-        })
+            videogameCreate.addGenre(genresDb)
+        }
 
-        videogameCreate.addGenre(genresDb)
-        videogameCreate.addTag(tagsDb)
-        //videogameCreate.addEsrb(tagsDb)
+        if(tags){
+            let tagsDb = await Tag.findAll({
+                where: {name: tags}
+            })
+
+            videogameCreate.addTag(tagsDb)
+        }
+
+        if(esrb){
+            let esrbPk = await Esrb.findByPk(esrb)
+
+            if(!esrbPk){
+                res.status(404).send('No se encontró el id de la clasificacion ESRB')
+            }
+
+            let addEsrb = await Videogame.update({where: {esrbId: esrbPk}})
+        }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
@@ -32,6 +45,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+//-----------------------------------------DELETE-----------------------------------------------------------
 router.delete('/:id', async (req, res) => {
     const {id} = req.params
 
@@ -50,6 +64,7 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+//---------------------------------------PUT-----------------------------------------------------------
 router.put('/:id', async (req, res) => {
     const {id} = req.params
     const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
