@@ -48,5 +48,6 @@ module.exports = (sequelize) => {
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
-    },{timestamps:false})
+
+    }, {timestamps: false})
 }
