@@ -3,8 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB_USER, DB_PASSWORD, DB_HOST, API_KEY
 } = process.env;
+const  getAllApiGames = require('./services/services.js');
+const axios = require('axios');
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrygames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -30,18 +32,44 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Player, Videogame, Genre, Esrb} = sequelize.models;
+const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 
 // Aca vendrian las relaciones
 //Player.hasMany(Player)  En duda, es para amigos.
-Player.belongsToMany(Videogame, {through: 'Player_Videogame'})
 Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
-
-Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
 
+Tag.belongsToMany(Videogame, {through: 'Tag_Videogame'})
+Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 Esrb.hasMany(Videogame)
+Videogame.belongsTo(Esrb)
 
+
+
+ getAllApiGames()
+.then(response => 
+ response.map((e) => { Videogame.create({
+  name: e.name,
+  release_date: e.released,
+  image: e.background_image,
+  rating: e.rating,
+  price: (Math.random()*10).toFixed(3),
+  on_sale: (Math.random()*10) < 7 ? false : true,
+  free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false
+})}
+))
+
+const allGenres = axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+  .then(response =>response.data.results)
+  allGenres.then(e=> {
+    e.map(g=>{
+      Genre.create({
+        name: g.name, 
+       
+      })
+    })
+  })
+ 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

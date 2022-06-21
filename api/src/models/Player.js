@@ -1,3 +1,4 @@
+
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
@@ -20,12 +21,20 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        profile_pic:{
+            type: DataTypes.STRING
+        },
+        password:{
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+        ,
         email: {
             type: DataTypes.STRING,
             allowNull: false
         },
         date_of_birth: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
         },
         phone: {
             type: DataTypes.BIGINT
@@ -35,10 +44,10 @@ module.exports = (sequelize) => {
         },
         isDeveloper: {
             type: DataTypes.BOOLEAN
-        },
+        }
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
-    })
+    }, {timestamps: false})
 }
