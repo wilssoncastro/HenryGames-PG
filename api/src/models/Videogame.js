@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('videogame',{
-        id:{
+    sequelize.define('videogame', {
+        id: {
             type: DataTypes.UUID,
             allowNull: false,
             primaryKey: true,
@@ -14,7 +14,6 @@ module.exports = (sequelize) => {
         },
         description: {
             type: DataTypes.TEXT,
-            allowNull: false,
         },
         release_date: {
             type: DataTypes.STRING,
@@ -26,23 +25,18 @@ module.exports = (sequelize) => {
         },
         rating: {
             type: DataTypes.FLOAT,
-            allowNull: false,
-        },
-        tags: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         price: {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        on_sale:{
+        on_sale: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        free_to_play:{
+        free_to_play: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         }
-    }, {timestamps: false})
+    }, { timestamps: false })
 }
