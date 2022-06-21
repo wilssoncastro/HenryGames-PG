@@ -4,7 +4,6 @@ const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
 router.post('/', async (req, res) => {
     const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
-
     try {
         let videogameCreate = await Videogame.create({
             name, description, release_date, image, rating, price, on_sale, free_to_play
@@ -21,7 +20,6 @@ router.post('/', async (req, res) => {
         let tagsDb = await Tag.findAll({
             where: {name: tags}
         })
-
         videogameCreate.addGenre(genresDb)
         videogameCreate.addTag(tagsDb)
         //videogameCreate.addEsrb(tagsDb)

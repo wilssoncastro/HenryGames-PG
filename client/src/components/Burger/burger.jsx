@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import * as VscIcons from "react-icons/vsc";
+import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { SidebarData } from "./SidebarData";
 
 
 export default function Burger() {
@@ -19,7 +21,9 @@ export default function Burger() {
             <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
                 <ul className="side-menu-items">
                     <li className="sidebar-toggle">
-                        <Link to="#"></Link>
+                        <Link to="#" className="menu-bars">
+                            <AiIcons.AiOutlineClose />
+                        </Link>
                     </li>
                 </ul>
             </nav>
