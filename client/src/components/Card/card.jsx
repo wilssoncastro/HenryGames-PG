@@ -8,6 +8,7 @@ export default function Card({ image, name }) {
         <div>
             <h4>Juego{name}</h4>
             <button>...</button>
+            <p>price</p>
         </div>
     </div>
   )
