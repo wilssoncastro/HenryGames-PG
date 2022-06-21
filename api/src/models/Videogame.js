@@ -35,6 +35,32 @@ module.exports = (sequelize) => {
         free_to_play: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+        },
+        genre: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,   
+            defaultValue: ["Has no genres"]
+                     
+          },
+        tag: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
+            defaultValue: ["Has no tags"]
+        },
+        short_screenshots: {
+            type: DataTypes.ARRAY(DataTypes.TEXT),
+            allowNull: false,
+            defaultValue: ["Has no screenShots"]
+        },
+        esrb_ratings: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Everyone 10+"
+
+
         }
+
+    
+
     }, { timestamps: false })
 }
