@@ -3,7 +3,7 @@ const { Op } = require("sequelize")
 
 async function getVideogamesByName(req, res) {
   const name = req.query.name
-  const videosgames = Videogame.findAll({
+  const videogames = Videogame.findAll({
     // include: [{
     //   model,
     //   through: {
@@ -13,7 +13,7 @@ async function getVideogamesByName(req, res) {
       name: { [Op.iLike]: `${name}%` },
     },
   });
-  return videosgames;
+  return videogames;
 }
 
 module.exports = getVideogamesByName;
