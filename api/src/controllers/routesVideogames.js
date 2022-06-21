@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
-router.post('/', async (req, res) => { 
+router.post('/', async (req, res) => {
     const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
 
     try {
