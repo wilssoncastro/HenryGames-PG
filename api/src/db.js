@@ -37,6 +37,7 @@ const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 //Player.hasMany(Player)  En duda, es para amigos.
 
 //------------------VIDEOGAME N:M PLAYER----------------------
+
 Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
 Player.belongsToMany(Videogame, {through: 'Player_Videogame'})
 
@@ -85,6 +86,21 @@ savetoDb()
 //     })
 //   })
  
+//Relacion amigos
+
+Player.belongsToMany(Player, { 
+  as: 'friends',
+  foreignKey: 'user_id',
+  through: 'UsersFriends'
+});
+
+Player.belongsToMany(Player, { 
+  as: 'userFriends',
+  foreignKey: 'friend_id',
+  through: 'UsersFriends'
+});
+//////////////////////////////////
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
