@@ -1,72 +1,53 @@
-const { Videogame } = require('../models/Videogame')
-const { Op } = require("sequelize")
+const { Videogame } = require('../db')
+const { Op } = require("sequelize");
+const { Router } = require('express');
+const router = Router();
 
-async function getVideogames() {
-  const videogames = Videogame.findAll({
-    include: [{
-      model: Genre,
-      attributes: ["name"],
-      through: {
-        attributes: []
-      }
-    },
-    {
-      model: Esrb,
-      attributes: ["name"],
-      through: {
-        attributes: []
-      }
-    },
-    {
-      model: Tag,
-      attributes: ["name"],
-      through: {
-        attributes: []
-      }
-    }],
-  });
-  return videogames;
-}
 
-async function getVideogamesByName(req, res) {
+router.get('/', async (req, res) => {
   const name = req.query.name
-  const videogames = Videogame.findAll({
-    include: [{
-      model: Genre,
-      attributes: ["name"],
-      through: {
-        attributes: []
-      }
-    },
-    {
-      model: Esrb,
-      attributes: ["name"],
-      through: {
-        attributes: []
-      }
-    },
-    {
-      model: Tag,
-      attributes: ["name"],
-      through: {
-        attributes: []
-      }
-    }],
-    where: {
-      name: { [Op.iLike]: `${name}%` },
-    },
-  });
-  return videogames;
-}
+  if (name) {
+    const videogames = await Videogame.findAll({
+      where: {
+        name: { [Op.iLike]: `${name}%` },
+      },
+    })
+    res.send(videogames);
+  } else {
+    const allVideogames = await Videogame.findAll();
+    res.send(allVideogames);
+  }
+})
 
-async function getVideogamesById(req, res) {
+router.get('/:id', async (req, res) => {
   const id = req.params.id
-  const videogames = Videogame.findByPk(id);
-  return videogames;
-}
+  const videogames = await Videogame.findByPk(id);
+  res.send(videogames);
+  console.log(videogames)
+})
 
-module.exports = {
-  getVideogames,
-  getVideogamesByName,
-  getVideogamesById
-}
+module.exports = router;
+
+// {
+//   include: [{
+//     model: Genre,
+//     attributes: ["name"],
+//     through: {
+//       attributes: []
+//     }
+//   },
+//   {
+//     model: Esrb,
+//     attributes: ["name"],
+//     through: {
+//       attributes: []
+//     }
+//   },
+//   {
+//     model: Tag,
+//     attributes: ["name"],
+//     through: {
+//       attributes: []
+//     }
+//   }],
+// }
