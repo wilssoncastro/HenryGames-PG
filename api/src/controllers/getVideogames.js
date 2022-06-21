@@ -2,6 +2,9 @@ const { Videogame } = require('../db')
 const { Op } = require("sequelize");
 const { Router } = require('express');
 const router = Router();
+require('dotenv').config();
+const axios = require("axios")
+const { API_KEY } = process.env
 
 //---------Query---------//
 router.get('/', async (req, res) => {
@@ -35,11 +38,27 @@ router.get('/', async (req, res) => {
 })
 
 //---------Params---------//
+// router.get('/:id', async (req, res) => {
+//   const id = req.params.id
+//   const videogames = await Videogame.findByPk(id);
+//   res.send(videogames);
+//   console.log(videogames)
+// })
+
 router.get('/:id', async (req, res) => {
-  const id = req.params.id
-  const videogames = await Videogame.findByPk(id);
-  res.send(videogames);
-  console.log(videogames)
+const id = req.params.id
+const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+  let e = gameDetail.data;
+  const detailsObj = {
+    name: e.name,
+    image: e.background_image,
+    description: e.description,
+    released: e.released,
+    rating: e.rating,
+    genres: e.genres.map(e => e.name),
+    platforms: e.platforms.map(e => e.platform.name)
+  }
+  res.send(detailsObj);
 })
 
 module.exports = router;
