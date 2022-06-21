@@ -35,14 +35,34 @@ router.post('/addFriend/:id/:idF', async(req, res) => {
         const userF = await Player.findByPk(idF)
 
         if(user && userF){
-            await user.addFriend(userF)
-            await userF.addFriend(user)
+            const promise_pending_array = [user.addFriend(userF), userF.addFriend(user)]
+            await Promise.all(promise_pending_array)
         }else{
             return res.send('No se encontro el usuario')
         }
 
         return res.send('Amigo agregado')
 
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+router.delete('/delete/:id/:idF', async(req, res) => {
+    const { id, idF } = req.params
+
+    try {
+        const user = await Player.findByPk(id)
+        const userF = await Player.findByPk(idF)
+
+        if(user && userF){
+            const promise_pending_array = [user.removeFriend(userF), userF.removeFriend(user)]
+            await Promise.all(promise_pending_array)
+        }else{
+            return res.send('No se encontro el usuario')
+        }
+
+        return res.send('Amigo eliminado')
     } catch (error) {
         res.send(error)
     }
