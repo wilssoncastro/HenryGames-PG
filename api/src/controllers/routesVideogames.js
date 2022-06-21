@@ -7,24 +7,19 @@ router.post('/', async (req, res) => {
 
     try {
         let videogameCreate = await Videogame.create({
-            name, description, release_date, image, rating, price, on_sale, free_to_play
+            name, description, release_date, image, rating, tags, price, on_sale, free_to_play
         })
 
-        // let esrbDb = await Esrb.findOne({
-        //     where: {name: esrb}
-        // })
+        let genresDb = await Genre.findAll({
+            where: {name: genres}
+        })
 
-        // await videogameCreate.addEsrb(esrbDb)
-        // let genresDb = await Genre.findAll({
-        //     where: {name: genres}
-        // })
+        let esrbDb = await Esrb.findAll({
+            where: {name: esrb_rating}
+        })
 
-        // let tagsDb = await Tag.findAll({
-        //     where: {name: tags}
-        // })
-
-        // videogameCreate.addGenre(genresDb)
-        // videogameCreate.addEsrb(tagsDb)
+        videogameCreate.addGenre(genresDb)
+        videogameCreate.addEsrb(esrbDb)
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
