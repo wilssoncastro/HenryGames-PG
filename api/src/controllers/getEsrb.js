@@ -7,9 +7,9 @@ router.get('/', async (req, res) => {
     try {
         let allRatings = ["Everyone", "Everyone 10+", "Teen", "Mature", "Adults Only", "Rating Pending"]
 
-        allRatings.forEach(Rate => {
+        allRatings.forEach(r => {
             Esrb.findOrCreate({
-                where: {name: Rate}
+                where: {name: r}
             })
         })
 
