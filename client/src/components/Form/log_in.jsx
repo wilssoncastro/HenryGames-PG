@@ -15,6 +15,9 @@ export default function Log_In() {
               <input type='text' name='password' />
             </div>
             <div>
+              <input type="submit" value="">Entrar</input>
+            </div>
+            <div>
               <p>¿No tienes una cuenta creada? Crea una <Link to='/sign_up'>aquí</Link></p>
             </div>
           </form>
