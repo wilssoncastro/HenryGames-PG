@@ -2,17 +2,17 @@ const { Videogame } = require("../models/Videogame")
 
 async function getVideogamesById(req, res) {
   const id = req.params.id
-  const videosgames = Videogame.findAll({
+  const videogames = Videogame.findAll({
     // include: [{
     //   model,
     //   through: {
     //   }
     // }],
     where: {
-      id,
+      id: id,
     },
   });
-  return videosgames;
+  return videogames;
 }
 
 module.exports = getVideogamesById;
