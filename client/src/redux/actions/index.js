@@ -24,7 +24,7 @@ export function postVideogame(payload) {
 export function getDetailsVideogame(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/videogames/:id");
+      var json = await axios.get(`http://localhost:3001/videogames/:${id}`);
       return dispatch({
         type: "GET_DETAILS_VIDEOGAME",
         payload: json.data,
@@ -38,9 +38,7 @@ export function getDetailsVideogame(id) {
 export function getVideogamesByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(
-        `http://localhost:3001/videogames?name=${name}`
-      );
+      var json = await axios.get(`http://localhost:3001/videogames?name=${name}`);
       return dispatch({
         type: "GET_VIDEOGAMES_NAME",
         payload: json.data,
@@ -49,4 +47,25 @@ export function getVideogamesByName(name) {
       console.log(error);
     }
   };
+}
+
+
+export function deleteVideogame(id){
+    return async function(dispatch){
+        var json = await axios.delete(`http://localhost:3001/videogames/:${id}`);
+        return dispatch({
+            type: "DELETE_VIDEOGAME",
+            payload: json.data
+        });
+    }
+}
+
+export function putVideogame(id, payload){
+    return async function(dispatch){
+        var json = await axios.put(`http://localhost:3001/videogames/:${id}`, payload);
+        return dispatch({
+            type: "PUT_VIDEOGAME",
+            payload: json.data
+        })
+    }
 }
