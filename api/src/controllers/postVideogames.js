@@ -25,19 +25,20 @@ router.post('/', async (req, res) => {
 const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
 router.post('/', async (req, res) => { 
-    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_rating, tags} = req.body
+    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
 
     try {
         let videogameCreate = await Videogame.create({
             name, description, release_date, image, rating, price, on_sale, free_to_play
         })
 
-        // let genresDb = await Genre.findAll({
-        //     where: {name: genres}
+        // let esrbDb = await Esrb.findOne({
+        //     where: {name: esrb}
         // })
 
-        // let esrbDb = await Esrb.findAll({
-        //     where: {name: esrb_rating}
+        // await videogameCreate.addEsrb(esrbDb)
+        // let genresDb = await Genre.findAll({
+        //     where: {name: genres}
         // })
 
         // let tagsDb = await Tag.findAll({
@@ -45,7 +46,6 @@ router.post('/', async (req, res) => {
         // })
 
         // videogameCreate.addGenre(genresDb)
-        // videogameCreate.addEsrb(esrbDb)
         // videogameCreate.addEsrb(tagsDb)
 >>>>>>> 009c01fac5dec49f90eda56b7efda69d35087fa8
 
