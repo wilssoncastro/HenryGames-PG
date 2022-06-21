@@ -37,7 +37,7 @@ async function getAllApiGames() {
 
         return [ ...pageOne, ...pageTwo, ...pageThree, ...pageFour, ...pageFive ];
     } catch (error) {
-        res.send('No se encontraron los juegos');
+       console.log('Games not found and not save')
     }
 }
 
