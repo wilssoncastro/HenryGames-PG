@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 
-export default function Log_In() {
+export default function LogIn() {
     return (
         <div>
           <form>
