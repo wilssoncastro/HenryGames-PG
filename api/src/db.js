@@ -33,11 +33,26 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Player, Videogame, Genre, Esrb, Tag} = sequelize.models;
 
 // Aca vendrian las relaciones
-//Player.hasMany(Player)  En duda, es para amigos.
+
 Videogame.belongsToMany(Player, {through: 'Player_Videogame'})
 Videogame.belongsToMany(Genre, {through: 'Genre_Videogame'})
 Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 Esrb.hasMany(Videogame)
+
+//Relacion amigos
+
+Player.belongsToMany(Player, { 
+  as: 'friends',
+  foreignKey: 'user_id',
+  through: 'UsersFriends'
+});
+
+Player.belongsToMany(Player, { 
+  as: 'userFriends',
+  foreignKey: 'friend_id',
+  through: 'UsersFriends'
+});
+//////////////////////////////////
 
 
 module.exports = {
