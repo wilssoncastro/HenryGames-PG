@@ -44,8 +44,7 @@ module.exports = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,   
             defaultValue: ["Has no genres"]
-                     
-          },
+        },
         tag: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
@@ -65,8 +64,5 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         }
-
-    
-
     }, { timestamps: false })
 }
