@@ -45,10 +45,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
   const id = req.params.id
-  const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
   const videogames = await Videogame.findByPk(id);
-  console.log(videogames)
-  if (videogames.db_created == false) {
+  
+  if (!videogames.dataValues.db_created) {
+    const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
     let e = gameDetail.data;
     const detailsObj = {
       name: e.name,
