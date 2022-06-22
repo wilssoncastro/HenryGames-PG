@@ -24,7 +24,7 @@ router.get('/', async(req, res) => {
         let genreFromDb = await Genre.findAll()
         
     
-
+    console.log('descargando juegos de la API')
 
     let juego = await getAllApiGames()
     juego.map((e) => { Videogame.findOrCreate({
@@ -45,10 +45,17 @@ router.get('/', async(req, res) => {
       }})
     }) 
 
- 
-  
+    console.log('guardando relacion de generos')
+   
     let games = await getAllApiGames()
     let genre = juego.map(e => e.genres.map(g => g.name))
+
+    // for (let i = 0; i < games.length; i++) {
+    //     const gameDetail = await axios(`https://api.rawg.io/api/games/${games[i].id}?key=${API_KEY}`);
+    //     Videogame.findByPk(games[i].id)
+    //     .then(response => response.description = gameDetail.description)  
+    //     console.log('agregando description...'+ [i])                
+    //     }
   
       
    for (let i = 0; i < games.length; i++) {       
@@ -59,11 +66,11 @@ router.get('/', async(req, res) => {
     });  
     Videogame.findByPk(games[i].id)
     .then(response => response.addGenre(genreDb))
-    
+    console.log('cargando '+ i + ' juegos')    
          
       
   }
-  console.log('Games saved to DB OK')
+  console.log('juegos cargados correctamente')
   res.status(200).send(genreFromDb)
  
 } catch (error) {

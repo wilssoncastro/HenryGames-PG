@@ -29,7 +29,10 @@ router.post('/', async (req, res) => {
 
         if(tags){
             let tagsDb = await Tag.findAll({
-                where: {name: {[Op.iLike]: `${tags}%`}}
+                // where: {name: {[Op.iLike]: `${tags}%`}}
+                where: {
+                    name: genres
+                  }
             })
 
             videogameCreate.addTag(tagsDb)

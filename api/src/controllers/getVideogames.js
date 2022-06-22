@@ -1,35 +1,88 @@
-const { Videogame } = require('../db')
+const { Videogame,Genre, Tag} = require('../db')
 const { Op } = require("sequelize");
 const { Router } = require('express');
 const router = Router();
 require('dotenv').config();
 const axios = require("axios")
 const { API_KEY } = process.env
-const { Genre } = require('../db.js')
+
 
 
 //---------Query---------//
 
 router.get('/:id', async (req, res) => {
-  try {
-  const id = req.params.id
-  // const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-  const videogames = await Videogame.findByPk(id
-    , {
-    include: [{
-        model: Genre,
-        attributes: ['name'],
-        through: {
-            attributes: [],
-        }
-    }
-  ],
-}
-)
-console.log(videogames)
   
+  const id = req.params.id
+  try {
+    const videogames = await Videogame.findByPk(id)
+    
+    if(videogames.db_created === false){
 
-  res.send(videogames)
+      const videogames = await Videogame.findByPk(id
+        , {
+          include: [{
+            model: Genre,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+            
+        },
+        {
+            model: Tag,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+            
+        }
+      ]
+    }
+    
+    )
+    console.log('cargando descripcion del juego')
+
+    const gameDetail = await axios(`https://api.rawg.io/api/games/${videogames.id}?key=${API_KEY}`);
+    
+    
+    videogames.dataValues.description = gameDetail.data.description
+    
+    console.log('juego cargado exitosamente') 
+    
+     
+    res.send(videogames)
+
+    }else
+    {
+      const videogames = await Videogame.findByPk(id
+        , {
+        include: [{
+            model: Genre,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+            
+        },
+        {
+            model: Tag,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+            
+        }
+      ]
+    }
+    
+    )   
+    console.log('juego cargado exitosamente')   
+     res.send(videogames)
+    }
+    
+  
+ 
+  
   // if (videogames.db_created == false) {
   //   let e = gameDetail.data;
   //   const detailsObj = {
@@ -66,7 +119,7 @@ console.log(videogames)
   // }
 
   } catch (error) {
-    console.log("errorcachado")
+    console.log("El juego no se encontro u ocurrio un error!")
   }
 })
 router.get('/', async (req, res) => {
