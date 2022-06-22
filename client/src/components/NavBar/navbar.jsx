@@ -97,19 +97,21 @@ export default function NavBar() {
                       })}
                       <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                         <h3 className="friendBoxTitle">Friend List</h3>
-                        {FriendList.map((user, index) => {
-                            return (
-                                <ul className="FriendBox">
-                                    <li key={index} className={user.className}>
-                                        <Link to={user.path}>
-                                            {user.image}
-                                            <span className="userName">{user.name}</span>
-                                            <span className="userStatus">{user.status}</span>
-                                        </Link>
-                                    </li>
-                                </ul>
-                            )
-                        })}
+                        <div className="FriendListBox">
+                            {FriendList.map((user, index) => {
+                                return (
+                                    <ul>
+                                        <li key={index} className={user.className}>
+                                            <Link to={user.path}>
+                                                {user.image}
+                                                <span className="userName">{user.name}</span>
+                                                <span className="userStatus">{user.status}</span>
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                )
+                            })}
+                        </div>
                       </nav>
 
                   </ul>

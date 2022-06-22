@@ -25,6 +25,20 @@ export const FriendList = [
     },
     {
         image: <FaIcons.FaUserFriends/>,
+        name: 'rocololi',
+        path: '#',
+        status: "Online",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'rocololi',
+        path: '#',
+        status: "Online",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
         name: 'geryer86',
         path: '#',
         status: "Offline",

@@ -1,17 +1,19 @@
 .friendBox {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-content: flex-start;
+    position: fixed;
     background-color: #151414;
     border-color: black;
     width: 250px;
     height: 45%;
-    display: flex;
     border-radius: 4px;
-    justify-content: center;
-    position: fixed;
     bottom: 0;
     right: -100%;
     transition: 850ms;
-    flex-direction: column;
     margin-bottom: 5px;
+    
 }
 
 .friendBox.active {
@@ -53,6 +55,7 @@
     text-decoration: none;
     color: #f5f5f5;
     font-size: 18px;
+    position: relative;
 }
 
 .userName{
@@ -61,4 +64,12 @@
 
 .userStatus{
     left: 0;
+}
+
+.FriendListBox{
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
