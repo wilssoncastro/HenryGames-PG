@@ -1,31 +1,34 @@
 import React from 'react'
-import * as VscIcons from "react-icons/vsc";
+import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
+import * as CgIcons from "react-icons/cg";
+import * as VscIcons from "react-icons/vsc";
+import * as BsIcons from "react-icons/bs";
+
 
 export const SidebarData = [
     {
         title: 'Profile',
         path: '/profile/:id',
-        icon: <AiIcons.AiFillHome/>,
+        icon: <CgIcons.CgProfile/>,
         className: 'nav-text'
     },
     {
         title: 'Friends',
         path: '/friends/:id',
-        icon: <AiIcons.AiFillHome/>,
+        icon: <FaIcons.FaUserFriends/>,
         className: 'nav-text'
     },
     {
-        title: 'Home',
-        path: '/',
-        icon: <AiIcons.AiFillHome/>,
+        title: 'Theme',
+        path: '#',
+        icon: <VscIcons.VscColorMode/>,
         className: 'nav-text'
     },
     {
-        title: 'Home',
+        title: 'Language',
         path: '/',
-        icon: <AiIcons.AiFillHome/>,
+        icon: <BsIcons.BsTranslate/>,
         className: 'nav-text'
     },
     {
