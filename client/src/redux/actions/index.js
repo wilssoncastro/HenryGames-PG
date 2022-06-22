@@ -33,7 +33,7 @@ export function getTags() {
 
 export function postVideogame(payload) {
   return async function () {
-    var json = await axios.post("http://localhost:3001/postVideogames",payload);
+    var json = await axios.post("http://localhost:3001/videogamesDev",payload);
     return json;
   };
 }
