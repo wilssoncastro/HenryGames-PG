@@ -1,14 +1,13 @@
 import React from 'react'
 
-export default function Card({ image, name }) {
+export default function Card({ image, name, price }) {
   return (
     <div className='card'>
-        <h1>img</h1>
-        <img src={image}/>
+        <img src={image} alt='Not found' width='400px' height='250px'/>
         <div>
-            <h4>Juego{name}</h4>
+            <h4>{name}</h4>
             <button>...</button>
-            <p>price</p>
+            <p>{price}</p>
         </div>
     </div>
   )
