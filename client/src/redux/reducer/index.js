@@ -4,7 +4,9 @@ const initialState = {
     allVideogames: [],
     videogames: [],
     details: [],
-    wishList: []
+    wishList: [],
+    genres: [],
+    tags: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -14,6 +16,17 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 videogames: action.payload,
                 allVideogames: action.payload
+            }
+        case "GET_GENRES":
+            return {
+                ...state,
+                genres: action.payload
+            }
+
+        case "GET_TAGS":
+            return {
+                ...state,
+                tags: action.payload
             }
 
         case "GET_DETAILS_VIDEOGAME":

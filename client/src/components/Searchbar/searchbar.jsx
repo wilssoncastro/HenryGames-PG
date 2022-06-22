@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-//import { getNameVideogames } from "../actions/actions";
+import { getVideogamesByName } from "../../redux/actions/index";
 
 
 function validate(input){
@@ -11,7 +11,6 @@ function validate(input){
   }
   return error;
 }
-
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -26,13 +25,12 @@ export default function SearchBar() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(name !== ""){
-     await dispatch(/* action */(name));
+     await dispatch(getVideogamesByName(name));
       setName("")
     }
     setError(validate(name))
   };
   
-
   return (
     <div className="search">
 
