@@ -1,4 +1,4 @@
-.burger {
+.navbar {
     background-color: #000000;
     height: 80px;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.menu-bars {
+.navbar-icons {
     margin-right: 2rem;
     font-size: 2rem;
     background: none;

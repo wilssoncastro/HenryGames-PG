@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import './navbar.css';
 import { IconContext } from "react-icons/lib";
+import * as MdIcons from "react-icons/md"
 
 
 export default function NavBar() {
@@ -15,16 +16,26 @@ export default function NavBar() {
     return (
         <div>
             <IconContext.Provider value={{color: '#fff'}}>
-                <div></div>
-                <div className="burger">  
-                    <Link to='#' >
-                        <VscIcons.VscThreeBars className="menu-bars" onClick={showSidebar}/>
-                    </Link>
+
+                {/* Burger Menu */}
+                <div className="navbar"> 
+
+                    {/* ShoppingCart clickable */}
+                    <Link to="/my_cart">
+                      <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
+                    </Link> 
+
+                  {/* SideMenu Opener (three lines) */}
+                  <Link to='#' >
+                      <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar}/>
+                  </Link>
                 </div>
+
+                {/* Menu vertical invisible de izquierda a derecha con su logica */}
                 <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
                     <ul className="side-menu-items" onClick={showSidebar}>
                         <li className="sidebar-toggle">
-                            <Link to="#" className="menu-bars">
+                            <Link to="#" className="navbar-icons">
                                 <VscIcons.VscThreeBars />
                             </Link>
                         </li>
@@ -40,6 +51,7 @@ export default function NavBar() {
                         })}
                     </ul>
                 </nav>
+
             </IconContext.Provider>            
         </div>
     )
