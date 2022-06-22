@@ -13,7 +13,9 @@ router.get('/', async (req, res) => {
         let data
 
         if(id){
-            data = await Player.findByPk(id)
+            data = await Player.findByPk(id, {
+                include: ['wishs', 'friends']
+            })
         }else{
             data = await Player.findAll()
         }

@@ -150,7 +150,27 @@ saveGenres()
 
 // }
 
+//---------------------PLAYER N:M FRIEND--------------------------------
 
+
+Player.belongsToMany(Player, { 
+  as: 'userFriends',
+  foreignKey: 'friend_id',
+  through: 'UsersFriends'
+});
+//////////////////////////////////
+//----------------------PLAYER N:M VIDEOGAME (WISH-LIST)--------------------------//
+Player.belongsToMany(Videogame,{
+  as: 'wishs',
+  foreignKey: 'player_id',
+  through: 'WishList'
+})
+
+Videogame.belongsToMany(Player,{
+  as: 'wishGame',
+  foreignKey: 'wish_id',
+  through: 'WishList'
+})
 
 
 
