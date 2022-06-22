@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import * as VscIcons from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
-import './navbar.css';
 import { IconContext } from "react-icons/lib";
+import * as VscIcons from "react-icons/vsc";
 import * as MdIcons from "react-icons/md"
-
+import * as BiIcons from "react-icons/bi"
+import './navbar.css';
 
 export default function NavBar() {
     const [sidebar, setSidebar] = useState(false);
@@ -20,10 +20,15 @@ export default function NavBar() {
                 {/* Burger Menu */}
                 <div className="navbar"> 
 
-                    {/* ShoppingCart clickable */}
-                    <Link to="/my_cart">
-                      <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
-                    </Link> 
+                  {/* Chat clickable */}
+                  <Link to="#">
+                    <BiIcons.BiChat className="navbar-icons" />
+                  </Link> 
+
+                  {/* ShoppingCart clickable */}
+                  <Link to="/my_cart">
+                    <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
+                  </Link> 
 
                   {/* SideMenu Opener (three lines) */}
                   <Link to='#' >
