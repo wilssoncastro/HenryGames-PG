@@ -105,7 +105,7 @@ async function saveGenres(){
 }
 }
 
-saveGenres() 
+//saveGenres() 
 
 
    
