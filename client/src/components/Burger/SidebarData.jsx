@@ -14,12 +14,6 @@ export const SidebarData = [
         className: 'nav-text'
     },
     {
-        title: 'Friends',
-        path: '/friends/:id',
-        icon: <FaIcons.FaUserFriends/>,
-        className: 'nav-text'
-    },
-    {
         title: 'Theme',
         path: '#',
         icon: <VscIcons.VscColorMode/>,
@@ -32,10 +26,9 @@ export const SidebarData = [
         className: 'nav-text'
     },
     {
-        title: 'Home',
-        path: '/',
-        icon: <AiIcons.AiFillHome/>,
-        className: 'nav-text'
+        title: 'Friends',
+        path: '/friends/:id',
+        icon: <FaIcons.FaUserFriends/>,
+        className: 'friends-text'
     }
 ]
-    

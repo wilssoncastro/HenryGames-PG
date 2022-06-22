@@ -24,8 +24,8 @@ export default function Burger() {
                 <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
                     <ul className="side-menu-items" onClick={showSidebar}>
                         <li className="sidebar-toggle">
-                            <Link to="#" className="menu-cross">
-                                <AiIcons.AiOutlineClose />
+                            <Link to="#" className="menu-bars">
+                                <VscIcons.VscThreeBars />
                             </Link>
                         </li>
                         {SidebarData.map((item, index) => {
