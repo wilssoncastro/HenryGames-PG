@@ -7,6 +7,53 @@ const axios = require("axios")
 const { API_KEY } = process.env
 
 //---------Query---------//
+
+router.get('/:id', async (req, res) => {
+  try {
+  const id = req.params.id
+  // const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
+  const videogames = await Videogame.findByPk(id);
+  console.log(videogames)
+  res.send(videogames)
+  // if (videogames.db_created == false) {
+  //   let e = gameDetail.data;
+  //   const detailsObj = {
+  //     name: e.name,
+  //     image: e.background_image,
+  //     description: e.description,
+  //     released: e.released,
+  //     rating: e.rating,
+  //     genres: e.genres.map(e => e.name),
+  //     price: videogames.price,
+  //     free_to_play: videogames.free_to_play,
+  //     screeshots: videogames.short_screenshots,
+  //     esrb_ratings: videogames.esrb_ratings,
+  //     tags: videogames.tag.map(e => e),
+  //     on_sale: videogames.on_sale
+  //   }
+  //   console.log("DB FALSE")
+  //   res.send(detailsObj);
+  // }
+  // else {
+  //   const obj = {
+  //     name: e.name,
+  //     image: e.background_image,
+  //     description: e.description,
+  //     released: e.released,
+  //     rating: e.rating,
+  //     price: videogames.price,
+  //     free_to_play: videogames.free_to_play,
+  //     screeshots: videogames.short_screenshots,
+  //     on_sale: videogames.on_sale
+  //   }
+  //   console.log("DB TRUE")
+  //   res.send(obj)
+  // }
+
+  } catch (error) {
+    console.log("errorcachado")
+  }
+})
 router.get('/', async (req, res) => {
   const { name, page, limit, order, sort} = req.query
   if (name) {
@@ -34,7 +81,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-//---------Params---------//
+// ---------Params---------//
 // router.get('/:id', async (req, res) => {
 //   const id = req.params.id
 //   const videogames = await Videogame.findByPk(id);
@@ -42,50 +89,7 @@ router.get('/', async (req, res) => {
 //   console.log(videogames)
 // })
 
-router.get('/:id', async (req, res) => {
-  try {
-  const id = req.params.id
-  const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-  const videogames = await Videogame.findByPk(id);
-  console.log(videogames)
-  if (videogames.db_created == false) {
-    let e = gameDetail.data;
-    const detailsObj = {
-      name: e.name,
-      image: e.background_image,
-      description: e.description,
-      released: e.released,
-      rating: e.rating,
-      genres: e.genres.map(e => e.name),
-      price: videogames.price,
-      free_to_play: videogames.free_to_play,
-      screeshots: videogames.short_screenshots,
-      esrb_ratings: videogames.esrb_ratings,
-      tags: videogames.tag.map(e => e),
-      on_sale: videogames.on_sale
-    }
-    console.log("DB FALSE")
-    res.send(detailsObj);
-  }
-  else {
-    const obj = {
-      name: e.name,
-      image: e.background_image,
-      description: e.description,
-      released: e.released,
-      rating: e.rating,
-      price: videogames.price,
-      free_to_play: videogames.free_to_play,
-      screeshots: videogames.short_screenshots,
-      on_sale: videogames.on_sale
-    }
-    console.log("DB TRUE")
-    res.send(obj)
-  }
-  } catch (error) {
-    console.log("errorcachado")
-  }
-})
+
 
 module.exports = router;
 
