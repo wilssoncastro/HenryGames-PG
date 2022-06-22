@@ -3,12 +3,10 @@ import React from 'react'
 export default function Card({ image, name, price }) {
   return (
     <div className='card'>
-        <img src={image} alt='Not found' width='400px' height='250px'/>
-        <div>
-            <h4>{name}</h4>
-            <button>...</button>
-            <p>{price}</p>
-        </div>
+      <h2>{name}</h2>
+      <h4>{price}</h4>
+      <img className='image' src={image} alt='Imagen no encontrada' width='400px' height='250px'/>
+      <button>...</button>
     </div>
   )
 }
