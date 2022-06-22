@@ -1,11 +1,11 @@
 import React from 'react'
-import Burger from '../Burger/burger'
+import NavBar from '../NavBar/navbar'
 // import { Link } from "react-router-dom";
 
 export default function Home() {
     return (
             <div>
-                <Burger/>
+                <NavBar/>
             </div>
     )
 }
