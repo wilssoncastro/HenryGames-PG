@@ -7,16 +7,16 @@ const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
 //------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
-    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genre, esrb_ratings, tag} = req.body
+    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings, tags} = req.body
 
     try {
         let videogameCreate = await Videogame.create({
-            esrb_ratings, tag, genre, name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000)
+            name, description, release_date, image, rating, price, on_sale, free_to_play, esrb_ratings, db_created: true, id: Math.ceil(Math.random()*100000)
         })
         
         if(genres){
             let genresDb = await Genre.findAll({
-                where: {name: {[Op.iLike]: `${genre}%` }} 
+                where: {name: {[Op.iLike]: `${genres}%` }} 
             })
 
             videogameCreate.addGenre(genresDb)
@@ -24,21 +24,11 @@ router.post('/', async (req, res) => {
 
         if(tags){
             let tagsDb = await Tag.findAll({
-                where: {name: {[Op.iLike]: `${tag}%`}}
+                where: {name: {[Op.iLike]: `${tags}%`}}
             })
 
             videogameCreate.addTag(tagsDb)
         }
-
-        // if(esrb){
-        //     let esrbPk = await Esrb.findByPk(esrb)
-
-        //     if(!esrbPk){
-        //         res.status(404).send('No se encontró el id de la clasificacion ESRB')
-        //     }
-
-        //     let addEsrb = await Videogame.update({where: {esrbId: esrbPk}})
-        // }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
@@ -68,7 +58,7 @@ router.delete('/:id', async (req, res) => {
 //---------------------------------------PUT-----------------------------------------------------------
 router.put('/:id', async (req, res) => {
     const {id} = req.params
-    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
+    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings, tags} = req.body
 
     let condition = {}
 
@@ -87,12 +77,9 @@ router.put('/:id', async (req, res) => {
         if(price){condition.price = price}
         if(on_sale){condition.on_sale = on_sale}
         if(free_to_play){condition.free_to_play = free_to_play}
+        if(esrb_ratings){condition.esrb_ratings = esrb_ratings}
 
         await videogame.update(condition)
-
-        // let esrbDb = await Esrb.findOne({
-        //     where: {name: esrb}
-        // })
         
         if(genres){
             let genreDelete = await Genre.findAll({
