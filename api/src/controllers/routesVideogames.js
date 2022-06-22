@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
             esrb_ratings, tag, genre, name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000)
         })
         
-        if(genre){
+        if(genres){
             let genresDb = await Genre.findAll({
                 where: {name: {[Op.iLike]: `${genre}%` }} 
             })
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
             videogameCreate.addGenre(genresDb)
         }
 
-        if(tag){
+        if(tags){
             let tagsDb = await Tag.findAll({
                 where: {name: {[Op.iLike]: `${tag}%`}}
             })
