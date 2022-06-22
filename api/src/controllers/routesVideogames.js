@@ -7,16 +7,16 @@ const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
 //------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
-    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genre, esrb, tag} = req.body
+    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genre, esrb_ratings, tag} = req.body
 
     try {
         let videogameCreate = await Videogame.create({
-            tag, genre, name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000)
+            esrb_ratings, tag, genre, name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000)
         })
         
         if(genre){
             let genresDb = await Genre.findAll({
-                where: {name: {[Op.iLike]: `${genres}%` }} 
+                where: {name: {[Op.iLike]: `${genre}%` }} 
             })
 
             videogameCreate.addGenre(genresDb)
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 
         if(tag){
             let tagsDb = await Tag.findAll({
-                where: {name: {[Op.iLike]: `${tags}%`}}
+                where: {name: {[Op.iLike]: `${tag}%`}}
             })
 
             videogameCreate.addTag(tagsDb)
