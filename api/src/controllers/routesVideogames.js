@@ -13,11 +13,16 @@ router.post('/', async (req, res) => {
         let videogameCreate = await Videogame.create({
             name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000), esrb_ratings: esrb
         })
-        
+       
         if(genres){
             let genresDb = await Genre.findAll({
-                where: {name: {[Op.iLike]: `${genres}%` }} 
+                // where: {name: {[Op.iLike]: `${genres}%` }} 
+                where: {
+                    name: genres
+                  }
+                
             })
+            console.log(videogameCreate.id)
 
             videogameCreate.addGenre(genresDb)
         }
@@ -29,7 +34,7 @@ router.post('/', async (req, res) => {
 
             videogameCreate.addTag(tagsDb)
 
-            console.log(videogameCreate.id)
+            
         }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)

@@ -5,6 +5,8 @@ const router = Router();
 require('dotenv').config();
 const axios = require("axios")
 const { API_KEY } = process.env
+const { Genre } = require('../db.js')
+
 
 //---------Query---------//
 
@@ -12,8 +14,21 @@ router.get('/:id', async (req, res) => {
   try {
   const id = req.params.id
   // const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-  const videogames = await Videogame.findByPk(id);
-  console.log(videogames)
+  const videogames = await Videogame.findByPk(id
+    , {
+    include: [{
+        model: Genre,
+        attributes: ['name'],
+        through: {
+            attributes: [],
+        }
+    }
+  ],
+}
+)
+console.log(videogames)
+  
+
   res.send(videogames)
   // if (videogames.db_created == false) {
   //   let e = gameDetail.data;
@@ -55,6 +70,8 @@ router.get('/:id', async (req, res) => {
   }
 })
 router.get('/', async (req, res) => {
+
+
   const { name, page, limit, order, sort} = req.query
   if (name) {
     const videogames = await Videogame.findAll({
