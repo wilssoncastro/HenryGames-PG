@@ -70,6 +70,6 @@
     overflow-y: scroll;
 }
 
-::-webkit-scrollbar {
+.friendBox ::-webkit-scrollbar {
     display: none;
 }

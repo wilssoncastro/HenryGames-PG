@@ -17,7 +17,11 @@ export default function NavBar() {
   const [sidebar, setSidebar] = useState(false);
   const [friendBox, setFriendBox] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => {
+    setSidebar(!sidebar) 
+    setFriendBox(false)
+};
+
   const showFriendBox = () => setFriendBox(!friendBox);
 
 
