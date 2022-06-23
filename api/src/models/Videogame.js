@@ -45,11 +45,21 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: ["Has no screenShots"]
         },
-        // esrb_ratings: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     defaultValue: "Everyone 10+"
-        // },
+        tags: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
+            defaultValue: ["Has no Tags"]
+        },
+        esrb_rating: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "Everyone 10+"
+        },
+        requirements: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
+            defaultValue: ["Has no requirements"]
+        },
         db_created: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
