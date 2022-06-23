@@ -7,17 +7,17 @@
 }
 
 .NavBar-left {
-    flex-basis: 27.5%;
+    flex-basis: 30%;
     margin-left: 25px;
 }
 
 .NavBar-center {
-    flex-basis: 45%;
+    flex-basis: 40%;
 }
 
 .NavBar-right {
-    flex-basis: 27.5%;
-    margin-right: 0;
+    flex-basis: 30%;
+    text-align: end;
 }
 
 .henrygames-logo {
@@ -28,9 +28,10 @@
 }
 
 .navbar-icons {
-    margin-right: 2rem;
+    margin-right: 3rem;
     font-size: 2rem;
     background: none;
+    justify-items: flex-end;
 }
 
 .menu-cross :hover {
