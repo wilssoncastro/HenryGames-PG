@@ -1,14 +1,11 @@
-const { Videogame,Genre, Tag} = require('../db')
+const { Videogame,Genre} = require('../db')
 const { Op } = require("sequelize");
-const { Router } = require('express');
+const { Router, raw } = require('express');
 const router = Router();
 require('dotenv').config();
 const axios = require("axios")
 const { API_KEY } = process.env
 const  getAllApiGames = require('../services/services');
-
-
-
 
 //---------Query---------//
 
@@ -19,8 +16,8 @@ router.get('/', async (req, res) => {
 
   if(testGames.length === 0){
   console.log('descargando juegos de la API')
-
-  let juego = await getAllApiGames()
+  
+  let juego =  getAllApiGames()
   let copi = juego
   juego.map((e) => { Videogame.findOrCreate({
     where:{
@@ -34,16 +31,18 @@ router.get('/', async (req, res) => {
       on_sale: (Math.random()*10) < 7 ? false : true,
       free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false,
       short_screenshots: e.short_screenshots.map(s => s.image),
-      // esrb_ratings: e.esrb_rating !== null?  e.esrb_rating.name : "Rating Pending"
+      tags: e.tags.map(t => t.name),
+      esrb_rating: e.esrb_rating !== null?  e.esrb_rating.name : "Rating Pending",
+      // requirements: e.platforms.find(e=> e.requirements_en === "minimun" )
     }})
   }) 
   await Promise.all(juego)
   console.log('guardando relacion de generos')
  
-  // let games = await getAllApiGames()
+ 
   let genre = juego.map(e => e.genres.map(g => g.name))
 
-  let promisePendingArray = []
+
  for (let i = 0; i < copi.length; i++) {       
   let genreDb = await Genre.findAll({
     where: {
@@ -52,11 +51,9 @@ router.get('/', async (req, res) => {
   });  
   Videogame.findByPk(copi[i].id)
   .then(response => response.addGenre(genreDb))
-
-  console.log('cargando '+ i +' juegos')    
-          
+        
 }
-console.log('juegos cargados!') 
+console.log('Todos los juegos han sido guardados!') 
 
 let totalData =  await Videogame.findAll(
    {
@@ -68,18 +65,17 @@ let totalData =  await Videogame.findAll(
       }
       
   },
-  {
-      model: Tag,
-      attributes: ['name'],
-      through: {
-          attributes: [],
-      }
+  // {
+  //     model: Tag,
+  //     attributes: ['name'],
+  //     through: {
+  //         attributes: [],
+  //     }
       
-  }
-]
-}
-
+  // }
+]}
 )
+
 
 res.send(totalData);
        
@@ -115,14 +111,14 @@ else{
         }
         
     },
-    {
-        model: Tag,
-        attributes: ['name'],
-        through: {
-            attributes: [],
-        }
+    // {
+    //     model: Tag,
+    //     attributes: ['name'],
+    //     through: {
+    //         attributes: [],
+    //     }
         
-    }
+    // }
     ]
     })
     
@@ -134,58 +130,7 @@ else{
   
 })
 
-// ---------Params---------//
-// router.get('/:id', async (req, res) => {
-//   const id = req.params.id
-//   const videogames = await Videogame.findByPk(id);
-//   res.send(videogames);
-//   console.log(videogames)
-// })
 
-router.get('/:id', async (req, res) => {
-  try {
-  const id = req.params.id
-  const videogames = await Videogame.findByPk(id);
-  
-  if (!videogames.dataValues.db_created) {
-    const gameDetail = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
-    let e = gameDetail.data;
-    const detailsObj = {
-      name: e.name,
-      image: e.background_image,
-      description: e.description,
-      released: e.released,
-      rating: e.rating,
-      genres: e.genres.map(e => e.name),
-      price: videogames.price,
-      free_to_play: videogames.free_to_play,
-      screeshots: videogames.short_screenshots,
-      esrb_ratings: videogames.esrb_ratings,
-      tags: videogames.tag.map(e => e),
-      on_sale: videogames.on_sale
-    }
-    console.log("DB FALSE")
-    res.send(detailsObj);
-  }
-  else {
-    const obj = {
-      name: e.name,
-      image: e.background_image,
-      description: e.description,
-      released: e.released,
-      rating: e.rating,
-      price: videogames.price,
-      free_to_play: videogames.free_to_play,
-      screeshots: videogames.short_screenshots,
-      on_sale: videogames.on_sale
-    }
-    console.log("DB TRUE")
-    res.send(obj)
-  }
-  } catch (error) {
-    console.log("errorcachado")
-  }
-})
 
 router.get('/:id', async (req, res) => {
 
@@ -205,14 +150,14 @@ router.get('/:id', async (req, res) => {
             }
             
         },
-        {
-            model: Tag,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
+        // {
+        //     model: Tag,
+        //     attributes: ['name'],
+        //     through: {
+        //         attributes: [],
+        //     }
             
-        }
+        // }
       ]
     }
     
@@ -222,7 +167,10 @@ router.get('/:id', async (req, res) => {
     const gameDetail = await axios(`https://api.rawg.io/api/games/${videogames.id}?key=${API_KEY}`);
     
     
-    videogames.dataValues.description = gameDetail.data.description
+    videogames.dataValues.description = gameDetail.data.description_raw
+    // console.log('cargando requerimientos ')
+    // videogames.dataValues.requirements = gameDetail.data.platforms.filter(e => (e.platform.name === "PC") ?  e.requirements : false ).requirements
+
     
     console.log('juego cargado exitosamente') 
     
@@ -241,14 +189,14 @@ router.get('/:id', async (req, res) => {
             }
             
         },
-        {
-            model: Tag,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
+        // {
+        //     model: Tag,
+        //     attributes: ['name'],
+        //     through: {
+        //         attributes: [],
+        //     }
             
-        }
+        // }
       ]
     }
     

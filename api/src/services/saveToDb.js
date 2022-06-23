@@ -1,5 +1,5 @@
 
-const { Videogame,Genre, Tag} = require('../db')
+const { Videogame,Genre, } = require('../db')
 require('dotenv').config();
 const axios = require("axios")
 const { API_KEY } = process.env
@@ -24,21 +24,21 @@ async function generos(){
   
   }
 
-  async function tags(){
-    let tagsFromApi = await axios.get(`https://api.rawg.io/api/tags?key=${API_KEY}&page_size=40`)
+  // async function tags(){
+  //   let tagsFromApi = await axios.get(`https://api.rawg.io/api/tags?key=${API_KEY}&page_size=40`)
 
-        let allTags = tagsFromApi.data.results.map(tag => tag.name)
+  //       let allTags = tagsFromApi.data.results.map(tag => tag.name)
 
-       let tags = allTags.map(tag => {
-            Tag.findOrCreate({
-                where: {name: tag}
-            })
-        })
+  //      let tags = allTags.map(tag => {
+  //           Tag.findOrCreate({
+  //               where: {name: tag}
+  //           })
+  //       })
 
-        await Promise.all(tags)
-        console.log('Tags guardados')
-    }
+  //       await Promise.all(tags)
+  //       console.log('Tags guardados')
+  //   }
 
 
 
-module.exports = {generos, tags}
+module.exports = {generos, }
