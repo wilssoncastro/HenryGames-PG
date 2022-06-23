@@ -1,6 +1,4 @@
 import React from 'react'
-import NavBar from './navbar';
-import { useState } from 'react';
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
 import * as VscIcons from "react-icons/vsc";

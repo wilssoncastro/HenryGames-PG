@@ -1,0 +1,35 @@
+html{
+    background-image: radial-gradient(circle at 40.67% -2.89%, #ffffb5 0, #ffff8c 16.67%, #fff25f 33.33%, #f6d628 50%, #e6ba00 66.67%, #d79e00 83.33%, #cb8300 100%);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+}
+
+.background {
+    display: flex;
+    justify-content: center;
+}
+
+.ConteinerCarousel{
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+    height: 400px;
+    width: 1000px;
+}
+
+.imagenes{
+    height: 500px;
+    width: 1000px;
+    object-position: center center;
+}
+
+.legend{
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    padding: 0;
+    border-radius: 4px;
+    transition: 250ms;
+}
