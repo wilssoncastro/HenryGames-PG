@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllVideogames } from '../../redux/actions';
 import Card from '../Card/card.jsx'
+import NavBar from '../NavBar/navbar';
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -13,6 +14,9 @@ export default function Store() {
 
   return (
     <div>
+      <div>
+        <NavBar />
+      </div>
       <h1>Videogames</h1>
       <div>
         {
