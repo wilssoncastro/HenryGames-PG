@@ -52,18 +52,20 @@ Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 // Esrb.hasMany(Videogame)
 // Videogame.belongsTo(Esrb)
 
-// async function generos(){
-//   const allGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-//   let genres = (allGenres.data.results)
-//   let todes =  genres.forEach(g=> {
-//      Genre.create(
-//       {
-//         name: g.name       
-//       }
+async function generos(){
+  const allGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+  let genres = (allGenres.data.results)
+  let generos =  genres.forEach(g=> {
+     Genre.create(
+      {
+        name: g.name       
+      }
 
-//     ).then(console.log('holaaa'))
+    ).then(console.log('generos guardados!'))
     
-//   })
+  })
+
+}
   
 
 //   // .then(response =>response.data.results)
