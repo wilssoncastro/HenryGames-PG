@@ -1,24 +1,27 @@
-.background{
-    background-image: radial-gradient(circle at 50% 5.44%, #ff6efc 0, #ff6afa 12.5%, #ff65f4 25%, #e65ee8 37.5%, #be55d8 50%, #974cc6 62.5%, #7344b4 75%, #513da4 87.5%, #2e3796 100%);
+html{
+    background-image: radial-gradient(circle at 40.67% -2.89%, #ffffb5 0, #ffff8c 16.67%, #fff25f 33.33%, #f6d628 50%, #e6ba00 66.67%, #d79e00 83.33%, #cb8300 100%);
     background-position: center;
     background-size: cover;
-    height: 100%;
+    background-attachment: fixed;
+    overflow-x:hidden;
 }
 
 .Carousel{
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    margin: 5% 25%;
     height: 400px;
     width: 1000px;
-}
-
-.div{
-    background-color: aqua;
-    margin: 5px;
 }
 
 .imagenes{
     height: 500px;
     width: 1000px;
+}
+
+.legend{
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    padding: 0 16px;
+    border-radius: 4px;
+    transition: 250ms;
 }
