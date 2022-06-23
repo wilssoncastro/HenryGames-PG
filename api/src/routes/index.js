@@ -2,6 +2,7 @@ const { Router } = require('express')
 const router = Router()
 const userRouters = require('../controllers/userRouters')
 const friendRouters = require('../controllers/friendRoutes')
+const wishRoutes = require('../controllers/wishRoutes')
 
 //Importar todos los routers
 
@@ -20,5 +21,6 @@ router.use('/tags', getTags)
 router.use('/esrb', getEsrb)
 router.use('/genres', getGenres)
 router.use('/friends', friendRouters)
+router.use('/wishlist', wishRoutes)
 
 module.exports = router

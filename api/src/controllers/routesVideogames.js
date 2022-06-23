@@ -7,27 +7,37 @@ const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
 //------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
-    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings, tags} = req.body
+    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
 
     try {
         let videogameCreate = await Videogame.create({
-            name, description, release_date, image, rating, price, on_sale, free_to_play, esrb_ratings, db_created: true, id: Math.ceil(Math.random()*100000)
+            name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000), esrb_ratings: esrb
         })
-        
+       
         if(genres){
             let genresDb = await Genre.findAll({
-                where: {name: {[Op.iLike]: `${genres}%` }} 
+                // where: {name: {[Op.iLike]: `${genres}%` }} 
+                where: {
+                    name: genres
+                  }
+                
             })
+            console.log(videogameCreate.id)
 
             videogameCreate.addGenre(genresDb)
         }
 
         if(tags){
             let tagsDb = await Tag.findAll({
-                where: {name: {[Op.iLike]: `${tags}%`}}
+                // where: {name: {[Op.iLike]: `${tags}%`}}
+                where: {
+                    name: genres
+                  }
             })
 
             videogameCreate.addTag(tagsDb)
+
+            
         }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
