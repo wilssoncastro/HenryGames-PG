@@ -7,6 +7,7 @@ const initialState = {
     wishList: [],
     genres: [],
     tags: [],
+    cart: [],
 }
 
 const rootReducer = (state = initialState, action) => {

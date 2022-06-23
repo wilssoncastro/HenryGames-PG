@@ -16,6 +16,7 @@ export default function Detail(props) {
     <div>
       {console.log(detail)}
       {
+        // eslint-disable-next-line eqeqeq
         detail.id == id ? (
           <div>
             <h1>{detail.name}</h1>
