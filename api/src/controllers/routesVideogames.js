@@ -7,11 +7,7 @@ const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
 //------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
-<<<<<<< HEAD
-    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings, tags} = req.body
-=======
     const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
->>>>>>> dev
 
     try {
         let videogameCreate = await Videogame.create({
