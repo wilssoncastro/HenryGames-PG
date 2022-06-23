@@ -16,39 +16,39 @@ router.get('/:id', async (req, res) => {
   try {
     const videogames = await Videogame.findByPk(id)
     
-    if(videogames.db_created === false){
+      if(videogames.db_created === false){
 
-      const videogames = await Videogame.findByPk(id
-        , {
-          include: [{
-            model: Genre,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
-            
-        },
-        {
-            model: Tag,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
-            
-        }
-      ]
-    }
-    
-    )
-    console.log('cargando descripcion del juego')
+        const videogames = await Videogame.findByPk(id
+          , {
+            include: [{
+              model: Genre,
+              attributes: ['name'],
+              through: {
+                  attributes: [],
+              }
+              
+          },
+          {
+              model: Tag,
+              attributes: ['name'],
+              through: {
+                  attributes: [],
+              }
+              
+          }
+        ]
+      }
+      
+      )
+      console.log('cargando descripcion del juego')
 
-    const gameDetail = await axios(`https://api.rawg.io/api/games/${videogames.id}?key=${API_KEY}`);
-    
-    
-    videogames.dataValues.description = gameDetail.data.description
-    
-    console.log('juego cargado exitosamente') 
-    
+      const gameDetail = await axios(`https://api.rawg.io/api/games/${videogames.id}?key=${API_KEY}`);
+      
+      
+      videogames.dataValues.description = gameDetail.data.description
+      
+      console.log('juego cargado exitosamente') 
+      
      
     res.send(videogames)
 
