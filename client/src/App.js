@@ -41,7 +41,7 @@ function App() {
           <Route exact path='/profile/:id' element={<Profile/>}/>
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
-          <Route exact path='/my_cart/:id' element={<ShoppingCart/>}/>
+          <Route exact path='/my_cart' element={<ShoppingCart/>}/>
           
         </Routes>
       </div>
