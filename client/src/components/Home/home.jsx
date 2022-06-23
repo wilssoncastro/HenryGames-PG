@@ -27,7 +27,7 @@ export default function Home() {
                         <p className="legend">Grand Theft Auto V</p>
                     </div>
                     <div>
-                        <img className='imagenes' src="https://i.blogs.es/c97ab3/trucos-san-andreas-1/1366_2000.jpg" alt= 'img not found'/>
+                        <img className='imagenes' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/>
                         <p className="legend">Grand Theft Auto San Andreas</p>
                     </div>
                     <div>
