@@ -1,8 +1,7 @@
 const { Router } = require('express');
 const { Player } = require('../db.js');
 
-require('dotenv').config();
-const axios = require("axios")
+
 
 
 const router = Router();
@@ -14,7 +13,9 @@ router.get('/', async (req, res) => {
         let data
 
         if(id){
-            data = await Player.findByPk(id)
+            data = await Player.findByPk(id, {
+                include: ['wishs', 'friends']
+            })
         }else{
             data = await Player.findAll()
         }
@@ -38,8 +39,7 @@ router.post('/create', async(req, res) => {
         //Verificar que NO exista el usuario en la BD
         let playerUsuario = await Player.findAll({where:{'user':user}})
         let playerMail = await Player.findAll({where:{'email':email}})
-        console.log(playerUsuario)
-        console.log(playerMail)
+        
         if(playerUsuario.length !== 0 || playerMail.length !== 0){
             return res.status(400).send(playerUsuario.length > 0 ? 
                 "El nombre de usuario ya existe" 
@@ -75,7 +75,6 @@ router.delete('/delete', async (req, res) => {
 
     try {
         const player = await Player.findByPk(id)
-        console.log(player)
         if(!player){
             return res.status(404).send('El jugador no existe')
         }

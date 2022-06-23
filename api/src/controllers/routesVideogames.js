@@ -1,28 +1,44 @@
 const { Router } = require('express');
 const router = Router();
+const {Op} = require('sequelize')
+
+//import DB MODELS
 const { Videogame, Genre, Esrb, Tag } = require('../db.js')
 
+//------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
-    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
+    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
+
     try {
         let videogameCreate = await Videogame.create({
-            name, description, release_date, image, rating, price, on_sale, free_to_play
+            name, description, release_date, image, rating, price, on_sale, free_to_play, db_created: true, id: Math.ceil(Math.random()*100000), esrb_ratings: esrb
         })
+       
+        if(genres){
+            let genresDb = await Genre.findAll({
+                // where: {name: {[Op.iLike]: `${genres}%` }} 
+                where: {
+                    name: genres
+                  }
+                
+            })
+            console.log(videogameCreate.id)
 
-        // let esrbDb = await Esrb.findOne({
-        //     where: {name: esrb}
-        // })
-        
-        let genresDb = await Genre.findAll({
-            where: {name: genres} 
-        })
+            videogameCreate.addGenre(genresDb)
+        }
 
-        let tagsDb = await Tag.findAll({
-            where: {name: tags}
-        })
-        videogameCreate.addGenre(genresDb)
-        videogameCreate.addTag(tagsDb)
-        //videogameCreate.addEsrb(tagsDb)
+        if(tags){
+            let tagsDb = await Tag.findAll({
+                // where: {name: {[Op.iLike]: `${tags}%`}}
+                where: {
+                    name: genres
+                  }
+            })
+
+            videogameCreate.addTag(tagsDb)
+
+            
+        }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
@@ -30,6 +46,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+//-----------------------------------------DELETE-----------------------------------------------------------
 router.delete('/:id', async (req, res) => {
     const {id} = req.params
 
@@ -39,7 +56,7 @@ router.delete('/:id', async (req, res) => {
         if(!deleteVideogame){
             res.status(404).send('No se encontró el videojuego')
         }
-        
+
         await deleteVideogame.destroy()
     
         res.send('El videojuego fue borrado correctamente')
@@ -48,11 +65,12 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+//---------------------------------------PUT-----------------------------------------------------------
 router.put('/:id', async (req, res) => {
     const {id} = req.params
-    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
+    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings, tags} = req.body
 
-    // let condition = {}
+    let condition = {}
 
     try {
         const videogame = await Videogame.findByPk(id)
@@ -61,36 +79,43 @@ router.put('/:id', async (req, res) => {
             return res.send('No se encontró el videojuego')
         }
 
-        let videogameUpdate = await Videogame.update({
-            name: name, description: description, release_date: release_date, image: image, rating: rating, price: price, on_sale: on_sale, free_to_play: free_to_play
-        })
+        if(name){condition.name = name}
+        if(description){condition.description = description}
+        if(release_date){condition.release_date = release_date}
+        if(image){condition.image = image}
+        if(rating){condition.rating = rating}
+        if(price){condition.price = price}
+        if(on_sale){condition.on_sale = on_sale}
+        if(free_to_play){condition.free_to_play = free_to_play}
+        if(esrb_ratings){condition.esrb_ratings = esrb_ratings}
 
-        // if(name){condition.name = name}
-        // if(description){condition.description = description}
-        // if(release_date){condition.release_date = release_date}
-        // if(image){condition.image = image}
-        // if(rating){condition.rating = rating}
-        // if(price){condition.price = price}
-        // if(on_sale){condition.on_sale = on_sale}
-        // if(free_to_play){condition.free_to_play = free_to_play}
-
-        // let updateVideogame = await Videogame.update(condition)
-
-        // let esrbDb = await Esrb.findOne({
-        //     where: {name: esrb}
-        // })
+        await videogame.update(condition)
         
-        // let genresDb = await Genre.findAll({
-        //     where: {name: genres}
-        // })
+        if(genres){
+            let genreDelete = await Genre.findAll({
+                where: {name: {[Op.notLike]: `${genres}%` }}
+            })
+            let genresDb = await Genre.findAll({
+                where: {name: {[Op.iLike]: `${genres}%` }}
+            })
+            
 
-        // let tagsDb = await Tag.findAll({
-        //     where: {name: tags}
-        // })
+            await videogame.removeGenre(genreDelete)
+            await videogame.addGenre(genresDb)
+        }
 
-        // videogameCreate.addGenre(genresDb)
-        // videogameCreate.addEsrb(tagsDb)
-        // videogameCreate.addEsrb(esrbDb)
+        if(tags){
+            let tagsDelete = await Tag.findAll({
+                where: {name: {[Op.notILike]: `${genres}%`}}
+            })
+            let tagsDb = await Tag.findAll({
+                where: {name: {[Op.iLike]: `${tags}%`}}
+            })
+
+            await videogame.removeTag(tagsDelete)
+            await videogame.addTag(tagsDb)
+        }
+
         res.send('Datos del videojuego actualizado')
     } catch (error) {
         console.log(error)
