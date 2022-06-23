@@ -22,6 +22,9 @@ function App() {
           {/* Muestra algunas categorias (a lo netflix) con los juegos promocionados en esa categoria en forma de BANNER */}
           <Route exact path='/home' element={<Home/>}/>
 
+          {/* Detalles de los videojuegos */ }
+          <Route exact path='/home/:id' element={<Detail/>} />
+
           {/* STORE es la tienda donde van a aparecer TODOS los juegos. Aca se van a poder FILTRAR */}
           <Route exact path='/store' element={<Store/>}/>
 

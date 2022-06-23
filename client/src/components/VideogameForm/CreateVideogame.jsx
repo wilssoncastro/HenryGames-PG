@@ -114,8 +114,14 @@ export default function VideogameCreate() {
           image: "",
           rating: 0,
           released: "",
+          on_sale: false,                           //*  hacer validaciones      
+          price: 0,                                 //*  hacer validaciones
+          free_to_play: false,                      //*  hacer validaciones
           genre: [],
           tags: [],
+          short_screenshots: [],                    //*  hacer validaciones
+          requirements: [],                         //*  hacer validaciones
+          esrb_ratings: "Rating Pending",           //*  hacer validaciones
         });
         navigate("/home");
       }
