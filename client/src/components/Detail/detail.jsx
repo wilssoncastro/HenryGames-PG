@@ -1,32 +1,45 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { getDetailsVideogame } from '../../redux/actions'
-import {useParams} from 'react-router-dom'
+import {Link, useParams, useNavigate} from 'react-router-dom'
+import { getDetailsVideogame, deleteVideogame } from '../../redux/actions'
 
-export default function Detail(props) {
-  const dispatch = useDispatch()
-  const detail = useSelector((state) => state.details)
-  const {id} = useParams()
+export default function Detail() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {id} = useParams();
 
+  const videogame = useSelector((state) => state.details)
+  
   useEffect(() => {
     dispatch(getDetailsVideogame(id))
   }, [dispatch, id])
 
+  const handleDelete = (id) => {
+    function confirm() {
+      var respuesta = window.confirm('¿Seguro/a que quieres eliminar el juego?');
+      if(respuesta === true){
+        dispatch(deleteVideogame(id));
+        navigate('/home');
+      }
+    }
+    confirm();
+  }
+
+  
   return (
     <div>
-      {console.log(detail)}
       {
-        detail.id == id ? (
+        videogame.id == id ? (
           <div>
-            <h1>{detail.name}</h1>
-            <img src={detail.image} alt='Not found' width='400px' height='210' />
-            <p>{detail.released}</p>
-            <p>{detail.rating}</p>
-            <p>{detail.description}</p>
+            <h1>{videogame.name}</h1>
+            <img src={videogame.image} alt='Not found' width='400px' height='210' />
+            <p>{videogame.released}</p>
+            <p>{videogame.rating}</p>
+            <p>{videogame.description}</p>
             <h3>Genres: </h3>
             <div>
             {
-            detail.genres?.map((e) => {
+            videogame.genres?.map((e) => {
                 if (typeof e === "string") {
                   return (
                     <span className="type" key={e}>
@@ -40,13 +53,13 @@ export default function Detail(props) {
               </div>
               <div>
               {
-                detail.free_to_play === true ? <span>Free</span> : 
-                <p>{detail.price}</p>
+                videogame.free_to_play === true ? <span>Free</span> : 
+                <p>{videogame.price}</p>
               }
               </div>
               <div>
                 {
-                  detail.short_screenshots?.map((e) => {
+                  videogame.short_screenshots?.map((e) => {
                     return (
                       <img src={e} alt='Not found' width='400px' height='210'/>
                     )
@@ -55,7 +68,7 @@ export default function Detail(props) {
               </div>
               <div>
                 {
-                  detail.tags?.map((e) => {
+                  videogame.tags?.map((e) => {
                     return(
                       <p>{e}</p>
                     )
@@ -63,10 +76,20 @@ export default function Detail(props) {
                 }
                 <div>
                   {
-                    detail.on_sale === true ? <p>ON SALE!</p> : 
+                    videogame.on_sale === true ? <p>En Oferta!</p> : 
                     null
                   }
                 </div>
+              </div>
+              {
+                videogame.db_created && (
+                  <button onClick={(e) => handleDelete(e)}>Borrar Videojuego</button>
+                )
+              }
+              <div>
+                <Link to="/home">
+                  <button>Volver a la Página Principal</button>
+                </Link>
               </div>
           </div>
         ) : null
