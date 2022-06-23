@@ -54,7 +54,11 @@ Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 
 
 //---------------------PLAYER N:M FRIEND--------------------------------
-
+Player.belongsToMany(Player, { 
+  as: 'friends',
+  foreignKey: 'user_id',
+  through: 'UsersFriends'
+});
 
 Player.belongsToMany(Player, { 
   as: 'userFriends',
