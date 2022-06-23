@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            //defaultValue: DataTypes.UUIDV4,
+          
         },
         name: {
             type: DataTypes.STRING,
@@ -40,17 +40,6 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             allowNull: false,
         },
-        // genre: {
-        //     type: DataTypes.ARRAY(DataTypes.STRING),
-        //     allowNull: false,   
-        //     defaultValue: ["Has no genres"]
-                     
-        //   },
-        // tag: {
-        //     type: DataTypes.ARRAY(DataTypes.STRING),
-        //     allowNull: false,
-        //     defaultValue: ["Has no tags"]
-        // },
         short_screenshots: {
             type: DataTypes.ARRAY(DataTypes.TEXT),
             allowNull: false,

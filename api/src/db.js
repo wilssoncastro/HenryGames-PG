@@ -5,8 +5,8 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST, API_KEY
 } = process.env;
-const  getAllApiGames = require('./services/services.js');
-const  axios  = require('axios');
+// const  getAllApiGames = require('./services/services.js');
+// const  axios  = require('axios');
 
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/henrygames`, {
@@ -52,60 +52,76 @@ Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 // Esrb.hasMany(Videogame)
 // Videogame.belongsTo(Esrb)
 
-const allGenres = axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-  .then(response =>response.data.results)
-  allGenres.then(e=> {
-    e.map(g=>{
-      Genre.findOrCreate({
-        where: {
-          name: g.name
-        }         
-      })
-    })
-  })
+// async function generos(){
+//   const allGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
+//   let genres = (allGenres.data.results)
+//   let todes =  genres.forEach(g=> {
+//      Genre.create(
+//       {
+//         name: g.name       
+//       }
+
+//     ).then(console.log('holaaa'))
+    
+//   })
+  
+
+//   // .then(response =>response.data.results)
+//   // allGenres.then(e=> {
+//   //   e.map(g=>{
+//   //     Genre.findOrCreate({
+//   //       where: {
+//   //         name: g.name
+//   //       }         
+//   //     })
+//   //   })
+//   // })
+// }
+// generos()
+
  
 
 
-async function savetoDb() {
-  let juego = await getAllApiGames()
-  juego.map((e) => { Videogame.findOrCreate({
-    where:{
-      id: e.id,
-      name: e.name,
-      release_date: e.released,
-      image: e.background_image,
-      description: e.slug,
-      rating: e.rating,
-      price: (Math.random()*10).toFixed(3),
-      on_sale: (Math.random()*10) < 7 ? false : true,
-      free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false,
-      // genre: e.genres.map(g => g.name),
-      // tag: e.tags.map(t => t.name),
-      short_screenshots: e.short_screenshots.map(s => s.image),
-      // esrb_ratings: e.esrb_rating !== null?  e.esrb_rating.name : "Rating Pending"
-    }})
-  }) 
-}
-savetoDb()
-async function saveGenres(){
-  let juego = await getAllApiGames()
-  let genre = juego.map(e => e.genres.map(g => g.name))
+// async function savetoDb() {
+//   let juego = await getAllApiGames()
+//   juego.map((e) => { Videogame.findOrCreate({
+//     where:{
+//       id: e.id,
+//       name: e.name,
+//       release_date: e.released,
+//       image: e.background_image,
+//       description: e.slug,
+//       rating: e.rating,
+//       price: (Math.random()*10).toFixed(3),
+//       on_sale: (Math.random()*10) < 7 ? false : true,
+//       free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false,
+//       // genre: e.genres.map(g => g.name),
+//       // tag: e.tags.map(t => t.name),
+//       short_screenshots: e.short_screenshots.map(s => s.image),
+//       // esrb_ratings: e.esrb_rating !== null?  e.esrb_rating.name : "Rating Pending"
+//     }})
+//   }) 
+// }
+// savetoDb()
+// async function saveGenres(){
+//   let juego = await getAllApiGames()
+//   let genre = juego.map(e => e.genres.map(g => g.name))
 
     
- for (let i = 0; i < juego.length; i++) {       
-  let genreDb = await Genre.findAll({
-    where: {
-      name: genre[i]
-    }
-  });  
-  Videogame.findByPk(juego[i].id)
-  .then(response => response.addGenre(genreDb))
+//  for (let i = 0; i < juego.length; i++) {       
+//   let genreDb = await Genre.findAll({
+//     where: {
+//       name: genre[i]
+//     }
+//   });  
+//   Videogame.findByPk(juego[i].id)
+//   .then(response => response.addGenre(genreDb).then(console.log('relacion creada')))
        
     
-}
-}
+// }
+// }
 
-//saveGenres() 
+// saveGenres() 
 
 
    
@@ -177,5 +193,6 @@ Videogame.belongsToMany(Player,{
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
+
 };
 
