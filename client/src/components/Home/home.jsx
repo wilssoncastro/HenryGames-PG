@@ -32,17 +32,17 @@ export default function Home() {
                         )
                     })}
             </div> */}
-            <div className="Carousel">
+            <div className="ConteinerCarousel">
                 <Carousel>
-                    <div>
+                    <div className='ItemCarousel'>
                         <img className='imagenes' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
                         <p className="legend">Grand Theft Auto V</p>
                     </div>
-                    <div>
+                    <div className='ItemCarousel'>
                         <img className='imagenes' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/>
                         <p className="legend">Grand Theft Auto San Andreas</p>
                     </div>
-                    <div>
+                    <div className='ItemCarousel'>
                         <img className='imagenes' src="https://www.somosxbox.com/wp-content/uploads/2021/11/492540bf02636390efd77a305399187b.jpg" alt= 'img not found'/>
                         <p className="legend">Grand Theft Auto IV</p>
                     </div>
