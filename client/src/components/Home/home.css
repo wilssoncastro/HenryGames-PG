@@ -1,0 +1,24 @@
+.background{
+    background-image: radial-gradient(circle at 50% 5.44%, #ff6efc 0, #ff6afa 12.5%, #ff65f4 25%, #e65ee8 37.5%, #be55d8 50%, #974cc6 62.5%, #7344b4 75%, #513da4 87.5%, #2e3796 100%);
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+}
+
+.Carousel{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 400px;
+    width: 1000px;
+}
+
+.div{
+    background-color: aqua;
+    margin: 5px;
+}
+
+.imagenes{
+    height: 500px;
+    width: 1000px;
+}
