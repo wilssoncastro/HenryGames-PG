@@ -1,9 +1,39 @@
+
 import React from "react";
 import { useState } from 'react'
 import { Link } from "react-router-dom";
 
 export default function SignUp() {
+    function validate(input){
+        let errors = {}
 
+        if(input.name.length < 2){
+            errors.name = 'Ingresaste un nombre invalido!'
+        }
+
+        if(input.lastname.length < 2){
+            errors.lastname = 'Ingresaste un apellido invalido!'
+        }
+
+        if(input.user.length < 3){
+            errors.user = 'Debes ingresar un user mas largo!'
+        }
+
+        if(!(input.email) || !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input.email))){
+            errors.email = 'E-Mail invalido!'
+        }
+
+        if(!(input.password) || !(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g.test(input.password))){
+            errors.password = 'Debes ingresar una password con letras y minimo un numero'
+        }
+
+        if(!input.type.length){
+            errors.type = 'Falta el type'
+        }
+
+
+        return errors
+    }
 
     const [input, setInput] = useState({
       name: '',
@@ -14,7 +44,7 @@ export default function SignUp() {
       type:''
   })
 
-    const [errors, setErrors] = useState("");
+    const [errors, setErrors] = useState({});
 
     function handleChange(e){
       setInput({
@@ -24,10 +54,10 @@ export default function SignUp() {
       
       
 
-      // setErrors(validate({
-      //     ...input,
-      //     [e.target.name]:e.target.value
-      // }))
+      setErrors(validate({
+          ...input,
+          [e.target.name]:e.target.value
+      }))
   }
 
   function handleSelect(e){
@@ -35,12 +65,30 @@ export default function SignUp() {
       ...input,
       type:e.target.value
     })
+
+    setErrors(validate({
+        ...input,
+        type:e.target.value
+    }))
   }
 
-  function onSubmit(e) {
-      e.preventDefault();
+    function onSubmit(e) {
+        e.preventDefault();
+        let log_error
 
-  }
+        if((Object.keys(errors).length === 0)){
+            console.log('enviado')
+        }else{
+            if(errors.password){
+                log_error = errors.password
+            }else{
+                log_error = 'Faltan datos obligatorios'
+            }
+
+            return log_error
+        }
+        
+    }
 
     return (
         <div >
@@ -61,7 +109,7 @@ export default function SignUp() {
 
                 {/* Form register */}
             </div>
-            <form>
+            <form onSubmit={onSubmit}>
                 <div>
                     <input
                         type="text"
@@ -85,13 +133,13 @@ export default function SignUp() {
                     />
                 </div>
                 <div>
-                  <input 
-                    type='text'
-                    name='user'
-                    placeholder="Ingrese su usario..."
-                    value={input.user}
-                    onChange={handleChange}
-                  />
+                    <input 
+                        type='text'
+                        name='user'
+                        placeholder="Ingrese su usario..."
+                        value={input.user}
+                        onChange={handleChange}
+                    />
                 </div>
                 <div >
                     <input
@@ -122,8 +170,9 @@ export default function SignUp() {
                     <select
                         name="select"
                         onChange = {e => handleSelect(e)}
+                        defaultValue='Tipo de usuario'
                     >
-                        <option value="Tipo de cliente" disabled>Tipo de usuario</option>
+                        <option disabled>Tipo de usuario</option>
                         <option name='type' value='user'>Jugador</option>
                         <option name='type' value='dev'>Desarrollador</option>
                         
@@ -134,12 +183,12 @@ export default function SignUp() {
                     type="submit"
                     value="Registrarse"
                     // disabled={disableSubmit}
-                    onClick={(e) => onSubmit(e)}
+                    
                 />
                 <br />
                 <br />
-
-                <p>{errors ? errors : null}</p>
+                <p>{errors && errors.password ? errors.password : 'Faltan datos obligatorios'}</p>
+                
                 <div></div>
             </form>
 
