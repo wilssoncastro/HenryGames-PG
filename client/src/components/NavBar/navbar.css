@@ -6,6 +6,27 @@
     align-items: center;
 }
 
+.NavBar-left {
+    flex-basis: 27.5%;
+    margin-left: 25px;
+}
+
+.NavBar-center {
+    flex-basis: 45%;
+}
+
+.NavBar-right {
+    flex-basis: 27.5%;
+    margin-right: 0;
+}
+
+.henrygames-logo {
+    display: flex;
+    height: 45px;
+    justify-content: left;
+    align-items: center;
+}
+
 .navbar-icons {
     margin-right: 2rem;
     font-size: 2rem;

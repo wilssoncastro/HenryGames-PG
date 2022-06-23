@@ -43,5 +43,124 @@ export const FriendList = [
         path: '#',
         status: "Offline",
         className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
+    },
+    {
+        image: <FaIcons.FaUserFriends/>,
+        name: 'geryer86',
+        path: '#',
+        status: "Offline",
+        className: 'friend-tag'
     }
 ]

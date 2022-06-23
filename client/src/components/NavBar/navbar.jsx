@@ -57,24 +57,38 @@ export default function NavBar() {
       <div>
           <IconContext.Provider value={{color: '#fff'}}>
 
-              {/* Burger Menu */}
-              <div className="navbar"> 
+                {/* Burger Menu */}
+                <div className="navbar">
 
-                {/* Chat clickable */}
-                <Link to="#">
-                  <BiIcons.BiChat className="navbar-icons" />
-                </Link> 
+                    <div className="NavBar-left">
+                        {/* Logo Henry Games clickeable para home */}
+                        <Link to='/home'>
+                            <img className='henrygames-logo' src='https://cdn.discordapp.com/attachments/960956320884883486/989525400512249947/genri_Logo.png' alt='nada' />
+                        </Link>
+                    </div>
+                
 
-                {/* ShoppingCart clickable */}
-                <Link to="/my_cart">
-                  <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
-                </Link> 
+                    <div className="NavBar-center"></div>
 
-                {/* SideMenu Opener (three lines) */}
-                <Link to='#' >
-                    <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar}/>
-                </Link>
-              </div>
+                    <div className="NavBar-right">
+                        {/* Chat clickable */}
+                        <Link to="#">
+                        <BiIcons.BiChat className="navbar-icons" />
+                        </Link> 
+
+                        {/* ShoppingCart clickable */}
+                        <Link to="/my_cart">
+                        <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
+                        </Link> 
+
+                        {/* SideMenu Opener (three lines) */}
+                        <Link to='#' >
+                            <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar}/>
+                        </Link>
+                    </div>
+                    
+                </div>
+                
 
               {/* Menu vertical invisible de izquierda a derecha con su logica */}
               <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
@@ -116,27 +130,6 @@ export default function NavBar() {
 
                   </ul>
               </nav>
-
-              {/* Friend List
-              <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
-                  <ul className="side-menu-items" onClick={showSidebar}>
-                      <li className="sidebar-toggle">
-                          <Link to="#" className="navbar-icons">
-                              <VscIcons.VscThreeBars />
-                          </Link>
-                      </li>
-                      {SidebarData.map((item, index) => {
-                          return (
-                              <li key={index} className={item.className}>
-                                  <Link to={item.path}>
-                                      {item.icon}
-                                      <span>{item.title}</span>
-                                  </Link>
-                              </li>
-                          )
-                      })}
-                  </ul>
-              </nav>      */}
           </IconContext.Provider>            
       </div>
   )
