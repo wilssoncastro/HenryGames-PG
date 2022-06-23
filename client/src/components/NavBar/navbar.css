@@ -1,9 +1,15 @@
 .navbar {
     background-color: #000000;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     height: 80px;
+    z-index: 9999; 
     display: flex;
     justify-content: right;
     align-items: center;
+    position: fixed;
 }
 
 .NavBar-left {
@@ -17,7 +23,7 @@
 
 .NavBar-right {
     flex-basis: 27.5%;
-    margin-right: 0;
+    text-align: end;
 }
 
 .henrygames-logo {
@@ -28,7 +34,7 @@
 }
 
 .navbar-icons {
-    margin-right: 2rem;
+    margin-right: 3rem;
     font-size: 2rem;
     background: none;
 }
