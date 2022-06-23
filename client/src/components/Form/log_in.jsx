@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 export default function LogIn() {
@@ -18,7 +18,7 @@ export default function LogIn() {
               <input type="submit" value="">Login</input>
             </div>
             <div>
-              <p>Not a member yet?<Link to='/sign_up'>Signup npw</Link></p>
+              <p>Not a member yet?<Link to='/sign_up'>Sign Up now!</Link></p>
             </div>
           </form>
         </div>

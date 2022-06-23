@@ -56,9 +56,9 @@ module.exports = (sequelize) => {
             defaultValue: "Everyone 10+"
         },
         requirements: {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
-            defaultValue:"Has no requirements"
+            defaultValue: ["Has no requirements"]
         },
         db_created: {
             type: DataTypes.BOOLEAN,
