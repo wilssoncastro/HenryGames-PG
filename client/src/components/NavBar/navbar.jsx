@@ -126,8 +126,10 @@ export default function NavBar() {
                                         <li key={index} className={user.className}>
                                             <Link to={user.path}>
                                                 {user.image}
-                                                <span className="userName">{user.name}</span>
-                                                <span className="userStatus">{user.status}</span>
+                                                <div className="userData">
+                                                    <span className="userName">{user.name}</span>
+                                                    <span className={user.status === 'Online' ? "userStatusOnline" : "userStatusOffline"}>{user.status}</span>
+                                                </div>
                                             </Link>
                                         </li>
                                     </ul>

@@ -13,7 +13,6 @@
     right: -100%;
     transition: 850ms ease;
     margin-bottom: 5px;
-    
 }
 
 .friendBox.active {
@@ -28,7 +27,6 @@
 
 .friend-tag {
     display: flex;
-    justify-content: start;
     align-items: center;
     padding: 8px 16px 8px 16px;
     list-style: none;
@@ -37,7 +35,6 @@
 .friend-tag a {
     text-decoration: none;
     color: #f5f5f5;
-    font-size: 18px;
     width: 95%;
     height: 100%;
     display: flex;
@@ -45,6 +42,7 @@
     padding: 0 16px;
     border-radius: 4px;
     transition: 250ms;
+    text-align: left;
 }
 
 .friend-tag a:hover {
@@ -58,12 +56,23 @@
     position: relative;
 }
 
-.userName{
-    right: 0;
+.userData{
+    display: flex;
+    flex-direction: column;
 }
 
-.userStatus{
-    left: 0;
+.userName{
+    font-size: 20px;
+}
+
+.userStatusOnline{
+    font-size: 12px;
+    color: greenyellow;
+}
+
+.userStatusOffline{
+    font-size: 12px;
+    color: gray;
 }
 
 .FriendListBox{
@@ -71,5 +80,5 @@
 }
 
 .friendBox ::-webkit-scrollbar {
-    display: none;
+    display: scroll;
 }
