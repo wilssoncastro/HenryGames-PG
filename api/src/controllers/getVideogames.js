@@ -19,6 +19,9 @@ router.get('/', async (req, res) => {
   
   let juego =  getAllApiGames()
   let copi = juego
+
+  console.log([juego[0].platforms[0].requirements_en])
+
   juego.map((e) => { Videogame.findOrCreate({
     where:{
       id: e.id,
@@ -33,7 +36,7 @@ router.get('/', async (req, res) => {
       short_screenshots: e.short_screenshots.map(s => s.image),
       tags: e.tags.map(t => t.name),
       esrb_rating: e.esrb_rating !== null?  e.esrb_rating.name : "Rating Pending",
-      // requirements: e.platforms.find(e=> e.requirements_en === "minimun" )
+      requirements: e.platforms[0].requirements_en.german == null ? e.platforms[0].requirements_en.german : 'un string'
     }})
   }) 
   await Promise.all(juego)
