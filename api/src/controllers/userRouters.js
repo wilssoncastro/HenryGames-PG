@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Player } = require('../db.js');
+const { Player } = require('../db');
 
 
 
