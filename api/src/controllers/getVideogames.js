@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   try {
   const testGames = await Videogame.findAll()
   if (!testGames.length) {
-    console.log('descargando juegos de la API')
+    console.log('creando juegos en la base de datos')
     let juego = getAllApiGames()
     let copi = juego
     juego.map((e) => {
@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
       })
     })
     await Promise.all(juego)
-    console.log('guardando relacion de generos')
+    console.log('añadiendo generos a videojuegos')
     let genre = juego.map(e => e.genres.map(g => g.name))
     for (let i = 0; i < copi.length; i++) {
       let genreDb = await Genre.findAll({
@@ -47,7 +47,7 @@ router.get('/', async (req, res) => {
       Videogame.findByPk(copi[i].id)
         .then(response => response.addGenre(genreDb))
     }
-    console.log('Todos los juegos han sido guardados!')
+    console.log('Todos los juegos han sido cargados,⭐️ ¡Ya puedes comprar juegos en la tienda! ⭐️')
     let totalData = await Videogame.findAll(
       {
         include: [{
