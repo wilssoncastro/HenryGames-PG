@@ -1,20 +1,31 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { getDetailsVideogame } from '../../redux/actions'
+import { addWishList, deleteFavorite, getDetailsVideogame } from '../../redux/actions'
 import {useParams} from 'react-router-dom'
 
 export default function Detail() {
   const dispatch = useDispatch()
-  const detail = useSelector((state) => state.details)
   const {id} = useParams()
+  const detail = useSelector((state) => state.details)
+  const wish = useSelector((state) => state.wishList)
+  const videoWish = wish.find(v => v.id == id)
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id))
-  }, [dispatch, id])
+  }, [])
+
+  function handleWish(e) {
+    e.preventDefault();
+    if(!videoWish){
+      dispatch(addWishList(detail))
+    } else {
+      dispatch(deleteFavorite(id))
+    }
+  }
 
   return (
     <div>
-      {console.log(detail)}
+      {console.log(wish)}
       {
         // eslint-disable-next-line eqeqeq
         detail.id == id ? (
@@ -67,6 +78,13 @@ export default function Detail() {
                     detail.on_sale === true ? <p>ON SALE!</p> : 
                     null
                   }
+                </div>
+                <div>
+                  <button onClick={(e) => handleWish(e)}>{
+                  !videoWish ? 
+                  <>Add to wishlist</> :
+                  <>Delete from wishlist</>
+                  }</button>
                 </div>
               </div>
           </div>

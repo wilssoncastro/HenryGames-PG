@@ -65,7 +65,7 @@ const rootReducer = (state = initialState, action) => {
         case "DELETE_WISH_LIST":
             return {
                 ...state,
-                wishList: state.wishList.filter(v => v.id !== action.payload)
+                wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
             }
     
         default:
