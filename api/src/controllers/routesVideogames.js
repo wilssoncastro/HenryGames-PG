@@ -3,11 +3,11 @@ const router = Router();
 const {Op} = require('sequelize')
 
 //import DB MODELS
-const { Videogame, Genre, Esrb, Tag } = require('../db.js')
+const { Videogame, Genre, Esrb,  } = require('../db.js')
 
 //------------------------------------------POST-----------------------------------------------------------
 router.post('/', async (req, res) => {
-    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, tags} = req.body
+    const { name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb, } = req.body
 
     try {
         let videogameCreate = await Videogame.create({
@@ -27,18 +27,18 @@ router.post('/', async (req, res) => {
             videogameCreate.addGenre(genresDb)
         }
 
-        if(tags){
-            let tagsDb = await Tag.findAll({
-                // where: {name: {[Op.iLike]: `${tags}%`}}
-                where: {
-                    name: genres
-                  }
-            })
+        // if(tags){
+        //     let tagsDb = await Tag.findAll({
+        //         // where: {name: {[Op.iLike]: `${tags}%`}}
+        //         where: {
+        //             name: genres
+        //           }
+        //     })
 
-            videogameCreate.addTag(tagsDb)
+        //     videogameCreate.addTag(tagsDb)
 
             
-        }
+        // }
 
         res.send(`El videojuego ${req.body.name}, fue posteado con exito`)
     } catch (error) {
@@ -68,7 +68,7 @@ router.delete('/:id', async (req, res) => {
 //---------------------------------------PUT-----------------------------------------------------------
 router.put('/:id', async (req, res) => {
     const {id} = req.params
-    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings, tags} = req.body
+    const {name, description, release_date, image, rating, price, on_sale, free_to_play, genres, esrb_ratings} = req.body
 
     let condition = {}
 
@@ -104,17 +104,17 @@ router.put('/:id', async (req, res) => {
             await videogame.addGenre(genresDb)
         }
 
-        if(tags){
-            let tagsDelete = await Tag.findAll({
-                where: {name: {[Op.notILike]: `${genres}%`}}
-            })
-            let tagsDb = await Tag.findAll({
-                where: {name: {[Op.iLike]: `${tags}%`}}
-            })
+        // if(tags){
+        //     let tagsDelete = await Tag.findAll({
+        //         where: {name: {[Op.notILike]: `${genres}%`}}
+        //     })
+        //     let tagsDb = await Tag.findAll({
+        //         where: {name: {[Op.iLike]: `${tags}%`}}
+        //     })
 
-            await videogame.removeTag(tagsDelete)
-            await videogame.addTag(tagsDb)
-        }
+        //     await videogame.removeTag(tagsDelete)
+        //     await videogame.addTag(tagsDb)
+        // }
 
         res.send('Datos del videojuego actualizado')
     } catch (error) {
