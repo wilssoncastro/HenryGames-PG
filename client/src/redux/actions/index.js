@@ -11,6 +11,16 @@ export function getAllVideogames() {
   };
 }
 
+export function getFilteredVideogames(name, page, sort, order, limit) {
+  return async function (dispatch) {
+    let json = await axios(`http://localhost:3001/videogames?name=${name}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    return dispatch({
+      type: "GET_FILTERED_VIDEOGAMES",
+      payload: json.data
+    });
+  };
+}
+
 export function getGenres() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/genres");

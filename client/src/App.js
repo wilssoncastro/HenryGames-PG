@@ -9,6 +9,7 @@ import LogIn from './components/Form/log_in';
 import SignUp from './components/Form/sign_up';
 import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
+import LandingPage from './components/Langing-Page/LangingPage';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
 
           {/* LANDING page que va a pedir Log In, ofrecer tambien un Sign Up, si por COOKIES detecta 
               que ya esta loggeado, te manda directo al Home O ENTRAR COMO INVITADO */}
-          <Route exact path='/' element={<LogIn/>}/>
+
+        {/*   <Route exact path='/' element={<LogIn/>}/> */}
+          <Route exact path='/' element={<LandingPage />} />
 
           {/* Muestra algunas categorias (a lo netflix) con los juegos promocionados en esa categoria en forma de BANNER */}
           <Route exact path='/home' element={<Home/>}/>

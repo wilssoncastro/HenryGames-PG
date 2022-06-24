@@ -4,21 +4,21 @@ import Carousel from 'react-elastic-carousel'
 import './home.css'
 import { Link } from 'react-router-dom'
 import './carousel.css'
-// import { Link } from "react-router-dom";
 
-//traerse todos los jueguitos
-// import { useSelector, useDispatch } from 'react-redux'
-// import { useEffect } from 'react'
-// import { getAllVideogames } from '../../redux/actions'
-// import Card from '../Card/card'
+// traerse todos los jueguitos
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getAllVideogames } from '../../redux/actions'
+/* import Card from '../Card/card' */
 
 export default function Home() {
-    // const dispatch = useDispatch();
-    // const allVideogames = useSelector((state) => state.videogames)
+    const dispatch = useDispatch();
+    const allVideogames = useSelector((state) => state.allVideogames);
+    const currentVideogames = useSelector((state) => state.videogames);
 
-    // useEffect(() => {
-    //     dispatch(getAllVideogames());
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(getAllVideogames());
+    }, [dispatch])
 
     return (
         <div className='background'>
@@ -26,7 +26,7 @@ export default function Home() {
                 <NavBar/>
             </div>
             {/* <div>
-                    {allVideogames?.map(e => {
+                    {currentVideogames?.map(e => {
                         return(
                             <div>
                                 <Card image={e.image} name={e.name} price={e.price}/>
