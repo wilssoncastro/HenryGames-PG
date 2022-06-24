@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
           image: e.background_image,
           description: e.slug,
           rating: e.rating,
-          price: (Math.random() * 10).toFixed(2),
+          price: (Math.random() * 10).toFixed(3),
           on_sale: (Math.random() * 10) < 7 ? false : true,
           free_to_play: e.tags.filter(j => j.name === "Free to Play").length ? true : false,
           short_screenshots: e.short_screenshots.map(s => s.image),
