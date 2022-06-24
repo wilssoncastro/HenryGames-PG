@@ -17,7 +17,7 @@ export default function Detail() {
   const handleDelete = (id) => {
     function confirm() {
       var respuesta = window.confirm(
-        "¿Seguro/a que quieres eliminar el juego?"
+        "Are you sure you want to delete the videogame?"
       );
       if (respuesta === true) {
         dispatch(deleteVideogame(id));
@@ -28,21 +28,31 @@ export default function Detail() {
   };
 
   return (
-    <div>
+    <div className="ComponentCardDetail">
       {videogame.id == id ? (
-        <div>
-          <h1>{videogame.name}</h1>
+        <div className="CardDetail">
+          <h1 className="name">{videogame.name}</h1>
           <img
+            className="image"
             src={videogame.image}
             alt="Not found"
             width="400px"
             height="210"
           />
-          <p>{videogame.released}</p>
-          <p>{videogame.rating}</p>
-          <p>{videogame.description}</p>
-          <h3>Géneros: </h3>
-          <div>
+          <div className="release_date">
+            <h4>Release Date: </h4>
+            <p>{videogame.release_date}</p>
+          </div>
+          <div className="rating">
+            <h4>Rating: </h4>
+            <p>{videogame.rating}</p>
+          </div>
+          <div className="description">
+            <h4>Description: </h4>
+            <p>{videogame.description}</p>
+          </div>
+          <div className="genres">
+            <h3>Genres:</h3>
             {videogame.genres?.map((e) => {
               if (typeof e === "string") {
                 return (
@@ -55,32 +65,46 @@ export default function Detail() {
               }
             })}
           </div>
-          <div>
+          <div className="freeOrPay">
             {videogame.free_to_play === true ? (
-              <span>Gratis</span>
+              <span>Free</span>
             ) : (
               <p>${videogame.price}</p>
             )}
           </div>
-          <div>
+          <div className="images">
             {videogame.short_screenshots?.map((e) => {
               return <img src={e} alt="Not found" width="400px" height="210" />;
             })}
           </div>
-          <div>
+          <div className="esrb">
+            <h4>Esrb Rating: </h4>
+            {videogame.esrb_rating}
+          </div>
+          <div className="requirements">
+            <h3>Requirements: </h3>
+            {videogame.requirements === null ? (
+              <span>The videogame has not requirements actually</span>
+            ) : (
+              <p>{videogame.requirements}</p>
+            )}
+          </div>
+          <div className="tags">
+            <h3>Tags:</h3>
             {videogame.tags?.map((e) => {
               return <p>{e}</p>;
             })}
-            <div>{videogame.on_sale === true ? <p>En Oferta!</p> : null}</div>
           </div>
 
+            <div className="onSale">{videogame.on_sale === true ? <p>On Sale!</p> : null}</div>
+
           {videogame.db_created && (
-            <button onClick={(e) => handleDelete(e)}>Borrar Videojuego</button>
+            <button className="deleteButtonDetail" onClick={(e) => handleDelete(e)}>Delete Videogame</button>
           )}
-          
-          <div>
+
+          <div className="buttonBackHome">
             <Link to="/home">
-              <button>Volver a la Página Principal</button>
+              <button>Return to the Main Page</button>
             </Link>
           </div>
         </div>
