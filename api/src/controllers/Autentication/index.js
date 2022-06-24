@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const routerRegister = require('./registerRoutes')
+const emailVerificationRouter = require('./emailVerificationRoutes')
 
 router.use('/', routerRegister)
+router.use('/', emailVerificationRouter)
 
 router.get('/', async (req, res) => {
     try {

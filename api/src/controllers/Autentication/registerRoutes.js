@@ -54,9 +54,11 @@ router.post('/register', isAuthenticated, async (req, res) => {
       create.active = false
       create.profile_pic = profile_pic
       create.secret_token=promise_pending_array[1]
+      
       new_user = await Player.create(create)
+      console.log(new_user.id)
 
-      console.log(new_user)
+      res.redirect(`/authentication/email/activation/${new_user.id}/${promise_pending_array[1]}/${new_user.email}`)
     }else{
       res.status(404).send('Datos incompletos, el registro no fue creado ');
     }
