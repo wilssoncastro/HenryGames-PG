@@ -1,77 +1,145 @@
-import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import { getDetailsVideogame } from '../../redux/actions'
-import {useParams} from 'react-router-dom'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import {
+  addWishList,
+  getDetailsVideogame,
+  deleteVideogame,
+  deleteFavorite
+} from "../../redux/actions";
 
-export default function Detail(props) {
-  const dispatch = useDispatch()
-  const detail = useSelector((state) => state.details)
-  const {id} = useParams()
+export default function Detail() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  const wish = useSelector((state) => state.wishList);
+  const videoWish = wish.find((v) => v.id == id);
+
+  const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
-    dispatch(getDetailsVideogame(id))
-  }, [dispatch, id])
+    dispatch(getDetailsVideogame(id));
+  }, [dispatch, id]);
+
+  const handleDelete = (id) => {
+    function confirm() {
+      var respuesta = window.confirm(
+        "Are you sure you want to delete the videogame?"
+      );
+      if (respuesta === true) {
+        dispatch(deleteVideogame(id));
+        navigate("/home");
+      }
+    }
+    confirm();
+  };
+
+  function handleWish(e) {
+    e.preventDefault();
+    if (!videoWish) {
+      dispatch(addWishList(videogame));
+    } else {
+      dispatch(deleteFavorite(id));
+    }
+  }
 
   return (
-    <div>
-      {console.log(detail)}
-      {
-        // eslint-disable-next-line eqeqeq
-        detail.id == id ? (
-          <div>
-            <h1>{detail.name}</h1>
-            <img src={detail.image} alt='Not found' width='400px' height='210' />
-            <p>{detail.released}</p>
-            <p>{detail.rating}</p>
-            <p>{detail.description}</p>
-            <h3>Genres: </h3>
-            <div>
-            {
-            detail.genres?.map((e) => {
-                if (typeof e === "string") {
-                  return (
-                    <span className="type" key={e}>
-                      {e.replace(e[0], e[0].toUpperCase())} |{" "}
-                    </span>
-                  );
-                } else {
-                  return <span key={e.name}>{e.name} | </span>;
-                }
-              })}
-              </div>
-              <div>
-              {
-                detail.free_to_play === true ? <span>Free</span> : 
-                <p>{detail.price}</p>
-              }
-              </div>
-              <div>
-                {
-                  detail.short_screenshots?.map((e) => {
-                    return (
-                      <img src={e} alt='Not found' width='400px' height='210'/>
-                    )
-                  })
-                }
-              </div>
-              <div>
-                {
-                  detail.tags?.map((e) => {
-                    return(
-                      <p>{e}</p>
-                    )
-                  })
-                }
-                <div>
-                  {
-                    detail.on_sale === true ? <p>ON SALE!</p> : 
-                    null
-                  }
-                </div>
-              </div>
+    <div className="ComponentCardDetail">
+      {videogame.id == id ? (
+        <div className="CardDetail">
+          <h1 className="name">{videogame.name}</h1>
+          <img
+            className="image"
+            src={videogame.image}
+            alt="Not found"
+            width="400px"
+            height="210"
+          />
+
+          <div className="release_date">
+            <h4>Release Date: </h4>
+            <p>{videogame.release_date}</p>
           </div>
-        ) : null
-      }
+          <div className="rating">
+            <h4>Rating: </h4>
+            <p>{videogame.rating}</p>
+          </div>
+          <div className="description">
+            <h4>Description: </h4>
+            <p>{videogame.description}</p>
+          </div>
+          <div className="genres">
+            <h3>Genres:</h3>
+            {videogame.genres?.map((e) => {
+              if (typeof e === "string") {
+                return (
+                  <span className="type" key={e}>
+                    {e.replace(e[0], e[0].toUpperCase())} |{" "}
+                  </span>
+                );
+              } else {
+                return <span key={e.name}>{e.name} | </span>;
+              }
+            })}
+          </div>
+          <div className="freeOrPay">
+            {videogame.free_to_play === true ? (
+              <span>Free</span>
+            ) : (
+              <p>${videogame.price}</p>
+            )}
+          </div>
+          <div className="images">
+            {videogame.short_screenshots?.map((e) => {
+              return <img src={e} alt="Not found" width="400px" height="210" />;
+            })}
+          </div>
+          <div className="esrb">
+            <h4>Esrb Rating: </h4>
+            {videogame.esrb_rating}
+          </div>
+          <div className="requirements">
+            <h3>Requirements: </h3>
+            {videogame.requirements === null ? (
+              <span>The videogame has not requirements actually</span>
+            ) : (
+              <p>{videogame.requirements}</p>
+            )}
+          </div>
+          <div className="tags">
+            <h3>Tags:</h3>
+            {videogame.tags?.map((e) => {
+              return <p>{e}</p>;
+            })}
+          </div>
+
+          <div className="onSale">
+            {videogame.on_sale === true ? <p>On Sale!</p> : null}
+          </div>
+
+          <div>
+            <button onClick={(e) => handleWish(e)}>
+              {!videoWish ? <>Add to wishlist</> : <>Delete from wishlist</>}
+            </button>
+          </div>
+
+          {videogame.db_created && (
+            <button
+              className="deleteButtonDetail"
+              onClick={(e) => handleDelete(e)}
+            >
+              Delete Videogame
+            </button>
+          )}
+
+          <div className="buttonBackHome">
+            <Link to="/home">
+              <button>Return to the Main Page</button>
+            </Link>
+          </div>
+        </div>
+      ) : null}
     </div>
-  )
+  );
 }
