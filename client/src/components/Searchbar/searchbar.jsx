@@ -3,11 +3,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getVideogamesByName } from "../../redux/actions/index";
 
-
-function validate(input){
-  let error = '';
-  if(input === ''){
-    error = 'Por favor ingresa un nombre';
+function validate(input) {
+  let error = "";
+  if (input === "") {
+    error = "Por favor ingresa un nombre";
   }
   return error;
 }
@@ -24,16 +23,15 @@ export default function SearchBar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(name !== ""){
-     await dispatch(getVideogamesByName(name));
-      setName("")
+    if (name !== "") {
+      await dispatch(getVideogamesByName(name));
+      setName("");
     }
-    setError(validate(name))
+    setError(validate(name));
   };
-  
+
   return (
     <div className="search">
-
       <input
         value={name}
         type="text"
@@ -46,11 +44,9 @@ export default function SearchBar() {
         className="botonBuscar"
         type="search"
         onClick={(e) => handleSubmit(e)}
-      />
-      {error && (
-        <p className="errorSearch">{error}</p>
-      )
-      }
+      >Buscar</button>
+
+      {error && <p className="errorSearch">{error}</p>}
     </div>
   );
 }
