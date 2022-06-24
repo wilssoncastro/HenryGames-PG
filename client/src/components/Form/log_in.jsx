@@ -21,6 +21,9 @@ export default function LogIn() {
               <p>Not a member yet?<Link to='/sign_up'>Sign Up now!</Link></p>
             </div>
           </form>
+          <Link to='/home'>
+            Or enter as a guest.
+          </Link>
         </div>
   )
 }
