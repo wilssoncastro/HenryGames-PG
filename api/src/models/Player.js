@@ -37,13 +37,19 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         phone: {
-            type: DataTypes.BIGINT
+            type: DataTypes.STRING
         },
         adress: {
             type: DataTypes.STRING
         },
-        isDeveloper: {
+        type: {
+            type: DataTypes.STRING
+        },
+        active: {
             type: DataTypes.BOOLEAN
+        },
+        secret_token: {
+            type: DataTypes.STRING
         }
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
