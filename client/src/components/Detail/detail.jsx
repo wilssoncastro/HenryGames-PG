@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   addWishList,
   getDetailsVideogame,
   deleteVideogame,
+  deleteFavorite
 } from "../../redux/actions";
 
 export default function Detail() {
@@ -37,7 +38,7 @@ export default function Detail() {
   function handleWish(e) {
     e.preventDefault();
     if (!videoWish) {
-      dispatch(addWishList(detail));
+      dispatch(addWishList(videogame));
     } else {
       dispatch(deleteFavorite(id));
     }
