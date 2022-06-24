@@ -43,12 +43,6 @@ const rootReducer = (state = initialState, action) => {
                 details: action.payload
             }
 
-        case "GET_VIDEOGAMES_NAME":
-            return {
-                ...state,
-                videogames: action.payload
-            }
-
         case "DELETE_VIDEOGAME":
             return {
                 ...state
