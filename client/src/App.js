@@ -10,6 +10,7 @@ import SignUp from './components/Form/sign_up';
 import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
 import LandingPage from './components/Langing-Page/LangingPage';
+import VideogameCreate from './components/VideogameForm/CreateVideogame';
 
 function App() {
   return (
@@ -27,7 +28,10 @@ function App() {
           <Route exact path='/home' element={<Home/>}/>
 
           {/* Detalles de los videojuegos */ }
-          <Route exact path='/home/:id' element={<Detail/>} />
+          <Route exact path='/store/:id' element={<Detail/>} />
+
+                {/* RUTA TEMPORAL O NO. */}
+          <Route exact path='/home/createVideogame' element={<VideogameCreate />} />
 
           {/* STORE es la tienda donde van a aparecer TODOS los juegos. Aca se van a poder FILTRAR */}
           <Route exact path='/store' element={<Store/>}/>

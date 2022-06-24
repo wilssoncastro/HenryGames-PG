@@ -44,8 +44,8 @@ export default function VideogameCreate() {
     short_screenshots: [],                 
     requirements: [],                        
     esrb_ratings: [],        
-    free_to_play: false,       //! Verificar como va     
-    on_sale: false,            //! Verificar como va                  
+   /*  free_to_play: false,       //! Verificar como va     
+    on_sale: false, */            //! Verificar como va                  
   });
 
   useEffect(() => {
@@ -116,9 +116,9 @@ export default function VideogameCreate() {
         alert("La fecha es inválida");
       } else if (input.genre.length < 1) {
         alert("El videojuego debe tener mínimo un género");
-      } else if (input.tags.length < 1) {
+      } /* else if (input.tags.length < 1) {
         alert("El videojuego debe tener mínimo un tag");
-      } else {
+      }  */else {
         dispatch(postVideogame(input));
         alert("Videojuego creado correctamente");
         setInput({
@@ -154,7 +154,7 @@ export default function VideogameCreate() {
             className="inputName"
             type="text"
             name="name"
-            placeholder="Nombre.."
+            placeholder="Name.."
             value={input.name}
             onChange={(e) => handleChange(e)}
           />
