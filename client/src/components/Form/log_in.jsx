@@ -15,12 +15,15 @@ export default function LogIn() {
               <input type='text' name='password' />
             </div>
             <div>
-              <input type="submit" value="">Login</input>
+              <button type="submit">Login</button>
             </div>
             <div>
               <p>Not a member yet?<Link to='/sign_up'>Sign Up now!</Link></p>
             </div>
           </form>
+          <Link to='/home'>
+            Or enter as a guest.
+          </Link>
         </div>
   )
 }

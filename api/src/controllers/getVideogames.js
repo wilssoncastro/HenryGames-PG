@@ -10,8 +10,9 @@ const getAllApiGames = require('../services/services');
 //---------Query---------//
 
 router.get('/', async (req, res) => {
+  try {
   const testGames = await Videogame.findAll()
-  if (testGames.length === 0) {
+  if (!testGames.length) {
     console.log('descargando juegos de la API')
     let juego = getAllApiGames()
     let copi = juego
@@ -88,7 +89,7 @@ router.get('/', async (req, res) => {
     }
     else {
       const videogames = await Videogame.findAll({
-        limit: limit,
+        limit: limit || 200,
         offset: page,
         include: [{
           model: Genre,
@@ -100,6 +101,8 @@ router.get('/', async (req, res) => {
       })
       res.send(videogames);
     }
+  }} catch (error) {
+    console.log("CATCH")
   }
 })
 

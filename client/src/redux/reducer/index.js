@@ -7,6 +7,7 @@ const initialState = {
     wishList: [],
     genres: [],
     tags: [],
+    cart: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -56,16 +57,16 @@ const rootReducer = (state = initialState, action) => {
                 ...state
             }
 
-        case "ADD_WISHLIST":
+        case "ADD_WISH_LIST":
             return {
                 ...state,
                 wishList: state.wishList.concat(action.payload)
             }
-       /*  case "DELETE_FAVORITE":
+        case "DELETE_WISH_LIST":
             return {
                 ...state,
-                wishList: state.wishList.
-            } */
+                wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
+            }
     
         default:
             return state;
