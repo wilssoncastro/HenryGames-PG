@@ -92,6 +92,7 @@
     display: flex;
     justify-content: center;
     position: fixed;
+    z-index: 8000;
     top: 0;
     right: -100%;
     transition: 850ms;
