@@ -64,26 +64,46 @@ router.get('/', async (req, res) => {
   /////////////////////////////////////////llamado a BD
   else {
     const { name, page, limit, order, sort } = req.query
-    if (name) {
+    if (name && !(sort && order)) {
       const videogames = await Videogame.findAll({
         where: {
           name: { [Op.iLike]: `${name}%` },
         },
+        limit: limit,
+        offset: page,
         include: [{
           model: Genre,
           attributes: ['name'],
           through: {
             attributes: [],
           }
-        }]
+        }],
       })
       res.send(videogames);
     }
-    else if (sort && order) {
+    else if ((sort && order) && !name) {
       const videogames = await Videogame.findAll({
         limit: limit, // cantidad de videogames por página
         offset: page, // índice del primer videogame que se muestra en la página
         order: [[sort, order]] // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+      })
+      res.send(videogames);
+    }
+    else if (name && sort && order) {
+      const videogames = await Videogame.findAll({
+        where: {
+          name: { [Op.iLike]: `${name}%` },
+        },
+        limit: limit,
+        offset: page,
+        order: [[sort, order]],
+        include: [{
+          model: Genre,
+          attributes: ['name'],
+          through: {
+            attributes: [],
+          }
+        }],
       })
       res.send(videogames);
     }
