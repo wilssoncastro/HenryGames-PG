@@ -10,7 +10,7 @@
     justify-content: center;
 }
 
-.ConteinerCarousel{
+.ContainerCarousel{
     display: flex;
     flex-direction: column;
     margin-top: 90px;
