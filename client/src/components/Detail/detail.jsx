@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { getDetailsVideogame, deleteVideogame } from "../../redux/actions";
+import {
+  addWishList,
+  getDetailsVideogame,
+  deleteVideogame,
+} from "../../redux/actions";
 
 export default function Detail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const wish = useSelector((state) => state.wishList);
+  const videoWish = wish.find((v) => v.id == id);
 
   const videogame = useSelector((state) => state.details);
 
@@ -27,6 +34,15 @@ export default function Detail() {
     confirm();
   };
 
+  function handleWish(e) {
+    e.preventDefault();
+    if (!videoWish) {
+      dispatch(addWishList(detail));
+    } else {
+      dispatch(deleteFavorite(id));
+    }
+  }
+
   return (
     <div className="ComponentCardDetail">
       {videogame.id == id ? (
@@ -39,6 +55,7 @@ export default function Detail() {
             width="400px"
             height="210"
           />
+
           <div className="release_date">
             <h4>Release Date: </h4>
             <p>{videogame.release_date}</p>
@@ -96,10 +113,23 @@ export default function Detail() {
             })}
           </div>
 
-            <div className="onSale">{videogame.on_sale === true ? <p>On Sale!</p> : null}</div>
+          <div className="onSale">
+            {videogame.on_sale === true ? <p>On Sale!</p> : null}
+          </div>
+
+          <div>
+            <button onClick={(e) => handleWish(e)}>
+              {!videoWish ? <>Add to wishlist</> : <>Delete from wishlist</>}
+            </button>
+          </div>
 
           {videogame.db_created && (
-            <button className="deleteButtonDetail" onClick={(e) => handleDelete(e)}>Delete Videogame</button>
+            <button
+              className="deleteButtonDetail"
+              onClick={(e) => handleDelete(e)}
+            >
+              Delete Videogame
+            </button>
           )}
 
           <div className="buttonBackHome">
