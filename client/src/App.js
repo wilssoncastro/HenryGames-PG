@@ -28,7 +28,7 @@ function App() {
           <Route exact path='/home' element={<Home/>}/>
 
           {/* Detalles de los videojuegos */ }
-          <Route exact path='/home/:id' element={<Detail/>} />
+          <Route exact path='/store/:id' element={<Detail/>} />
 
                 {/* RUTA TEMPORAL O NO. */}
           <Route exact path='/home/createVideogame' element={<VideogameCreate />} />
