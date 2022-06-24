@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { getDetailsVideogame } from '../../redux/actions'
 import {useParams} from 'react-router-dom'
 
-export default function Detail(props) {
+export default function Detail() {
   const dispatch = useDispatch()
   const detail = useSelector((state) => state.details)
   const {id} = useParams()
