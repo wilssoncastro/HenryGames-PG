@@ -20,7 +20,7 @@ async function genres(){
     })
       await Promise.all(generos)
         console.log('Generos guardados')
-        console.log('⚠️  Para continuar ejecuta la ruta get => /videogames ⚠️')
+        console.log('Back levantado exitosamente✔️ , PUEDES SEGUIR CODEANDO!')
   }
 
 
