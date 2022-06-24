@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-          
         },
         name: {
             type: DataTypes.STRING,
@@ -56,7 +55,7 @@ module.exports = (sequelize) => {
             defaultValue: "Everyone 10+"
         },
         requirements: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.ARRAY(DataTypes.TEXT),
             allowNull: false,
             defaultValue: ["Has no requirements"]
         },
