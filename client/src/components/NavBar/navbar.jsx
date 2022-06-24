@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { SidebarData } from "./SidebarData";
 import FriendListBox from "./FriendListBox";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
@@ -15,56 +14,57 @@ import './navbar.css';
 import './friendlist.css'
 
 export default function NavBar() {
-  const [sidebar, setSidebar] = useState(false);
-  const [friendBox, setFriendBox] = useState(false);
+    const [sidebar, setSidebar] = useState(false);
+    const [friendBox, setFriendBox] = useState(false);
 
 
-  const showSidebar = () =>{ 
-    if(sidebar === true){
-        setFriendBox(false)
+    const showSidebar = () =>{ 
+        if(sidebar === true){
+            setFriendBox(false)
+            setSidebar(!sidebar)
+        }
         setSidebar(!sidebar)
-    }
-    setSidebar(!sidebar)
-};
+    };
 
-  const showFriendBox = () => setFriendBox(!friendBox);
+    const showFriendBox = () => setFriendBox(!friendBox);
 
 
-  const SidebarData = [
-    {
-      title: 'Profile',
-      path: '#',
-      icon: <CgIcons.CgProfile/>,
-      className: 'nav-text',
-      onClick: showSidebar
-    },
-    {
-      title: 'Theme',
-      path: '#',
-      icon: <VscIcons.VscColorMode/>,
-      className: 'nav-text',
-      onClick: showSidebar
-    },
-    {
-      title: 'Language',
-      path: '#',
-      icon: <BsIcons.BsTranslate/>,
-      className: 'nav-text',
-      onClick: showSidebar
-    },
-    {
-      title: 'Friends',
-      path: '#',
-      icon: <FaIcons.FaUserFriends/>,
-      className: 'friends-text',
-      onClick: showFriendBox
-    }
-    ]
+    // Data for sidebar, can't separate in modules because of onClick hook context import/export
+    const SidebarData = [
+        {
+            title: 'Profile',
+            path: '#',
+            icon: <CgIcons.CgProfile/>,
+            className: 'nav-text',
+            onClick: showSidebar
+        },
+        {
+            title: 'Theme',
+            path: '#',
+            icon: <VscIcons.VscColorMode/>,
+            className: 'nav-text',
+            onClick: showSidebar
+        },
+        {
+            title: 'Language',
+            path: '#',
+            icon: <BsIcons.BsTranslate/>,
+            className: 'nav-text',
+            onClick: showSidebar
+        },
+        {
+            title: 'Friends',
+            path: '#',
+            icon: <FaIcons.FaUserFriends/>,
+            className: 'friends-text',
+            onClick: showFriendBox
+        }
+        ]
       
 
-  return (
-      <div>
-          <IconContext.Provider value={{color: '#fff'}}>
+    return (
+        <div>
+            <IconContext.Provider value={{color: '#fff'}}>
 
                 {/* Burger Menu */}
                 <div className="navbar">
@@ -84,7 +84,7 @@ export default function NavBar() {
                         {/* Library section */}
                         <Link to='/library' className="left-sections">
                             <BiIcons.BiLibrary className="navbar-left-icons" />
-                            <h3 className="navleft-text">LIBRARY</h3>
+                            <h3 className="navleft-text">LIBRARY </h3>
                         </Link>
                     </div>
                 
@@ -111,14 +111,22 @@ export default function NavBar() {
                 </div>
                 
 
-              {/* Menu vertical invisible de izquierda a derecha con su logica */}
+                {/* Menu vertical TOGGLE de derecha a izquierda con su logica  */}
+                {/* |||||||||||||||||||||||||||||||||||||   <----------------- */}
+                {/* |||||||||||||||||||||||||||||||||||||   <----------------- */}
+                {/* |||||||||||||||||||||||||||||||||||||   <----------------- */}
+                {/* |||||||||||||||||||||||||||||||||||||   <----------------- */}
                 <nav className={sidebar ? 'side-menu active' : 'side-menu'}>
+
+                    {/* Tres barritas que las esconde el navbar, las dejamos porque si no se esconde Profile */}
                     <ul className="side-menu-items">
                         <li className="sidebar-toggle" onClick={showSidebar}>
                             <Link to="#" className="navbar-icons">
                                 <VscIcons.VscThreeBars />
                             </Link>
                         </li>
+
+                        {/* Map de los items que muestra el menu: Profile, Theme, Language, Log In, Friends */}
                         {SidebarData.map((item, index) => {
                             return (
                                 <li key={index} className={item.className} >
@@ -127,9 +135,10 @@ export default function NavBar() {
                                         <span>{item.title}</span>
                                     </Link>
                                 </li>
-                              
                             )
                         })}
+
+                        {/* Renderiza componente de lista de amigos */}
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <FriendListBox/>
                         </nav>
