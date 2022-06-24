@@ -142,7 +142,7 @@ export default function NavBar() {
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <FriendListBox/>
                         </nav>
-
+                        
                     </ul>
                 </nav>
             </IconContext.Provider>            
