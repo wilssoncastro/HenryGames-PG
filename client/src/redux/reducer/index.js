@@ -18,6 +18,13 @@ const rootReducer = (state = initialState, action) => {
                 videogames: action.payload,
                 allVideogames: action.payload
             }
+
+        case "GET_FILTERED_VIDEOGAMES":
+            return {
+                ...state,
+                videogames: action.payload
+            }
+
         case "GET_GENRES":
             return {
                 ...state,
@@ -62,6 +69,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 wishList: state.wishList.concat(action.payload)
             }
+            
         case "DELETE_WISH_LIST":
             return {
                 ...state,

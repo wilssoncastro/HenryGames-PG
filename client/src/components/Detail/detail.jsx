@@ -120,7 +120,7 @@ export default function Detail() {
 
           <div>
             <button onClick={(e) => handleWish(e)}>
-              {!videoWish ? <>Add to wishlist</> : <>Delete from wishlist</>}
+              {!videoWish ? <>Add to Wishlist</> : <>Delete from Wishlist</>}
             </button>
           </div>
 

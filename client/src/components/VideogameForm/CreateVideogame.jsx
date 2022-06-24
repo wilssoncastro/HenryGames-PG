@@ -3,17 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import { getGenres, getTags, postVideogame } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
+
+const regularExpresions = {
+  date: /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/,
+};
+
 function validate(input) {
   let errors = {};
   if (!input.name) {
-    errors.name = "Coloca un nombre para continuar";
+    errors.name = "Please put a name for continue";
   } else if (!input.description) {
-    errors.description = "Coloca una descripción para continuar";
-  } else if (!expresionDate.date.test(input.released)) {
-    errors.released = "Coloca una fecha válida para continuar";
+    errors.description = "Please put a description for continue";
+  } else if (!regularExpresions.date.test(input.released)) {
+    errors.released = "Please enter a valid released date to continue";
   } else if (parseFloat(input.rating) < 1 || parseFloat(input.rating) > 5) {
-    errors.rating = "El rating debe ser un número del 1 al 5";
-  }
+    errors.rating = "The rating must be a number from 1 to 5";
+  } /*else if ( VALIDACION PRICE ){
+
+  }*/
   return errors;
 }
 
@@ -33,6 +40,12 @@ export default function VideogameCreate() {
     description: "",
     genre: [],
     tags: [],
+    price: 0,                                
+    short_screenshots: [],                 
+    requirements: [],                        
+    esrb_ratings: [],        
+    free_to_play: false,       //! Verificar como va     
+    on_sale: false,            //! Verificar como va                  
   });
 
   useEffect(() => {
@@ -180,6 +193,16 @@ export default function VideogameCreate() {
             type="number"
             value={input.rating}
             name="rating"
+            onChange={(e) => handleChange(e)}
+          />
+
+          <label className="labelPrice">Price: </label>
+          <input
+            className="inputPrice"
+            placeholder="Price.."
+            type='number'
+            value={input.price}
+            name="price"
             onChange={(e) => handleChange(e)}
           />
         </div>
