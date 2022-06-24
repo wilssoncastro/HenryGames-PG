@@ -10,6 +10,9 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+transporter.verify(()=>{
+    console.log('Listo para enviar mails!')
+})
 
 const router = Router();
 
