@@ -62,19 +62,6 @@ export function getDetailsVideogame(id) {
   };
 }
 
-export function getVideogamesByName(name) {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get(`http://localhost:3001/videogames?name=${name}`);
-      return dispatch({
-        type: "GET_VIDEOGAMES_NAME",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
 
 export function deleteVideogame(id){
     return async function(dispatch){
