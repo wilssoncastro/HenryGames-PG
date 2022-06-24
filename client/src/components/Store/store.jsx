@@ -8,6 +8,9 @@ export default function Store() {
   const dispatch = useDispatch();
   const allVideogames = useSelector((state) => state.videogames)
 
+
+ 
+
   useEffect(() => {
     dispatch(getAllVideogames());
   }, [dispatch])
@@ -22,7 +25,9 @@ export default function Store() {
         {
           allVideogames.map((v) => {
             return(
-              <Card image={v.image} name={v.name} price={v.price} />
+              <div>
+              <Card key={v.id} image={v.image} name={v.name} price={v.price} id={v.id} />
+              </div>
             )
           })
         }

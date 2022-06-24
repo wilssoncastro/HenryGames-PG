@@ -8,6 +8,7 @@ import Profile from './components/Profile/profile';
 import LogIn from './components/Form/log_in';
 import SignUp from './components/Form/sign_up';
 import Store from './components/Store/store'
+import Wishlist from './components/Wish-List/wish_list';
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart/>}/>
+
+          {/* Te manda a la lista de deseos */}
+          <Route exact path='/wish_list' element={<Wishlist/>} />
           
         </Routes>
       </div>
