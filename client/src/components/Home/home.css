@@ -8,9 +8,11 @@
     height: 100vh;
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
-.ConteinerCarousel{
+.ContainerCarousel{
     display: flex;
     flex-direction: column;
     margin-top: 90px;
