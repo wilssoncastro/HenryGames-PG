@@ -31,7 +31,7 @@ function App() {
           <Route exact path='/store/:id' element={<Detail/>} />
 
                 {/* RUTA TEMPORAL O NO. */}
-          <Route exact path='/home/createVideogame' element={<VideogameCreate />} />
+          <Route exact path='/home/createVideogame' element={<VideogameCreate/>} />
 
           {/* STORE es la tienda donde van a aparecer TODOS los juegos. Aca se van a poder FILTRAR */}
           <Route exact path='/store' element={<Store/>}/>
