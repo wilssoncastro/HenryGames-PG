@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getGenres, getTags, postVideogame } from "../../redux/actions/index.js";
+import { getGenres, postVideogame } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -38,25 +38,26 @@ export default function VideogameCreate() {
     image: "",
     rating: 0,
     description: "",
-    genre: [],
+    genres: [],
     tags: [],
-    price: 0,                                
-    short_screenshots: [],                 
-    requirements: [],                        
-    esrb_ratings: [],        
-    free_to_play: false,       //! Verificar como va     
-    on_sale: false,            //! Verificar como va                  
+    price: 0,
+    short_screenshots: [],
+    requirements: [],
+    esrb_ratings: [],
+    /*  free_to_play: false,       //! Verificar como va     
+     on_sale: false, */            //! Verificar como va                  
   });
+
+
 
   useEffect(() => {
     dispatch(getGenres());
-    dispatch(getTags());
   }, []);
 
   const handleChange = (e) => {
     setInput({
       ...input,
-      [e.target.value]: e.target.value,
+      [e.target.name]: e.target.value,
     });
     setErrors(
       validate({
@@ -66,22 +67,50 @@ export default function VideogameCreate() {
     );
   };
 
-  const handleGenre = (e) => {
-    if (e.target.value !== "Seleccione Género/s")
-      if (!input.genre.includes(e.target.value)) {
-        setInput({
-          ...input,
-          genre: [...input.genre, e.target.value],
-        });
+  const handleImage = (e) => {
+    let image = document.getElementById("main_image").value
+    if (image != "")
+      {
+        {
+          setInput({
+            ...input,
+            image: image,
+          });
+        }
       }
   };
+  const handleDeleteImage = (e) => {
+    setInput({
+      ...input,
+      image: ""
+    });
+  };
 
-  const handleTags = (e) => {
-    if (e.target.value !== "Seleccione Tags")
-      if (!input.tag.includes(e.target.value)) {
+  const handleShortImage = (e) => {
+    let image = document.getElementById("Short-Image").value
+    if (image != "")
+    if(input.short_screenshots.length <= 3){
+      {{setInput({
+            ...input,
+            short_screenshots: [...input.short_screenshots, image],
+          });
+      }}
+    }
+  };
+
+  const handleDeleteShortImage = (e) => {
+    setInput({
+      ...input,
+      short_screenshots: input.short_screenshots.filter((tag) => tag !== e),
+    });
+  };
+
+  const handleGenre = (e) => {
+    if (e.target.value !== "Seleccione Género/s")
+      if (!input.genres.includes(e.target.value)) {
         setInput({
           ...input,
-          tag: [...input.tag, e.target.value],
+          genres: [...input.genres, e.target.value],
         });
       }
   };
@@ -89,16 +118,34 @@ export default function VideogameCreate() {
   const handleDeleteGenre = (e) => {
     setInput({
       ...input,
-      genre: input.genre.filter((ge) => ge !== e),
+      genres: input.genres.filter((ge) => ge !== e),
     });
+  };
+
+  const handleTags = (e) => {
+    let valorTag = document.getElementById("tags").value
+
+    if (valorTag != [])
+      if (!input.tags.includes(valorTag)) {
+        {
+          setInput({
+            ...input,
+            tags: [...input.tags, valorTag],
+          });
+        }
+      }
+
   };
 
   const handleDeleteTags = (e) => {
     setInput({
       ...input,
-      tag: input.tag.filter((t) => t !== e),
+      tags: input.tags.filter((tag) => tag !== e),
     });
   };
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -116,9 +163,9 @@ export default function VideogameCreate() {
         alert("La fecha es inválida");
       } else if (input.genre.length < 1) {
         alert("El videojuego debe tener mínimo un género");
-      } else if (input.tags.length < 1) {
+      } /* else if (input.tags.length < 1) {
         alert("El videojuego debe tener mínimo un tag");
-      } else {
+      }  */else {
         dispatch(postVideogame(input));
         alert("Videojuego creado correctamente");
         setInput({
@@ -130,7 +177,7 @@ export default function VideogameCreate() {
           on_sale: false,                           //*  hacer validaciones      
           price: 0,                                 //*  hacer validaciones
           free_to_play: false,                      //*  hacer validaciones
-          genre: [],
+          genres: [],
           tags: [],
           short_screenshots: [],                    //*  hacer validaciones
           requirements: [],                         //*  hacer validaciones
@@ -147,45 +194,123 @@ export default function VideogameCreate() {
         <button>Regresar a Página Principal</button>
       </Link>
 
-      <h1>Crear Nuevo Videojuego</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <input
-            className="inputName"
-            type="text"
-            name="name"
-            placeholder="Nombre.."
-            value={input.name}
-            onChange={(e) => handleChange(e)}
-          />
+      <h2>THANK YOU FOR CHOOSING HENRY GAMES TO PUBLISH YOUR VIDEO GAME!</h2>
+      <p>Please make sure to read our terms and conditions below:</p>
+      <Link to="/home">
+        <button>Terms and conditions</button>
+      </Link>
+      <p>Please fill out the following form with information about the video game you want to publish</p>
 
-          <input
-            className="inputDescription"
-            type="text"
-            placeholder="Descripción.."
-            value={input.description}
-            name="description"
-            onChange={(e) => handleChange(e)}
-          />
 
-          <input
-            className="inputReleased"
-            type="text"
-            placeholder="dd-mm-yyyy.."
-            value={input.released}
-            name="released"
-            onChange={(e) => handleChange(e)}
-          />
+      <div>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div>
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Videogame name"
+                value={input.name}
+                onChange={(e) => handleChange(e)}
+              />
 
-          <input
-            className="inputImage"
-            type="text"
-            placeholder="Imagen.."
-            value={input.image}
-            name="image"
-            onChange={(e) => handleChange(e)}
-          />
+            </div>
+            <div>
+              <label>Description</label>
+              <input
+                className="inputDescription"
+                type="text"
+                placeholder="Descripción.."
+                value={input.description}
+                name="description"
+                onChange={(e) => handleChange(e)}
+              />
 
+            </div>
+            <div>
+
+              <label>Release date</label>
+              <input
+                className="inputReleased"
+                type="text"
+                placeholder="dd-mm-yyyy.."
+                value={input.released}
+                name="released"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div>
+              <label>Main image</label>
+              <input
+                className="inputImage"
+                type="text"
+                placeholder="Main Image"
+                name="image"
+                id= "main_image"
+              />
+              <button
+              className="botonX"
+              onClick={(e) => handleImage(e)}
+              type="reset"
+            >add Image
+            </button>
+            <div>
+              {input.image != ""? (
+              <div>
+              <img src={input.image} /> <button
+                  className="botonX"
+                  onClick={(e) => handleDeleteImage(e)}
+                  type="reset"
+                >
+                  X
+                </button>
+                </div>
+                ) : ""
+              }           
+           
+            </div>
+            </div>
+
+            <div>
+
+              <div>
+              <label> Insert 4 short screenshots</label>
+              </div>
+              <div>
+            
+              <input
+                className="inputImage"
+                type="text"
+                placeholder="Insert url image"
+                name="short_screenshots"
+                id= "Short-Image"                
+              />
+              <button
+              className="botonX"
+              onClick={(e) => handleShortImage(e)}
+              type="reset"
+            >add Image
+            </button>
+              </div>
+              <div>
+                {input.short_screenshots.map(e=>(
+                  <div>
+                   <img src={e} alt="Image Not Fount" />
+                   <button
+                  className="botonX"
+                  onClick={() => handleDeleteShortImage(e)}
+                  type="reset"
+                >
+                  X
+                </button>
+                  </div>
+                ))}
+              </div>
+              
+            </div>
+            {/*        
+la persona no puede calificar su porpio juego!!! poner el el post que el rating sea 3 automatico
           <label className="labelRating">Rating: </label>
           <input
             className="inputRating"
@@ -194,59 +319,67 @@ export default function VideogameCreate() {
             value={input.rating}
             name="rating"
             onChange={(e) => handleChange(e)}
-          />
+          /> */}
 
-          <label className="labelPrice">Price: </label>
-          <input
-            className="inputPrice"
-            placeholder="Price.."
-            type='number'
-            value={input.price}
-            name="price"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
+            <label className="labelPrice">Price: </label>
+            <input
+              className="inputPrice"
+              placeholder="Price.."
+              type='number'
+              value={input.price}
+              name="price"
+              onChange={(e) => handleChange(e)}
+            />
+            <label className="labelPrice">ARS$</label>
+          </div>
 
-        <div>
-          <label className="labelGenres">Géneros: </label>
-          <br />
-        </div>
+          <div>
+            <label className="labelGenres">Genres: </label>
+            <br />
+          </div>
 
-        <select className="selectBox" onChange={(e) => handleGenre(e)}>
-          <option disabled={input.genre.length > 0}>Selecciona Género</option>
-          {genres.map((g) => (
-            <option value={g.name}>{g.name}</option>
-          ))}
-        </select>
-
-        <div>
-          <br />
-          {input.genre.map((e) => (
-            <div>
-              <span>{e}</span>
-              <button
-                className="botonX"
-                onClick={() => handleDeleteGenre(e)}
-                type="reset"
-              >
-                X
-              </button>
-            </div>
-          ))}
-        </div>
-
-        <br />
-        <div>
-          <label>Tags: </label>
-          <br />
-          <select className="selectBox" onChange={(e) => handleTags(e)}>
-            <option disabled={input.tags.length > 0}>Selecciona Tag</option>
-            {tags.map((p) => (
-              <option className="optionTags" value={p.name}>
-                {p.name}
-              </option>
+          <select className="selectBox" onChange={(e) => handleGenre(e)}>
+            <option disabled={input.genres.length > 0}>Selecciona Género</option>
+            {genres.map((g) => (
+              <option value={g.name}>{g.name}</option>
             ))}
           </select>
+
+          <div>
+            <br />
+            {input.genres.map((e) => (
+              <div>
+                <span>{e}</span>
+                <button
+                  className="botonX"
+                  onClick={() => handleDeleteGenre(e)}
+                  type="reset"
+                >
+                  X
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <label>Tags</label>
+            <input
+              className="input"
+              id="tags"
+              type="text"
+              placeholder="Write a tag for your game..."
+              name="tags"
+
+
+            />
+            <button
+              className="botonX"
+              onClick={(e) => handleTags(e)}
+              type="reset"
+            >add tag
+            </button>
+          </div>
+
 
           <div>
             <br />
@@ -263,17 +396,34 @@ export default function VideogameCreate() {
               </div>
             ))}
           </div>
-        </div>
 
-        {errors.name && <p className="error">{errors.name}</p>}
-        {errors.description && <p className="error">{errors.description}</p>}
-        {errors.released && <p className="error">{errors.released}</p>}
-        {errors.rating && <p className="error">{errors.rating}</p>}
 
-        <button className="botonCrear" type="submit">
-          Crear Videojuego
-        </button>
-      </form>
+          <br />
+          {/* <div>
+          <label>Tags: </label>
+          <br />
+          {/* <select className="selectBox" onChange={(e) => handleTags(e)}>
+            <option disabled={input.tags.length > 0}>Selecciona Tag</option>
+            {tags.map((p) => (
+              <option className="optionTags" value={p.name}>
+                {p.name}
+              </option>
+            ))}
+          </select>  
+
+          
+        </div> */}
+
+          {errors.name && <p className="error">{errors.name}</p>}
+          {errors.description && <p className="error">{errors.description}</p>}
+          {errors.released && <p className="error">{errors.released}</p>}
+          {errors.rating && <p className="error">{errors.rating}</p>}
+
+          <button className="botonCrear" type="submit">
+            Public Videogame
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
