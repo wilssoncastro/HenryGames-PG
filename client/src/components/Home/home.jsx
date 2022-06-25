@@ -9,7 +9,7 @@ import './carousel.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getAllVideogames } from '../../redux/actions'
-/* import Card from '../Card/card' */
+// import Card from '../Card/card'
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function Home() {
                 <NavBar/>
             </div>
             {/* <div>
-                    {currentVideogames?.map(e => {
+                    {allVideogames?.map(e => {
                         return(
                             <div>
                                 <Card image={e.image} name={e.name} price={e.price}/>
