@@ -11,6 +11,7 @@ import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
 import LandingPage from './components/Langing-Page/LangingPage';
 import VideogameCreate from './components/VideogameForm/CreateVideogame';
+import ValidationMail from './components/ValidationMail/validationMail'
 
 function App() {
   return (
@@ -53,6 +54,9 @@ function App() {
 
           {/* Te manda a la lista de deseos */}
           <Route exact path='/wish_list' element={<Wishlist/>} />
+          {/* Autorizacion - NO TOCAR */}
+          <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
+
           
         </Routes>
       </div>
