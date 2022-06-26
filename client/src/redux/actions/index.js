@@ -31,11 +31,11 @@ export function getGenres() {
   };
 }
 
-export function getTags() {
+export function getEsrb() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/tags");
+    var json = await axios.get("http://localhost:3001/esrb");
     return dispatch({
-      type: "GET_TAGS",
+      type: "GET_ESRB",
       payload: json.data,
     });
   };

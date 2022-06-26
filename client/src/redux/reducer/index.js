@@ -6,7 +6,7 @@ const initialState = {
     details: [],
     wishList: [],
     genres: [],
-    tags: [],
+    esrb: [],
     cart: [],
 }
 
@@ -31,10 +31,10 @@ const rootReducer = (state = initialState, action) => {
                 genres: action.payload
             }
 
-        case "GET_TAGS":
+        case "GET_ESRB":
             return {
                 ...state,
-                tags: action.payload
+                esrb: action.payload
             }
 
         case "GET_DETAILS_VIDEOGAME":
