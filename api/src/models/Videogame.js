@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
         esrb_rating: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: "Everyone 10+"
+            defaultValue: "Rating Pending"
         },
         requirements: {
             type: DataTypes.ARRAY(DataTypes.TEXT),
