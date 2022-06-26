@@ -1,0 +1,51 @@
+.videogame_created_container{
+    background-image: url('https://img.freepik.com/vector-gratis/lamina-oro-fondo-dorado-metal-holografico_186921-52.jpg?w=2000');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+   
+}
+.error{
+    color:  red;
+}
+.image_form{
+    width: 70px;   
+    max-height: 120px;
+  
+}
+.screenShots_Image{
+    display: flex;
+    flex-direction: column 4;
+    justify-content: center;
+}
+
+.input_text{
+    width: 400px;
+    background: rgb(255, 255, 255);
+    border-radius: 3px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+    border: 3px solid rgba(163,163,163,0.4);
+
+}
+.input_text:focus{
+    border: 3px solid rgb(41, 210, 22);
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163,163,163,0.4);
+}
+.input_text_error{
+    border: 3px solid rgb(255, 0, 0);
+    outline: none;
+    box-shadow: 3px 0px 30px rgba(163,163,163,0.4);
+    width: 400px;
+    background: rgb(255, 255, 255);
+    border-radius: 3px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+  
+}
