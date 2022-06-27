@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import FriendListBox from "./FriendListBox";
+import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -140,7 +141,24 @@ export default function NavBar() {
 
                         {/* Renderiza componente de lista de amigos */}
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
-                            <FriendListBox/>
+                        <h3 className="friendBoxTitle">Friend List</h3>
+        <div className="FriendListBox">
+            {FriendList.map((user, index) => {
+                return (
+                    <ul>
+                        <li key={index} className={user.className}>
+                            <Link to={user.path}>
+                                {user.image}
+                                <div className="userData">
+                                    <span className="userName">{user.name}</span>
+                                    <span className={user.status === 'Online' ? "userStatusOnline" : "userStatusOffline"}>{user.status}</span>
+                                </div>
+                            </Link>
+                        </li>
+                    </ul>
+                )
+            })}
+        </div>
                         </nav>
 
                     </ul>
