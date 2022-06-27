@@ -62,6 +62,11 @@ module.exports = (sequelize) => {
         db_created: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        contador: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         }
     }, { timestamps: false })
 }
