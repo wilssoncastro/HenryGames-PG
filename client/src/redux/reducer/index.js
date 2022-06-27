@@ -25,6 +25,12 @@ const rootReducer = (state = initialState, action) => {
                 videogames: action.payload
             }
 
+        case "GET_CARD_STATISTICS": 
+            return {
+                ...state,
+                videogames: action.payload
+            }
+            
         case "GET_GENRES":
             return {
                 ...state,

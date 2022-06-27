@@ -11,6 +11,7 @@ import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
 import LandingPage from './components/Langing-Page/LangingPage';
 import VideogameCreate from './components/VideogameForm/CreateVideogame';
+import Estadisticas from './components/Administrador/EstadisticasVentas';
 
 function App() {
   return (
@@ -47,6 +48,8 @@ function App() {
 
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile/>}/>
+
+          <Route exact path='/admin/statistics' element={<Estadisticas />}/>
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart/>}/>
