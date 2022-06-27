@@ -62,7 +62,6 @@ export function getDetailsVideogame(id) {
   };
 }
 
-
 export function deleteVideogame(id){
     return async function(dispatch){
         var json = await axios.delete(`http://localhost:3001/videogamesDev/${id}`);
@@ -115,4 +114,14 @@ export function clearCart(){
   return {
     type: "CLEAR_CART"
   }
+}
+
+export function getCardStatistics(name){
+  return async function (dispatch) {
+    let json = await axios(`http://localhost:3001/videogames?name=${name}`);
+    return dispatch({
+      type: "GET_CARD_STATISTICS",
+      payload: json.data
+    });
+  };
 }
