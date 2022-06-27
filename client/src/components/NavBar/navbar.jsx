@@ -33,7 +33,7 @@ export default function NavBar() {
     const SidebarData = [
         {
             title: 'Profile',
-            path: '#',
+            path: '/profile',
             icon: <CgIcons.CgProfile/>,
             className: 'nav-text',
             onClick: showSidebar
