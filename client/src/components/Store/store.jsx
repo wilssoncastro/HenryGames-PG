@@ -46,7 +46,7 @@ export default function Store() {
       </div>
       <h1>Videogames</h1>
 
-       <SearchBar />
+       <SearchBar name={name} setName={setName} />
 
       {/* <input
         type="text"

@@ -11,9 +11,9 @@ function validate(input) {
   return error;
 }
 
-export default function SearchBar() {
+export default function SearchBar({name, setName}) {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
@@ -42,7 +42,7 @@ export default function SearchBar() {
 
       <button
         className="botonBuscar"
-        type="search"
+        type="submit"
         onClick={(e) => handleSubmit(e)}
       >Search</button>
 
