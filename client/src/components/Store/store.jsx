@@ -15,9 +15,8 @@ export default function Store() {
   const [order, setOrder] = useState(""); 
   const [limit, setLimit] = useState(10); 
 
-  useEffect(() => {
-    dispatch(getAllVideogames());
-    dispatch(getFilteredVideogames(name, page, sort, order, limit));
+  useEffect(() => {  
+     dispatch(getFilteredVideogames(name, page, sort, order, limit));
   }, [dispatch, name, page, sort, order, limit]);
 
 /*  const handleName = (e) => {
