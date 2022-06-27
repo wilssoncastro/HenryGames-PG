@@ -4,7 +4,7 @@
     flex-direction: column;
     align-content: flex-start;
     position: fixed;
-    background-color: #212020;
+    background-color: #151414;
     border-color: black;
     width: 250px;
     height: 45%;
@@ -61,10 +61,6 @@
     display: flex;
     align-items: center;
     padding: 8px 16px 8px 16px;
-    border-width: 2px;
-    border-color: #212020;
-    border-top-color: black;
-    border-style: solid;
     list-style: none;
     height: 60px;
 }
@@ -82,7 +78,7 @@
 }
 
 .friend-tag a:hover {
-    background-color: #3d3d3e;
+    background-color: #1a83ff;
 }
 
 .friendBoxTitle {
