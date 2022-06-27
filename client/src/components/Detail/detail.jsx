@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -7,6 +8,9 @@ import {
   deleteVideogame,
   deleteFavorite
 } from "../../redux/actions";
+import NavBar from "../NavBar/navbar";
+import './detail.css'
+import Carousel from 'react-elastic-carousel'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -45,18 +49,21 @@ export default function Detail() {
   }
 
   return (
+    <div>
+      <div>
+        <NavBar />
+      </div>
     <div className="ComponentCardDetail">
       {videogame.id == id ? (
         <div className="CardDetail">
           <h1 className="name">{videogame.name}</h1>
-          <img
-            className="image"
-            src={videogame.image}
-            alt="Not found"
-            width="400px"
-            height="210"
-          />
-
+          <div className="images">
+            <Carousel>
+            {videogame.short_screenshots?.map((e) => {
+              return <img src={e} alt="Not found" width="700px" height="400px" />;
+            })}
+            </Carousel>
+          </div>
           <div className="release_date">
             <h4>Release Date: </h4>
             <p>{videogame.release_date}</p>
@@ -90,11 +97,6 @@ export default function Detail() {
               <p>${videogame.price}</p>
             )}
           </div>
-          <div className="images">
-            {videogame.short_screenshots?.map((e) => {
-              return <img src={e} alt="Not found" width="400px" height="210" />;
-            })}
-          </div>
           <div className="esrb">
             <h4>Esrb Rating: </h4>
             {videogame.esrb_rating}
@@ -120,7 +122,7 @@ export default function Detail() {
 
           <div>
             <button onClick={(e) => handleWish(e)}>
-              {!videoWish ? <>Add to wishlist</> : <>Delete from wishlist</>}
+              {!videoWish ? <>Add to Wishlist</> : <>Delete from Wishlist</>}
             </button>
           </div>
 
@@ -141,5 +143,6 @@ export default function Detail() {
         </div>
       ) : null}
     </div>
+  </div>
   );
 }

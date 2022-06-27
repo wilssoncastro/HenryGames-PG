@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/create', async(req, res) => {
-    let { name, lastname, user, profile_pic, email, password, date_of_birth, phone, adress, isDeveloper} = req.body
+    let { name, lastname, user, profile_pic, email, password, type, date_of_birth, phone, adress} = req.body
 
     if(!name || !lastname || !user || !email || !password){
         res.status(401).send('Faltan datos obligatorios!')
@@ -37,8 +37,8 @@ router.post('/create', async(req, res) => {
 
     try {
         //Verificar que NO exista el usuario en la BD
-        let playerUsuario = await Player.findAll({where:{'user':user}})
-        let playerMail = await Player.findAll({where:{'email':email}})
+        let playerUsuario = await Player.findAll({where:{user:user}})
+        let playerMail = await Player.findAll({where:{email:email}})
         
         if(playerUsuario.length !== 0 || playerMail.length !== 0){
             return res.status(400).send(playerUsuario.length > 0 ? 
@@ -54,13 +54,14 @@ router.post('/create', async(req, res) => {
             user,
             profile_pic,
             email,
-            password
+            password,
+            type
         }
 
         if(date_of_birth)create.date_of_birth
         if(phone)create.date_of_birth
         if(adress)create.adress
-        if(isDeveloper)isDeveloper
+        
 
         let player = await Player.create(create)
 

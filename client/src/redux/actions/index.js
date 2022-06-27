@@ -11,6 +11,16 @@ export function getAllVideogames() {
   };
 }
 
+export function getFilteredVideogames(name, page, sort, order, limit) {
+  return async function (dispatch) {
+    let json = await axios(`http://localhost:3001/videogames?name=${name}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    return dispatch({
+      type: "GET_FILTERED_VIDEOGAMES",
+      payload: json.data
+    });
+  };
+}
+
 export function getGenres() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/genres");
@@ -21,11 +31,11 @@ export function getGenres() {
   };
 }
 
-export function getTags() {
+export function getEsrb() {
   return async function (dispatch) {
-    var json = await axios.get("http://localhost:3001/tags");
+    var json = await axios.get("http://localhost:3001/esrb");
     return dispatch({
-      type: "GET_TAGS",
+      type: "GET_ESRB",
       payload: json.data,
     });
   };
@@ -52,19 +62,6 @@ export function getDetailsVideogame(id) {
   };
 }
 
-export function getVideogamesByName(name) {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get(`http://localhost:3001/videogames?name=${name}`);
-      return dispatch({
-        type: "GET_VIDEOGAMES_NAME",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
 
 export function deleteVideogame(id){
     return async function(dispatch){

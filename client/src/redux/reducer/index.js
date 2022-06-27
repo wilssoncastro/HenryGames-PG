@@ -6,7 +6,7 @@ const initialState = {
     details: [],
     wishList: [],
     genres: [],
-    tags: [],
+    esrb: [],
     cart: [],
 }
 
@@ -18,28 +18,29 @@ const rootReducer = (state = initialState, action) => {
                 videogames: action.payload,
                 allVideogames: action.payload
             }
+
+        case "GET_FILTERED_VIDEOGAMES":
+            return {
+                ...state,
+                videogames: action.payload
+            }
+
         case "GET_GENRES":
             return {
                 ...state,
                 genres: action.payload
             }
 
-        case "GET_TAGS":
+        case "GET_ESRB":
             return {
                 ...state,
-                tags: action.payload
+                esrb: action.payload
             }
 
         case "GET_DETAILS_VIDEOGAME":
             return {
                 ...state,
                 details: action.payload
-            }
-
-        case "GET_VIDEOGAMES_NAME":
-            return {
-                ...state,
-                videogames: action.payload
             }
 
         case "DELETE_VIDEOGAME":
@@ -62,6 +63,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 wishList: state.wishList.concat(action.payload)
             }
+            
         case "DELETE_WISH_LIST":
             return {
                 ...state,

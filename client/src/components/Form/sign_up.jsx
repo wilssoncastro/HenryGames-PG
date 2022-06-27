@@ -1,9 +1,12 @@
-
 import React from "react";
 import { useState } from 'react'
 import { Link } from "react-router-dom";
+import axios from 'axios'
+
 
 export default function SignUp() {
+    const Swal = require('sweetalert2')
+
     function validate(input){
         let errors = {}
 
@@ -77,7 +80,8 @@ export default function SignUp() {
         let log_error
 
         if((Object.keys(errors).length === 0)){
-            console.log('enviado')
+            Swal.fire("Estamos procesando su solicitud!")
+            axios.post('http://localhost:3001/authentication/register', input)
         }else{
             if(errors.password){
                 log_error = errors.password
@@ -187,7 +191,7 @@ export default function SignUp() {
                 />
                 <br />
                 <br />
-                <p>{errors && errors.password ? errors.password : 'Faltan datos obligatorios'}</p>
+                <p>{errors ? errors.password : 'Faltan datos obligatorios'}</p>
                 
                 <div></div>
             </form>

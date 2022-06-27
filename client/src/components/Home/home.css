@@ -8,6 +8,8 @@
     height: 100vh;
     display: flex;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 .ContainerCarousel{

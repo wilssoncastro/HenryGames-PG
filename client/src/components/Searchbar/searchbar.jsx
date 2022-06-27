@@ -1,12 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getVideogamesByName } from "../../redux/actions/index";
+import { getFilteredVideogames } from "../../redux/actions/index";
 
 function validate(input) {
   let error = "";
   if (input === "") {
-    error = "Por favor ingresa un nombre";
+    error = "Please insert a name";
   }
   return error;
 }
@@ -21,10 +21,10 @@ export default function SearchBar() {
     setName(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (name !== "") {
-      await dispatch(getVideogamesByName(name));
+       dispatch(getFilteredVideogames(name));
       setName("");
     }
     setError(validate(name));
@@ -35,7 +35,7 @@ export default function SearchBar() {
       <input
         value={name}
         type="text"
-        placeholder="Buscar juegos..."
+        placeholder="Search Videogames..."
         onChange={(e) => handleInputChange(e)}
         className="input"
       />
@@ -44,7 +44,7 @@ export default function SearchBar() {
         className="botonBuscar"
         type="search"
         onClick={(e) => handleSubmit(e)}
-      >Buscar</button>
+      >Search</button>
 
       {error && <p className="errorSearch">{error}</p>}
     </div>

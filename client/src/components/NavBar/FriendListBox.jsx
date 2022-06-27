@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function FriendListBox() {
   return (
-    <div>
+    <nav>
         <h3 className="friendBoxTitle">Friend List</h3>
         <div className="FriendListBox">
             {FriendList.map((user, index) => {
@@ -24,6 +24,6 @@ export default function FriendListBox() {
                 )
             })}
         </div>
-    </div>
+    </nav>     
   )
 }

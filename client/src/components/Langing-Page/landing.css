@@ -1,0 +1,21 @@
+
+
+.landingH1 {
+    background-color: gold;
+    padding-top: 10px;
+}
+
+.botonLanging {
+    border-radius: 8px;
+    background-color: gold;
+    color: black;
+    margin-top: 400px;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+}
+.botonLanging:hover {
+    background-color: black;
+    color: white;
+    font-size: 22px;
+}

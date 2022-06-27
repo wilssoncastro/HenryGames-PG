@@ -160,7 +160,7 @@ export default function NavBar() {
             })}
         </div>
                         </nav>
-
+                        
                     </ul>
                 </nav>
             </IconContext.Provider>            
