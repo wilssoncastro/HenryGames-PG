@@ -26,11 +26,12 @@ export default function Detail() {
     dispatch(getDetailsVideogame(id));
   }, [dispatch, id]);
 
-  const handleDelete = (id) => {
-    function confirm() {
+  const handleDelete = () => {
+     function confirm() {
       var respuesta = window.confirm(
         "Are you sure you want to delete the videogame?"
       );
+      console.log(id)
       if (respuesta === true) {
         dispatch(deleteVideogame(id));
         navigate("/home");
