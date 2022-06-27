@@ -46,7 +46,7 @@ function App() {
           <Route exact path='/sign_up' element={<SignUp/>}/>
 
           {/* Te manda a tu perfil :)  */}
-          <Route exact path='/profile/:id' element={<Profile/>}/>
+          <Route exact path='/profile' element={<Profile/>}/>
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart/>}/>
