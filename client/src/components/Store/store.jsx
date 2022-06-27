@@ -8,6 +8,7 @@ import SearchBar from '../Searchbar/searchbar';
 export default function Store() {
   const dispatch = useDispatch();
   const currentVideogames = useSelector((state) => state.videogames);
+  console.log(currentVideogames)
 
   const [name, setName] = useState(""); 
   const [page, setPage] = useState(0); 
@@ -46,7 +47,11 @@ export default function Store() {
       </div>
       <h1>Videogames</h1>
 
-       <SearchBar />
+       <SearchBar 
+       name= {name} 
+       setName = {setName}
+             
+       />
 
       {/* <input
         type="text"
@@ -55,7 +60,7 @@ export default function Store() {
         onChange={(e) => handleName(e)}
       /> */}
 
-      <select hidden={name} onChange={(e) => handleLimit(e)}>
+      <select onChange={(e) => handleLimit(e)}>
           <option>Shown per Page</option>
           <option value="10">10</option>
           <option value="20">20</option>
@@ -64,14 +69,14 @@ export default function Store() {
           <option value="200">200</option>
       </select>
 
-      <select hidden={name} onChange={(e) => handleSort(e)}>
+      <select onChange={(e) => handleSort(e)}>
           <option disabled={sort}>Sort</option>
           <option value='name'>Name</option>
           <option value='price'>Price</option>
           <option value='rating'>Rating</option>
       </select>
 
-      <select hidden={name} onChange={(e) => handleOrder(e)}>
+      <select   onChange={(e) => handleOrder(e)}>
         <option disabled={order}>Order</option>
         <option value='ASC'>Upward</option>
         <option value='DESC'>Downward</option>

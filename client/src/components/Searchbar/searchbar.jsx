@@ -11,9 +11,9 @@ function validate(input) {
   return error;
 }
 
-export default function SearchBar() {
+export default function SearchBar({name, setName}) {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
@@ -23,8 +23,8 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name !== "") {
-       dispatch(getFilteredVideogames(name));
+    if (name !== "") {      
+      dispatch(getFilteredVideogames(name));
       setName("");
     }
     setError(validate(name));
@@ -38,15 +38,16 @@ export default function SearchBar() {
         placeholder="Search Videogames..."
         onChange={(e) => handleInputChange(e)}
         className="input"
+        // onKeyPress={e => e.key === 'Enter' && handleSubmit(e)}
       />
 
-      <button
+      {/* <button
         className="botonBuscar"
-        type="search"
+        type="submit"
         onClick={(e) => handleSubmit(e)}
       >Search</button>
 
-      {error && <p className="errorSearch">{error}</p>}
+      {error && <p className="errorSearch">{error}</p>} */}
     </div>
   );
 }
