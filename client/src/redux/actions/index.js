@@ -65,7 +65,7 @@ export function getDetailsVideogame(id) {
 
 export function deleteVideogame(id){
     return async function(dispatch){
-        var json = await axios.delete(`http://localhost:3001/videogames/:${id}`);
+        var json = await axios.delete(`http://localhost:3001/videogamesDev/${id}`);
         return dispatch({
             type: "DELETE_VIDEOGAME",
             payload: json.data
