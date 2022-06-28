@@ -1,11 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export default function ValidationMail(){
+    const { user_id, token } = useParams();
+    let navigate = useNavigate();
+    
 
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:3001/authentication/activation/${user_id}/${token}`)
+            .then((response) => {
+             return response.data
+            })
+            .catch((error) => {
+              return error
+            });
+        
+        setTimeout(() => {
+            navigate('/home')
+        }, 2000)
+      }, [user_id, token]);
+      
     return (
-        <div>
-            <h1>Mail validado correctamente</h1>
+        <div >
+      <div >
+        <div >
+          <div >
+            <div >
+              {/* <img src={check} alt="" /> */}
+            </div>
+            <div >
+              <p>Mail validado correctamente!</p>
+              
+              
+              <div >
+                <a href="/login" style={{ textDecoration: "none" }}>
+                  Iniciar sesión
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+        
+      </div>
+     
+    </div>
     )
 }
