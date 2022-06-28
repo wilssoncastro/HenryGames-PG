@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
+import LogOut from '../LogOut/LogOut';
 
 
 export default function LogIn() {
@@ -96,6 +97,7 @@ export default function LogIn() {
           <Link to='/home'>
            O entra como invitado
           </Link>
+          <LogOut />
         </div>
   )
 }
