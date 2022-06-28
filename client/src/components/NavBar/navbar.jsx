@@ -100,7 +100,7 @@ export default function NavBar() {
                         </Link> 
 
                         {/* ShoppingCart clickable */}
-                            {
+                         {/*    {
                             cartLocal.length >= 1 ? 
                             (<Link to="/my_cart">
                             <MdIcons.MdShoppingCart className="navbar-icons" />
@@ -109,7 +109,7 @@ export default function NavBar() {
                             <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
                             </Link> )
                         }
-
+ */}
                         {/* SideMenu Opener (three lines) */}
                         <Link to='#' >
                             <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar}/>

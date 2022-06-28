@@ -8,7 +8,6 @@ import SearchBar from '../Searchbar/searchbar';
 export default function Store() {
   const dispatch = useDispatch();
   const currentVideogames = useSelector((state) => state.videogames);
-  console.log(currentVideogames)
 
   const [name, setName] = useState(""); 
   const [page] = useState(0); 
