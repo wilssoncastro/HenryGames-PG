@@ -66,6 +66,7 @@ export default function NavBar() {
 
     return (
         <div>
+            {console.log(cartLocal)}
             <IconContext.Provider value={{color: '#fff'}}>
 
                 {/* Burger Menu */}
@@ -100,8 +101,10 @@ export default function NavBar() {
                         </Link> 
 
                         {/* ShoppingCart clickable */}
-                         {/*    {
-                            cartLocal.length >= 1 ? 
+                            
+                            {
+                            cartLocal? 
+                            
                             (<Link to="/my_cart">
                             <MdIcons.MdShoppingCart className="navbar-icons" />
                             </Link>) :
