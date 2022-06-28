@@ -4,6 +4,7 @@ import { getFilteredVideogames } from '../../redux/actions';
 import Card from '../Card/card.jsx'
 import NavBar from '../NavBar/navbar';
 import SearchBar from '../Searchbar/searchbar';
+import '../Store/store.css';
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -19,10 +20,6 @@ export default function Store() {
      dispatch(getFilteredVideogames(name, page, sort, order, limit));
   }, [dispatch, name, page, sort, order, limit]);
 
-/*  const handleName = (e) => {
-  e.preventDefault();
-  setName(e.target.value);
- } */
  
  const handleSort = (e) => {
   e.preventDefault();
@@ -49,15 +46,7 @@ export default function Store() {
        <SearchBar 
        name= {name} 
        setName = {setName}
-             
        />
-
-      {/* <input
-        type="text"
-        value={name}
-        placeholder="Name.."
-        onChange={(e) => handleName(e)}
-      /> */}
 
       <select onChange={(e) => handleLimit(e)}>
           <option>Shown per Page</option>
