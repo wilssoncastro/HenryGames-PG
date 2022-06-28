@@ -32,10 +32,12 @@ export default function ShoppingCart() {
                   <div>
                     <Card image={game.image} name={game.name} price={game.price} />
                     <button onClick={() => handleDelete(game.id)}>Remove game from cart</button>
+                    <label>Units<input type="number" placeholder='1'/></label>
                   </div>
                   )
                 )
               }
+              <button>Buy</button>
               <button onClick={() => handleClearCart()}>Clear cart</button>
               <Link to='/home'>
                 <button>Back to the main page</button>

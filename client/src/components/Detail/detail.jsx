@@ -21,6 +21,9 @@ export default function Detail() {
   const wish = useSelector((state) => state.wishList);
   const videoWish = wish.find((v) => v.id == id);
 
+  const cart = useSelector((state) => state.cart);
+  const gamesInCart = cart.find((game) => game.id == id);
+
   const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
@@ -52,7 +55,9 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    dispatch(addToCart(videogame));
+    if(!gamesInCart){
+      dispatch(addToCart(videogame));
+    }
   }
 
 
