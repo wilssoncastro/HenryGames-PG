@@ -6,7 +6,8 @@ import {
   addWishList,
   getDetailsVideogame,
   deleteVideogame,
-  deleteFavorite
+  deleteFavorite,
+  addToCart
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
@@ -20,6 +21,9 @@ export default function Detail() {
   const wish = useSelector((state) => state.wishList);
   const videoWish = wish.find((v) => v.id == id);
 
+  const cart = useSelector((state) => state.cart);
+  const gamesInCart = cart.find((game) => game.id == id);
+
   const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
@@ -27,7 +31,7 @@ export default function Detail() {
   }, [dispatch, id]);
 
   const handleDelete = () => {
-     function confirm() {
+    function confirm() {
       var respuesta = window.confirm(
         "Are you sure you want to delete the videogame?"
       );
@@ -48,6 +52,14 @@ export default function Detail() {
       dispatch(deleteFavorite(id));
     }
   }
+
+  function HandleAddToCart(e) {
+    e.preventDefault();
+    if(!gamesInCart){
+      dispatch(addToCart(videogame));
+    }
+  }
+
 
   return (
     <div>
@@ -136,9 +148,18 @@ export default function Detail() {
             </button>
           )}
 
+          <div>
+            <button onClick={(e) => HandleAddToCart(e)}>
+              Add to Cart
+            </button>
+          </div>
+
           <div className="buttonBackHome">
             <Link to="/home">
-              <button>Return to the Main Page</button>
+              <button>Back to the Main Page</button>
+            </Link>
+            <Link to="/store">
+              <button>Back to the store</button>
             </Link>
           </div>
         </div>

@@ -96,6 +96,26 @@ export function deleteFavorite(payload){
     }
 }
 
+export function addToCart(payload){
+  return {
+    type: "ADD_TO_CART",
+    payload
+  }
+}
+
+export function delFromCart(id){
+  return {
+      type: "REMOVE_FROM_CART", 
+      payload: id
+    }
+  }
+
+export function clearCart(){
+  return {
+    type: "CLEAR_CART"
+  }
+}
+
 export function getCardStatistics(name){
   return async function (dispatch) {
     let json = await axios(`http://localhost:3001/videogames?name=${name}`);
@@ -105,4 +125,3 @@ export function getCardStatistics(name){
     });
   };
 }
-
