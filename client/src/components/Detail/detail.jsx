@@ -24,18 +24,12 @@ export default function Detail() {
 
   const cart = useSelector((state) => state.cart);
   const gamesInCart = cart.find((game) => game.id == id);
-  const [useE, setUseE] = useState(false)
-  const prevCart = JSON.parse(localStorage.getItem('cart'))
 
   const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
-  }, [dispatch, id]);
-
-    useEffect(() => {
-      localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
+  }, [dispatch, id, cart]);
 
 
   const handleDelete = () => {
@@ -61,10 +55,12 @@ export default function Detail() {
     }
   }
 
-  function HandleAddToCart(e) {
+   function HandleAddToCart(e) {
     e.preventDefault();
+    // localStorage.setItem('cart', JSON.stringify(cart));
     if(!gamesInCart){
       dispatch(addToCart(videogame));
+      localStorage.setItem('cart', JSON.stringify(cart));
       swal({
         title: 'Your game was successfully added to the cart',
         text: 'What do you want to do next?',
