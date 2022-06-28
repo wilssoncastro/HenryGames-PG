@@ -3,7 +3,7 @@
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    height: 100vh;
+    min-height: 100vh
    
 }
 .error{
