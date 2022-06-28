@@ -24,12 +24,17 @@ export default function Detail() {
 
   const cart = useSelector((state) => state.cart);
   const gamesInCart = cart.find((game) => game.id == id);
+  
 
   const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
 
   const handleDelete = () => {
     function confirm() {

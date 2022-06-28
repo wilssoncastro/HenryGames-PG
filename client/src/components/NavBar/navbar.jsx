@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 export default function NavBar() {
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
-    const cart = useSelector((state) => state.cart)
+    const cartLocal = JSON.parse(localStorage.getItem('cart'))
 
 
     const showSidebar = () =>{ 
@@ -101,7 +101,7 @@ export default function NavBar() {
 
                         {/* ShoppingCart clickable */}
                             {
-                            cart.length >= 1 ? 
+                            cartLocal.length >= 1 ? 
                             (<Link to="/my_cart">
                             <MdIcons.MdShoppingCart className="navbar-icons" />
                             </Link>) :
