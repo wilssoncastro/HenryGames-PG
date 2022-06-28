@@ -3,6 +3,7 @@ const routerRegister = require('./registerRoutes')
 const emailVerificationRouter = require('./emailVerificationRoutes')
 const validateRoutes = require('./validateRoutes')
 const logInRoutes = require('./logInRoutes')
+const logOutRoutes = require('./logOutRoutes')
 
 
 
@@ -11,6 +12,7 @@ router.use('/', routerRegister)
 router.use('/', emailVerificationRouter)
 router.use('/', validateRoutes)
 router.use('/', logInRoutes)
+router.use('/', logOutRoutes)
 
 router.get('/', async (req, res) => {
     try {

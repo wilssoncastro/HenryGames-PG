@@ -178,7 +178,7 @@ export default function SignUp() {
                     >
                         <option disabled>Tipo de usuario</option>
                         <option name='type' value='user'>Jugador</option>
-                        <option name='type' value='dev'>Desarrollador</option>
+                        <option name='type' value='adm'>Administrador</option>
                         
 
                     </select>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
+import LogOut from '../LogOut/LogOut';
 
 
 export default function LogIn() {
@@ -38,7 +39,7 @@ export default function LogIn() {
       .catch((error) => console.log(error));
 
       
-      let {log_in, id, name, lastname, type} = login.data
+      let {log_in, id, name, lastname, type, profile_pic} = login.data
       
       
       if(log_in){
@@ -46,6 +47,7 @@ export default function LogIn() {
         localStorage.setItem('name', name)
         localStorage.setItem('lastname', lastname)
         localStorage.setItem('type', type)
+        localStorage.setItem('profile_pic', profile_pic)
         navigate('/home')
       }
 
@@ -95,6 +97,7 @@ export default function LogIn() {
           <Link to='/home'>
            O entra como invitado
           </Link>
+          <LogOut />
         </div>
   )
 }
