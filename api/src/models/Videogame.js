@@ -64,15 +64,9 @@ module.exports = (sequelize) => {
             defaultValue: false
         },
         contador: {
-<<<<<<< HEAD
-             type: DataTypes.INTEGER,
-             allowNull: false,
-             defaultValue: 0
-=======
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0
->>>>>>> dev
         }
     }, { timestamps: false })
 }
