@@ -50,6 +50,10 @@ export default function LogIn() {
 
       }
 
+      if(typeof login.data === 'string'){
+        setError(login.data)
+      }
+
 
 
     }else{
