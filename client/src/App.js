@@ -16,6 +16,7 @@ import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 
+import ValidationMail from './components/ValidationMail/validationMail'
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           {/* LANDING page que va a pedir Log In, ofrecer tambien un Sign Up, si por COOKIES detecta 
               que ya esta loggeado, te manda directo al Home O ENTRAR COMO INVITADO */}
 
-          {/*   <Route exact path='/' element={<LogIn/>}/> */}
+          
           <Route exact path='/' element={<LandingPage />} />
 
           {/* Muestra algunas categorias (a lo netflix) con los juegos promocionados en esa categoria en forma de BANNER */}
@@ -57,7 +58,7 @@ function App() {
 
           {/* Te manda a un form para crear tu perfil que va a ser ingresado en la Base de Datos. AUTENTICACION!!!!!! */}
           <Route exact path='/sign_up' element={<SignUp/>}/>
-
+          <Route exact path='/log_in' element={<LogIn/>}/> 
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile/>}/>
 
@@ -68,6 +69,9 @@ function App() {
 
           {/* Te manda a la lista de deseos */}
           <Route exact path='/wish_list' element={<Wishlist/>} />
+          {/* Autorizacion - NO TOCAR */}
+          <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
+
           
         </Routes>
       </div>
