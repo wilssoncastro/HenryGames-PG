@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from '../NavBar/navbar'
 import {useSelector, useDispatch} from 'react-redux'
 import { delFromCart, clearCart } from '../../redux/actions'
@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 export default function ShoppingCart() {
   const dispatch = useDispatch()
   const videogamesInCart = useSelector((state) => state.cart)
+  const cartLocal = JSON.parse(localStorage.getItem('cart'))
 
   const handleDelete = (id) => {
     dispatch(delFromCart(id));
@@ -24,11 +25,11 @@ export default function ShoppingCart() {
       </div>
       <div>
       {
-          (videogamesInCart.length !== 0 )? 
+          (cartLocal.length !== 0 )? 
           (
             <div style={{marginTop: '100px'}}>
               {
-                videogamesInCart.map((game) => (
+                cartLocal.map((game) => (
                   <div>
                     <Card image={game.image} name={game.name} price={game.price} />
                     <button onClick={() => handleDelete(game.id)}>Remove game from cart</button>
