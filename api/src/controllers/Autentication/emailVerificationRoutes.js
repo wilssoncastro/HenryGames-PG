@@ -24,6 +24,11 @@ transporter.verify(()=>{
 
 const router = Router();
 
+//-------------------------------------------------------------------------------
+// Esta ruta envía un correo electrónico de verificación para la validación 
+// del email registrado (validar para activar la cuenta)
+//-------------------------------------------------------------------------------
+
 router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     let { userId, token, mail} = req.params
     

@@ -32,7 +32,11 @@ router.get('/', async (req, res) => {
           tags: e.tags.map(t => t.name),
           esrb_rating: e.esrb_rating !== null ? e.esrb_rating.name : "Rating Pending",
           requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en)).filter(b => b != false)),
+<<<<<<< HEAD
           contador: 1
+=======
+          contador: 0
+>>>>>>> dev
         }
       })
     })

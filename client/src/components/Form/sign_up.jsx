@@ -80,7 +80,7 @@ export default function SignUp() {
         let log_error
 
         if((Object.keys(errors).length === 0)){
-            Swal.fire("Estamos procesando su solicitud!")
+            Swal.fire("Verifique su correo para activar la cuenta!")
             axios.post('http://localhost:3001/authentication/register', input)
         }else{
             if(errors.password){
@@ -105,7 +105,7 @@ export default function SignUp() {
                         </div>
                     </Link>
                     <div>
-                        <a href="/login" >
+                        <a href="/log_in" >
                             Iniciar sesion
                         </a>
                     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import FriendListBox from "./FriendListBox";
+import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -12,10 +12,12 @@ import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
 import './navbar.css';
 import './friendlist.css'
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
+    const cartLocal = JSON.parse(localStorage.getItem('cart'))
 
 
     const showSidebar = () =>{ 
@@ -98,9 +100,15 @@ export default function NavBar() {
                         </Link> 
 
                         {/* ShoppingCart clickable */}
-                        <Link to="/my_cart">
+                            {
+                            cartLocal.length >= 1 ? 
+                            (<Link to="/my_cart">
+                            <MdIcons.MdShoppingCart className="navbar-icons" />
+                            </Link>) :
+                            (<Link to="/my_cart">
                             <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
-                        </Link> 
+                            </Link> )
+                        }
 
                         {/* SideMenu Opener (three lines) */}
                         <Link to='#' >
@@ -140,7 +148,24 @@ export default function NavBar() {
 
                         {/* Renderiza componente de lista de amigos */}
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
-                            <FriendListBox/>
+                            <h3 className="friendBoxTitle">Friend List</h3>
+                            <div className="FriendListBox">
+                                {FriendList.map((user, index) => {
+                                    return (
+                                        <ul>
+                                            <li key={index} className={user.className}>
+                                                <Link to={user.path}>
+                                                    {user.image}
+                                                    <div className="userData">
+                                                        <span className="userName">{user.name}</span>
+                                                        <span className={user.status === 'Online' ? "userStatusOnline" : "userStatusOffline"}>{user.status}</span>
+                                                    </div>
+                                                </Link>
+                                            </li>
+                                        </ul>
+                                    )
+                                })}
+                            </div>
                         </nav>
                         
                     </ul>

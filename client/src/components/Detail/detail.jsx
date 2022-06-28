@@ -6,11 +6,13 @@ import {
   addWishList,
   getDetailsVideogame,
   deleteVideogame,
-  deleteFavorite
+  deleteFavorite,
+  addToCart
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
 import Carousel from 'react-elastic-carousel'
+import swal from 'sweetalert'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -20,14 +22,22 @@ export default function Detail() {
   const wish = useSelector((state) => state.wishList);
   const videoWish = wish.find((v) => v.id == id);
 
+  const cart = useSelector((state) => state.cart);
+  const gamesInCart = cart.find((game) => game.id == id);
+  
+
   const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
   const handleDelete = () => {
-     function confirm() {
+    function confirm() {
       var respuesta = window.confirm(
         "Are you sure you want to delete the videogame?"
       );
@@ -48,6 +58,46 @@ export default function Detail() {
       dispatch(deleteFavorite(id));
     }
   }
+
+  function HandleAddToCart(e) {
+    e.preventDefault();
+    if(!gamesInCart){
+      dispatch(addToCart(videogame));
+      swal({
+        title: 'Your game was successfully added to the cart',
+        text: 'What do you want to do next?',
+        icon: "success",
+        buttons: {
+          cart: {
+            text: 'Go to cart',
+            value: 'cart'
+          },
+          shop: {
+            text: 'Go to shop',
+            value: 'shop'
+          },
+          cancel: 'Cancel'
+        }
+      })
+      .then((value) =>{
+        switch (value) {
+          case 'cart':
+            navigate('/my_cart')
+            swal('Welcome to your cart', 'Have a nice buy!', "success")
+            break;
+          
+          case 'shop':
+            navigate('/store')
+            swal('Welcome to store', 'Enjoy!', "success")
+            break;
+
+          default:
+            break;
+        }
+      })
+    }
+  }
+
 
   return (
     <div>
@@ -136,9 +186,18 @@ export default function Detail() {
             </button>
           )}
 
+          <div>
+            <button onClick={(e) => HandleAddToCart(e)}>
+              Add to Cart
+            </button>
+          </div>
+
           <div className="buttonBackHome">
             <Link to="/home">
-              <button>Return to the Main Page</button>
+              <button>Back to the Main Page</button>
+            </Link>
+            <Link to="/store">
+              <button>Back to the store</button>
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllVideogames, getFilteredVideogames } from '../../redux/actions';
+import { getFilteredVideogames } from '../../redux/actions';
 import Card from '../Card/card.jsx'
 import NavBar from '../NavBar/navbar';
 import SearchBar from '../Searchbar/searchbar';
@@ -11,7 +11,7 @@ export default function Store() {
   console.log(currentVideogames)
 
   const [name, setName] = useState(""); 
-  const [page, setPage] = useState(0); 
+  const [page] = useState(0); 
   const [sort, setSort] = useState(""); 
   const [order, setOrder] = useState(""); 
   const [limit, setLimit] = useState(10); 

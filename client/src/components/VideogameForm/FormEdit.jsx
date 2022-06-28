@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getGenres, postVideogame, getEsrb } from "../../redux/actions/index.js";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getGenres, putVideogame, getEsrb } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import './CreateVideogame.css'
 import swal from 'sweetalert'
@@ -34,12 +34,14 @@ function validate(input) {
 
 
 
-export default function VideogameCreate() {
+export default function VideogameEdit() {
+  
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
   const esrb = useSelector((state) => state.esrb);
   const navigate = useNavigate();
 
+  const { id } = useParams();
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -117,7 +119,7 @@ export default function VideogameCreate() {
             buttons: ["No", "Yes"]
           }).then(response => {
             if (response) {
-              dispatch(postVideogame(input));
+              dispatch(putVideogame(id, input));
               setInput({
                 name: "",
                 release_date: "",

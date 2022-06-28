@@ -62,7 +62,6 @@ export function getDetailsVideogame(id) {
   };
 }
 
-
 export function deleteVideogame(id){
     return async function(dispatch){
         var json = await axios.delete(`http://localhost:3001/videogamesDev/${id}`);
@@ -75,7 +74,7 @@ export function deleteVideogame(id){
 
 export function putVideogame(id, payload){
     return async function(dispatch){
-        var json = await axios.put(`http://localhost:3001/videogames/:${id}`, payload);
+        var json = await axios.put(`http://localhost:3001/videogames/${id}`, payload);
         return dispatch({
             type: "PUT_VIDEOGAME",
             payload: json.data
@@ -97,3 +96,32 @@ export function deleteFavorite(payload){
     }
 }
 
+export function addToCart(payload){
+  return {
+    type: "ADD_TO_CART",
+    payload
+  }
+}
+
+export function delFromCart(id){
+  return {
+      type: "REMOVE_FROM_CART", 
+      payload: id
+    }
+  }
+
+export function clearCart(){
+  return {
+    type: "CLEAR_CART"
+  }
+}
+
+export function getCardStatistics(name){
+  return async function (dispatch) {
+    let json = await axios(`http://localhost:3001/videogames?name=${name}`);
+    return dispatch({
+      type: "GET_CARD_STATISTICS",
+      payload: json.data
+    });
+  };
+}
