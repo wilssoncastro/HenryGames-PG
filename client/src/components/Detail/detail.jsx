@@ -1,5 +1,5 @@
 /* eslint-disable eqeqeq */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
@@ -24,7 +24,8 @@ export default function Detail() {
 
   const cart = useSelector((state) => state.cart);
   const gamesInCart = cart.find((game) => game.id == id);
-  
+  const [useE, setUseE] = useState(false)
+  const prevCart = JSON.parse(localStorage.getItem('cart'))
 
   const videogame = useSelector((state) => state.details);
 
@@ -32,9 +33,10 @@ export default function Detail() {
     dispatch(getDetailsVideogame(id));
   }, [dispatch, id]);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
+    useEffect(() => {
+      localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
+
 
   const handleDelete = () => {
     function confirm() {
