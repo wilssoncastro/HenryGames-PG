@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCardStatistics } from "../../redux/actions";
 import Card from "../Card/card";
+import { Link } from "react-router-dom";
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -29,6 +30,12 @@ for(let i = 0; i < totalPrice.length; i++){
 
   return (
     <div>
+      <div>
+        <Link to="/admin">
+          <button>Back to Admin page</button>
+        </Link>
+      </div>
+      <br></br>
       <input
         placeholder="Search Videogame..."
         value={name}
@@ -37,12 +44,13 @@ for(let i = 0; i < totalPrice.length; i++){
         onChange={(e) => handleInputChange(e)}
       />
 
-     <h2> Ganancias Totales: ${(totalGanancias).toFixed(2)}</h2>
-     
-      {name?
+    <h2>Ganancias Totales: ${(totalGanancias).toFixed(2)}</h2>
+      {
+        name?
         videogame.map((e) => (
           <div>
-            <Card key={e.id} name={e.name} image={e.image} price={e.price} />
+            {/* <Card key={e.id} name={e.name} price={e.price} /> */}
+            <h3>{e.name} = ${e.price}</h3>
             <h4>Ventas: {e.contador}</h4>
             <h4>Ganancias del juego: ${(e.contador * e.price).toFixed(2)}</h4>
           </div>
