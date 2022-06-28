@@ -11,28 +11,56 @@
     position: relative;
     z-index: 1;
 }
+.ItemCarousel {  
+  display: grid;
+  grid-template-columns: 65% 35%;
+  background-color: #151414;
+  text-decoration: none;
+}
 
 .ContainerCarousel{
     display: flex;
     flex-direction: column;
     margin-top: 90px;
-    height: 400px;
-    width: 1000px;
+    left: 50%;
+    width: 75em;
 }
 
 .imagenes{
-    height: 500px;
-    width: 1000px;
-    object-position: center center;
+  width: 100%;
+  height: 26em;
+  object-position: center center;
+}
+
+.c35 {
+  display: grid;
+  grid-template-rows: 20% 40% 40%;
+  justify-content: start;
 }
 
 .legend{
     text-decoration: none;
-    color: #000;
-    font-size: 18px;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
     padding: 0;
     border-radius: 4px;
     transition: 250ms;
+    padding: 0 2rem;
+    text-align: start;
+}
+
+.screenshots {
+  display: grid;
+  height: 4em;
+  width: 6em;
+  grid-template-areas: 
+    'One Two'
+    'Three Four';
+  grid-gap: .5rem;
+}
+
+.screenshots {
+
 }
 
 /* ------------------------SCROLLBAR------------------------------ */

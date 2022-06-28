@@ -36,20 +36,36 @@ export default function Home() {
             </div> */}
             <div className="ContainerCarousel">
                 <Carousel focusOnSelect={false}>
-                    <item className='ItemCarousel'>
-                    <Link to='/store/3498'><img className='imagenes' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/></Link>
-                        <p className="legend">Grand Theft Auto V</p>
+                    <item>
+                        <Link to='/store/3498' className='ItemCarousel'>
+                            <div className='c65'>
+                                <img className='imagenes' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
+                            </div>
+                            <div className='c35'>
+                                <p className="legend">Grand Theft Auto V</p>
+                                <div className='screenshots-div'>
+                                    <img className='screenshots' src='https://media.rawg.io/media/screenshots/a7c/a7c43871a54bed6573a6a429451564ef.jpg' alt='img not found' />
+                                    <img className='screenshots' src='https://media.rawg.io/media/screenshots/cf4/cf4367daf6a1e33684bf19adb02d16d6.jpg' alt='img not found' />
+                                    <img className='screenshots' src='https://media.rawg.io/media/screenshots/f95/f9518b1d99210c0cae21fc09e95b4e31.jpg' alt='img not found' />
+                                    <img className='screenshots' src='https://media.rawg.io/media/screenshots/a5c/a5c95ea539c87d5f538763e16e18fb99.jpg' alt='img not found' />
+                                </div>
+                            </div>
+                        </Link>
                     </item>
-                    <item className='ItemCarousel'>
-                    <Link to='/store/416'><img className='imagenes' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/></Link>
+                    <item>
+                    <Link to='/store/416' className='ItemCarousel'>
+                        <img className='imagenes' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/>
                         <p className="legend">Grand Theft Auto San Andreas</p>
+                    </Link>
                     </item>
-                    <item className='ItemCarousel'>
-                    <Link to='/store/4459'><img className='imagenes' src="https://www.somosxbox.com/wp-content/uploads/2021/11/492540bf02636390efd77a305399187b.jpg" alt= 'img not found'/></Link>
+                    <item>
+                    <Link to='/store/4459' className='ItemCarousel'>
+                        <img className='imagenes' src="https://www.somosxbox.com/wp-content/uploads/2021/11/492540bf02636390efd77a305399187b.jpg" alt= 'img not found'/>
                         <p className="legend">Grand Theft Auto IV</p>
+                    </Link>
                     </item>
                 </Carousel>
-                <Carousel focusOnSelect={false}>
+                {/* <Carousel focusOnSelect={false}>
                     <item>
                     <Link to='/store/906'><img className='imagenes' src= 'https://sm.ign.com/ign_es/screenshot/default/br_sg9a.jpg' alt= 'img not found'/></Link>
                         <p className="legend">Call of Duty: Black Ops III</p>
@@ -76,7 +92,7 @@ export default function Home() {
                     <Link to='/store/4291'><img className='imagenes' src="http://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt= 'img not found'/></Link>
                         <p className="legend">Counter Strike: Global Offensive</p>
                     </item>
-                </Carousel>
+                </Carousel> */}
             </div>
         </div>
     )
