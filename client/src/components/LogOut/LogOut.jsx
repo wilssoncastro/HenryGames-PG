@@ -1,7 +1,10 @@
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LogOut(){
+
+    let navigate = useNavigate();
 
     function onClick(e){
         e.preventDefault()
@@ -12,9 +15,19 @@ export default function LogOut(){
             headers: {'X-Requested-With': 'XMLHttpRequest'},
             withCredentials: true
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+            console.log(res.data)
+            if(res){
+                localStorage.removeItem('profile_pic')
+                localStorage.removeItem('lastname')
+                localStorage.removeItem('name')
+                localStorage.removeItem('type')
+                localStorage.removeItem('id')
+            }
+        })
         .catch(err => console.log(err))
 
+        navigate('/')
     }
 
     return (

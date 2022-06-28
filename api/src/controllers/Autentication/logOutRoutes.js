@@ -23,11 +23,11 @@ router.get('/logout', function(req, res){
   
 router.post('/logout', isAuthenticated,
     function(req, res){
-      req.logout();
+        console.log('hola')
+        //req.logout();
       // res.clearCookie('sid'); // clear session id - ver si es necesario
-      res.redirect('/');
-      console.log('entre')
-      res.send('hola')
+        res.send('Sesion cerrada.');
+      
     }
 );
 
