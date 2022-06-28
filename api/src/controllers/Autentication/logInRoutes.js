@@ -10,12 +10,12 @@ router.post('/login',
     ,async (req, res) => {
         try {
             if(!req.user.active){
-                res.send('Debes activar la cuenta')
+                return res.send('Debes activar la cuenta')
             }
             
             let { id, name, lastname, type, profile_pic} = req.user;
             
-            res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic})
+            return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic})
         } catch (error) {
             res.status(404).send('ERRRRROOOOOOOOOOOOOR')
         }
@@ -23,6 +23,6 @@ router.post('/login',
 
 router.get('/login', (req, res)=> {
     console.log('que onda aca')
-    res.send('Email o contraseña incorrecta');
+    return res.send('Email o contraseña incorrecta');
 })
 module.exports = router

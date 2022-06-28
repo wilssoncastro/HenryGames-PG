@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 
 
 export default function LogIn() {
 
-  //let miStorage = window.localStorage;
+  let navigate = useNavigate();
 
   const [input, setInput] = useState({
     username:'',
@@ -42,12 +42,15 @@ export default function LogIn() {
       
       
       if(log_in){
-        console.log('cargando local')
         localStorage.setItem("id", id)
         localStorage.setItem('name', name)
         localStorage.setItem('lastname', lastname)
         localStorage.setItem('type', type)
+        navigate('/home')
+      }
 
+      if(typeof login.data === 'string'){
+        setError(login.data)
       }
 
 

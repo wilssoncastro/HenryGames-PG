@@ -1,13 +1,12 @@
 /* eslint-disable eqeqeq */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   addWishList,
   getDetailsVideogame,
   deleteVideogame,
-  deleteFavorite,
-  addToCart
+  deleteFavorite
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
@@ -22,19 +21,15 @@ export default function Detail() {
   const wish = useSelector((state) => state.wishList);
   const videoWish = wish.find((v) => v.id == id);
 
-  const cart = useSelector((state) => state.cart);
-  const gamesInCart = cart.find((game) => game.id == id);
-  
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
+  const [cart, /* setCart */] = useState(cartFromLocalStorage)
 
   const videogame = useSelector((state) => state.details);
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
-  }, [dispatch, id]);
-
-  useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
+  }, [dispatch, id, cart]);
 
   const handleDelete = () => {
     function confirm() {
@@ -61,41 +56,39 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    if(!gamesInCart){
-      dispatch(addToCart(videogame));
-      swal({
-        title: 'Your game was successfully added to the cart',
-        text: 'What do you want to do next?',
-        icon: "success",
-        buttons: {
-          cart: {
-            text: 'Go to cart',
-            value: 'cart'
-          },
-          shop: {
-            text: 'Go to shop',
-            value: 'shop'
-          },
-          cancel: 'Cancel'
-        }
-      })
-      .then((value) =>{
-        switch (value) {
-          case 'cart':
-            navigate('/my_cart')
-            swal('Welcome to your cart', 'Have a nice buy!', "success")
-            break;
-          
-          case 'shop':
-            navigate('/store')
-            swal('Welcome to store', 'Enjoy!', "success")
-            break;
+    localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
+    swal({
+      title: 'Your game was successfully added to the cart',
+      text: 'What do you want to do next?',
+      icon: "success",
+      buttons: {
+        cart: {
+          text: 'Go to cart',
+          value: 'cart'
+        },
+        shop: {
+          text: 'Go to shop',
+          value: 'shop'
+        },
+        cancel: 'Cancel'
+      }
+    })
+    .then((value) =>{
+      switch (value) {
+        case 'cart':
+          navigate('/my_cart')
+          swal('Welcome to your cart', 'Have a nice buy!', "success")
+          break;
+        
+        case 'shop':
+          navigate('/store')
+          swal('Welcome to store', 'Enjoy!', "success")
+          break;
 
-          default:
-            break;
-        }
-      })
-    }
+        default:
+          break;
+      }
+    })
   }
 
 
