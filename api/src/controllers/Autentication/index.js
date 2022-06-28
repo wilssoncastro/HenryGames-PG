@@ -1,11 +1,16 @@
 const router = require('express').Router();
 const routerRegister = require('./registerRoutes')
 const emailVerificationRouter = require('./emailVerificationRoutes')
+const validateRoutes = require('./validateRoutes')
+const logInRoutes = require('./logInRoutes')
+
 
 
 
 router.use('/', routerRegister)
 router.use('/', emailVerificationRouter)
+router.use('/', validateRoutes)
+router.use('/', logInRoutes)
 
 router.get('/', async (req, res) => {
     try {
