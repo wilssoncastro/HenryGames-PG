@@ -111,7 +111,6 @@ export default function NavBar() {
                             <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
                             </Link> )
                         }
- */}
                         {/* SideMenu Opener (three lines) */}
                         <Link to='#' >
                             <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar}/>
