@@ -1,21 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/navbar'
-import {useSelector, useDispatch} from 'react-redux'
-import { delFromCart, clearCart } from '../../redux/actions'
 import Card from '../Card/card'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 export default function ShoppingCart() {
-  const dispatch = useDispatch()
-  const videogamesInCart = useSelector((state) => state.cart)
-  const cartLocal = JSON.parse(localStorage.getItem('cart'))
+  const navigate = useNavigate()
+
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
+  const [cart, /* setCart */] = useState(cartFromLocalStorage)
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+}, [cart])
 
   const handleDelete = (id) => {
-    dispatch(delFromCart(id));
+    localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
+    navigate('/my_cart')
   }
 
   const handleClearCart = () => {
-    dispatch(clearCart())
+    localStorage.setItem('cart', JSON.stringify([]))
+    navigate('/my_cart')
   }
 
   return (
@@ -25,15 +30,14 @@ export default function ShoppingCart() {
       </div>
       <div>
       {
-          (cartLocal.length !== 0 )? 
+          cartFromLocalStorage.length > 0 ? 
           (
             <div style={{marginTop: '100px'}}>
               {
-                cartLocal.map((game) => (
+                cartFromLocalStorage.map((game) => (
                   <div>
                     <Card image={game.image} name={game.name} price={game.price} />
-                    <button onClick={() => handleDelete(game.id)}>Remove game from cart</button>
-                    <label>Units<input type="number" placeholder='1'/></label>
+                    <button type='reset' onClick={() => handleDelete(game.id)}>Remove game from cart</button>
                   </div>
                   )
                 )
