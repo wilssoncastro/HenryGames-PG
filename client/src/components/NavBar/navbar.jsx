@@ -12,10 +12,12 @@ import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
 import './navbar.css';
 import './friendlist.css'
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
+    const cartLocal = JSON.parse(localStorage.getItem('cart'))
 
 
     const showSidebar = () =>{ 
@@ -64,6 +66,7 @@ export default function NavBar() {
 
     return (
         <div>
+            {console.log(cartLocal)}
             <IconContext.Provider value={{color: '#fff'}}>
 
                 {/* Burger Menu */}
@@ -98,9 +101,15 @@ export default function NavBar() {
                         </Link> 
 
                         {/* ShoppingCart clickable */}
-                        <Link to="/my_cart">
+                            {
+                            cartLocal? 
+                            (<Link to="/my_cart">
+                            <MdIcons.MdShoppingCart className="navbar-icons" />
+                            </Link>) :
+                            (<Link to="/my_cart">
                             <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
-                        </Link> 
+                            </Link> )
+                        }
 
                         {/* SideMenu Opener (three lines) */}
                         <Link to='#' >

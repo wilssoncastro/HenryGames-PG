@@ -20,6 +20,8 @@ router.get('/activation/:userId/:secretToken', async(req, res) => {
             await user.save()
         }
 
+        return res.json({msg:'Usuario activado'})
+
     } catch (error) {
         res.status(400).send('Ocurrió un error durante la activación')
     }

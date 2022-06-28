@@ -11,6 +11,12 @@ import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
 import LandingPage from './components/Langing-Page/LangingPage';
 import VideogameCreate from './components/VideogameForm/CreateVideogame';
+import Estadisticas from './components/Administrador/EstadisticasVentas';
+import { Admin } from './components/Administrador/Admin';
+import Edit from './components/Administrador/EditVideogame';
+import FormEdit from './components/VideogameForm/FormEdit'
+
+import ValidationMail from './components/ValidationMail/validationMail'
 
 function App() {
   return (
@@ -21,7 +27,7 @@ function App() {
           {/* LANDING page que va a pedir Log In, ofrecer tambien un Sign Up, si por COOKIES detecta 
               que ya esta loggeado, te manda directo al Home O ENTRAR COMO INVITADO */}
 
-        {/*   <Route exact path='/' element={<LogIn/>}/> */}
+          
           <Route exact path='/' element={<LandingPage />} />
 
           {/* Muestra algunas categorias (a lo netflix) con los juegos promocionados en esa categoria en forma de BANNER */}
@@ -30,8 +36,16 @@ function App() {
           {/* Detalles de los videojuegos */ }
           <Route exact path='/store/:id' element={<Detail/>} />
 
-                {/* RUTA TEMPORAL O NO. */}
-          <Route exact path='/home/createVideogame' element={<VideogameCreate/>} />
+          {/* Página del admin */}
+          <Route exact path='/admin' element={<Admin/>}/>
+          
+          {/* Ruta para publicar videogame */}
+          <Route exact path='/admin/publishVideogame' element={<VideogameCreate/>} />
+
+          {/* Editar o borrar videogame */}
+          <Route exact path='/admin/editVideogame' element={<Edit/>} />
+
+          <Route exact path='/admin/editVideogame/formEdit/:id' element={<FormEdit/>} />
 
           {/* STORE es la tienda donde van a aparecer TODOS los juegos. Aca se van a poder FILTRAR */}
           <Route exact path='/store' element={<Store/>}/>
@@ -44,15 +58,20 @@ function App() {
 
           {/* Te manda a un form para crear tu perfil que va a ser ingresado en la Base de Datos. AUTENTICACION!!!!!! */}
           <Route exact path='/sign_up' element={<SignUp/>}/>
-
+          <Route exact path='/log_in' element={<LogIn/>}/> 
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile' element={<Profile/>}/>
+
+          <Route exact path='/admin/statistics' element={<Estadisticas />}/>
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart/>}/>
 
           {/* Te manda a la lista de deseos */}
           <Route exact path='/wish_list' element={<Wishlist/>} />
+          {/* Autorizacion - NO TOCAR */}
+          <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
+
           
         </Routes>
       </div>

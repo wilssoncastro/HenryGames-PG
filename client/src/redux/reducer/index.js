@@ -1,5 +1,3 @@
-import {  } from '../actions/index'
-
 const initialState = {
     allVideogames: [],
     videogames: [],
@@ -25,6 +23,12 @@ const rootReducer = (state = initialState, action) => {
                 videogames: action.payload
             }
 
+        case "GET_CARD_STATISTICS": 
+            return {
+                ...state,
+                videogames: action.payload
+            }
+            
         case "GET_GENRES":
             return {
                 ...state,
@@ -68,6 +72,24 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
+            }
+
+        case "ADD_TO_CART":
+            return {
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
+
+        case "REMOVE_FROM_CART":
+            return {
+                ...state,
+                cart: state.cart.filter(game => game.id !== action.payload)
+            }
+
+        case "CLEAR_CART":
+            return{
+                ...state,
+                cart: []
             }
     
         default:
