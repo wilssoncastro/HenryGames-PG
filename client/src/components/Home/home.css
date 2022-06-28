@@ -1,66 +1,201 @@
+/* FONDO */
 .background{
-    background-image: radial-gradient(circle at 40.67% -2.89%, #F0E68C 0, #FFD700 16.67%, #FFC72C 33.33%, #FEBE10 50%, #e6ba00 66.67%, #d79e00 83.33%, #cb8300 100%);
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    overflow-x:hidden;
-    overflow-y: scroll;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
+  background-image: radial-gradient(circle at 40.67% -2.89%, #F0E68C 0, #FFD700 16.67%, #FFC72C 33.33%, #FEBE10 50%, #e6ba00 66.67%, #d79e00 83.33%, #cb8300 100%);
+  /* background-color: #151414; */
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
 }
+
+.home-component-box {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+/* PARTE IZQUIERDA DE LA PANTALLA */
+
+.genres-section {
+  margin-top: 1rem;
+}
+
+.home20 {
+  flex-basis: 20%;
+  margin-top: 80px;
+  background-color: #151414;
+  justify-content: left;
+  height: 100vh;
+}
+
+.genres-filter {
+  justify-content: start;
+  text-decoration: none;
+  color: #f4f0f0;
+  text-align: start;
+  border-bottom: 2px solid #1c1a1a;
+}
+
+.filters-title {
+  border-top: 2px solid #1c1a1a;
+  width: 100%;
+  font-size: 25px;
+  padding-bottom: 10px;
+  padding-top: 15px;
+  align-items: baseline;
+}
+
+.genres-list {
+  justify-content: start;
+  margin-bottom: 50px;
+}
+
+.genre-txt {
+  margin-bottom: 10px;
+}
+
+.genre-txt a {
+  justify-content: start;
+  text-decoration: none;
+  color: #f4f0f0;
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.genre-txt a:hover {
+  color: #1a83ff;
+  transition: 150ms;
+}
+
+.home60 {
+  flex-basis: 80%;
+  margin: 0 50px;
+}
+
+.filter-icon {
+  
+}
+
+.home20last {
+  
+}
+
+
+
+/* PARTE DERECHA DE LA PANTALLA */
 .ItemCarousel {  
   display: grid;
-  grid-template-columns: 65% 35%;
-  background-color: #151414;
+  grid-template-columns: 63% 37%;
+  background-color: #1c1a1a;
   text-decoration: none;
+  justify-content: center;
+  text-align: start;
+  /* object-fit: cover;
+  width: 100%;
+  max-height: 100%; */
+  box-shadow: 10px 5px 5px black;
 }
 
 .ContainerCarousel{
-    display: flex;
-    flex-direction: column;
-    margin-top: 90px;
-    left: 50%;
-    width: 75em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 90px;
+  left: 50%;
+  justify-content: center;
 }
 
 .imagenes{
-  width: 100%;
-  height: 26em;
+  grid-area: auto;
+  /* height: 29em;
+  max-width: 55em; */
   object-position: center center;
+  object-fit: cover;
 }
 
 .c35 {
   display: grid;
-  grid-template-rows: 20% 40% 40%;
+  grid-template-rows: 15% 50% 35%;
   justify-content: start;
+  text-align: center;
+  height: 100%;
 }
 
 .legend{
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 25px;
-    padding: 0;
-    border-radius: 4px;
-    transition: 250ms;
-    padding: 0 2rem;
-    text-align: start;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 25px;
+  padding: 0;
+  border-radius: 4px;
+  transition: 250ms;
+  padding: 0 2rem;
+  text-align: start;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+
+.screenshots-div {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-gap: 0.5rem;
+  margin: 1rem;
+  justify-content: center;
 }
 
 .screenshots {
   display: grid;
-  height: 4em;
-  width: 6em;
-  grid-template-areas: 
-    'One Two'
-    'Three Four';
-  grid-gap: .5rem;
+  position: relative;
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+  box-shadow: #626262;
+  
 }
 
-.screenshots {
+.footer-txt {
+  text-decoration: none;
+  color: rgb(228, 228, 228);
+  font-size: 1.2rem;
+  padding: 0;
+  border-radius: 4px;
+  padding: 0 1.5rem;
+  text-align: start;
+  margin: 0.1rem;
+}
 
+.c35-footer {
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+}
+
+.price-tag {
+  text-decoration: solid underline;
+  color: rgb(228, 228, 228);
+  font-size: 0,8rem;
+  padding: 0;
+  border-radius: 4px;
+  transition: 250ms;
+  padding: 0 1.5rem;
+  text-align: center;
+  margin: 0.1rem;
+}
+
+.genre-style {
+  text-decoration: none;
+  color: rgb(228, 228, 228);
+  margin: 0.7rem;
+  border-radius: 3px;
+  align-items: center;
+  padding: 0.1rem 0.3rem;
+  background-color: #1a83ff;
 }
 
 /* ------------------------SCROLLBAR------------------------------ */
