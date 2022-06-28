@@ -12,6 +12,7 @@ import {
 import NavBar from "../NavBar/navbar";
 import './detail.css'
 import Carousel from 'react-elastic-carousel'
+import swal from 'sweetalert'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -57,6 +58,38 @@ export default function Detail() {
     e.preventDefault();
     if(!gamesInCart){
       dispatch(addToCart(videogame));
+      swal({
+        title: 'Your game was successfully added to the cart',
+        text: 'What do you want to do next?',
+        icon: "success",
+        buttons: {
+          cart: {
+            text: 'Go to cart',
+            value: 'cart'
+          },
+          shop: {
+            text: 'Go to shop',
+            value: 'shop'
+          },
+          cancel: 'Cancel'
+        }
+      })
+      .then((value) =>{
+        switch (value) {
+          case 'cart':
+            navigate('/my_cart')
+            swal('Welcome to your cart', 'Have a nice buy!', "success")
+            break;
+          
+          case 'shop':
+            navigate('/store')
+            swal('Welcome to store', 'Enjoy!', "success")
+            break;
+
+          default:
+            break;
+        }
+      })
     }
   }
 
