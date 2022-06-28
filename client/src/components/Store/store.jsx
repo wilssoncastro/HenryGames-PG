@@ -5,22 +5,22 @@ import Card from '../Card/card.jsx'
 import NavBar from '../NavBar/navbar';
 import SearchBar from '../Searchbar/searchbar';
 import '../Store/store.css';
+import Paginado from '../Paginado/paginado';
 
 export default function Store() {
   const dispatch = useDispatch();
   const currentVideogames = useSelector((state) => state.videogames);
 
   const [name, setName] = useState(""); 
-  const [page] = useState(0); 
+  const [page, setPage] = useState(0); 
   const [sort, setSort] = useState(""); 
   const [order, setOrder] = useState(""); 
-  const [limit, setLimit] = useState(10); 
-
+  const [limit, setLimit] = useState(10);
+  
   useEffect(() => {  
      dispatch(getFilteredVideogames(name, page, sort, order, limit));
   }, [dispatch, name, page, sort, order, limit]);
 
- 
  const handleSort = (e) => {
   e.preventDefault();
   setSort(e.target.value);
@@ -35,21 +35,37 @@ export default function Store() {
   e.preventDefault();
   setLimit(e.target.value);
  }
+
+ const prev = (e) => {
+  e.preventDefault();
+  setPage(page - limit)
+ }
+ 
+ const next = (e) => {
+  e.preventDefault();
+  setPage(parseInt(page) + parseInt(limit))
+ }
+
+ const handlePage = (e) => {
+  e.preventDefault();
+  setPage(e.target.value)
+ }
  
   return (
     <div>
+      
       <div>
         <NavBar />
       </div>
+      
       <h1>Videogames</h1>
 
-       <SearchBar 
-       name= {name} 
-       setName = {setName}
-       />
+      <SearchBar 
+        name= {name} 
+        setName = {setName}
+      />
 
       <select onChange={(e) => handleLimit(e)}>
-          <option>Shown per Page</option>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
@@ -64,12 +80,23 @@ export default function Store() {
           <option value='rating'>Rating</option>
       </select>
 
-      <select   onChange={(e) => handleOrder(e)}>
+      <select onChange={(e) => handleOrder(e)}>
         <option disabled={order}>Order</option>
         <option value='ASC'>Upward</option>
         <option value='DESC'>Downward</option>
       </select>
 
+      <div>
+        <button onClick={(e) => prev(e)} disabled={page < 10}>PREV</button>
+
+        <button onClick={(e) => handlePage(e)} value={0*limit/10} hidden={limit > 198}>1</button>
+        <button onClick={(e) => handlePage(e)} value={10*limit/10} hidden={limit > 198}>2</button>
+        <button onClick={(e) => handlePage(e)} value={20*limit/10} hidden={limit > 98}>3</button>
+        <button onClick={(e) => handlePage(e)} value={30*limit/10} hidden={limit > 98}>4</button>
+        <button onClick={(e) => handlePage(e)} value={40*limit/10} hidden={limit > 48}>5</button>
+        
+        <button onClick={(e) => next(e)} disabled={parseInt(limit) + parseInt(page) > 198}>NEXT</button>
+      </div>
 
       <div>
         {currentVideogames.map((v) => {
@@ -86,6 +113,7 @@ export default function Store() {
           );
         })}
       </div>
+
     </div>
   );
 }
