@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCardStatistics } from "../../redux/actions";
-import Card from "../Card/card";
+/* import Card from "../Card/card"; */
 import { Link } from "react-router-dom";
 
 export default function Estadisticas() {
