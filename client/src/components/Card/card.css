@@ -1,0 +1,17 @@
+.card {
+  block-size: 50px;
+  text-decoration: none;
+  margin: 50px 50px;
+}
+
+.card:hover {
+  display: block;
+  color: black;
+  border-radius: 10%;
+  border-style:dotted;
+  border-color: black;
+  text-decoration: none;
+  background-color:rgba(255, 234, 0, 0.95);
+  display: table-row-group;
+  font-size: 20px;
+}
