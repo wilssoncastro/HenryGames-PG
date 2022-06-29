@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredVideogames } from '../../redux/actions';
+import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
 import Card from '../Card/card.jsx'
 import Cards from '../Card/cards.jsx'
 import NavBar from '../NavBar/navbar';

@@ -4,7 +4,7 @@
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
-   
+    margin-top: 80px;
 }
 .error{
     color:  red;
