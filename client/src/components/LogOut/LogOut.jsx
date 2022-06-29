@@ -18,6 +18,7 @@ export default function LogOut(){
         .then((res) => {
             console.log(res.data)
             if(res){
+                console.log('removiendo store')
                 localStorage.removeItem('profile_pic')
                 localStorage.removeItem('lastname')
                 localStorage.removeItem('name')
@@ -27,7 +28,7 @@ export default function LogOut(){
         })
         .catch(err => console.log(err))
 
-        navigate('/')
+        navigate('/home')
     }
 
     return (

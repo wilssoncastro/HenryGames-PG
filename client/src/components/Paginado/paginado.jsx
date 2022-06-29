@@ -12,10 +12,10 @@ export default function Paginado({videogamesPerPage, allVideogames, paginado}) {
         <div>
             <ul className='paginado'>
                 {
-                pageNumbers?.map(number => (
-                    <li className='number'>
-                        <a onClick={ () => paginado(number)}>{number}</a>
-                    </li>
+                    pageNumbers?.map(number => (
+                        <li className='number'>
+                            <a onClick={() => paginado(number)}>{number}</a>
+                        </li>
                 ))
                 }
             </ul>

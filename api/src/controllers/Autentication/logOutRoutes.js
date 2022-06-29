@@ -25,8 +25,9 @@ router.post('/logout', isAuthenticated,
     function(req, res){
         console.log('hola')
         //req.logout();
-        // res.clearCookie('sid'); // clear session id - ver si es necesario
-        res.send('Sesion cerrada.');
+        req.session.destroy(function (err) {
+          res.redirect('/'); 
+        });
       
     }
 );
