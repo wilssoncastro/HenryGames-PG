@@ -82,18 +82,24 @@ export function putVideogame(id, payload){
     }
 }
 
-export function addWishList(payload){
-    return {
+export function addWishList(id, idGame){
+    return async function(dispatch){
+      var json = await axios.post(`http://localhost:3001/wishlist/add/${id}/${idGame}`);
+      return dispatch({
         type: "ADD_WISH_LIST",
-        payload
+        payload: json.data
+      }) 
     }
 }
 
-export function deleteFavorite(payload){
-    return {
-        type: "DELETE_WISH_LIST",
-        payload
-    }
+export function deleteWishList(id, idGame){
+  return async function(dispatch){
+    var json = await axios.delete(`http://localhost:3001/wishlist/delete/${id}/${idGame}`)
+    return dispatch({
+      type: "DELETE_WISH_LIST",
+      payload: json.data
+    })
+  }
 }
 
 export function addToCart(payload){

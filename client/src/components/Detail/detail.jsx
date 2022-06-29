@@ -6,7 +6,7 @@ import {
   addWishList,
   getDetailsVideogame,
   deleteVideogame,
-  deleteFavorite
+  deleteWishList
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
@@ -18,8 +18,6 @@ export default function Detail() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const wish = useSelector((state) => state.wishList);
-  const videoWish = wish.find((v) => v.id == id);
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
@@ -45,13 +43,15 @@ export default function Detail() {
     confirm();
   };
 
-  function handleWish(e) {
-    e.preventDefault();
-    if (!videoWish) {
-      dispatch(addWishList(videogame));
-    } else {
-      dispatch(deleteFavorite(id));
-    }
+
+  const handleOnClick = (idGame) => {
+    let id = localStorage.getItem("id"); 
+    dispatch(addWishList(id, idGame));
+  }
+
+  const handleOnClickDelete = (idGame) => {
+    let id = localStorage.getItem("id");
+    dispatch(deleteWishList(id, idGame));
   }
 
   function HandleAddToCart(e) {
@@ -165,9 +165,9 @@ export default function Detail() {
           </div>
 
           <div>
-            <button onClick={(e) => handleWish(e)}>
-              {!videoWish ? <>Add to Wishlist</> : <>Delete from Wishlist</>}
-            </button>
+              {!videoWish 
+               ? (<button onClick={() => handleOnClick(videogame.id)}>Add to WishList</button>)
+               : (<button onClick={() => handleOnClickDelete(videogame.id)}>Delete from WishList</button>)}
           </div>
 
           {videogame.db_created && (
