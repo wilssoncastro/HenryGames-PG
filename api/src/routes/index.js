@@ -14,6 +14,10 @@ const routesVideogames = require('../controllers/routesVideogames')
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
 
+router.get('/', (req, res) => {
+    res.json({msg:'HENRYGAMES'})
+})
+
 router.use('/videogames', getVideogames)
 router.use('/videogames/:id', getVideogames)
 router.use('/users', userRouters)
