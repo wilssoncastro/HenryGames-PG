@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import swal from "sweetalert";
 import { getWishList, deleteWishList } from '../../redux/actions/index';
 import NavBar from "../NavBar/navbar";
+=======
+import React from 'react'
+import NavBar from '../NavBar/navbar'
+import { Link } from 'react-router-dom'
+import './profile.css'
+>>>>>>> dev
 
 export default function Profile() {
   
@@ -30,6 +37,7 @@ export default function Profile() {
   console.log(list);
 
   return (
+<<<<<<< HEAD
     <div>
       <div>
         <NavBar />
@@ -46,6 +54,15 @@ export default function Profile() {
          <button onClick={() => handleOnClickDelete(e.id)}>Delete from Wish List</button>
        </div> 
        ) : "Your wish list is empty" }
+=======
+    <div className='Profile'>
+      <NavBar/>
+      <ul className='Create-Videogame-Bttn'>
+        <Link to='/home/createVideogame' > 
+          <span>Create Videogame</span>
+        </Link>
+      </ul>
+>>>>>>> dev
     </div>
   )
 }
