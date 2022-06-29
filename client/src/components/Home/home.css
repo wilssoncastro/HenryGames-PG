@@ -115,7 +115,7 @@
   color: white;
   background-color: #585858;
   border-radius: 4px;
-  width: 6em;
+  width: 8em;
   padding: 0.3em;
 }
 
@@ -127,7 +127,11 @@
 
 .carousel-card-price {
   color: #f4f0f0;
+}
+
+.cat-card-footer {
   text-align: start;
+
 }
 
 .cat-card {
@@ -160,7 +164,14 @@
 
 .ContainerCarousel{
   /* display: flex; */
-  margin-top: 5em;
+  margin-top: 6em;
+  left: 50%;
+  justify-content: center;
+}
+
+.CategoryContainerCarousel{
+  /* display: flex; */
+  margin-top: 1em;
   left: 50%;
   justify-content: center;
 }
@@ -258,6 +269,41 @@
   align-items: center;
   padding: 0.1rem 0.3rem;
   background-color: #1a83ff;
+}
+
+/* SECTOR DE FLECHAS Y PAGINADO DE CAROUSEL */
+
+.rec.rec-pagination {
+  visibility: hidden;
+}
+
+.rec.rec-arrow {
+  /* box-sizing: border-box; */
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  font-size: 1.6em;
+  background: none;
+  background-color: rgba(0, 0, 0, 0);
+  /* color: #333; */
+  /* box-shadow: 0 0 2px 0px #333; */
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  line-height: 50px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  /* cursor: pointer; */
+  /* outline: none; */
+}
+
+.rec.rec-arrow :focus:enabled {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: 0 0 2px 0 rgba(51, 51, 51, 0);
 }
 
 /* ------------------------SCROLLBAR------------------------------ */
