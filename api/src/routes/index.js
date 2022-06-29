@@ -13,6 +13,7 @@ const routesVideogames = require('../controllers/routesVideogames')
 // const getTags = require ('../controllers/getTags')
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
+const cartRoutes = require('../controllers/cartRoutes')
 
 router.get('/', (req, res) => {
     res.send('HENRYGAMES')
@@ -27,5 +28,6 @@ router.use('/genres', getGenres)
 router.use('/friends', friendRouters)
 router.use('/wishlist', wishRoutes)
 router.use('/authentication', registerRoutes)
+router.use('/cart', cartRoutes)
 
 module.exports = router

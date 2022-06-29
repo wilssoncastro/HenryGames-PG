@@ -78,7 +78,18 @@ Videogame.belongsToMany(Player,{
   foreignKey: 'wish_id',
   through: 'WishList'
 })
+//----------------------PLAYER N:M VIDEOGAME (CART)--------------------------//
+Player.belongsToMany(Videogame,{
+  as: 'cart',
+  foreignKey: 'player_id',
+  through: 'Cart'
+})
 
+Videogame.belongsToMany(Player,{
+  as: 'cartGames',
+  foreignKey: 'cart_id',
+  through: 'Cart'
+})
 
 
 module.exports = {
