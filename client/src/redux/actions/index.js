@@ -41,6 +41,7 @@ export function getEsrb() {
   };
 }
 
+
 export function postVideogame(payload) {
   return async function () {
     var json = await axios.post("http://localhost:3001/videogamesDev",payload);
@@ -80,6 +81,20 @@ export function putVideogame(id, payload){
             payload: json.data
         })
     }
+}
+
+export function getWishList(id){
+  return async function(dispatch){
+    try {
+      var json = await axios.get(`http://localhost:3001/wishlist/${id}`);
+      return dispatch({
+        type: "GET_WISH_LIST",
+        payload: json.data    
+      })
+  } catch (error) {
+      console.log("La concha de la lora")
+    }
+  }
 }
 
 export function addWishList(id, idGame){
