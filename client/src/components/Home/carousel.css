@@ -1,4 +1,4 @@
-/* square buttons */
+square buttons
 .rec.rec-arrow {
     border-radius: 0;
 }
@@ -10,6 +10,13 @@
 .rec.rec-arrow:disabled {
     visibility: hidden;
 }
+
+.rec-item-wrapper {
+    
+    
+}
+
+
 /* disable default outline on focused items */
 /* add custom outline on focused items */
 
