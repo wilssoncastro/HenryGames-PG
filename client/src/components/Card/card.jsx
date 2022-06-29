@@ -6,7 +6,7 @@ export default function Card({ image, name, price, id }) {
   
   return (
     <div className='card'>
-      <Link to= {`/store/${id}`}>
+      <Link className='link' to= {`/store/${id}`}>
         <img className='image' src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
         <h2>{name}</h2>
         <h4>${price}</h4>
