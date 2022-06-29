@@ -5,7 +5,6 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
-    cart: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -72,24 +71,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
-            }
-
-        case "ADD_TO_CART":
-            return {
-                ...state,
-                cart: [...state.cart, action.payload]
-            }
-
-        case "REMOVE_FROM_CART":
-            return {
-                ...state,
-                cart: state.cart.filter(game => game.id !== action.payload)
-            }
-
-        case "CLEAR_CART":
-            return{
-                ...state,
-                cart: []
             }
     
         default:

@@ -33,7 +33,6 @@ function validate(input) {
 }
 
 
-
 export default function VideogameEdit() {
   
   const dispatch = useDispatch();
@@ -50,16 +49,14 @@ export default function VideogameEdit() {
     description: "",
     genres: [],
     tags: [],
-    price: "whitOutPrice",
+    price: 0,
     short_screenshots: [],
     requirements: [],
     esrb_rating: "",
-    free_to_play: "select",
+    free_to_play: false,
     on_sale: false,
   });
 
-
-  console.log(input)
 
   useEffect(() => {
     dispatch(getGenres());
@@ -80,7 +77,7 @@ export default function VideogameEdit() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
+    /* if (
       !errors.name && !errors.description && !errors.price && !errors.release_date && !errors.free_to_play) {
       validateAlertErrors()
     } {
@@ -110,11 +107,11 @@ export default function VideogameEdit() {
       else if (input.requirements.length < 1) {
         validateAlertRequeriments()
       }
-      else {
+      else { */
         function alertSubmit() {
           swal({
-            title: "Publish video game",
-            text: "Are you sure you want to publish this game?",
+            title: "Edit video game",
+            text: "Are you sure you want to edit this game?",
             icon: "info",
             buttons: ["No", "Yes"]
           }).then(response => {
@@ -136,15 +133,13 @@ export default function VideogameEdit() {
               });
               swal({
                 title: "Confirmed",
-                text: "Gamed Created"
+                text: "Gamed Edited"
               })
               navigate("/home");
             }
           })
         }
         alertSubmit()
-      }
-    }
   };
 
   const handleImage = (e) => {
@@ -292,7 +287,7 @@ export default function VideogameEdit() {
         <button>Back to Admin page</button>
       </Link>
 
-      <p>Please fill out the following form with information about the video game you want to publish</p>
+      <p>Please fill out the following form with information about the video game you want to edit</p>
 
       <div>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -369,7 +364,7 @@ export default function VideogameEdit() {
             <div >
 
               <div >
-                <label> Insert 4 short screenshots</label>
+                <label> Insert screenshots</label>
               </div>
               <div>
 
@@ -555,7 +550,7 @@ export default function VideogameEdit() {
 
 
           <button className="botonCrear" type="submit">
-            Public Videogame
+            Edit Videogame
           </button>
         </form>
       </div>

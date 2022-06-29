@@ -74,7 +74,7 @@ export function deleteVideogame(id){
 
 export function putVideogame(id, payload){
     return async function(dispatch){
-        var json = await axios.put(`http://localhost:3001/videogames/${id}`, payload);
+        var json = await axios.put(`http://localhost:3001/videogamesDev/${id}`, payload);
         return dispatch({
             type: "PUT_VIDEOGAME",
             payload: json.data
