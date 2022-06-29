@@ -15,7 +15,7 @@ const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
 
 router.get('/', (req, res) => {
-    res.send('HENRYGAMES')
+    res.json({msg:'HENRYGAMES'})
 })
 
 router.use('/videogames', getVideogames)
