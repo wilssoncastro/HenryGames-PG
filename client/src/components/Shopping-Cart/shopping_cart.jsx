@@ -6,6 +6,7 @@ import Card from '../Card/card'
 import {Link} from 'react-router-dom'
 
 export default function ShoppingCart() {
+  let nombre = localStorage.getItem('name')
   const dispatch = useDispatch()
   const videogamesInCart = useSelector((state) => state.cart)
   const cartLocal = JSON.parse(localStorage.getItem('cart'))
@@ -24,6 +25,7 @@ export default function ShoppingCart() {
         <NavBar />
       </div>
       <div>
+      {nombre ? <p>Hay nombre {typeof nombre}</p> : <p>No hay nombre {typeof nombre}</p>}
       {
           (cartLocal.length !== 0 )? 
           (
