@@ -10,13 +10,15 @@ const registerRoutes = require('../controllers/Autentication/index')
 
 const getVideogames = require('../controllers/getVideogames')
 const routesVideogames = require('../controllers/routesVideogames')
+const routesComments = require('../controllers/commentsRoutes')
 // const getTags = require ('../controllers/getTags')
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
 const cartRoutes = require('../controllers/cartRoutes')
 
 router.get('/', (req, res) => {
-    res.send('HENRYGAMES')
+    console.log(req.isAuthenticated())
+    res.json({msg:'HENRYGAMES'})
 })
 
 router.use('/videogames', getVideogames)
@@ -29,5 +31,6 @@ router.use('/friends', friendRouters)
 router.use('/wishlist', wishRoutes)
 router.use('/authentication', registerRoutes)
 router.use('/cart', cartRoutes)
+router.use('/comments', routesComments)
 
 module.exports = router

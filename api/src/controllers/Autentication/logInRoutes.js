@@ -9,6 +9,7 @@ router.post('/login',
     })
     ,async (req, res) => {
         try {
+            console.log(req.isAuthenticated())
             if(!req.user.active){
                 return res.send('Debes activar la cuenta')
             }
@@ -22,7 +23,12 @@ router.post('/login',
     })
 
 router.get('/login', (req, res)=> {
-    console.log('que onda aca')
+    
     return res.send('Email o contraseña incorrecta');
 })
+
+router.get('/in', (req, res) => {
+    return res.send('Ya estas logueado!')
+})
+
 module.exports = router
