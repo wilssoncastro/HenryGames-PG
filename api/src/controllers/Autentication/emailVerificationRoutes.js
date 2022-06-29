@@ -49,7 +49,7 @@ router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
             }
 
             let info = await transporter.sendMail(mail_options, (error, info) => {
-                if(error)console.log(error)
+                if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
             })
 
             res.json({created: true, message:'Cuenta creada, hemos enviado un email de validación a su correo'});  
