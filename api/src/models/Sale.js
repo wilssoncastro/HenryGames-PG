@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         id_game: {
-            type: DataTypes.UUID,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         id_user: {
@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: false
         }
 

@@ -8,12 +8,8 @@ module.exports = (sequelize) => {
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4
         },
-        id_comment: {
-            type: DataTypes.UUID,
-            allowNull: false
-        },
         id_game: {
-            type: DataTypes.UUID,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         id_user: {
