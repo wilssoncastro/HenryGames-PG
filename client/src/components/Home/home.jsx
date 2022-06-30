@@ -1,26 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import NavBar from '../NavBar/navbar'
 import Carousel from 'react-elastic-carousel'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllVideogames, getFilteredVideogames } from '../../redux/actions'
 import * as BiIcons from "react-icons/bi"
+import CarouselCard from '../CarouselCard/CarouselCard'
 import './home.css'
 import './carousel.css'
-
-// traerse todos los jueguitos
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { getAllVideogames } from '../../redux/actions'
 // import Card from '../Card/card'
 
 export default function Home() {
     const dispatch = useDispatch();
-    // const allVideogames = useSelector((state) => state.allVideogames);
-    // const currentVideogames = useSelector((state) => state.videogames);
+    const videogames = useSelector((state) => state.videogames)
 
+    const [name, setName] = useState('')
+    const [page, setPage] = useState(0)
+    const [sort, setSort] = useState('rating');
+    const [order, setOrder] = useState('desc');
+    const [limit, setLimit] = useState(6);
+    
     useEffect(() => {
-        dispatch(getAllVideogames());
-    }, [dispatch])
+        // dispatch(getAllVideogames())
+        dispatch(getFilteredVideogames(name, page, sort, order, limit))
+    }, [dispatch, sort, order, limit])
 
+
+    
     return (
         <div className='background'>
             <div>
@@ -129,110 +135,24 @@ export default function Home() {
 
                     {/* Carousel principal */}
                     <div className="ContainerCarousel">
-                    <h1 className='main-carousel-title'>Promoted</h1>
+                        <h1 className='main-carousel-title'>Promoted</h1>
                         <Carousel focusOnSelect={false}>
-                            <item>
-                                <div className='ItemCarousel'>
+                            {videogames.map((e) => {
+                                console.log(e.genres)
+                                return(
+                                    <item>
+                                        <CarouselCard
+                                            name={e.name}
+                                            id={e.id}
+                                            image={e.image}
+                                            short_screenshots={e.short_screenshots}
+                                            genres={e.genres}
+                                            price={`$${e.price}`}
+                                            />
+                                    </item>
+                                )
+                            })}
 
-
-                                    {/* IZQUIERDA */}
-                                    <div className='c65'>
-                                        <Link to='/store/3498'>
-                                            <img className='imagenes' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
-                                    </div>
-
-                                    {/* DERECHA */}
-                                    <div className='c35'>
-                                        <h3 className="legend">Grand Theft Auto V</h3>
-                                        <div className='screenshots-div'>
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/a7c/a7c43871a54bed6573a6a429451564ef.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/cf4/cf4367daf6a1e33684bf19adb02d16d6.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/f95/f9518b1d99210c0cae21fc09e95b4e31.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/a5c/a5c95ea539c87d5f538763e16e18fb99.jpg' alt='img not found' />
-                                        </div>
-                                        <div className='c35-footer'>
-                                            <h5 className='footer-txt'>Top Seller</h5>
-                                            <div className='genres-section'>
-                                                <span className='genre-style'>Action</span>
-                                                <span className='genre-style'>Shooter</span>
-                                            </div>
-                                            <span className='price-tag'>$59.99</span>
-                                        </div>
-                                    </div>
-                            
-                                </div>
-                            </item>
-                            <item>
-                                <div className='ItemCarousel'>
-
-
-                                    {/* IZQUIERDA */}
-                                    <div className='c65'>
-                                        <Link to='/store/3498'>
-                                            <img className='imagenes' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/>
-                                        </Link>
-                                    </div>
-
-                                    {/* DERECHA */}
-                                    <div className='c35'>
-                                        <h3 className="legend">Grand Theft Auto San Andreas</h3>
-                                        <div className='screenshots-div'>
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/a7c/a7c43871a54bed6573a6a429451564ef.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/cf4/cf4367daf6a1e33684bf19adb02d16d6.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/f95/f9518b1d99210c0cae21fc09e95b4e31.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/a5c/a5c95ea539c87d5f538763e16e18fb99.jpg' alt='img not found' />
-                                        </div>
-                                        <div className='c35-footer'>
-                                            <h5 className='footer-txt'>Top Seller</h5>
-                                            <div className='genres-section'>
-                                                <span className='genre-style'>Action</span>
-                                                <span className='genre-style'>Shooter</span>
-                                            </div>
-                                            <span className='price-tag'>$59.99</span>
-                                        </div>
-                                    </div>
-                            
-                                </div>
-                            </item>
-                            <item>
-                                <div className='ItemCarousel'>
-
-
-                                    {/* IZQUIERDA */}
-                                    <div className='c65'>
-                                        <Link to='/store/3498'>
-                                            <img className='imagenes' src="https://www.somosxbox.com/wp-content/uploads/2021/11/492540bf02636390efd77a305399187b.jpg" alt= 'img not found'/>
-                                        </Link>
-                                    </div>
-
-                                    {/* DERECHA */}
-                                    <div className='c35'>
-                                        <h3 className="legend">Grand Theft Auto San IV</h3>
-                                        <div className='screenshots-div'>
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/a7c/a7c43871a54bed6573a6a429451564ef.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/cf4/cf4367daf6a1e33684bf19adb02d16d6.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/f95/f9518b1d99210c0cae21fc09e95b4e31.jpg' alt='img not found' />
-                                            <img className='screenshots' src='https://media.rawg.io/media/screenshots/a5c/a5c95ea539c87d5f538763e16e18fb99.jpg' alt='img not found' />
-                                        </div>
-                                        <div className='c35-footer'>
-                                            <h5 className='footer-txt'>Top Seller</h5>
-                                            <div className='genres-section'>
-                                                <span className='genre-style'>Action</span>
-                                                <span className='genre-style'>Shooter</span>
-                                            </div>
-                                            <span className='price-tag'>$39.99</span>
-                                        </div>
-                                    </div>
-                            
-                                </div>
-                            </item>
-                            <item>
-                            <Link to='/store/4459' className='ItemCarousel'>
-                                <img className='imagenes' src="https://www.somosxbox.com/wp-content/uploads/2021/11/492540bf02636390efd77a305399187b.jpg" alt= 'img not found'/>
-                                <p className="legend">Grand Theft Auto IV</p>
-                            </Link>
-                            </item>
                         </Carousel>
                     </div>
 
