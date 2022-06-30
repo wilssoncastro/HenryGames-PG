@@ -25,7 +25,7 @@ router.post('/add/:id/:idGames', async(req, res) =>{
     const {id, idGames} = req.params;
     try {
         const user = await Player.findByPk(id)
-        const game = await Videogame.findByPk(idGame)
+        const game = await Videogame.findByPk(idGames)
 
         if(user && game){
             await user.addCart(game)
