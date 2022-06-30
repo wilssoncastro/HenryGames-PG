@@ -5,6 +5,7 @@ import Card from '../Card/card'
 import {Link, useNavigate} from 'react-router-dom'
 import { postMercadoPago } from '../../redux/actions'
 
+
 export default function ShoppingCart() {
 
   const navigate = useNavigate()
@@ -15,10 +16,15 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
-}, [cart])
+    dispatch(getCartById(id_user))
+}, [cart, dispatch])
 
   const handleDelete = (id) => {
-    localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
+    if(typeof id_user === 'object'){
+      localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
+    }else{
+      dispatch(delFromCart(id_user, id))
+    }
     navigate('/my_cart')
   }
 
@@ -43,11 +49,11 @@ export default function ShoppingCart() {
       <div>
       
       {
-          cartFromLocalStorage.length > 0 ? 
+          current_cart.length > 0 ? 
           (
             <div style={{marginTop: '100px'}}>
               {
-                cartFromLocalStorage.map((game) => (
+                current_cart.map((game) => (
                   <div>
                     <Card image={game.image} name={game.name} price={game.price} />
                     <button type='reset' onClick={() => handleDelete(game.id)}>Remove game from cart</button>
