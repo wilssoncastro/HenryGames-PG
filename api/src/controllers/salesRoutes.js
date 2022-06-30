@@ -22,7 +22,7 @@ router.get('/', async(req, res) => {
     condition.where = where
 
     try {
-        const sales = await Sale.findAll(condition)
+        const sales = await Sale.findAll({condition})
 
         return res.json(sales)
     } catch (error) {
