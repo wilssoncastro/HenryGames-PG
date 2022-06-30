@@ -67,7 +67,7 @@ export default function Detail() {
     navigate(`/store/${idGame}`)
   }
 
-  function HandleAddToCart(e) {
+   function HandleAddToCart(e) {
     e.preventDefault();
     localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
     swal({
