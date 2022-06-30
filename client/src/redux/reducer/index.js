@@ -1,4 +1,4 @@
-import { GET_USER_BY_ID } from '../actions/index'
+import { GET_USER_BY_ID, GET_CART_BY_ID } from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -7,7 +7,8 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
-    my_user: {}
+    my_user: {},
+    cart: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -88,7 +89,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 my_user: action.payload.data
             }
-
+        case GET_CART_BY_ID:
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: action.payload.data.cart
+            }
         default:
             return state;
     }

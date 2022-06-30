@@ -26,8 +26,6 @@ router.post('/add/:id/:idGames', async(req, res) =>{
     try {
         const user = await Player.findByPk(id)
         const game = await Videogame.findByPk(idGames)
-        const gamesL = JSON.parse(localStorage.getItem('cart'));
-        console.log(gamesL)
 
         if(user && game){
             await user.addCart(gamesL)
