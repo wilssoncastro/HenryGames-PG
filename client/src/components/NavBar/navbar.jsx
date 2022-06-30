@@ -17,7 +17,8 @@ import { useSelector } from "react-redux";
 export default function NavBar() {
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
-    const cartLocal = JSON.parse(localStorage.getItem('cart'))
+    const cartLocal = JSON.parse(localStorage.getItem('cart'));
+    let id = localStorage.getItem("id");
 
 
     const showSidebar = () =>{ 
@@ -35,7 +36,7 @@ export default function NavBar() {
     const SidebarData = [
         {
             title: 'Profile',
-            path: '/profile',
+            path: `/profile/${id}`,
             icon: <CgIcons.CgProfile/>,
             className: 'nav-text',
             onClick: showSidebar
