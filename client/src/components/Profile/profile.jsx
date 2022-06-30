@@ -38,8 +38,9 @@ export default function Profile() {
       <br />
       <br />
       <br />
-      <div>     
-      <h3>Wish List :</h3>
+      <div>
+        {id_user}
+      {/* <h3>Wish List :</h3>
        { list[0]?.wishs.length !== 0 ? list[0]?.wishs.map((e) => 
        <div> 
          <h4>{e.name}</h4> 
@@ -47,7 +48,7 @@ export default function Profile() {
          <h3>{e.price}</h3>
          <button onClick={() => handleOnClickDelete(e.id)}>Delete from Wish List</button>
        </div> 
-       ) : "Your wish list is empty" }
+       ) : "Your wish list is empty" } */}
       
         </div>
     </div>
