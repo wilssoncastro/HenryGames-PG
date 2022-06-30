@@ -19,8 +19,8 @@ export default function Store() {
   const [order, setOrder] = useState(""); 
   const [limit, setLimit] = useState(10);
 
-  const paginado = (pageNumber) => {
-    setPage((pageNumber-1)*limit)
+  const paginado = (pageNum) => {
+    setPage((pageNum-1)*limit)
   }
   
   useEffect(() => {  
@@ -89,6 +89,7 @@ export default function Store() {
         <button onClick={(e) => next(e)} disabled={parseInt(limit) + parseInt(page) > 198}>NEXT</button>
         <div>
           <Paginado
+            page={page}
             limit={limit}
             paginado={paginado}
           />
@@ -105,6 +106,7 @@ export default function Store() {
                 image={v.image}
                 name={v.name}
                 price={v.price}
+                free_to_play={v.free_to_play}
                 id={v.id}
               />
             </div> : 
@@ -114,6 +116,7 @@ export default function Store() {
                 image={v.image}
                 name={v.name}
                 rating={v.rating}
+                free_to_play={v.free_to_play}
                 on_sale={v.on_sale}
                 price={v.price}
                 id={v.id}
