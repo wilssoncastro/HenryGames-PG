@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import NavBar from '../NavBar/navbar'
 import Card from '../Card/card'
 import {Link, useNavigate} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { postMercadoPago } from '../../redux/actions'
-
 
 export default function ShoppingCart() {
 
@@ -18,10 +16,6 @@ export default function ShoppingCart() {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
 }, [cart])
-
-  const videogamesInCart = useSelector((state) => state.cart)
-  const cartLocal = JSON.parse(localStorage.getItem('cart'))
-
 
   const handleDelete = (id) => {
     localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
