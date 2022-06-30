@@ -173,6 +173,13 @@ export function getCardStatistics(name){
   };
 }
 
+export function postMercadoPago(carrito){
+  return async function(dispatch){
+    var json = await axios.post("http://localhost:3001/mercadopago",carrito);
+    return json;
+  }
+}
+
 export function getUserById(id){
   return function(dispatch){
     return axios.post(`http://localhost:3001/users?id=${id}`)
