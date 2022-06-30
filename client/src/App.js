@@ -31,44 +31,45 @@ function App() {
           <Route exact path='/' element={<LandingPage />} />
 
           {/* Muestra algunas categorias (a lo netflix) con los juegos promocionados en esa categoria en forma de BANNER */}
-          <Route exact path='/home' element={<Home/>}/>
+          <Route exact path='/home' element={<Home />}/>
 
           {/* Detalles de los videojuegos */ }
-          <Route exact path='/store/:id' element={<Detail/>} />
+          <Route exact path='/store/:id' element={<Detail />} />
 
           {/* Página del admin */}
-          <Route exact path='/admin' element={<Admin/>}/>
+          <Route exact path='/admin' element={<Admin />}/>
           
           {/* Ruta para publicar videogame */}
-          <Route exact path='/admin/publishVideogame' element={<VideogameCreate/>} />
+          <Route exact path='/admin/publishVideogame' element={<VideogameCreate />} />
 
           {/* Editar o borrar videogame */}
-          <Route exact path='/admin/editVideogame' element={<Edit/>} />
+          <Route exact path='/admin/editVideogame' element={<Edit />} />
 
-          <Route exact path='/admin/editVideogame/formEdit/:id' element={<FormEdit/>} />
+          <Route exact path='/admin/editVideogame/formEdit/:id' element={<FormEdit />} />
 
           {/* STORE es la tienda donde van a aparecer TODOS los juegos. Aca se van a poder FILTRAR */}
-          <Route exact path='/store' element={<Store/>}/>
+          <Route exact path='/store' element={<Store />}/>
 
           {/* LIBRARY es la libreria de juegos que el USUARIO tiene comprados */}
-          <Route exact path='/library' element={<Library/>}/>
+          <Route exact path='/library' element={<Library />}/>
 
           {/* Ingresar al detalle del juego cuando lo clickeas o pedis ver su detalle */}
-          <Route exact path='/store/:id' element={<Detail/>}/>
+          <Route exact path='/store/:id' element={<Detail />}/>
 
           {/* Te manda a un form para crear tu perfil que va a ser ingresado en la Base de Datos. AUTENTICACION!!!!!! */}
-          <Route exact path='/sign_up' element={<SignUp/>}/>
-          <Route exact path='/log_in' element={<LogIn/>}/> 
+          <Route exact path='/sign_up' element={<SignUp />}/>
+          <Route exact path='/log_in' element={<LogIn />}/> 
           {/* Te manda a tu perfil :)  */}
-          <Route exact path='/profile' element={<Profile/>}/>
+          <Route exact path='/profile/:id' element={<Profile />}/>
 
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
-          <Route exact path='/my_cart' element={<ShoppingCart/>}/>
+          <Route exact path='/my_cart' element={<ShoppingCart />}/>
 
           {/* Te manda a la lista de deseos */}
-          <Route exact path='/wish_list' element={<Wishlist/>} />
+          <Route exact path='/wish_list' element={<Wishlist />} />
+          
           {/* Autorizacion - NO TOCAR */}
           <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
 
