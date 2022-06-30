@@ -2,19 +2,21 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import swal from "sweetalert";
-import { getWishList, deleteWishList } from "../../redux/actions/index";
+import { getWishList, deleteWishList, getUserById } from '../../redux/actions/index';
 import NavBar from "../NavBar/navbar";
-import "./profile.css";
 
 export default function Profile() {
-  const dispatch = useDispatch();
-  const { id } = useParams();
+
+  const id_user = localStorage.getItem('id')
+  
+  const dispatch = useDispatch(); 
   let list = useSelector((state) => state.wishList);
 
   useEffect(() => {
-    dispatch(getWishList(id));
-  }, [dispatch, id]);
-
+    dispatch(getUserById(id_user))
+    dispatch(getWishList(id_user));    
+  }, [dispatch, id_user])
+  
   const handleOnClickDelete = (idGame) => {
     let id = localStorage.getItem("id");
     dispatch(deleteWishList(id, idGame));
@@ -28,6 +30,7 @@ export default function Profile() {
 
 
   return (
+    <div>
     <div className="Profile">
       <div>
         <NavBar />
@@ -35,21 +38,19 @@ export default function Profile() {
       <br />
       <br />
       <br />
-      <div>     
-      <h3>Wish List :</h3>
-      {list[0]?.wishs.length !== 0
-        ? list[0]?.wishs.map((e) => (
-            <div>
-              <h4>{e.name}</h4>
-              <img src={e.image} height="100px" width="200px" />
-              <h3>{e.price}</h3>
-              <button onClick={() => handleOnClickDelete(e.id)}>
-                Delete from Wish List
-              </button>
-            </div>
-          ))
-        : "Your wish list is empty"}
+      <div>
+       <h3>Wish List :</h3>
+      { list && list?.map((e) => 
+       <div> 
+         <h4>{e.name}</h4> 
+         <img src={e.image} height='100px' width='200px' alt=''/>
+         <h3>{e.price}</h3>
+         <button onClick={() => handleOnClickDelete(e.id)}>Delete from Wish List</button>
+       </div> 
+       )}
+      
         </div>
+    </div>
     </div>
   );
 }

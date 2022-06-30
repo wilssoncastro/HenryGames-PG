@@ -11,7 +11,11 @@ router.get('/:id', async(req, res) => {
     try {
         
         const user = await Player.findByPk(id, {
-            include: 'wishs'
+            include: 'wishs',
+            attributes: [],
+                through: {
+                    attributes: []
+                }
         })
         
 
@@ -38,7 +42,7 @@ router.post('/add/:id/:idGame', async (req, res) => {
             return res.send('No se encontro el usuario')
         }
 
-        return res.send('Deseo agregado')
+        return res.send(game)
 
     } catch (error) {
         res.send(error)
@@ -59,7 +63,7 @@ router.delete('/delete/:id/:idGame', async(req, res) => {
             return res.send('No se encontro el usuario')
         }
 
-        return res.send('Deseo eliminado')
+        return res.send(game)
     } catch (error) {
         res.send(error)
     }

@@ -7,7 +7,8 @@ import {
   getDetailsVideogame,
   deleteVideogame,
   deleteWishList,
-  getWishList
+  getWishList,
+  addToCart
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
@@ -18,6 +19,7 @@ export default function Detail() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+  const id_user = localStorage.getItem('id')
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
@@ -34,9 +36,10 @@ export default function Detail() {
       dispatch(getWishList(idProfile))
     };
   }, [dispatch, idProfile, id, cart]);
-
-  const gameWish = list[0] ? list[0].wishs.find(e => e.name == videogame.name) : 'HIJO DE MIL ';
-  console.log(gameWish)
+  
+  
+  
+  
 
   const handleDelete = () => {
     function confirm() {
@@ -69,7 +72,12 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
+    if(typeof id_user === 'object'){
+      localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
+    }
+    if(typeof id_user === 'string'){
+      dispatch(addToCart(id_user, id))
+    }
     swal({
       title: 'Your game was successfully added to the cart',
       text: 'What do you want to do next?',
@@ -176,13 +184,15 @@ export default function Detail() {
               {videogame.on_sale === true ? <p>On Sale!</p> : null}
             </div>
 
-            <div>
-              {
-                !gameWish ?
-                  (<button onClick={() => handleOnClick(videogame.id)}>Add to Wish List</button>)
-                  : (<button onClick={() => handleOnClickDelete(videogame.id)}>Delete from Wish List</button>)
-              }
-            </div>
+          <div>        
+            {
+              !(list?.find(e => e.id == videogame.id))?
+              (
+                <button onClick={() => handleOnClick(videogame.id)}>Add to Wish List</button> 
+              ) 
+              : (<button onClick={() => handleOnClickDelete(videogame.id)}>Delete from Wish List</button>                           )
+            }
+          </div>
 
             {videogame.db_created && (
               <button
