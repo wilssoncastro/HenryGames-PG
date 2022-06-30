@@ -66,10 +66,9 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case "GET_WISH_LIST":
-            console.log(action.payload)
             return {
                 ...state,
-                wishList: action.payload
+                wishList: action.payload.wishs
             }
 
         case "ADD_WISH_LIST":
@@ -82,8 +81,14 @@ const rootReducer = (state = initialState, action) => {
         case "DELETE_WISH_LIST":
             return {
                 ...state,
-                wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
+                wishList: state.wishList.filter(v => v.id.toString() !== action.payload.id.toString())
             }
+            
+        case "POST_CART":
+            return {
+                ...state
+            }
+        
         case GET_USER_BY_ID:
             return {
                 ...state,

@@ -39,16 +39,15 @@ export default function Profile() {
       <br />
       <br />
       <div>
-        {id_user}
-      {/* <h3>Wish List :</h3>
-       { list[0]?.wishs.length !== 0 ? list[0]?.wishs.map((e) => 
+       <h3>Wish List :</h3>
+      { list && list?.map((e) => 
        <div> 
          <h4>{e.name}</h4> 
-         <img src={e.image} height='100px' width='200px' />
+         <img src={e.image} height='100px' width='200px' alt=''/>
          <h3>{e.price}</h3>
          <button onClick={() => handleOnClickDelete(e.id)}>Delete from Wish List</button>
        </div> 
-       ) : "Your wish list is empty" } */}
+       )}
       
         </div>
     </div>

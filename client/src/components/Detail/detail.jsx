@@ -37,7 +37,8 @@ export default function Detail() {
     };
   }, [dispatch, idProfile, id, cart]);
   
-  // const gameWish = list[0] ? list[0].wishs.find(e => e.name == videogame.name) : 'HIJO DE MIL PUTA';
+  
+  
   
 
   const handleDelete = () => {
@@ -183,13 +184,15 @@ export default function Detail() {
             {videogame.on_sale === true ? <p>On Sale!</p> : null}
           </div>
 
-          {/* <div>        
+          <div>        
             {
-              !gameWish?
-              (<button onClick={() => handleOnClick(videogame.id)}>Add to Wish List</button> ) 
+              !(list?.find(e => e.id == videogame.id))?
+              (
+                <button onClick={() => handleOnClick(videogame.id)}>Add to Wish List</button> 
+              ) 
               : (<button onClick={() => handleOnClickDelete(videogame.id)}>Delete from Wish List</button>                           )
             }
-          </div> */}
+          </div>
 
           {videogame.db_created && (
             <button
