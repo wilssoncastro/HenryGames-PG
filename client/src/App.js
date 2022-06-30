@@ -60,7 +60,7 @@ function App() {
           <Route exact path='/sign_up' element={<SignUp/>}/>
           <Route exact path='/log_in' element={<LogIn/>}/> 
           {/* Te manda a tu perfil :)  */}
-          <Route exact path='/profile/:id' element={<Profile/>}/>
+          <Route exact path='/profile' element={<Profile/>}/>
 
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
 

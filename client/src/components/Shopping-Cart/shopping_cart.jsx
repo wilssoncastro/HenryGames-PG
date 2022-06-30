@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../NavBar/navbar'
 import Card from '../Card/card'
 import {Link, useNavigate} from 'react-router-dom'
 
 export default function ShoppingCart() {
+
   const navigate = useNavigate()
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
@@ -12,6 +14,12 @@ export default function ShoppingCart() {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
 }, [cart])
+
+  
+  const dispatch = useDispatch()
+  const videogamesInCart = useSelector((state) => state.cart)
+  const cartLocal = JSON.parse(localStorage.getItem('cart'))
+
 
   const handleDelete = (id) => {
     localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
@@ -29,6 +37,7 @@ export default function ShoppingCart() {
         <NavBar />
       </div>
       <div>
+      
       {
           cartFromLocalStorage.length > 0 ? 
           (

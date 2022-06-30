@@ -3,8 +3,13 @@
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+<<<<<<< HEAD
     min-height: 100vh
    
+=======
+    height: 100vh;
+    margin-top: 80px;
+>>>>>>> dev
 }
 .error{
     color:  red;
