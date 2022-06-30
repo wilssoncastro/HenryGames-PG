@@ -148,7 +148,7 @@ export default function Detail() {
           </div>
           <div className="freeOrPay">
             {videogame.free_to_play === true ? (
-              <span>Free</span>
+              <p>Free to play</p>
             ) : (
               <p>${videogame.price}</p>
             )}
