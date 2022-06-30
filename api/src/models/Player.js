@@ -50,7 +50,13 @@ module.exports = (sequelize) => {
         },
         secret_token: {
             type: DataTypes.STRING
+        },
+        banned: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false, 
+            allowNull: false
         }
+        
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }

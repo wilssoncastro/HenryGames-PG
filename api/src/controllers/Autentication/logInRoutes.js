@@ -9,20 +9,26 @@ router.post('/login',
     })
     ,async (req, res) => {
         try {
+            console.log(req.isAuthenticated())
             if(!req.user.active){
                 return res.send('Debes activar la cuenta')
             }
             
             let { id, name, lastname, type, profile_pic} = req.user;
             
-            return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic})
+            return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic: profile_pic})
         } catch (error) {
             res.status(404).send('ERRRRROOOOOOOOOOOOOR')
         }
     })
 
 router.get('/login', (req, res)=> {
-    console.log('que onda aca')
+    
     return res.send('Email o contraseña incorrecta');
 })
+
+router.get('/in', (req, res) => {
+    return res.send('Ya estas logueado!')
+})
+
 module.exports = router

@@ -1,3 +1,5 @@
+import { GET_USER_BY_ID } from '../actions/index'
+
 const initialState = {
     allVideogames: [],
     videogames: [],
@@ -5,6 +7,7 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+    my_user: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -61,7 +64,15 @@ const rootReducer = (state = initialState, action) => {
                 ...state
             }
 
+        case "GET_WISH_LIST":
+            console.log(action.payload)
+            return {
+                ...state,
+                wishList: action.payload
+            }
+
         case "ADD_WISH_LIST":
+            console.log(action.payload)
             return {
                 ...state,
                 wishList: state.wishList.concat(action.payload)
@@ -73,11 +84,17 @@ const rootReducer = (state = initialState, action) => {
                 wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
             }
             
-            case "POST_CART":
-                return {
-                    ...state
-                }
+        case "POST_CART":
+            return {
+                ...state
+            }
         
+        case GET_USER_BY_ID:
+            return {
+                ...state,
+                my_user: action.payload.data
+            }
+
         default:
             return state;
     }

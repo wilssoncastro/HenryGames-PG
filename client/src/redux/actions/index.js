@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+
 
 export function getAllVideogames() {
   return async function (dispatch) {
@@ -40,6 +42,7 @@ export function getEsrb() {
     });
   };
 }
+
 
 export function postVideogame(payload) {
   return async function () {
@@ -82,18 +85,38 @@ export function putVideogame(id, payload){
     }
 }
 
-export function addWishList(payload){
-    return {
+export function getWishList(id){
+  return async function(dispatch){
+    try {
+      var json = await axios.get(`http://localhost:3001/wishlist/${id}`);
+      return dispatch({
+        type: "GET_WISH_LIST",
+        payload: json.data    
+      })
+  } catch (error) {
+      console.log("La concha de la lora")
+    }
+  }
+}
+
+export function addWishList(id, idGame){
+    return async function(dispatch){
+      var json = await axios.post(`http://localhost:3001/wishlist/add/${id}/${idGame}`);
+      return dispatch({
         type: "ADD_WISH_LIST",
-        payload
+        payload: json.data
+      }) 
     }
 }
 
-export function deleteFavorite(payload){
-    return {
-        type: "DELETE_WISH_LIST",
-        payload
-    }
+export function deleteWishList(id, idGame){
+  return async function(dispatch){
+    var json = await axios.delete(`http://localhost:3001/wishlist/delete/${id}/${idGame}`)
+    return dispatch({
+      type: "DELETE_WISH_LIST",
+      payload: json.data
+    })
+  }
 }
 
 export function addToCart(payload){
@@ -130,5 +153,17 @@ export function postMercadoPago(carrito){
   return async function(dispatch){
     var json = await axios.post("http://localhost:3001/mercadopago",carrito);
     return json;
+  }
+}
+
+export function getUserById(id){
+  return function(dispatch){
+    return axios.post(`http://localhost:3001/users?id=${id}`)
+    .then(data => {
+      dispatch({
+        type: GET_USER_BY_ID,
+        payload: data
+      })
+    })
   }
 }

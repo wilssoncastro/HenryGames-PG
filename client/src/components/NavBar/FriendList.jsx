@@ -8,7 +8,7 @@ export const FriendList = [
         path: '#',
         status: "Online",
         className: 'friend-tag'
-    },
+     },
     {
         image: <FaIcons.FaUserFriends/>,
         name: 'Zlartox',

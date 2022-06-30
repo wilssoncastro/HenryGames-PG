@@ -69,11 +69,14 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {  
+passport.deserializeUser(async function(id, done) {  
   console.log('paso tres de la autenticación')
   
-  Player.findByPk(id)
+  await Player.findByPk(id, (err, user) => {
+    done(null, user);
+  })
   .then((user) => {
+      console.log('va bien')
       done(null, user);
     })    
   .catch(err => {
@@ -91,6 +94,13 @@ server.use(
 ); 
 server.use(passport.initialize());
 server.use(passport.session());
+
+// Middleware para mostrar la sesión actual en cada request
+// server.use((req, res, next) => {
+//   console.log(req.session, ' esto es req.session 120');
+//   console.log(req.user, ' esto es req.user 121');
+//   next();
+// });
 
 server.use('/', routes);
 
