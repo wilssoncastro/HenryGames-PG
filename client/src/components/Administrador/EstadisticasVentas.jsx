@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCardStatistics } from "../../redux/actions";
 /* import Card from "../Card/card"; */
 import { Link } from "react-router-dom";
+import BarChart from "../Graphics/BarChart";
+import LineChart from "../Graphics/LineChart";
+import UsersVsSales from "../Graphics/UsersVsSales";
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -12,6 +15,7 @@ export default function Estadisticas() {
 
   useEffect(() => {
     dispatch(getCardStatistics(name));
+    console.log("juegos", videogame)
   }, [dispatch, name]);
 
   const handleInputChange = (e) => {
@@ -56,6 +60,24 @@ for(let i = 0; i < totalPrice.length; i++){
           </div>
         )) : null
       }
+      <div>
+        <h2>
+          Top Games Sales
+        </h2>
+        <BarChart/>
+      </div>
+      <div>
+        <h2>
+        Earnings per month
+        </h2>
+        <LineChart/>
+      </div>
+      <div>
+        <h2>
+          Numero de usuarios y ventas
+        </h2>
+        <UsersVsSales/>
+      </div>
     </div>
   );
 }
