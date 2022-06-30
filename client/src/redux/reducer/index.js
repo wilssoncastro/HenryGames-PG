@@ -61,6 +61,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state
             }
 
+        case "GET_WISH_LIST":
+            return {
+                ...state,
+                wishList: [action.payload]
+            }
+
         case "ADD_WISH_LIST":
             return {
                 ...state,

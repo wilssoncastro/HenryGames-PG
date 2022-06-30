@@ -6,7 +6,8 @@ import {
   addWishList,
   getDetailsVideogame,
   deleteVideogame,
-  deleteFavorite
+  deleteWishList,
+  getWishList
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
@@ -18,18 +19,24 @@ export default function Detail() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const wish = useSelector((state) => state.wishList);
-  const videoWish = wish.find((v) => v.id == id);
-
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
 
   const videogame = useSelector((state) => state.details);
-
+  const list = useSelector((state) => state.wishList);
+  let idProfile = localStorage.getItem("id");
+  
+  
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
     localStorage.setItem('cart', JSON.stringify(cart))
-  }, [dispatch, id, cart]);
+    if(list) {
+      dispatch(getWishList(idProfile))
+    };
+  }, [dispatch, idProfile, id, cart]);
+  
+  const gameWish = list[0] ? list[0].wishs.find(e => e.name == videogame.name) : 'HIJO DE MIL PUTA';
+ console.log(gameWish)
 
   const handleDelete = () => {
     function confirm() {
@@ -45,13 +52,19 @@ export default function Detail() {
     confirm();
   };
 
-  function handleWish(e) {
-    e.preventDefault();
-    if (!videoWish) {
-      dispatch(addWishList(videogame));
-    } else {
-      dispatch(deleteFavorite(id));
-    }
+
+  const handleOnClick = (idGame) => {
+    let id = localStorage.getItem("id"); 
+    dispatch(addWishList(id, idGame));
+      console.log('se agrego el juego de la lista');
+      navigate(`/store/${idGame}`)
+  }
+
+  const handleOnClickDelete = (idGame) => {
+    let id = localStorage.getItem("id");
+    dispatch(deleteWishList(id, idGame));
+    console.log('se elimino el juego de la lista');
+    navigate(`/store/${idGame}`)
   }
 
   function HandleAddToCart(e) {
@@ -90,7 +103,6 @@ export default function Detail() {
       }
     })
   }
-
 
   return (
     <div>
@@ -164,10 +176,12 @@ export default function Detail() {
             {videogame.on_sale === true ? <p>On Sale!</p> : null}
           </div>
 
-          <div>
-            <button onClick={(e) => handleWish(e)}>
-              {!videoWish ? <>Add to Wishlist</> : <>Delete from Wishlist</>}
-            </button>
+          <div>        
+            {
+              !gameWish?
+              (<button onClick={() => handleOnClick(videogame.id)}>Add to Wish List</button> ) 
+              : (<button onClick={() => handleOnClickDelete(videogame.id)}>Delete from Wish List</button>                           )
+            }
           </div>
 
           {videogame.db_created && (
