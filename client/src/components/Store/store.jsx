@@ -105,6 +105,7 @@ export default function Store() {
                 image={v.image}
                 name={v.name}
                 price={v.price}
+                free_to_play={v.free_to_play}
                 id={v.id}
               />
             </div> : 
@@ -114,6 +115,7 @@ export default function Store() {
                 image={v.image}
                 name={v.name}
                 rating={v.rating}
+                free_to_play={v.free_to_play}
                 on_sale={v.on_sale}
                 price={v.price}
                 id={v.id}
