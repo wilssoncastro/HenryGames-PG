@@ -66,7 +66,6 @@ export default function NavBar() {
 
     return (
         <div>
-            {console.log(cartLocal)}
             <IconContext.Provider value={{color: '#fff'}}>
 
                 {/* Burger Menu */}
