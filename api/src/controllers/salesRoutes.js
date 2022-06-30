@@ -5,9 +5,24 @@ const { v4: uuidv4 } = require('uuid');
 
 const router = Router();
 
+// Trae todos los tickets
+// Filtrar por querys (id_sale, id_user, id_game)
+// 
+
 router.get('/', async(req, res) => {
+
+    const { id_sale, id_user, id_game} = req.query
+
+    let condition = {}
+    let where ={}
+
+    if(id_sale)where.id_sale=id_sale
+    if(id_user)where.id_user=id_user
+    if(id_game)where.id_game=id_game
+    condition.where = where
+
     try {
-        const sales = await Sale.findAll()
+        const sales = await Sale.findAll(condition)
 
         return res.json(sales)
     } catch (error) {
