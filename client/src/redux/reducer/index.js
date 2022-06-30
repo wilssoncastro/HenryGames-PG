@@ -72,7 +72,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
             }
-    
+            
+            case "POST_CART":
+                return {
+                    ...state
+                }
+        
         default:
             return state;
     }

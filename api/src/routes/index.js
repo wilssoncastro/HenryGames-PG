@@ -13,6 +13,7 @@ const routesVideogames = require('../controllers/routesVideogames')
 // const getTags = require ('../controllers/getTags')
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
+const mercadopago = require('../controllers/mercadopago')
 
 router.use('/videogames', getVideogames)
 router.use('/videogames/:id', getVideogames)
@@ -23,5 +24,6 @@ router.use('/genres', getGenres)
 router.use('/friends', friendRouters)
 router.use('/wishlist', wishRoutes)
 router.use('/authentication', registerRoutes)
+router.use('/mercadopago', mercadopago)
 
 module.exports = router

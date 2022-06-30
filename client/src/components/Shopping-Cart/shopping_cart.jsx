@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react'
 import NavBar from '../NavBar/navbar'
 import Card from '../Card/card'
 import {Link, useNavigate} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { postMercadoPago } from '../../redux/actions'
+
 
 export default function ShoppingCart() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
@@ -21,6 +25,14 @@ export default function ShoppingCart() {
   const handleClearCart = () => {
     localStorage.setItem('cart', JSON.stringify([]))
     navigate('/my_cart')
+  }
+
+  const handleBuyMercadoPago = (carrito) => {
+    dispatch(postMercadoPago(carrito))
+    .then((data)=>{
+          window.location.assign(data.data.init_point)
+        })
+        .catch(err => console.error(err))
   }
 
   return (
@@ -42,7 +54,6 @@ export default function ShoppingCart() {
                   )
                 )
               }
-              <button>Buy</button>
               <button onClick={() => handleClearCart()}>Clear cart</button>
               <Link to='/home'>
                 <button>Back to the main page</button>
@@ -50,6 +61,9 @@ export default function ShoppingCart() {
               <Link to='/store'>
                 <button>Back to the store</button>
               </Link>
+              
+              <button onClick={() => {handleBuyMercadoPago(cartFromLocalStorage)}}>Buy</button>
+              
             </div>
           ) :
           (

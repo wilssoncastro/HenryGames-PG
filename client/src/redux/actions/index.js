@@ -125,3 +125,10 @@ export function getCardStatistics(name){
     });
   };
 }
+
+export function postMercadoPago(carrito){
+  return async function(dispatch){
+    var json = await axios.post("http://localhost:3001/mercadopago",carrito);
+    return json;
+  }
+}
