@@ -154,9 +154,19 @@ export function getUserById(id){
     return axios.post(`http://localhost:3001/users?id=${id}`)
     .then(data => {
       dispatch({
-        type: GET_USER_BY_ID,
+        type: "GET_USER_BY_ID",
         payload: data
       })
     })
+  }
+}
+
+export function getAllUsers(){
+  return async function(dispatch){
+   let json = await axios.get("http://localhost:3001/users")
+      dispatch({
+        type: "GET_ALL_USERS",
+        payload: json.data
+      })
   }
 }

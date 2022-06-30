@@ -1,4 +1,3 @@
-import { GET_USER_BY_ID } from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -7,6 +6,7 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+    users: [],
     my_user: {}
 }
 
@@ -83,12 +83,18 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
             }
-        case GET_USER_BY_ID:
+
+        case "GET_USER_BY_ID":
             return {
                 ...state,
                 my_user: action.payload.data
             }
 
+        case "GET_ALL_USERS":
+            return {
+                ...state,
+                users: action.payload
+            }
         default:
             return state;
     }
