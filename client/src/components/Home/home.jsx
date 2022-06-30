@@ -1,8 +1,6 @@
 import React from 'react'
 import NavBar from '../NavBar/navbar'
 import Carousel from 'react-elastic-carousel'
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import { Link } from 'react-router-dom'
 import * as BiIcons from "react-icons/bi"
 import './home.css'
@@ -33,89 +31,97 @@ export default function Home() {
 
                 <div className='home20'>
                     <div className='genres-filter'>
-                        <div className='filters-title'>
-                            <span>Genres</span>
-                            <BiIcons.BiTag className="filter-icon"/>
+                        <div className='filters-column'>
+                            <div className='filters-title'>
+                                <span>Genres</span>
+                                <BiIcons.BiTag className="filter-icon"/>
+                            </div>
+                            <ul className='genres-list'>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Action</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Indie</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Adventure</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>RPG</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Strategy</span>
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
-                        <ul className='genres-list'>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Action</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Indie</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Adventure</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>RPG</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Strategy</span>
-                                </Link>
-                            </li>
-                        </ul>
 
-                        <div className='filters-title'>
-                            <span>Tags</span>
-                        </div>
-                        <ul className='genres-list'>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Single Player</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Co-Op</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Multiplayer</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>MMO</span>
-                                </Link>
-                            </li>
-                        </ul>
 
-                        <div className='filters-title'>
-                            <span>ESRB</span>
+                        <div className='filters-column'>
+                            <div className='filters-title'>
+                                <span>Tags</span>
+                            </div>
+                            <ul className='genres-list'>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Single Player</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Co-Op</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Multiplayer</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>MMO</span>
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
-                        <ul className='genres-list'>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Everyone</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>+10</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Mature</span>
-                                </Link>
-                            </li>
-                            <li className='genre-txt' >
-                                <Link to="#">
-                                    <span>Adults</span>
-                                </Link>
-                            </li>
-                        </ul>
+
+
+                        <div className='filters-column'>   
+                            <div className='filters-title'>
+                                <span>ESRB</span>
+                            </div>
+                            <ul className='genres-list'>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Everyone</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>+10</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Mature</span>
+                                    </Link>
+                                </li>
+                                <li className='genre-txt' >
+                                    <Link to="#">
+                                        <span>Adults</span>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -232,205 +238,169 @@ export default function Home() {
 
                     {/* Carousel secundarios del medio del home */}
                     <div className="CategoryContainerCarousel">
-                    <h3 className='category-carousel-title'>Shooter</h3>
+                        <h3 className='category-carousel-title'>Shooter</h3>
                         <Carousel focusOnSelect={false} itemsToShow={4}>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
+
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
+
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
 
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Portal 2</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
+
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Portal 2</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
+
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                         </Carousel>
                     </div>
 
                     <div className="CategoryContainerCarousel">
-                    <h3 className='category-carousel-title'>Most Popular</h3>
+                        <h3 className='category-carousel-title'>Most Popular</h3>
                         <Carousel focusOnSelect={false} itemsToShow={4}>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
 
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Portal 2</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Portal 2</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                             <item>
-                                <div className='cat-card'>
+                                <Link to='/store/3498' className='text-deco'>
+                                    <div className='cat-card'>
 
+                                        {/* Arriba */}
+                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
 
-                                    {/* Arriba */}
-                                    <div className=''>
-                                        <Link to='/store/3498'>
-                                            <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt= 'img not found'/>
-                                        </Link>
+                                        {/* Abajo */}
+                                        <div className='cat-card-footer'>
+                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
+                                            <span className='carousel-card-price'>$59.99</span>
+                                        </div>
                                     </div>
-
-                                    {/* Abajo */}
-                                    <div className='cat-card-footer'>
-                                        <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                        <span className='carousel-card-price'>$59.99</span>
-                                    </div>
-                            
-                                </div>
+                                </Link>
                             </item>
                         </Carousel>
                     </div>
