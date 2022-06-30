@@ -11,7 +11,11 @@ router.get('/:id', async(req, res) => {
     try {
         
         const user = await Player.findByPk(id, {
-            include: 'wishs'
+            include: 'wishs',
+            attributes: [],
+                through: {
+                    attributes: []
+                }
         })
         
 
