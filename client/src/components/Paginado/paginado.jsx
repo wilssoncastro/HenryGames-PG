@@ -3,32 +3,39 @@ import "./paginado.css"
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllVideogames } from '../../redux/actions';
 
-// Los parametros pasados a la funcion se resuelven en el componente que los renderice
-export default function Paginado({limit, paginado}) {
+export default function Paginado({ limit, paginado, page }) {
   const allVideogames = useSelector((state) => state.allVideogames)
   const dispatch = useDispatch()
 
   useEffect(() => {  
     dispatch(getAllVideogames());
   }, [dispatch]);
-
-  const pageNumber = [];
-  const totalPages = allVideogames.length/limit
-
-  for (let i = 0; i < totalPages; i++) {
-    pageNumber.push(i + 1);
+  
+  const pageNumbers = [];
+  const pageNum5 = []
+  const pageQty = allVideogames.length/limit
+  const currentPage = (page/limit)
+  
+  for (let i = 0; i < pageQty; i++) {
+    pageNumbers.push(i + 1);
   }
-
+  
+  for (let j = currentPage; j < currentPage + 5; j++) {
+    if ((j-1) > 0 && (j-1) <= pageQty) {
+      pageNum5.push(pageNumbers[j-2])
+    }
+  }
+  
   return (
     <div className='paginado'>
       <ul className='pagination'>
         {
-          pageNumber?.map(number => (
-            <li className='number' key={number}>
-              <button onClick={() => paginado(number)}>{number}</button>
-            </li>
+          pageNum5.map(n => (
+            <li className='number' key={n}>
+              <button onClick={() => paginado(n)}>{n}</button>
+            </li> 
           ))
-        }
+        }        
       </ul>
     </div>
   )
