@@ -27,6 +27,7 @@ router.post('/add/:id/:idGames', async(req, res) =>{
         const user = await Player.findByPk(id)
         const game = await Videogame.findByPk(idGames)
         const gamesL = JSON.parse(localStorage.getItem('cart'));
+        console.log(gamesL)
 
         if(user && game){
             await user.addCart(gamesL)
@@ -41,24 +42,24 @@ router.post('/add/:id/:idGames', async(req, res) =>{
     }
 })
 
-// router.delete('/delete/:id/:idGame', async(req, res) => {
-//     const { id, idGame } = req.params
+router.delete('/delete/:id/:idGame', async(req, res) => {
+    const { id, idGame } = req.params
 
-//     try {
-//         const user = await Player.findByPk(id)
-//         const game = await Videogame.findByPk(idGame)
+    try {
+        const user = await Player.findByPk(id)
+        const game = await Videogame.findByPk(idGame)
 
 
-//         if(user && game){
-//             await user.removeCart(game)
-//         }else{
-//             return res.send('No se encontro el usuario... Intentalo otra vez')
-//         }
+        if(user && game){
+            await user.removeCart(game)
+        }else{
+            return res.send('No se encontro el usuario... Intentalo otra vez')
+        }
 
-//         return res.send('Juego descartado del carrito')
-//     } catch (error) {
-//         res.send(error)
-//     }
-// })
+        return res.send('Juego descartado del carrito')
+    } catch (error) {
+        res.send(error)
+    }
+})
 
 module.exports = router

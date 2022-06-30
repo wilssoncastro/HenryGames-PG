@@ -35,7 +35,7 @@ export default function Detail() {
     };
   }, [dispatch, idProfile, id, cart]);
   
-  const gameWish = list[0] ? list[0].wishs.find(e => e.name == videogame.name) : 'HIJO DE MIL ';
+  const gameWish = list[0] ? list[0]?.wishs.find(e => e.name == videogame.name) : 'HIJO DE MIL ';
  console.log(gameWish)
 
   const handleDelete = () => {
