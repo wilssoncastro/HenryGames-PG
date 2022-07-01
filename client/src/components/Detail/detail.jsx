@@ -14,6 +14,7 @@ import NavBar from "../NavBar/navbar";
 import './detail.css'
 import Carousel from 'react-elastic-carousel'
 import swal from 'sweetalert'
+import Comment from "../Comment/Comment";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ export default function Detail() {
 
   const videogame = useSelector((state) => state.details);
   const list = useSelector((state) => state.wishList);
+  const actual_cart = useSelector((state) => state.cart)
+  
   let idProfile = localStorage.getItem("id");
   
   
@@ -216,6 +219,10 @@ export default function Detail() {
             <Link to="/store">
               <button>Back to the store</button>
             </Link>
+          </div>
+
+          <div>
+            <Comment id_game={id}/>
           </div>
         </div>
       ) : null}
