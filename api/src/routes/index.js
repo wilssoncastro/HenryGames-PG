@@ -31,10 +31,14 @@ router.use('/esrb', getEsrb)
 router.use('/genres', getGenres)
 router.use('/friends', friendRouters)
 router.use('/wishlist', wishRoutes)
-router.use('/authentication', registerRoutes)
 router.use('/mercadopago', mercadopago)
 router.use('/cart', cartRoutes)
 router.use('/comments', routesComments)
 router.use('/sales', routesSales)
+router.use('/authentication', registerRoutes)
+
+router.get('/is_online', (req, res) => 
+    res.send(req.isAuthenticated())
+)
 
 module.exports = router
