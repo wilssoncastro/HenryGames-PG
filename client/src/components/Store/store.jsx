@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredVideogames } from '../../redux/actions';
 import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
 import Card from '../Card/card.jsx'
-import Cards from '../Card/cards.jsx'
 import NavBar from '../NavBar/navbar';
 import SearchBar from '../Searchbar/searchbar';
 import '../Store/store.css';
@@ -98,7 +97,7 @@ export default function Store() {
       </div>
 
       <div className='containercard'>
-        {currentVideogames.map((v) => {
+        {currentVideogames.map((v, i) => {
           return (
             // !name?
             <div>

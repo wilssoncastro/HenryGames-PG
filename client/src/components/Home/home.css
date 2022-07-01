@@ -321,17 +321,17 @@
     }
 
   *::-webkit-scrollbar-track {
-    border-radius: 15px;
+    /* border-radius: 15px; */
     }
 
   *::-webkit-scrollbar-thumb {
     background-color: #626262;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     border: 1px solid #626262;
     }
   *::-webkit-scrollbar-thumb:hover {
     background-color: #919191;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     border: 1px solid #919191;
     }
 /* ------------------------SCROLLBAR------------------------------ */
