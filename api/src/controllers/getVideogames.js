@@ -87,7 +87,14 @@ router.get('/', async (req, res) => {
       const videogames = await Videogame.findAll({
         limit: limit, // cantidad de videogames por página
         offset: page, // índice del primer videogame que se muestra en la página
-        order: [[sort, order]] // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+        order: [[sort, order]], // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+        include: [{
+          model: Genre,
+          attributes: ['name'],
+          through: {
+            attributes: [],
+          }
+        }],
       })
       res.send(videogames);
     }
