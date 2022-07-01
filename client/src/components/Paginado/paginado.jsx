@@ -21,7 +21,7 @@ export default function Paginado({ limit, paginado, page }) {
   }
   
   for (let j = currentPage; j < currentPage + 5; j++) {
-    if ((j-1) > 0 && (j-1) <= pageQty) {
+    if ((j-2) > 0 && (j-1) < pageQty) {
       pageNum5.push(pageNumbers[j-2])
     }
   }
@@ -29,12 +29,18 @@ export default function Paginado({ limit, paginado, page }) {
   return (
     <div className='paginado'>
       <ul className='pagination'>
+        <button className='edge' onClick={() => paginado(1)}>{1}</button>
+        <br/>
         {
           pageNum5.map(n => (
             <li className='number' key={n}>
               <button onClick={() => paginado(n)}>{n}</button>
             </li> 
           ))
+        }
+        <br/>
+        {
+          pageNumbers.length>1?<button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>:null
         }        
       </ul>
     </div>
