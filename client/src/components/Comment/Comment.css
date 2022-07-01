@@ -1,0 +1,15 @@
+.commentary-box{
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentary-box form{
+    display: flex;
+    flex-direction:row;
+}
+
+textarea{
+    resize: none;
+}
