@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../NavBar/navbar'
 import Card from '../Card/card'
 import {Link, useNavigate} from 'react-router-dom'
-import { postMercadoPago } from '../../redux/actions'
-
+import { 
+  delFromCart, 
+  getCartById,
+  postMercadoPago } 
+from '../../redux/actions'
 
 export default function ShoppingCart() {
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const id_user = localStorage.getItem('id')
+  const videogamesInCart = useSelector((state) => state.cart)
+  const cartLocal = JSON.parse(localStorage.getItem('cart'))
+  
+  
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
@@ -18,6 +27,14 @@ export default function ShoppingCart() {
     localStorage.setItem('cart', JSON.stringify(cart))
     dispatch(getCartById(id_user))
 }, [cart, dispatch])
+
+  
+  const current_cart = (typeof id_user === 'object') ? cartLocal : videogamesInCart
+  
+
+  
+  
+
 
   const handleDelete = (id) => {
     if(typeof id_user === 'object'){
