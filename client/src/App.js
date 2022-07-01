@@ -15,6 +15,7 @@ import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit';
+import Comment from './components/Comment/Comment';
 
 import ValidationMail from './components/ValidationMail/validationMail'
 
@@ -72,6 +73,7 @@ function App() {
           {/* Autorizacion - NO TOCAR */}
           <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
           
+          <Route path='/comment' element={<Comment />} />
         </Routes>
       </div>
     </BrowserRouter>

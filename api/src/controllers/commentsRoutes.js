@@ -26,11 +26,13 @@ router.post('/madeComment/:id_user/:id_game', async(req, res) => {
 
     const { id_user, id_game} = req.params
     const { comment } = req.body
+    
 
     if(!id_user || !id_game)return res.status(401).send('Faltan parametros obligatorios')
     if(comment.length > 256)return res.status(401).send('El comentario es muy largo.')
 
     try {
+        console.log('Hola!')
         let user = await Player.findByPk(id_user);
         let videogame = await Videogame.findByPk(id_game)
 
