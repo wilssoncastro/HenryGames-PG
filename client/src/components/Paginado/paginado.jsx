@@ -7,6 +7,7 @@ export default function Paginado({ limit, paginado, page }) {
   const allVideogames = useSelector((state) => state.allVideogames)
   const dispatch = useDispatch()
 
+
   useEffect(() => {  
     dispatch(getAllVideogames());
   }, [dispatch]);

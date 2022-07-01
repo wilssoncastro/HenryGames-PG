@@ -58,12 +58,13 @@ export default function Store() {
         <NavBar />
       </div>
       <h1>Videogames</h1>
-      <SearchBar 
+      <SearchBar
         name= {name} 
         setName = {setName}
+        setPage={setPage}
       />
 
-      <select hidden={name} onChange={(e) => handleLimit(e)}>
+      <select onChange={(e) => handleLimit(e)}>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
@@ -71,20 +72,20 @@ export default function Store() {
           <option value="200">200</option>
       </select>
 
-      <select hidden={name} onChange={(e) => handleSort(e)}>
+      <select onChange={(e) => handleSort(e)}>
           <option disabled={sort}>Sort</option>
           <option value='name'>Name</option>
           <option value='price'>Price</option>
           <option value='rating'>Rating</option>
       </select>
 
-      <select hidden={name} onChange={(e) => handleOrder(e)}>
+      <select onChange={(e) => handleOrder(e)}>
         <option disabled={order}>Order</option>
         <option value='ASC'>Upward</option>
         <option value='DESC'>Downward</option>
       </select>
 
-      <div hidden={name}>
+      <div hidden={name.length > 2}>
         <button onClick={(e) => prev(e)} disabled={page < 10}>PREV</button>
         <button onClick={(e) => next(e)} disabled={parseInt(limit) + parseInt(page) > 198}>NEXT</button>
         <div>
@@ -99,7 +100,7 @@ export default function Store() {
       <div className='containercard'>
         {currentVideogames.map((v) => {
           return (
-            !name?
+            // !name?
             <div>
               <Card
                 key={v.id}
@@ -109,19 +110,19 @@ export default function Store() {
                 free_to_play={v.free_to_play}
                 id={v.id}
               />
-            </div> : 
-            <div>
-              <Cards
-                key={v.id}
-                image={v.image}
-                name={v.name}
-                rating={v.rating}
-                free_to_play={v.free_to_play}
-                on_sale={v.on_sale}
-                price={v.price}
-                id={v.id}
-              />
-            </div>
+            </div>  
+            // <div>
+            //   <Cards
+            //     key={v.id}
+            //     image={v.image}
+            //     name={v.name}
+            //     rating={v.rating}
+            //     free_to_play={v.free_to_play}
+            //     on_sale={v.on_sale}
+            //     price={v.price}
+            //     id={v.id}
+            //   />
+            // </div>
           );
         })}
       </div>

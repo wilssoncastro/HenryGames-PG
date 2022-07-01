@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
   /////////////////////////////////////////llamado a BD
   else {
     const { name, page, limit, order, sort } = req.query
-    if (name && !(sort && order)) {
+    if (name && (name.length > 2) && !(sort && order)) {
       const videogames = await Videogame.findAll({
         where: {
           name: { [Op.iLike]: `${name}%` },
@@ -98,7 +98,7 @@ router.get('/', async (req, res) => {
       })
       res.send(videogames);
     }
-    else if (name && sort && order) {
+    else if (name && (name.length > 2) && sort && order) {
       const videogames = await Videogame.findAll({
         where: {
           name: { [Op.iLike]: `${name}%` },
