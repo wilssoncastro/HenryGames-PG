@@ -14,7 +14,8 @@ import VideogameCreate from './components/VideogameForm/CreateVideogame';
 import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
-import FormEdit from './components/VideogameForm/FormEdit'
+import FormEdit from './components/VideogameForm/FormEdit';
+import Comment from './components/Comment/Comment';
 
 import ValidationMail from './components/ValidationMail/validationMail'
 
@@ -26,7 +27,6 @@ function App() {
 
           {/* LANDING page que va a pedir Log In, ofrecer tambien un Sign Up, si por COOKIES detecta 
               que ya esta loggeado, te manda directo al Home O ENTRAR COMO INVITADO */}
-
           
           <Route exact path='/' element={<LandingPage />} />
 
@@ -72,8 +72,8 @@ function App() {
           
           {/* Autorizacion - NO TOCAR */}
           <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
-
           
+          <Route path='/comment' element={<Comment />} />
         </Routes>
       </div>
     </BrowserRouter>

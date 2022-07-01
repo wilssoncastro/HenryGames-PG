@@ -43,11 +43,18 @@ export default function LogIn() {
       
       
       if(log_in){
+        let carrito = localStorage.getItem('cart')
         localStorage.setItem("id", id)
         localStorage.setItem('name', name)
         localStorage.setItem('lastname', lastname)
         localStorage.setItem('type', type)
         localStorage.setItem('profile_pic', profile_pic)
+        
+        if(!(typeof carrito !== 'object' && carrito.length === 0)){
+          console.log(carrito)
+          localStorage.removeItem('cart')
+        }
+
         navigate('/home')
       }
 

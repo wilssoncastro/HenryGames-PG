@@ -1,4 +1,4 @@
-import { GET_USER_BY_ID } from '../actions/index'
+import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART } from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -7,7 +7,8 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
-    my_user: {}
+    my_user: {},
+    cart: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -65,10 +66,9 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case "GET_WISH_LIST":
-            console.log(action.payload)
             return {
                 ...state,
-                wishList: action.payload
+                wishList: action.payload.wishs
             }
 
         case "ADD_WISH_LIST":
@@ -81,14 +81,36 @@ const rootReducer = (state = initialState, action) => {
         case "DELETE_WISH_LIST":
             return {
                 ...state,
-                wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
+                wishList: state.wishList.filter(v => v.id.toString() !== action.payload.id.toString())
             }
+            
+        case "POST_CART":
+            return {
+                ...state
+            }
+        
         case GET_USER_BY_ID:
             return {
                 ...state,
                 my_user: action.payload.data
             }
-
+        case GET_CART_BY_ID:
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: action.payload.data.cart
+            }
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cart: state.cart.concat(action.payload.data)
+            }
+        case DELETE_FROM_CART:
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: state.cart.filter(v => v.id !== action.payload.data.id)
+            }
         default:
             return state;
     }
