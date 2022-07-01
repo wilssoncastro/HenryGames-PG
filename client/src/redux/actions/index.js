@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
-
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const DELETE_FROM_CART = 'DELETE_FROM_CART'
+export const GET_CART_BY_ID = 'GET_CART_BY_ID'
 
 export function getAllVideogames() {
   return async function (dispatch) {
@@ -119,25 +121,47 @@ export function deleteWishList(id, idGame){
   }
 }
 
-export function addToCart(payload){
-  return {
-    type: "ADD_TO_CART",
-    payload
+// ACTIONS DEL CART
+// 
+// 
+
+export function getCartById(id_user){
+  return function(dispatch){
+    return axios.get(`http://localhost:3001/cart/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: GET_CART_BY_ID,
+        payload: data
+      })
+    })
   }
 }
 
-export function delFromCart(id){
-  return {
-      type: "REMOVE_FROM_CART", 
-      payload: id
-    }
-  }
-
-export function clearCart(){
-  return {
-    type: "CLEAR_CART"
+export function addToCart(id, id_game){
+  return function(dispatch){
+    return axios.post(`http://localhost:3001/cart/add/${id}/${id_game}`)
+    .then(data => {
+      dispatch({
+        type: ADD_TO_CART
+      })
+    })
   }
 }
+
+export function delFromCart(id, id_game){
+  return function(dispatch){
+    return axios.delete(`http://localhost:3001/cart/delete/${id}/${id_game}`)
+    .then(data => {
+      dispatch({
+        type: DELETE_FROM_CART
+      })
+    })
+  }
+  }
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------  
+
 
 export function getCardStatistics(name){
   return async function (dispatch) {
@@ -147,6 +171,13 @@ export function getCardStatistics(name){
       payload: json.data
     });
   };
+}
+
+export function postMercadoPago(carrito){
+  return async function(dispatch){
+    var json = await axios.post("http://localhost:3001/mercadopago",carrito);
+    return json;
+  }
 }
 
 export function getUserById(id){

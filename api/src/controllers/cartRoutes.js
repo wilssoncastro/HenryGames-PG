@@ -25,7 +25,7 @@ router.post('/add/:id/:idGames', async(req, res) =>{
     const {id, idGames} = req.params;
     try {
         const user = await Player.findByPk(id)
-        const game = await Videogame.findByPk(idGame)
+        const game = await Videogame.findByPk(idGames)
 
         if(user && game){
             await user.addCart(game)
@@ -33,7 +33,7 @@ router.post('/add/:id/:idGames', async(req, res) =>{
             return res.send('No se encontro el usuario... Intentalo otra vez')
         }
 
-        return res.send('Juego agregado a carrito agregado')
+        return res.send(game)
 
     } catch (error) {
         
@@ -54,7 +54,7 @@ router.delete('/delete/:id/:idGame', async(req, res) => {
             return res.send('No se encontro el usuario... Intentalo otra vez')
         }
 
-        return res.send('Juego descartado del carrito')
+        return res.send(game)
     } catch (error) {
         res.send(error)
     }
