@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import "./Comment.css"
 
 export default function Comment({id_game}){
 
@@ -42,7 +43,7 @@ export default function Comment({id_game}){
     
 
     return (
-        <div>
+        <div className="commentary-box">
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Comentario</label>
