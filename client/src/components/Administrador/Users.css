@@ -1,0 +1,9 @@
+.tableUsers,td,th {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+td {
+    text-align: left;
+}

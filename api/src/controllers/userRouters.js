@@ -1,9 +1,6 @@
 const { Router } = require('express');
 const { Player } = require('../db');
 
-
-
-
 const router = Router();
 
 router.get('/', async (req, res) => {
