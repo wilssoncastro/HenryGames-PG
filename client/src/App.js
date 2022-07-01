@@ -14,9 +14,9 @@ import VideogameCreate from './components/VideogameForm/CreateVideogame';
 import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
-import FormEdit from './components/VideogameForm/FormEdit';
+import FormEdit from './components/VideogameForm/FormEdit'
+import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
-
 import ValidationMail from './components/ValidationMail/validationMail'
 
 function App() {
@@ -63,6 +63,7 @@ function App() {
           <Route exact path='/profile/:id' element={<Profile />}/>
 
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
+          <Route exact path='/admin/users' element={<Users />} />
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart />}/>
