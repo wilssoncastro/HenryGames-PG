@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../NavBar/navbar'
 import Card from '../Card/card'
 import {Link, useNavigate} from 'react-router-dom'
-import { delFromCart, getCartById } from '../../redux/actions'
+import { 
+  delFromCart, 
+  getCartById } 
+from '../../redux/actions'
 
 export default function ShoppingCart() {
 
@@ -11,7 +14,8 @@ export default function ShoppingCart() {
   const dispatch = useDispatch()
 
   const id_user = localStorage.getItem('id')
-
+  const videogamesInCart = useSelector((state) => state.cart)
+  const cartLocal = JSON.parse(localStorage.getItem('cart'))
   
   
 
@@ -24,11 +28,10 @@ export default function ShoppingCart() {
 }, [cart, dispatch])
 
   
-  
-  const videogamesInCart = useSelector((state) => state.cart)
-  const cartLocal = JSON.parse(localStorage.getItem('cart'))
-
   const current_cart = (typeof id_user === 'object') ? cartLocal : videogamesInCart
+  
+
+  
   
 
 

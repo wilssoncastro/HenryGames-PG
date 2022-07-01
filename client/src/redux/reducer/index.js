@@ -83,17 +83,17 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 wishList: state.wishList.filter(v => v.id.toString() !== action.payload.id.toString())
             }
-        case GET_USER_BY_ID:
-            return {
-                ...state,
-                my_user: action.payload.data
-            }
-        case GET_CART_BY_ID:
-            console.log(action.payload)
-            return {
-                ...state,
-                cart: action.payload.data.cart
-            }
+            case GET_USER_BY_ID:
+                return {
+                    ...state,
+                    my_user: action.payload.data
+                }
+            case GET_CART_BY_ID:
+                console.log(action.payload)
+                return {
+                    ...state,
+                    cart: action.payload.data.cart
+                }
         default:
             return state;
     }
