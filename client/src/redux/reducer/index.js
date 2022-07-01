@@ -1,4 +1,4 @@
-import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART } from '../actions/index'
+import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, DELETE_ALL_FROM_CART } from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -108,6 +108,11 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_FROM_CART:
             console.log(action.payload)
             return {
+                ...state,
+                cart: state.cart.filter(v => v.id !== action.payload.data.id)
+            }
+        case DELETE_ALL_FROM_CART:
+            return{
                 ...state,
                 cart: state.cart.filter(v => v.id !== action.payload.data.id)
             }

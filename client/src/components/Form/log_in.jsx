@@ -52,7 +52,7 @@ export default function LogIn() {
         
         if(!(typeof carrito !== 'object' && carrito.length === 0)){
           console.log(carrito)
-          localStorage.removeItem('cart')
+          localStorage.setItem('cart', JSON.stringify([]))
         }
 
         navigate('/home')
