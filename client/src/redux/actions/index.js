@@ -142,7 +142,8 @@ export function addToCart(id, id_game){
     return axios.post(`http://localhost:3001/cart/add/${id}/${id_game}`)
     .then(data => {
       dispatch({
-        type: ADD_TO_CART
+        type: ADD_TO_CART,
+        payload: data
       })
     })
   }
@@ -153,7 +154,8 @@ export function delFromCart(id, id_game){
     return axios.delete(`http://localhost:3001/cart/delete/${id}/${id_game}`)
     .then(data => {
       dispatch({
-        type: DELETE_FROM_CART
+        type: DELETE_FROM_CART,
+        payload: data
       })
     })
   }
