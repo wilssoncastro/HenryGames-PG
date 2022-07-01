@@ -7,6 +7,7 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+    users: [],
     my_user: {},
     cart: []
 }
