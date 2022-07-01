@@ -53,7 +53,8 @@ export default function ShoppingCart() {
   const handleBuyMercadoPago = (carrito) => {
     dispatch(postMercadoPago(carrito))
     .then((data)=>{
-          window.location.assign(data.data.init_point)
+          // window.location.assign(data.data.init_point)
+          window.open(data.data.init_point);
         })
         .catch(err => console.error(err))
   }
