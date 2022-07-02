@@ -8,6 +8,7 @@ import * as BiIcons from "react-icons/bi"
 import CarouselCard from '../CarouselCard/CarouselCard'
 import './home.css'
 import './carousel.css'
+import CarouselCatCard from '../CarouselCard/CarouselCatCard';
 // import Card from '../Card/card'
 
 export default function Home() {
@@ -18,14 +19,14 @@ export default function Home() {
     const [page, setPage] = useState(0)
     const [sort, setSort] = useState('rating');
     const [order, setOrder] = useState('desc');
-    const [limit, setLimit] = useState(6);
+    const [limit, setLimit] = useState(15);
     
     useEffect(() => {
         // dispatch(getAllVideogames())
         dispatch(getFilteredVideogames(name, page, sort, order, limit))
     }, [dispatch, sort, order, limit])
 
-
+    console.log(videogames)
     
     return (
         <div className='background'>
@@ -135,10 +136,9 @@ export default function Home() {
 
                     {/* Carousel principal */}
                     <div className="ContainerCarousel">
-                        <h1 className='main-carousel-title'>Promoted</h1>
-                        <Carousel focusOnSelect={false}>
-                            {videogames.map((e) => {
-                                console.log(e.genres)
+                        <h1 className='main-carousel-title'>Best Rated</h1>
+                        <Carousel focusOnSelect={false} >
+                            {videogames.slice(0, 6).map((e) => {
                                 return(
                                     <item>
                                         <CarouselCard
@@ -148,6 +148,7 @@ export default function Home() {
                                             short_screenshots={e.short_screenshots}
                                             genres={e.genres}
                                             price={`$${e.price}`}
+                                            rating={e.rating}
                                             />
                                     </item>
                                 )
@@ -160,86 +161,20 @@ export default function Home() {
                     <div className="CategoryContainerCarousel">
                         <h3 className='category-carousel-title'>Shooter</h3>
                         <Carousel focusOnSelect={false} itemsToShow={4}>
-                            <item>
-                                <Link to='/store/3498' className='text-deco'>
-                                    <div className='cat-card'>
-
-                                        {/* Arriba */}
-                                        <img className='category-carousel-img' src="https://i.blogs.es/35200c/gta-san-andreas-android/1366_2000.jpeg" alt='img not found' />
-
-                                        {/* Abajo */}
-                                        <div className='cat-card-footer'>
-                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                            <span className='carousel-card-price'>$59.99</span>
-                                        </div>
-
-                                    </div>
-                                </Link>
-                            </item>
-                            <item>
-                                <Link to='/store/3498' className='text-deco'>
-                                    <div className='cat-card'>
-
-                                        {/* Arriba */}
-                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
-
-                                        {/* Abajo */}
-                                        <div className='cat-card-footer'>
-                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                            <span className='carousel-card-price'>$59.99</span>
-                                        </div>
-
-                                    </div>
-                                </Link>
-                            </item>
-
-                            <item>
-                                <Link to='/store/3498' className='text-deco'>
-                                    <div className='cat-card'>
-
-                                        {/* Arriba */}
-                                        <img className='category-carousel-img' src="https://media.rawg.io/media/games/328/3283617cb7d75d67257fc58339188742.jpg" alt='img not found' />
-
-                                        {/* Abajo */}
-                                        <div className='cat-card-footer'>
-                                            <h3 className="carousel-card-title">Portal 2</h3>
-                                            <span className='carousel-card-price'>$59.99</span>
-                                        </div>
-
-                                    </div>
-                                </Link>
-                            </item>
-                            <item>
-                                <Link to='/store/3498' className='text-deco'>
-                                    <div className='cat-card'>
-
-                                        {/* Arriba */}
-                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
-
-                                        {/* Abajo */}
-                                        <div className='cat-card-footer'>
-                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                            <span className='carousel-card-price'>$59.99</span>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </item>
-                            <item>
-                                <Link to='/store/3498' className='text-deco'>
-                                    <div className='cat-card'>
-
-                                        {/* Arriba */}
-                                        <img className='category-carousel-img' src="https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fgrand-theft-auto-v%2Fhome%2FGTAV_EGS_Artwork_1920x1080_Hero-Carousel_V06-1920x1080-1503e4b1320d5652dd4f57466c8bcb79424b3fc0.jpg" alt='img not found' />
-
-                                        {/* Abajo */}
-                                        <div className='cat-card-footer'>
-                                            <h3 className="carousel-card-title">Grand Theft Auto V</h3>
-                                            <span className='carousel-card-price'>$59.99</span>
-                                        </div>
-
-                                    </div>
-                                </Link>
-                            </item>
+                            {videogames.map((e) => {
+                                console.log(e)
+                                
+                                return(
+                                    <item>
+                                        <CarouselCatCard
+                                            name={e.name}
+                                            image={e.image}
+                                            id={e.id}
+                                            price={`$${e.price}`}
+                                            />
+                                    </item>
+                                )
+                            })}
                         </Carousel>
                     </div>
 

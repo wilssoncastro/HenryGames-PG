@@ -59,8 +59,22 @@ export default function NavBar() {
             title: 'Friends',
             path: '#',
             icon: <FaIcons.FaUserFriends/>,
-            className: 'friends-text',
+            className: 'bottom-text',
             onClick: showFriendBox
+        },
+        {
+            title: 'Sign Up',
+            path: '#',
+            icon: <CgIcons.CgProfile/>,
+            className: 'bottom-text',
+            onClick: showSidebar
+        },
+        {
+            title: 'Log In',
+            path: '#',
+            icon: <CgIcons.CgProfile/>,
+            className: 'bottom-text',
+            onClick: showSidebar
         }
         ]
       
@@ -137,16 +151,18 @@ export default function NavBar() {
                         </li>
 
                         {/* Map de los items que muestra el menu: Profile, Theme, Language, Log In, Friends */}
-                        {SidebarData.map((item, index) => {
-                            return (
-                                <li key={index} className={item.className} >
-                                    <Link to={item.path} onClick={item.onClick}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            )
-                        })}
+                        <div className="navbar-side-items">
+                            {SidebarData.map((item, index) => {
+                                return (
+                                    <li key={index} className={item.className} >
+                                        <Link to={item.path} onClick={item.onClick}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </li>
+                                )
+                            })}
+                        </div>
 
                         {/* Renderiza componente de lista de amigos */}
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>

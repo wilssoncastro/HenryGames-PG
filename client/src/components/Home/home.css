@@ -1,6 +1,6 @@
 /* FONDO */
 .background{
-  background-image: radial-gradient(circle at 40.67% -2.89%, #F0E68C 0, #FFD700 16.67%, #FFC72C 33.33%, #FEBE10 50%, #e6ba00 66.67%, #d79e00 83.33%, #cb8300 100%);
+  background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg');
   /* background-color: #151414; */
   background-position: center;
   background-size: cover;

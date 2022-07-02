@@ -3,18 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredVideogames } from '../../redux/actions'
 
-export default function CarouselCard({name, id, image, short_screenshots, genres, price}) {
-  // const dispatch = useDispatch();
-  // const videogames = useSelector((state) => state.videogames)
-
-  // const [sort, setSort] = useState('rating');
-  // const [order, setOrder] = useState('desc');
-  // const [limit, setLimit] = useState(6);
-  
-  // useEffect(() => {
-  //   dispatch(getFilteredVideogames(sort, order, limit))
-  // }, [dispatch, sort, order, limit])
-  
+export default function CarouselCard({name, id, image, short_screenshots, genres, price, rating}) {  
   return (
     <div>
       <item>
@@ -38,7 +27,7 @@ export default function CarouselCard({name, id, image, short_screenshots, genres
               <img className='screenshots' src={short_screenshots[3]} alt='img not found' />
             </div>
             <div className='c35-footer'>
-              <h5 className='footer-txt'>Top Seller</h5>
+              <h5 className='footer-txt'>Rating {rating}</h5>
               <div className='genres-section'>
               {/* <span className='genre-style'>{genres[0].name}</span> */}
                 {genres.map((g) => (
