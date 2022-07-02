@@ -36,7 +36,7 @@ router.post('/add/:id/:idGames', async(req, res) =>{
         return res.send(game)
 
     } catch (error) {
-        
+        res.send(error)
     }
 })
 

@@ -1,0 +1,58 @@
+.Info_Comment{
+    border: 2px solid grey;
+    margin: 1rem;
+    padding: 1rem;
+    width: 50%;
+    height: 6rem;
+}
+
+.info{
+    height: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.info p{
+    margin: 0;
+}
+
+.body{
+    display: flex;
+    flex-direction: row;
+}
+
+.msg{
+    width: 90%;
+    padding: 0;
+    text-align: left;
+}
+
+.options{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+}
+
+.options button{
+    margin: .1rem 0;
+}
+
+.edit_form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.textarea{
+    width: 90%;
+    height: 100%;
+    
+}
+
+textarea{
+    height: 100%;
+    width: 90%;
+}
