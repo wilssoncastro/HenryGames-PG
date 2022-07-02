@@ -111,11 +111,15 @@ export default function Edit() {
           }
         </div>
       )
+    }else{      
+      return (
+        <ComponentError></ComponentError>
+      )
     }
   } else
-  return(
-    <ComponentError></ComponentError>
-  )
+    return (
+      <ComponentError></ComponentError>
+    )
 
 
 

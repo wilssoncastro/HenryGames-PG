@@ -49,9 +49,14 @@ export function Users() {
           </table>
         </div>
       );
+    }else{      
+      return (
+        <ComponentError></ComponentError>
+      )
     }
   } else
-  return(
-    <ComponentError></ComponentError>
-  )
+    return (
+      <ComponentError></ComponentError>
+    )
+
 }

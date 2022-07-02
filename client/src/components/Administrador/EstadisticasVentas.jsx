@@ -63,11 +63,16 @@ if (id_user_admin) {
       }
     </div>
   )
+}else{      
+  return (
+    <ComponentError></ComponentError>
+  )
 }
 } else
-return(
+return (
   <ComponentError></ComponentError>
 )
+
 
 
 }

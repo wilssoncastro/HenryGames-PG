@@ -90,10 +90,10 @@ const rootReducer = (state = initialState, action) => {
                 ...state
             }
         
-        case GET_USER_BY_ID:
+        case "GET_USER_BY_ID":
             return {
                 ...state,
-                my_user: action.payload.data
+                my_user: action.payload
             }
         case GET_CART_BY_ID:
             console.log(action.payload)

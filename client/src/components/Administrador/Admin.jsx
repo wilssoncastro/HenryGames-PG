@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { ComponentError } from "./componentError";
 import "./admin.css"
+import ErrorLogin from "../ErrorLogin.jsx/ErrorLogin";
+
 
 
 export function Admin() {
 
   const id_user_admin = localStorage.getItem('type')
+  console.log(id_user_admin)
 
   if (id_user_admin) {
     if (id_user_admin === "adm") {
@@ -40,10 +43,14 @@ export function Admin() {
           </div>
         </div>
       )
+    }else{      
+      return (
+        <ComponentError></ComponentError>
+      )
     }
   } else
     return (
-      <ComponentError></ComponentError>
+      <ErrorLogin></ErrorLogin>
     )
 
 }
