@@ -53,7 +53,7 @@ export default function Store() {
  }
 
   return (
-    <div>
+    <div className='background'>
       <div>
         <NavBar />
       </div>

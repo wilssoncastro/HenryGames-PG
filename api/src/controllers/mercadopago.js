@@ -1,15 +1,14 @@
-const { OrderMP } = require('../db.js');
 const {Router} = require('express');
 const router = Router();
 
 //SDK mercadopago
 const mercadopago = require('mercadopago');
 
-const { ACCESS_TOKEN } = process.env;
+const { ACCESS_TOKEN_MP } = process.env;
 
 //agrega credenciales
 mercadopago.configure({
-    access_token: ACCESS_TOKEN
+    access_token: ACCESS_TOKEN_MP
 });
 
 router.post('/', (req, res) => {
@@ -21,7 +20,7 @@ router.post('/', (req, res) => {
         {title: 'God of War', quantity: 1, price:  5000},
         {title: 'NFS Heat', quantity: 1, price: 2000},
     ]; */
-console.log(carrito)
+
 //cosas que requiere MP de tu respectiva compra
     const items_mp = carrito.map(e => ({
         title: e.title,
@@ -51,9 +50,9 @@ let preference = {
 mercadopago.preferences.create(preference)
 
 .then(function(response){
-    console.info('respondio')
-    global.init_point = response.body.init_point 
-    console.log(response.body)
+    // console.info('respondio')
+    global.init_point = response.body.init_point
+    // console.log(response.body)
     res.json({ init_point: global.init_point })//lo que devolvemos al front
 })
 .catch(function(error){

@@ -1,4 +1,4 @@
-import { GET_USER_BY_ID, GET_CART_BY_ID } from '../actions/index'
+import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART } from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -7,6 +7,7 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+    users: [],
     my_user: {},
     cart: []
 }
@@ -99,6 +100,17 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: action.payload.data.cart
+            }
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cart: state.cart.concat(action.payload.data)
+            }
+        case DELETE_FROM_CART:
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: state.cart.filter(v => v.id !== action.payload.data.id)
             }
         default:
             return state;
