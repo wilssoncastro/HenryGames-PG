@@ -11,7 +11,7 @@
   justify-content: center;
   position: relative;
   z-index: 1;
-  color: #eee;
+  
   font-family: "Arial Black", Gadget, sans-serif;
 
 }
@@ -21,6 +21,7 @@
     background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(149, 149, 149));
     display: inline-block;
     margin-top: 120px;
+    color: #FFF ;
 
 }
 
@@ -29,16 +30,17 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    color: #eee;
    
    
 }
 
 .btn_adm{
     margin-top: 20px;
-    color: black;
-    margin-bottom: 30px;
-    
+    color: rgb(255, 255, 255);
+    margin-bottom: 30px;    
     }
+
 
 .admin_option{
     display: flow-root;
@@ -49,9 +51,9 @@
     border: #c7a94b 3px solid;  
     text-align: center;
     text-transform: uppercase;
-    transition: 1.5s;
-    background-size: 150% auto;
     color: #FFF;
+    transition: 1.5s;    
+    background-size: 150% auto;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;    
     box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -59,7 +61,7 @@
     cursor: pointer;
     display: inline-block;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 20px; 
     
 }
 
@@ -68,8 +70,8 @@
     margin: 8px 10px 12px;
     color:black;
     font-size: 30px;
-    background-color: #c7a94b;
-    transform: scale(1.05);
+    background-color: #c7a94b;  
+    
 }
 
 

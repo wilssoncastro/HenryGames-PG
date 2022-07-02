@@ -8,6 +8,7 @@ export const GET_COMMENTS_BY_GAME = 'GET_COMMENTS_BY_GAME'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const POST_COMMENT = 'POST_COMMENT'
+export const REPORT_COMMENT = 'REPORT_COMMENT'
 
 export function getAllVideogames() {
   return async function (dispatch) {
@@ -187,14 +188,24 @@ export function postMercadoPago(carrito){
 }
 
 export function getUserById(id){
-  return async function(dispatch){
+  if(id){
+    return async function(dispatch){
     var json = await axios.get(`http://localhost:3001/users?id=${id}`)
     return dispatch({
         type: "GET_USER_BY_ID",
         payload: json.data
       })
     
+  }}else{
+    return function(dispatch){
+      var json = []
+      return dispatch({
+          type: "GET_USER_BY_ID",
+          payload: json
+        })
   }
+   
+}
 }
 
 export function getAllUsers(){
@@ -262,6 +273,17 @@ export function post_comment(id_user, id_game, commentary){
       dispatch({
         type: POST_COMMENT,
         payload: data
+      })
+    })
+  }
+}
+
+export function report_comment(id_comment){
+  return function(dispatch){
+    return axios.put(`http://localhost:3001/report_comment/${id_comment}`)
+    .then(data => {
+      dispatch({
+        type: REPORT_COMMENT
       })
     })
   }

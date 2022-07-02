@@ -1,9 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUserById } from "../../redux/actions";
+import "./LogOut.css"
+
 
 export default function LogOut(){
-
+    const dispatch = useDispatch();
     let navigate = useNavigate();
 
     function onClick(e){
@@ -24,16 +28,20 @@ export default function LogOut(){
                 localStorage.removeItem('name')
                 localStorage.removeItem('type')
                 localStorage.removeItem('id')
+                dispatch(getUserById())
+                
             }
+            
         })
         .catch(err => console.log(err))
 
-        navigate('/home')
+        navigate('/')
     }
 
     return (
         <div>
             <button
+           className="btn_log_out"
                 onClick={(e) => onClick(e)}
                 // style={{
                 //   backgroundColor: "#f5978c",
