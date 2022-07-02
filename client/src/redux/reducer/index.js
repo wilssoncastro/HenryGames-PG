@@ -115,7 +115,7 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_ALL_FROM_CART:
             return{
                 ...state,
-                cart: state.cart.filter(v => v.id !== action.payload.data.id)
+                cart: action.payload.data
             }
         default:
             return state;

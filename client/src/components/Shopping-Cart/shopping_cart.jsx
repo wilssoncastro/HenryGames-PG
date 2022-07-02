@@ -46,11 +46,11 @@ export default function ShoppingCart() {
     navigate('/my_cart')
   }
 
-  const handleClearCart = (id) => {
+  const handleClearCart = () => {
     if(typeof id_user === 'object'){
       localStorage.setItem('cart', JSON.stringify([]))
     }else{
-      dispatch(delAllFromCart(id))
+      dispatch(delAllFromCart(id_user))
     }
     navigate('/my_cart')
   }
@@ -72,7 +72,7 @@ export default function ShoppingCart() {
       <div>
       
       {
-          current_cart.length > 0 ? 
+          current_cart?.length > 0 ? 
           (
             <div style={{marginTop: '100px'}}>
               {
