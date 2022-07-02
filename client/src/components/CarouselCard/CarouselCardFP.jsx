@@ -4,26 +4,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredVideogames } from '../../redux/actions'
 import Carousel from 'react-elastic-carousel'
 
-export default function CarouselCard() {
+export default function CarouselFP() {
   
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames)
 
-  const [nameF] = useState("")
-  const [sort, setSort] = useState('rating');
-  const [order, setOrder] = useState('desc');
-  const [limit, setLimit] = useState(200);
-  const [page, setPage] = useState(0)
+  // const [nameF] = useState("")
+  // const [sort, setSort] = useState('price');
+  // const [order, setOrder] = useState('desc');
+  // const [limit, setLimit] = useState(15);
+  // const [page, setPage] = useState(0)
+  
+  // useEffect(() => {
+  //   dispatch(getFilteredVideogames(nameF, page, sort, order, limit))
+  // }, [dispatch, page, sort, order, limit])
 
-  useEffect(() => {
-    dispatch(getFilteredVideogames(nameF, page, sort, order, limit))
-  }, [dispatch, page, sort, order, limit])
+  const onsale = videogames.filter((e) => e.free_to_play == true)
   
   return (
     <div>
-      <Carousel focusOnSelect={false}>
+      <Carousel focusOnSelect={false} itemsToShow={5}>
       {
-      videogames.slice(0, 6).map((e) => (
+      onsale.slice(0, 15).map((e) => (
         <item>
         <div className='ItemCarousel'>
           
@@ -45,14 +47,14 @@ export default function CarouselCard() {
               <img className='screenshots' src={e.short_screenshots[3]} alt='img not found' />
             </div>
             <div className='c35-footer'>
-              <h5 className='footer-txt'>Top Seller</h5>
+              <h5 className='footer-txt'>Free to Play</h5>
               <div className='genres-section'>
               {/* <span className='genre-style'>{genres[0].name}</span> */}
                 {e.genres.map((g) => (
                   <span className='genre-style'>{g.name}</span>
                 ))}
               </div>
-              <span className='price-tag'>{e.price}</span>
+              <span className='price-tag'>Free to Play</span>
             </div>
           </div>
 
