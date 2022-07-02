@@ -188,14 +188,24 @@ export function postMercadoPago(carrito){
 }
 
 export function getUserById(id){
-  return async function(dispatch){
+  if(id){
+    return async function(dispatch){
     var json = await axios.get(`http://localhost:3001/users?id=${id}`)
     return dispatch({
         type: "GET_USER_BY_ID",
         payload: json.data
       })
     
+  }}else{
+    return function(dispatch){
+      var json = []
+      return dispatch({
+          type: "GET_USER_BY_ID",
+          payload: json
+        })
   }
+   
+}
 }
 
 export function getAllUsers(){

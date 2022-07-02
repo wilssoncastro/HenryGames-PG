@@ -98,6 +98,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 my_user: action.payload
             }
+        case "GET_ALL_USERS":
+            return {
+                ...state,
+                users: action.payload
+            }
         case GET_CART_BY_ID:
             console.log(action.payload)
             return {
