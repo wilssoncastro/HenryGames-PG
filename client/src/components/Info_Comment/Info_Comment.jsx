@@ -65,7 +65,7 @@ export default function Info_Comment({id, id_user, comment, createdAt}){
                 {!edit_mode ?
                     <>
                     <div className="msg">
-                        {comment}
+                        {edittedComment}
                     </div>
                     <div className="options">
                     {!is_auhorized ? <></> : (!its_mine &&
