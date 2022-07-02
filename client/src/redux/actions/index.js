@@ -4,6 +4,10 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DELETE_FROM_CART = 'DELETE_FROM_CART'
 export const GET_CART_BY_ID = 'GET_CART_BY_ID'
+export const GET_COMMENTS_BY_GAME = 'GET_COMMENTS_BY_GAME'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const POST_COMMENT = 'POST_COMMENT'
 
 export function getAllVideogames() {
   return async function (dispatch) {
@@ -183,14 +187,13 @@ export function postMercadoPago(carrito){
 }
 
 export function getUserById(id){
-  return function(dispatch){
-    return axios.post(`http://localhost:3001/users?id=${id}`)
-    .then(data => {
-      dispatch({
+  return async function(dispatch){
+    var json = await axios.get(`http://localhost:3001/users?id=${id}`)
+    return dispatch({
         type: "GET_USER_BY_ID",
-        payload: data
+        payload: json.data
       })
-    })
+    
   }
 }
 
@@ -203,3 +206,68 @@ export function getAllUsers(){
       })
   }
 }
+export function editProfile(id,payload){
+  return async function(dispatch){
+   let json = await axios.put(`http://localhost:3001/users/update?id=${id}`, payload)
+      dispatch({
+        type: "PUT_PROFILE",
+        payload: json.data
+      })
+    }
+  }
+//COMENTARIOS 
+//FUNCIONES
+//
+
+export function getCommentsByGame(id_game){
+  return function(dispatch){
+    return axios.get(`http://localhost:3001/comments?id_game=${id_game}`)
+    .then(data => {
+      dispatch({
+        type: GET_COMMENTS_BY_GAME,
+        payload: data
+      })
+    })
+  }
+}
+
+export function edit_comment(id_comment, comentario){
+  return function(dispatch){
+    return axios.put(`http://localhost:3001/comments/editComment/${id_comment}`, comentario)
+    .then(data => {
+      dispatch({
+        type: EDIT_COMMENT,
+        payload: data
+      })
+    })
+  }
+}
+
+export function delete_comment(id_comment){
+  return function(dispatch){
+    return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)
+    .then(data => {
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: data
+      })
+    })
+  }
+}
+
+export function post_comment(id_user, id_game, commentary){
+  return function(dispatch){
+    return axios.post(`http://localhost:3001/comments/madeComment/${id_user}/${id_game}`, commentary)
+    .then(data => {
+      dispatch({
+        type: POST_COMMENT,
+        payload: data
+      })
+    })
+  }
+}
+
+
+//FIN ACTIONS 
+// COMENTARIOS
+//

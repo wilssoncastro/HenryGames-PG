@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { post_comment } from "../../redux/actions";
 import axios from "axios";
 import "./Comment.css"
 
@@ -8,7 +9,8 @@ export default function Comment({id_game}){
     let [comment, setComment] = useState('')
     let [error, setError] = useState('');
     let id_user = localStorage.getItem('id')
-    console.log(id_user)
+    const dispatch = useDispatch()
+    
 
     function validate(comment){
         error = ''
@@ -26,11 +28,12 @@ export default function Comment({id_game}){
         
         if(error.length === 0 && comment.length !== 0){
             console.log('Enviado')
-            const data = await axios.post(
-                `http://localhost:3001/comments/madeComment/${id_user}/${id_game}`, 
-                {comment:comment})
-            .then(res => console.log('BIEEEEEEEn'))
-            .catch(err => console.log(err))
+            dispatch(post_comment(id_user,id_game,{comment:comment}))
+
+            setComment('')
+            setError('')
+        }else{
+            setError('Error')
         }
     }
 

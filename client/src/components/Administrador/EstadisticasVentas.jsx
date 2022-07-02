@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCardStatistics } from "../../redux/actions";
 /* import Card from "../Card/card"; */
 import { Link } from "react-router-dom";
+import { ComponentError } from "./componentError";
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -27,6 +28,10 @@ for(let i = 0; i < totalPrice.length; i++){
   totalGanancias += ganancias;
   console.log(totalGanancias);
 }
+
+const id_user_admin = localStorage.getItem('type')
+if (id_user_admin) {
+  if (id_user_admin === "adm") {
 
   return (
     <div>
@@ -57,5 +62,17 @@ for(let i = 0; i < totalPrice.length; i++){
         )) : null
       }
     </div>
-  );
+  )
+}else{      
+  return (
+    <ComponentError></ComponentError>
+  )
+}
+} else
+return (
+  <ComponentError></ComponentError>
+)
+
+
+
 }
