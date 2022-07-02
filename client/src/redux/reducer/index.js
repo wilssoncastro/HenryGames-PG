@@ -1,4 +1,6 @@
-import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART } from '../actions/index'
+import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
+        GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT
+} from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -8,7 +10,8 @@ const initialState = {
     genres: [],
     esrb: [],
     my_user: {},
-    cart: []
+    cart: [],
+    comments: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -110,6 +113,36 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: state.cart.filter(v => v.id !== action.payload.data.id)
+            }
+        case GET_COMMENTS_BY_GAME:
+            console.log(action.payload)
+            return {
+                ...state,
+                comments: action.payload.data
+            }
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                comments: state.comments.filter(v => v.id !== action.payload.data.id)
+            }
+        case POST_COMMENT:
+            return{
+                ...state,
+                comments: state.comments.concat(action.payload.data)
+            }
+        case EDIT_COMMENT:
+            console.log(state.comments)
+            let elemento = action.payload.data
+            for(let i = 0; i < state.comments.length; i++){
+                if(state.comments[i].id === elemento.id){
+                    state.comments.splice(i, 1, elemento)
+                }
+            }
+            console.log(state.comments)
+
+            return{
+                ...state,
+                comments: state.comments
             }
         default:
             return state;
