@@ -16,7 +16,7 @@
     margin: .2rem;
 }
 
-textarea{
+.new_comment{
     resize: none;
     width: 20rem;
     height: 8rem;

@@ -260,6 +260,8 @@ export function post_comment(id_user, id_game, commentary){
 }
 
 
+
+
 //FIN ACTIONS 
 // COMENTARIOS
 //
