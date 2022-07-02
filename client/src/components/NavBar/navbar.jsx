@@ -106,8 +106,9 @@ export default function NavBar() {
                             {
                             cartLocal? 
                             
-                            (<Link to="/my_cart">{cart.length?cart.length:null}
-                            <MdIcons.MdShoppingCart className="navbar-icons" />
+                            (<Link to="/my_cart">
+                                {cart.length?cart.length:null}
+                                <MdIcons.MdShoppingCart className="navbar-icons" />
                             </Link>) :
                             (<Link to="/my_cart">
                             <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
