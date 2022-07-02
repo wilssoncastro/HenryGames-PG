@@ -19,6 +19,7 @@ export default function NavBar() {
     const [friendBox, setFriendBox] = useState(false);
     const cartLocal = JSON.parse(localStorage.getItem('cart'));
     let id = localStorage.getItem("id");
+    const cart = useSelector((state) => state.cart)
 
 
     const showSidebar = () =>{ 
@@ -63,7 +64,7 @@ export default function NavBar() {
             onClick: showFriendBox
         }
         ]
-      
+    
 
     return (
         <div>
@@ -105,7 +106,7 @@ export default function NavBar() {
                             {
                             cartLocal? 
                             
-                            (<Link to="/my_cart">
+                            (<Link to="/my_cart">{cart.length?cart.length:null}
                             <MdIcons.MdShoppingCart className="navbar-icons" />
                             </Link>) :
                             (<Link to="/my_cart">

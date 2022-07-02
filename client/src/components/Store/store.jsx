@@ -97,35 +97,23 @@ export default function Store() {
       </div>
 
       <div className='containercard'>
-        {currentVideogames.map((v, i) => {
-          return (
-            // !name?
-            <div>
-              <Card
-                key={v.id}
-                image={v.image}
-                name={v.name}
-                price={v.price}
-                free_to_play={v.free_to_play}
-                id={v.id}
-              />
-            </div>  
-            // <div>
-            //   <Cards
-            //     key={v.id}
-            //     image={v.image}
-            //     name={v.name}
-            //     rating={v.rating}
-            //     free_to_play={v.free_to_play}
-            //     on_sale={v.on_sale}
-            //     price={v.price}
-            //     id={v.id}
-            //   />
-            // </div>
-          );
-        })}
+        {
+          currentVideogames.map((v, i) => {
+            return (
+              <div>
+                <Card
+                  key={v.id}
+                  image={v.image}
+                  name={v.name}
+                  price={v.price}
+                  free_to_play={v.free_to_play}
+                  id={v.id}
+                />
+              </div>
+            )
+          })
+        }
       </div>
-
     </div>
   );
 }
