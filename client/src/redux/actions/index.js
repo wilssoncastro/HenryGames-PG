@@ -187,14 +187,13 @@ export function postMercadoPago(carrito){
 }
 
 export function getUserById(id){
-  return function(dispatch){
-    return axios.get(`http://localhost:3001/users?id=${id}`)
-    .then(data => {
-      dispatch({
+  return async function(dispatch){
+    var json = await axios.get(`http://localhost:3001/users?id=${id}`)
+    return dispatch({
         type: "GET_USER_BY_ID",
-        payload: data
+        payload: json.data
       })
-    })
+    
   }
 }
 
@@ -207,6 +206,15 @@ export function getAllUsers(){
       })
   }
 }
+export function editProfile(id,payload){
+  return async function(dispatch){
+   let json = await axios.put(`http://localhost:3001/users/update?id=${id}`, payload)
+      dispatch({
+        type: "PUT_PROFILE",
+        payload: json.data
+      })
+    }
+  }
 //COMENTARIOS 
 //FUNCIONES
 //
