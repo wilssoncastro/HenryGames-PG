@@ -21,13 +21,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 videogames: action.payload,
-                allVideogames: action.payload
+                allVideogames: action.payload,
             }
 
         case "GET_FILTERED_VIDEOGAMES":
             return {
                 ...state,
-                videogames: action.payload
+                videogames: action.payload,
             }
 
         case "GET_CARD_STATISTICS": 
