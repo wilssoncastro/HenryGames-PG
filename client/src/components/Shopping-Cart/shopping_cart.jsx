@@ -73,7 +73,7 @@ export default function ShoppingCart() {
               {
                 current_cart.map((game) => (
                   <div>
-                    <Card image={game.image} name={game.name} price={game.price} />
+                    <Card key={game.id} image={game.image} name={game.name} price={game.price} id={game.id} />
                     <button type='reset' onClick={() => handleDelete(game.id)}>Remove game from cart</button>
                   </div>
                   )
