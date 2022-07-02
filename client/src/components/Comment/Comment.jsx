@@ -50,7 +50,7 @@ export default function Comment({id_game}){
             <form onSubmit={onSubmit}>
                 <div>
                     <label>Comentario</label>
-                    <textarea name='comment' value={comment} onChange={handleChange}></textarea>
+                    <textarea className="new_comment" name='comment' value={comment} onChange={handleChange}></textarea>
                 </div>
                 <div>
                     <button type="submit">Comentar!</button>

@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getUserById, delete_comment, edit_comment} from '../../redux/actions'
+import { delete_comment, edit_comment, report_comment} from '../../redux/actions'
 import './Info_Comment.css'
-import axios from "axios";
 
 export default function Info_Comment({id, id_user, comment, createdAt}){
     const dispatch = useDispatch()
@@ -70,10 +69,12 @@ export default function Info_Comment({id, id_user, comment, createdAt}){
                     <div className="options">
                     {!is_auhorized ? <></> : (!its_mine &&
                             <>
-                                <button>Denunciar</button>
+                                <button 
+                                    onClick={() => dispatch(report_comment(id))}
+                                >Denunciar
+                                </button>
                             </>)}
                         {
-                            //REPORTAR COMENTARIO
                         }
                         {
                             its_mine && 

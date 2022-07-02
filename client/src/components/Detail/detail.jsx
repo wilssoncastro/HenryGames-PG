@@ -17,7 +17,7 @@ import Carousel from 'react-elastic-carousel'
 import swal from 'sweetalert'
 import Comment from "../Comment/Comment";
 import Info_Comment from "../Info_Comment/Info_Comment";
-import { type } from "os";
+
 
 export default function Detail() {
   const dispatch = useDispatch();
