@@ -18,7 +18,7 @@ import FormEdit from './components/VideogameForm/FormEdit'
 import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
-
+import  EdiProfile from './components/Profile/EditProfile';
 function App() {
   return (
     <BrowserRouter>
@@ -61,6 +61,7 @@ function App() {
           <Route exact path='/log_in' element={<LogIn />}/> 
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile />}/>
+          <Route exact path='/profile/:id/editprofile' element={<EdiProfile/>}/>
 
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
           <Route exact path='/admin/users' element={<Users />} />
