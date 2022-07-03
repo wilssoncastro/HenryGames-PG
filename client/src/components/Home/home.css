@@ -311,7 +311,8 @@
   /* Firefox */
   * {
     scrollbar-width: auto;
-    scrollbar-color: #710559 #f4f0f0;
+    scrollbar-color: #f4f0f0;
+    
     }
 
   /* Chrome, Edge, and Safari */
