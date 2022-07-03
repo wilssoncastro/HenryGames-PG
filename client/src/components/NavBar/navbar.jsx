@@ -133,7 +133,7 @@ export default function NavBar() {
                             cartLocal ?
 
                                 (<Link to="/my_cart">
-                                    {cart.length ? cart.length : null}
+                                    {cartLocal.length ? <span className="numC">{cartLocal.length}</span> : null}
                                     <MdIcons.MdShoppingCart className="navbar-icons" />
                                 </Link>) :
                                 (<Link to="/my_cart">
