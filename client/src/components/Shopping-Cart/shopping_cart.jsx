@@ -50,7 +50,7 @@ export default function ShoppingCart() {
     if(typeof id_user === 'object'){
       localStorage.setItem('cart', JSON.stringify([]))
     }else{
-      dispatch(delAllFromCart(id_user))
+      dispatch(delAllFromCart())
     }
     navigate('/my_cart')
   }

@@ -162,15 +162,21 @@ export function delFromCart(id, id_game){
   }
   }
 
-  export function delAllFromCart(id) {
-    return function(dispatch){
-      return axios.delete(`http://localhost:3001/cart/deleteAll/${id}`)
-      .then(data => {
-        dispatch({
-          type: DELETE_ALL_FROM_CART,
-          payload: data
-        })
-      })
+  // export function delAllFromCart(id) {
+  //   return function(dispatch){
+  //     return axios.delete(`http://localhost:3001/cart/deleteAll/${id}`)
+  //     .then(data => {
+  //       dispatch({
+  //         type: DELETE_ALL_FROM_CART,
+  //         payload: data
+  //       })
+  //     })
+  //   }
+  // }
+
+  export function delAllFromCart(){
+    return {
+      type: DELETE_ALL_FROM_CART
     }
   }
 

@@ -115,7 +115,7 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_ALL_FROM_CART:
             return{
                 ...state,
-                cart: action.payload.data
+                cart: []
             }
         default:
             return state;

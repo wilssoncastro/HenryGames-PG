@@ -76,11 +76,9 @@ export default function Detail() {
   function HandleAddToCart(e) {
     e.preventDefault();
     if(typeof id_user === 'object'){
-      console.log('Buenas')
       localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
     }
     if(typeof id_user === 'string'){
-      console.log(id_user, id)
       dispatch(addToCart(id_user, id))
     }
     swal({
