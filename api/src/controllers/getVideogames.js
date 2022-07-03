@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
           image: e.background_image,
           description: e.slug,
           rating: e.rating,
-          price: ftp ? 0 : ((Math.random() * 10).toFixed(3)),
+          price: ftp ? 0 : ((Math.random() * 10).toFixed(2)),
           on_sale: (Math.random() * 10) < 7 ? false : true,
           free_to_play: ftp,
           short_screenshots: e.short_screenshots.map(s => s.image),
