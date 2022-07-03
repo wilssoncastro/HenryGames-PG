@@ -80,12 +80,10 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    if(typeof id_user === 'object'){
-      localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
-    }
     if(typeof id_user === 'string'){
       dispatch(addToCart(id_user, id))
     }
+    localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
     swal({
       title: 'Your game was successfully added to the cart',
       text: 'What do you want to do next?',
