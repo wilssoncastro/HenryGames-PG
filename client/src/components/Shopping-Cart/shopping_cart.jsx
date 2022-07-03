@@ -76,6 +76,7 @@ export default function ShoppingCart() {
   }
 
   const handleClearCart = () => {
+    localStorage.setItem('cart', JSON.stringify([]))
     if(typeof id_user === 'object'){
       localStorage.setItem('cart', JSON.stringify([]))
     }else{
