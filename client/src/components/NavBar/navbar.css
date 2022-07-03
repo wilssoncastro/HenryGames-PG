@@ -15,7 +15,7 @@
 
 .NavBar-left {
     display: flex;
-    flex-basis: 35%;
+    flex-basis: 50%;
     margin-left: 2.5rem;
     flex-direction: row;
     text-align: center;
@@ -62,7 +62,7 @@
 }
 
 .NavBar-right {
-    flex-basis: 35%;
+    flex-basis: 20%;
     text-align: end;
 }
 

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCardStatistics } from "../../redux/actions";
 /* import Card from "../Card/card"; */
 import { Link } from "react-router-dom";
+import { ComponentError } from "./componentError";
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -28,6 +29,10 @@ for(let i = 0; i < totalPrice.length; i++){
   console.log(totalGanancias);
 }
 
+const id_user_admin = localStorage.getItem('type')
+if (id_user_admin) {
+  if (id_user_admin === "adm") {
+
   return (
     <div>
       <div>
@@ -44,18 +49,30 @@ for(let i = 0; i < totalPrice.length; i++){
         onChange={(e) => handleInputChange(e)}
       />
 
-    <h2>Ganancias Totales: ${(totalGanancias).toFixed(2)}</h2>
+    <h2> Total Earns: ${(totalGanancias).toFixed(2)}</h2>
       {
         name?
         videogame.map((e) => (
           <div>
             {/* <Card key={e.id} name={e.name} price={e.price} /> */}
             <h3>{e.name} = ${e.price}</h3>
-            <h4>Ventas: {e.contador}</h4>
-            <h4>Ganancias del juego: ${(e.contador * e.price).toFixed(2)}</h4>
+            <h4>Sales: {e.contador}</h4>
+            <h4> Game Earns: ${(e.contador * e.price).toFixed(2)}</h4>
           </div>
         )) : null
       }
     </div>
-  );
+  )
+}else{      
+  return (
+    <ComponentError></ComponentError>
+  )
+}
+} else
+return (
+  <ComponentError></ComponentError>
+)
+
+
+
 }

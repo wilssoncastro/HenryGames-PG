@@ -9,7 +9,7 @@ import {
   validateAlertShortScreeen, validateAlertFreeToPlay, validateAlertGenres, validateAlertEsrb, validateAlertRequeriments,
   validateAlertErrors
 } from './alerts'
-import NavBar from "../NavBar/navbar.jsx";
+
 
 
 

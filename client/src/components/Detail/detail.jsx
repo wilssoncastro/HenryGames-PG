@@ -8,13 +8,16 @@ import {
   deleteVideogame,
   deleteWishList,
   getWishList,
-  addToCart
+  addToCart,
+  getCommentsByGame
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import './detail.css'
 import Carousel from 'react-elastic-carousel'
 import swal from 'sweetalert'
 import Comment from "../Comment/Comment";
+import Info_Comment from "../Info_Comment/Info_Comment";
+
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -28,12 +31,14 @@ export default function Detail() {
   const videogame = useSelector((state) => state.details);
   const list = useSelector((state) => state.wishList);
   const actual_cart = useSelector((state) => state.cart)
+  const currents_comments = useSelector((state) => state.comments)
   
   let idProfile = localStorage.getItem("id");
 
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
+    dispatch(getCommentsByGame(id))
     localStorage.setItem('cart', JSON.stringify(cart))
     if (list) {
       dispatch(getWishList(idProfile))
@@ -75,12 +80,10 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    if(typeof id_user === 'object'){
-      localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
-    }
     if(typeof id_user === 'string'){
       dispatch(addToCart(id_user, id))
     }
+    localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
     swal({
       title: 'Your game was successfully added to the cart',
       text: 'What do you want to do next?',
@@ -220,8 +223,22 @@ export default function Detail() {
                 <button>Back to the store</button>
               </Link>
             </div>
-            <div>
-            <Comment id_game={id}/>
+          <div className="all_comments">
+            {currents_comments?.map(e => 
+            <Info_Comment 
+              id={e.id}
+              id_user={e.id_user}
+              comment={e.comment}
+              createdAt={e.createdAt}
+            />
+            )}
+          </div>
+
+          <div>
+            {
+              (typeof id_user === 'object') ? null
+              : <Comment id_game={id}/>
+            }
           </div>
           </div>
         ) : null}
