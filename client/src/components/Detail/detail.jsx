@@ -17,7 +17,7 @@ import Carousel from 'react-elastic-carousel'
 import swal from 'sweetalert'
 import Comment from "../Comment/Comment";
 import Info_Comment from "../Info_Comment/Info_Comment";
-import { type } from "os";
+
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -80,12 +80,10 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    if(typeof id_user === 'object'){
-      localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
-    }
     if(typeof id_user === 'string'){
       dispatch(addToCart(id_user, id))
     }
+    localStorage.setItem('cart', JSON.stringify([...cartFromLocalStorage, videogame]))
     swal({
       title: 'Your game was successfully added to the cart',
       text: 'What do you want to do next?',
@@ -212,9 +210,13 @@ export default function Detail() {
             )}
 
             <div>
+              {
+                !cartFromLocalStorage.includes(videogame) ?
               <button onClick={(e) => HandleAddToCart(e)}>
                 Add to Cart
               </button>
+              : null
+              }
             </div>
 
             <div className="buttonBackHome">

@@ -11,7 +11,7 @@ router.get('/:id', async(req, res) =>{
         })
 
         if(!user){
-            res.send('No se encontro el usuario... Intentalo otra vez')
+            res.send('No se encontro el usuario... Avergas')
         } else {
             res.send(user)
         }
@@ -60,4 +60,21 @@ router.delete('/delete/:id/:idGame', async(req, res) => {
     }
 })
 
+router.delete('/deleteAll/:id', async(req, res) => {
+    const { id } = req.params
+
+    try {
+        const user = await Player.findByPk(id)
+       
+        if(!user){
+            await user.removeCart()
+        }else{
+            return res.send('No se encontro el usuario... Intentalo otra vez')
+        }
+
+        return res.send('Juego Eliminado')
+    } catch (error) {
+        res.send(error)
+    }
+})
 module.exports = router

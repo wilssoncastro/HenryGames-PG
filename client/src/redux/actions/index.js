@@ -3,11 +3,13 @@ import axios from "axios";
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DELETE_FROM_CART = 'DELETE_FROM_CART'
+export const DELETE_ALL_FROM_CART = 'DELETE_ALL_FROM_CART'
 export const GET_CART_BY_ID = 'GET_CART_BY_ID'
 export const GET_COMMENTS_BY_GAME = 'GET_COMMENTS_BY_GAME'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const POST_COMMENT = 'POST_COMMENT'
+export const REPORT_COMMENT = 'REPORT_COMMENT'
 
 export function getAllVideogames() {
   return async function (dispatch) {
@@ -165,6 +167,24 @@ export function delFromCart(id, id_game){
   }
   }
 
+  // export function delAllFromCart(id) {
+  //   return function(dispatch){
+  //     return axios.delete(`http://localhost:3001/cart/deleteAll/${id}`)
+  //     .then(data => {
+  //       dispatch({
+  //         type: DELETE_ALL_FROM_CART,
+  //         payload: data
+  //       })
+  //     })
+  //   }
+  // }
+
+  export function delAllFromCart(){
+    return {
+      type: DELETE_ALL_FROM_CART
+    }
+  }
+
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------  
 
@@ -187,14 +207,24 @@ export function postMercadoPago(carrito){
 }
 
 export function getUserById(id){
-  return async function(dispatch){
+  if(id){
+    return async function(dispatch){
     var json = await axios.get(`http://localhost:3001/users?id=${id}`)
     return dispatch({
         type: "GET_USER_BY_ID",
         payload: json.data
       })
     
+  }}else{
+    return function(dispatch){
+      var json = []
+      return dispatch({
+          type: "GET_USER_BY_ID",
+          payload: json
+        })
   }
+   
+}
 }
 
 export function getAllUsers(){
@@ -266,6 +296,19 @@ export function post_comment(id_user, id_game, commentary){
     })
   }
 }
+
+export function report_comment(id_comment){
+  return function(dispatch){
+    return axios.put(`http://localhost:3001/report_comment/${id_comment}`)
+    .then(data => {
+      dispatch({
+        type: REPORT_COMMENT
+      })
+    })
+  }
+}
+
+
 
 
 //FIN ACTIONS 

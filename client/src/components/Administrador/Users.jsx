@@ -9,6 +9,8 @@ export function Users() {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
+  console.log(users)
+
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
