@@ -182,8 +182,11 @@ span {
     background-color: #1a83ff;
 }
 
-.cart-num {
-    color: #f5f5f5;
-    font-size: 12px;
-    background: none;
+.numC {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding-right: 4px;
+    padding-left: 4px;
+    text-decoration: none;
 }
