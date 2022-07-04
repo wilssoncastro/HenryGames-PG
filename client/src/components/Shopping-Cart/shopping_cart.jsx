@@ -6,7 +6,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import { 
   delFromCart, 
   getCartById,
-  deleteAllFromCart,
+  delAllFromCart,
   postMercadoPago } 
 from '../../redux/actions'
 import swal from 'sweetalert'
@@ -83,7 +83,7 @@ export default function ShoppingCart() {
     if(typeof id_user === 'object'){
       localStorage.setItem('cart', JSON.stringify([]))
     }else{
-      dispatch(deleteAllFromCart())
+      dispatch(delAllFromCart())
     }
     navigate('/my_cart')
   }
