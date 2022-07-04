@@ -1,7 +1,3 @@
-.first-row{
-  margin-bottom: 17rem;
-}
-
 .containercard {
   width: 100vw;
   height: 100vh;
@@ -13,8 +9,5 @@
   margin: 0;
 }
 
-.background{
-  display: flex;
-  flex-direction: column;
-}
+
 
