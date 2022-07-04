@@ -127,16 +127,17 @@ export default function ShoppingCart() {
   }
 
   return (
-    <div>
+    <div className='backgroundCart'>
       <div>
         <NavBar />
       </div>
-      <div>
+      <div >
       
       {
           cartFromLocalStorage.length > 0 ? 
           (
-            <div style={{marginTop: '100px'}}>
+            <div className='cart' /* style={{marginTop: '100px'}} */>
+              <div className='containercard'>
               {
                 cartFromLocalStorage.map((game) => (
                   <div>
@@ -146,16 +147,18 @@ export default function ShoppingCart() {
                   )
                 )
               }
-              <button onClick={() => handleClearCart()}>Clear cart</button>
-              <Link to='/home'>
-                <button>Back to the main page</button>
-              </Link>
-              <Link to='/store'>
-                <button>Back to the store</button>
-              </Link>
-              
-              <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
-              
+              </div>
+              <div className='containerButtons' >
+                <button onClick={() => handleClearCart()}>Clear cart</button>
+                <Link to='/home'>
+                  <button>Back to the main page</button>
+                </Link>
+                <Link to='/store'>
+                  <button>Back to the store</button>
+                </Link>
+                
+                <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
+              </div>
             </div>
           ) :
           (
