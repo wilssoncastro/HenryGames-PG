@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
@@ -16,17 +17,44 @@ import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../redux/actions";
-import LogOut from '../LogOut/LogOut';
 
 export default function NavBar() {
     const dispatch = useDispatch();
+    let navigate = useNavigate();
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
     const cartLocal = JSON.parse(localStorage.getItem('cart'));
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
-    console.log(user, 'user navbar')
+
+    function logOut(e){
+        e.preventDefault()
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:3001/authentication/logout',
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            withCredentials: true
+        })
+        .then((res) => {
+            console.log(res.data)
+            if(res){
+                console.log('removiendo store')
+                localStorage.removeItem('profile_pic')
+                localStorage.removeItem('lastname')
+                localStorage.removeItem('name')
+                localStorage.removeItem('type')
+                localStorage.removeItem('id')
+                dispatch(getUserById())
+                
+            }
+            
+        })
+        .catch(err => console.log(err))
+
+        navigate('/')
+    }
 
     
     useEffect(() => {
@@ -92,7 +120,7 @@ export default function NavBar() {
             path: '#',
             icon: <FiIcons.FiLogOut style={{color: '#0a7c3b;'}} />,
             className: 'log-out-button',
-            onClick: showSidebar,
+            onClick: logOut,
             loggedIn: true
         },
         {
@@ -155,7 +183,7 @@ export default function NavBar() {
                             <h3 className="navleft-text">LIBRARY </h3>
                         </Link>
 
-                    {!user.id? 
+                    {/* {!user.id? 
                     <div>
                         <Link to="/log_in">
                             <button className="btn_log_in">LOG IN</button>
@@ -166,7 +194,7 @@ export default function NavBar() {
                     </div>
                     : 
                     <LogOut />
-                    }
+                    } */}
                      </div>
 
 
