@@ -15,7 +15,7 @@
 
 .NavBar-left {
     display: flex;
-    flex-basis: 35%;
+    flex-basis: 50%;
     margin-left: 2.5rem;
     flex-direction: row;
     text-align: center;
@@ -62,7 +62,7 @@
 }
 
 .NavBar-right {
-    flex-basis: 35%;
+    flex-basis: 20%;
     text-align: end;
 }
 
@@ -169,28 +169,11 @@ ul {
     background-color: #1a83ff;
 }
 
-.side-menu-items {
-    width: 100%;
-    margin: 0;
-}
-
-.sidebar-toggle {
-    background-color: #000000;
-    width: 100%;
-    height: 4em;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding-left: 28px;
-}
-
-span {
-    margin-left: 16px;
-}
-
-
-.cart-num {
-    color: #f5f5f5;
-    font-size: 12px;
-    background: none;
+.numC {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding-right: 4px;
+    padding-left: 4px;
+    text-decoration: none;
 }

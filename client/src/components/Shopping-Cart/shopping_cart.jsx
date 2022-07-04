@@ -6,8 +6,11 @@ import {Link, useNavigate} from 'react-router-dom'
 import { 
   delFromCart, 
   getCartById,
+  delAllFromCart,
   postMercadoPago } 
 from '../../redux/actions'
+import swal from 'sweetalert'
+import './shoppingcart.css'
 
 export default function ShoppingCart() {
 
@@ -16,27 +19,21 @@ export default function ShoppingCart() {
 
   const id_user = localStorage.getItem('id')
   const videogamesInCart = useSelector((state) => state.cart)
-  const cartLocal = JSON.parse(localStorage.getItem('cart'))
-  
-  
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
 
+  console.log(videogamesInCart)
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
-    dispatch(getCartById(id_user))
-}, [cart, dispatch])
-
+    // dispatch(getCartById(id_user))
+}, [cart, /* dispatch */])
   
-  const current_cart = (typeof id_user === 'object') ? cartLocal : videogamesInCart
-  
-
-  
-  
-
+  //const current_cart = (typeof id_user === 'object') ? cartFromLocalStorage : videogamesInCart
 
   const handleDelete = (id) => {
+    localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
     if(typeof id_user === 'object'){
       localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
     }else{
@@ -45,18 +42,85 @@ export default function ShoppingCart() {
     navigate('/my_cart')
   }
 
-  const handleClearCart = () => {
-    localStorage.setItem('cart', JSON.stringify([]))
-    navigate('/my_cart')
+  const logInToBuy = () => {
+    swal({
+      title: 'You need log in to buy',
+      text: 'Not registered yet?',
+      icon: "error",
+      buttons: {
+        login: {
+          text: 'Go to log in',
+          value: 'log_in'
+        },
+        signup: {
+          text: 'Go to sign up',
+          value: 'sign_up'
+        },
+        cancel: 'Cancel'
+      }
+    })
+      .then((value) => {
+        switch (value) {
+          case 'log_in':
+            navigate('/log_in')
+            break;
+
+          case 'sign_up':
+            navigate('/sign_up')
+            break;
+
+          default:
+            break;
+        }
+      })
   }
 
+  const handleClearCart = () => {
+    localStorage.setItem('cart', JSON.stringify([]))
+    if(typeof id_user === 'object'){
+      localStorage.setItem('cart', JSON.stringify([]))
+    }else{
+      dispatch(delAllFromCart())
+    }
+    navigate('/my_cart')
+  }
+  
   const handleBuyMercadoPago = (carrito) => {
-    dispatch(postMercadoPago(carrito))
-    .then((data)=>{
-          // window.location.assign(data.data.init_point)
-          window.open(data.data.init_point);
-        })
-        .catch(err => console.error(err))
+    swal({
+      title: 'You will be redirected to MercadoPago',
+      text: 'Ready?',
+      icon: "success",
+      buttons: {
+        mp: {
+          text: 'Go to MercadoPago',
+          value: 'mp'
+        },
+        store: {
+          text: 'Go to shop',
+          value: 'store'
+        },
+        cancel: 'Cancel'
+      }
+    })
+      .then((value) => {
+        switch (value) {
+          case 'mp':
+            dispatch(postMercadoPago(carrito))
+              .then((data)=>{
+                window.open(data.data.init_point);
+              })
+              .catch(err => console.error(err))
+            break;
+
+          case 'store':
+            navigate('/store')
+            break;
+
+          default:
+            break;
+        }
+      })    
+    
   }
 
   return (
@@ -67,13 +131,13 @@ export default function ShoppingCart() {
       <div>
       
       {
-          current_cart.length > 0 ? 
+          cartFromLocalStorage.length > 0 ? 
           (
             <div style={{marginTop: '100px'}}>
               {
-                current_cart.map((game) => (
+                cartFromLocalStorage.map((game) => (
                   <div>
-                    <Card image={game.image} name={game.name} price={game.price} />
+                    <Card key={game.id} image={game.image} name={game.name} price={game.price} id={game.id} />
                     <button type='reset' onClick={() => handleDelete(game.id)}>Remove game from cart</button>
                   </div>
                   )
@@ -87,7 +151,7 @@ export default function ShoppingCart() {
                 <button>Back to the store</button>
               </Link>
               
-              <button onClick={() => {handleBuyMercadoPago(cartFromLocalStorage)}}>Buy</button>
+              <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
               
             </div>
           ) :

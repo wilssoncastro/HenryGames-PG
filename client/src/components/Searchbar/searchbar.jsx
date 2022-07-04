@@ -11,14 +11,17 @@ function validate(input) {
   return error;
 }
 
-export default function SearchBar({name, setName}) {
+export default function SearchBar({name, setName, page, setPage}) {
   const dispatch = useDispatch();
   // const [name, setName] = useState("");
   const [error, setError] = useState("");
-
+  
   const handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
+    if (e.target.value.length > 2) {
+      setPage(0)
+    }
   };
 
   const handleSubmit = (e) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FriendList } from "./FriendList";
@@ -12,17 +12,30 @@ import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
 import './navbar.css';
 import './friendlist.css'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserById } from "../../redux/actions";
+import LogOut from '../LogOut/LogOut';
 
 export default function NavBar() {
+    const dispatch = useDispatch();
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
     const cartLocal = JSON.parse(localStorage.getItem('cart'));
     let id = localStorage.getItem("id");
+    const cart = useSelector((state) => state.cart)
+    const user = useSelector((state) => state.my_user)
+    console.log(user, 'user navbar')
 
+    
+    useEffect(() => {
+        if (id) {
+          dispatch(getUserById(id))          
+        }
+        
+      }, [dispatch, id])
 
-    const showSidebar = () =>{ 
-        if(sidebar === true){
+    const showSidebar = () => {
+        if (sidebar === true) {
             setFriendBox(false)
             setSidebar(!sidebar)
         }
@@ -37,29 +50,34 @@ export default function NavBar() {
         {
             title: 'Profile',
             path: `/profile/${id}`,
-            icon: <CgIcons.CgProfile/>,
+            icon: <CgIcons.CgProfile />,
             className: 'nav-text',
             onClick: showSidebar
         },
         {
             title: 'Theme',
             path: '#',
-            icon: <VscIcons.VscColorMode/>,
+            icon: <VscIcons.VscColorMode />,
             className: 'nav-text',
             onClick: showSidebar
         },
         {
             title: 'Language',
             path: '#',
-            icon: <BsIcons.BsTranslate/>,
+            icon: <BsIcons.BsTranslate />,
             className: 'nav-text',
             onClick: showSidebar
         },
         {
             title: 'Friends',
             path: '#',
+<<<<<<< HEAD
             icon: <FaIcons.FaUserFriends/>,
             className: 'bottom-text',
+=======
+            icon: <FaIcons.FaUserFriends />,
+            className: 'friends-text',
+>>>>>>> dev
             onClick: showFriendBox
         },
         {
@@ -76,12 +94,12 @@ export default function NavBar() {
             className: 'bottom-text',
             onClick: showSidebar
         }
-        ]
-      
+    ]
+
 
     return (
         <div>
-            <IconContext.Provider value={{color: '#fff'}}>
+            <IconContext.Provider value={{ color: '#fff' }}>
 
                 {/* Burger Menu */}
                 <div className="navbar">
@@ -94,7 +112,7 @@ export default function NavBar() {
 
                         {/* Store Section */}
                         <Link to='/store' className="left-sections">
-                            <AiIcons.AiOutlineAppstoreAdd className="navbar-left-icons"/>
+                            <AiIcons.AiOutlineAppstoreAdd className="navbar-left-icons" />
                             <h3 className="navleft-text">STORE</h3>
                         </Link>
 
@@ -103,8 +121,22 @@ export default function NavBar() {
                             <BiIcons.BiLibrary className="navbar-left-icons" />
                             <h3 className="navleft-text">LIBRARY </h3>
                         </Link>
+
+                    {!user.id? 
+                    <div>
+                        <Link to="/log_in">
+                            <button className="btn_log_in">LOG IN</button>
+                        </Link>
+                        <Link to="/sign_up">
+                            <button class="btn_sign_up">SIGN UP</button>
+                        </Link>
                     </div>
-                
+                    : 
+                    <LogOut />
+                    }
+                     </div>
+
+
 
                     <div className="NavBar-center"></div>
 
@@ -112,28 +144,29 @@ export default function NavBar() {
                         {/* Chat clickable */}
                         <Link to="#">
                             <BiIcons.BiChat className="navbar-icons" />
-                        </Link> 
+                        </Link>
 
                         {/* ShoppingCart clickable */}
-                            
-                            {
-                            cartLocal? 
-                            
-                            (<Link to="/my_cart">
-                            <MdIcons.MdShoppingCart className="navbar-icons" />
-                            </Link>) :
-                            (<Link to="/my_cart">
-                            <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
-                            </Link> )
+
+                        {
+                            cartLocal ?
+
+                                (<Link to="/my_cart">
+                                    {cartLocal.length ? <span className="numC">{cartLocal.length}</span> : null}
+                                    <MdIcons.MdShoppingCart className="navbar-icons" />
+                                </Link>) :
+                                (<Link to="/my_cart">
+                                    <MdIcons.MdOutlineShoppingCart className="navbar-icons" />
+                                </Link>)
                         }
                         {/* SideMenu Opener (three lines) */}
                         <Link to='#' >
-                            <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar}/>
+                            <VscIcons.VscThreeBars className="navbar-icons" onClick={showSidebar} />
                         </Link>
                     </div>
-                    
+
                 </div>
-                
+
 
                 {/* Menu vertical TOGGLE de derecha a izquierda con su logica  */}
                 {/* |||||||||||||||||||||||||||||||||||||   <----------------- */}
@@ -185,10 +218,10 @@ export default function NavBar() {
                                 })}
                             </div>
                         </nav>
-                        
+
                     </ul>
                 </nav>
-            </IconContext.Provider>            
+            </IconContext.Provider>
         </div>
     )
 }

@@ -8,3 +8,9 @@
     margin: 10px;
     margin-bottom: 20px;
 }
+
+.all_comments{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
