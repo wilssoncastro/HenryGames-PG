@@ -10,9 +10,11 @@ import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
 import './home.css'
 import './carousel.css'
+import CarouselCatCard from '../CarouselCard/CarouselCatCard';
 // import Card from '../Card/card'
 
 export default function Home() {
+    
     // const dispatch = useDispatch();
     // const videogames = useSelector((state) => state.videogames)
 

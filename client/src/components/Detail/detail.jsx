@@ -10,6 +10,8 @@ import {
   getWishList,
   addToCart,
   getCommentsByGame,
+  is_authorizated,
+  getCartById
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -43,6 +45,7 @@ export default function Detail() {
     if (list) {
       dispatch(getWishList(idProfile));
     }
+    dispatch(getCartById(id_user))
   }, [dispatch, idProfile, id, cart]);
 
   const handleDelete = () => {
@@ -75,13 +78,15 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    if (typeof id_user === "string") {
+    if (typeof id_user === 'string') {
       dispatch(addToCart(id_user, id));
+    }else{
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...cartFromLocalStorage, videogame])
+      );
     }
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([...cartFromLocalStorage, videogame])
-    );
+    
     swal({
       title: "Your game was successfully added to the cart",
       text: "What do you want to do next?",

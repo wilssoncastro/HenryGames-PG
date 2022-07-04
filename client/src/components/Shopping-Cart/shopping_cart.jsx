@@ -6,8 +6,10 @@ import {Link, useNavigate} from 'react-router-dom'
 import { 
   delFromCart, 
   getCartById,
-  delAllFromCart,
-  postMercadoPago } 
+  deleteAllFromCart,
+  postMercadoPago,
+  is_authorizated
+} 
 from '../../redux/actions'
 import swal from 'sweetalert'
 import './shoppingcart.css'
@@ -19,22 +21,25 @@ export default function ShoppingCart() {
 
   const id_user = localStorage.getItem('id')
   const videogamesInCart = useSelector((state) => state.cart)
+  
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
 
-  console.log(videogamesInCart)
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
-    // dispatch(getCartById(id_user))
+    dispatch(getCartById(id_user))
+    dispatch(is_authorizated())
 }, [cart, /* dispatch */])
   
-  //const current_cart = (typeof id_user === 'object') ? cartFromLocalStorage : videogamesInCart
+  const current_cart = (typeof id_user === 'string') ? videogamesInCart : cartFromLocalStorage
+  console.log(current_cart)
+  
 
   const handleDelete = (id) => {
     localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
-    if(typeof id_user === 'object'){
+    if(!dispatch(is_authorizated())){
       localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
     }else{
       dispatch(delFromCart(id_user, id))
@@ -75,15 +80,13 @@ export default function ShoppingCart() {
       })
   }
 
-  const handleClearCart = (id) => {
+  const handleClearCart = (e) => {
     if(typeof id_user === 'string'){
-      dispatch(delFromCart(id_user, id))
-    }
-    localStorage.setItem('cart', JSON.stringify([]))
-    if(typeof id_user === 'object'){
-      localStorage.setItem('cart', JSON.stringify([]))
+      console.log('Entre y paso algo')
+      dispatch(deleteAllFromCart(id_user, {'games':videogamesInCart}))
+      console.log('mmmm')
     }else{
-      dispatch(delAllFromCart())
+      localStorage.setItem('cart', [])
     }
     navigate('/my_cart')
   }
@@ -110,6 +113,7 @@ export default function ShoppingCart() {
           case 'mp':
             dispatch(postMercadoPago(carrito))
               .then((data)=>{
+                console.log(data)
                 window.open(data.data.init_point);
               })
               .catch(err => console.error(err))
@@ -134,11 +138,11 @@ export default function ShoppingCart() {
       <div>
       
       {
-          cartFromLocalStorage.length > 0 ? 
+          current_cart?.length > 0 ? 
           (
             <div style={{marginTop: '100px'}}>
               {
-                cartFromLocalStorage.map((game) => (
+                current_cart.map((game) => (
                   <div>
                     <Card key={game.id} image={game.image} name={game.name} price={game.price} id={game.id} />
                     <button type='reset' onClick={() => handleDelete(game.id)}>Remove game from cart</button>
@@ -154,7 +158,7 @@ export default function ShoppingCart() {
                 <button>Back to the store</button>
               </Link>
               
-              <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
+              <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(current_cart)} : () => {logInToBuy()}}>Buy</button>
               
             </div>
           ) :
