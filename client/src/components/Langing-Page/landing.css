@@ -1,0 +1,110 @@
+
+.landing{
+  background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992433619224236072/henry_fonfo-01-01.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+.landing_content{
+    display: flex;
+    flex-direction: column;
+    Align-items: center;  
+    margin-top: 100px; 
+    margin-left: 700px;  
+}
+
+.landingH1{
+    
+    font-size: 50px;
+    display: block;  
+    color: #c7a94b;
+   
+}
+.textLanding{
+    color: aliceblue;
+}
+.btn_gold{
+    background: -webkit-linear-gradient(#c7a94b, rgb(132, 132, 132));
+    margin: 10px;    
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+ }
+
+ .btn_gold:hover{
+ box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 8px 10px 12px;
+    color:black;
+    font-size: 25px;
+    background-color: #c7a94b;
+ }
+
+.btn_log_in{
+    background-color: royalblue;
+    margin: 10px;    
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px royalblue, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+     border-radius: 5px;
+ }
+
+ .btn_log_in:hover{
+ box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 8px 10px 12px;
+    font-size: 25px;
+    background: -webkit-linear-gradient(royalblue, rgb(249, 249, 249));
+ }
+
+.btn_sign_up{
+    background-color: rgb(38, 148, 56);
+    margin: 10px;    
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px rgb(32, 146, 63), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+     border-radius: 5px;
+ }
+
+ .btn_sign_up:hover{
+ box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 8px 10px 12px;
+    font-size: 25px;
+    background: -webkit-linear-gradient(rgb(32, 146, 63), rgb(132, 132, 132));
+ }
+

@@ -1,0 +1,92 @@
+.allPage {
+    background-color: black;
+    color: white;
+}
+
+.allDetail {
+    margin-top: 60px;
+}
+
+.name {
+    text-decoration:underline #c7a94b;
+}
+
+.image  {
+    width: 500px;
+    height: 250px;
+    float: left;
+    margin: 10px;
+}
+
+.WishList{
+    float: inline-end;
+}
+.buttonAddWishList {
+    background-color: #c7a84b85;
+    color: black;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: small;
+    border: none;
+    float: right;
+}
+.buttonAddWishList:hover{
+    font-size: small;
+    background-color: #c7a84b;
+    color: black;
+    float: right;
+}
+.buttonDeleteWishList {
+    background-color: #c7a84b85;
+    color: white;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: small;
+    border: none;
+    float: right;
+}
+.buttonDeleteWishList:hover{
+    background-color: rgba(160, 0, 0, 0.61);
+    color: white;
+    font-size: small;
+    float: right;
+}
+
+.buttonCart{
+    background-color: #c7a84b85;
+    color: black;
+    float: right;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: small;
+    border: none;
+}
+.buttonCart:hover{
+    background-color: #c7a84b;
+    color: black;
+}
+
+.container1{
+    float: left;
+}
+.price{ 
+    display: flex; 
+    margin-right: 60px;
+    margin-left: 10px;
+}
+
+.rating{
+    display: flex ;
+}
+
+
+
+
+
+
+
+.all_comments{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }

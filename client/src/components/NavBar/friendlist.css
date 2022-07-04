@@ -1,0 +1,112 @@
+.friendBox {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-content: flex-start;
+    position: fixed;
+    background-color: #151414;
+    border-color: black;
+    width: 250px;
+    height: 45%;
+    border-radius: 4px;
+    bottom: 0;
+    right: -100%;
+    transition: 850ms ease;
+    margin-bottom: 5px;
+}
+
+.friendBox.active {
+    right: 255px;
+    transition: 350ms;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    bottom: 0;
+    margin-bottom: 5px;
+    position: fixed;
+}
+
+.friend-tag {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+.friend-tag a {
+    text-decoration: none;
+    color: #f5f5f5;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+    transition: 250ms;
+    text-align: left;
+}
+
+.friend-tag a:hover {
+    background-color: #1a83ff;
+}
+
+.friendBoxTitle {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    position: fixed;
+}
+
+.friend-tag {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+.friend-tag a {
+    text-decoration: none;
+    color: #f5f5f5;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+    transition: 250ms;
+    text-align: left;
+}
+
+.friend-tag a:hover {
+    background-color: #1a83ff;
+}
+
+.friendBoxTitle {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    position: relative;
+}
+
+.userData{
+    display: flex;
+    flex-direction: column;
+}
+
+.userName{
+    font-size: 20px;
+}
+
+.userStatusOnline{
+    font-size: 12px;
+    color: greenyellow;
+}
+
+.userStatusOffline{
+    font-size: 12px;
+    color: gray;
+}
+
+.FriendListBox{
+    overflow-y: scroll;
+}

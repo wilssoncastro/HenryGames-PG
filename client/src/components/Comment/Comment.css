@@ -1,0 +1,23 @@
+.commentary-box{
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.commentary-box form{
+    display: flex;
+    flex-direction:column;
+}
+
+.commentary-box div{
+    display: flex;
+    flex-direction:column;
+    margin: .2rem;
+}
+
+.new_comment{
+    resize: none;
+    width: 20rem;
+    height: 8rem;
+}

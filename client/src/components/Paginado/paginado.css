@@ -1,0 +1,23 @@
+.paginado {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+}
+        
+.pagination {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+        
+.pagination li {
+    margin: 0 1px;
+}
+
+.edge {
+    background-color: yellow;
+}
+
+
+

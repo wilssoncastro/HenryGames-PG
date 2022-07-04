@@ -1,8 +1,47 @@
 const { Router } = require('express')
+const router = Router()
+const userRouters = require('../controllers/userRouters')
+const friendRouters = require('../controllers/friendRoutes')
+const wishRoutes = require('../controllers/wishRoutes')
+const registerRoutes = require('../controllers/Autentication/index')
+
 //Importar todos los routers
 
-const router = Router()
+const routesSales = require('../controllers/salesRoutes')
+const getVideogames = require('../controllers/getVideogames')
+const routesVideogames = require('../controllers/routesVideogames')
+const routesComments = require('../controllers/commentsRoutes')
 
-//Rutas
+
+const getEsrb = require('../controllers/getEsrb')
+const getGenres = require('../controllers/getGenres')
+const mercadopago = require('../controllers/mercadopago')
+const cartRoutes = require('../controllers/cartRoutes')
+const routesBlog = require('../controllers/blog')
+
+router.get('/', (req, res) => {
+    console.log(req.isAuthenticated())
+    res.json({msg:'HENRYGAMES'})
+})
+
+router.use('/videogames', getVideogames)
+router.use('/videogames/:id', getVideogames)
+router.use('/users', userRouters)
+router.use('/videogamesDev', routesVideogames)
+router.use('/esrb', getEsrb)
+router.use('/genres', getGenres)
+router.use('/friends', friendRouters)
+router.use('/wishlist', wishRoutes)
+router.use('/mercadopago', mercadopago)
+router.use('/cart', cartRoutes)
+router.use('/comments', routesComments)
+router.use('/sales', routesSales)
+router.use('/blog', routesBlog)
+
+router.use('/authentication', registerRoutes)
+
+router.get('/is_online', (req, res) => 
+    res.send(req.isAuthenticated())
+)
 
 module.exports = router

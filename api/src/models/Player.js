@@ -1,8 +1,9 @@
+
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('player',{
-        id:{
+    sequelize.define('player', {
+        id: {
             type: DataTypes.UUID,
             allowNull: false,
             primaryKey: true,
@@ -20,25 +21,45 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        profile_pic:{
+            type: DataTypes.STRING
+        },
+        password:{
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+        ,
         email: {
             type: DataTypes.STRING,
             allowNull: false
         },
         date_of_birth: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
         },
         phone: {
-            type: DataTypes.BIGINT
+            type: DataTypes.STRING
         },
         adress: {
             type: DataTypes.STRING
         },
-        isDeveloper:{
+        type: {
+            type: DataTypes.STRING
+        },
+        active: {
             type: DataTypes.BOOLEAN
         },
+        secret_token: {
+            type: DataTypes.STRING
+        },
+        banned: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false, 
+            allowNull: false
+        }
+        
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
 
-    })
+    }, {timestamps: false})
 }
