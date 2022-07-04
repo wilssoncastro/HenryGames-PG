@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
@@ -10,21 +11,50 @@ import * as VscIcons from "react-icons/vsc";
 import * as MdIcons from "react-icons/md"
 import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
+import * as FiIcons from "react-icons/fi"
+import * as RiIcons from "react-icons/ri"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../redux/actions";
-import LogOut from '../LogOut/LogOut';
 
 export default function NavBar() {
     const dispatch = useDispatch();
+    let navigate = useNavigate();
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
     const cartLocal = JSON.parse(localStorage.getItem('cart'));
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
-    console.log(user, 'user navbar')
+
+    function logOut(e){
+        e.preventDefault()
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:3001/authentication/logout',
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            withCredentials: true
+        })
+        .then((res) => {
+            console.log(res.data)
+            if(res){
+                console.log('removiendo store')
+                localStorage.removeItem('profile_pic')
+                localStorage.removeItem('lastname')
+                localStorage.removeItem('name')
+                localStorage.removeItem('type')
+                localStorage.removeItem('id')
+                dispatch(getUserById())
+                
+            }
+            
+        })
+        .catch(err => console.log(err))
+
+        navigate('/')
+    }
 
     
     useEffect(() => {
@@ -46,20 +76,21 @@ export default function NavBar() {
 
 
     // Data for sidebar, can't separate in modules because of onClick hook context import/export
-    const SidebarData = [
+    let sidebarData = [
         {
             title: 'Profile',
             path: `/profile/${id}`,
             icon: <CgIcons.CgProfile />,
             className: 'nav-text',
-            onClick: showSidebar
+            onClick: showSidebar,
+            loggedIn: true
         },
         {
             title: 'Theme',
             path: '#',
             icon: <VscIcons.VscColorMode />,
             className: 'nav-text',
-            onClick: showSidebar
+            onClick: showSidebar,
         },
         {
             title: 'Language',
@@ -69,14 +100,63 @@ export default function NavBar() {
             onClick: showSidebar
         },
         {
+            title: 'Admin Tools',
+            path: '/admin',
+            icon: <RiIcons.RiAdminLine />,
+            className: 'nav-text',
+            onClick: showSidebar,
+            loggedIn: true
+        },
+        {
             title: 'Friends',
             path: '#',
             icon: <FaIcons.FaUserFriends />,
-            className: 'friends-text',
-            onClick: showFriendBox
+            className: 'bottom-text-first',
+            onClick: showFriendBox,
+            loggedIn: true
+        },
+        {
+            title: 'Log Out',
+            path: '#',
+            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b;'}} />,
+            className: 'log-out-button',
+            onClick: logOut,
+            loggedIn: true
+        },
+        {
+            title: 'Log In',
+            path: '/log_in',
+            icon: <FiIcons.FiLogIn />,
+            className: 'log-in-button',
+            onClick: showSidebar,
+            loggedIn: false
+        },
+        {
+            title: 'Sign Up',
+            path: '/sign_up',
+            icon: <CgIcons.CgProfile style={{color: '#1a83ff;'}}/>,
+            className: 'sign-up-button',
+            onClick: showSidebar,
+            loggedIn: false
         }
     ]
 
+    let sidebarDataInfo = []
+    if (!user.id) {
+        sidebarData.map((e) => {
+            if (e.loggedIn == false || !e.loggedIn) {
+                sidebarDataInfo.push(e)
+            }
+        })
+    } else {
+        sidebarData.map((e) => {
+            if (e.loggedIn === true || e.loggedIn == null) {
+                sidebarDataInfo.push(e)
+            }
+        })
+    }
+
+    console.log(sidebarDataInfo)
 
     return (
         <div>
@@ -103,7 +183,7 @@ export default function NavBar() {
                             <h3 className="navleft-text">LIBRARY </h3>
                         </Link>
 
-                    {!user.id? 
+                    {/* {!user.id? 
                     <div>
                         <Link to="/log_in">
                             <button className="btn_log_in">LOG IN</button>
@@ -114,7 +194,7 @@ export default function NavBar() {
                     </div>
                     : 
                     <LogOut />
-                    }
+                    } */}
                      </div>
 
 
@@ -158,23 +238,22 @@ export default function NavBar() {
 
                     {/* Tres barritas que las esconde el navbar, las dejamos porque si no se esconde Profile */}
                     <ul className="side-menu-items">
-                        <li className="sidebar-toggle" onClick={showSidebar}>
-                            <Link to="#" className="navbar-icons">
-                                <VscIcons.VscThreeBars />
-                            </Link>
-                        </li>
 
                         {/* Map de los items que muestra el menu: Profile, Theme, Language, Log In, Friends */}
-                        {SidebarData.map((item, index) => {
-                            return (
-                                <li key={index} className={item.className} >
-                                    <Link to={item.path} onClick={item.onClick}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            )
-                        })}
+                        <div id="navbar-side-items">
+                            {sidebarDataInfo.map((item, index) => {
+                                return (
+                                    
+                                        <li key={index} className={item.className}>
+                                            <Link to={item.path} onClick={item.onClick}>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    
+                                )
+                            })}
+                        </div>
 
                         {/* Renderiza componente de lista de amigos */}
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
