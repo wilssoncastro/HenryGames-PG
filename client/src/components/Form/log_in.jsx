@@ -45,8 +45,7 @@ export default function LogIn() {
   
         
         let {log_in, id, name, lastname, type, profile_pic} = login.data
-        
-        
+              
         if(log_in){
           let carrito = localStorage.getItem('cart')
           localStorage.setItem("id", id)
@@ -57,7 +56,7 @@ export default function LogIn() {
           
           if(!(typeof carrito !== 'object' && carrito.length === 0)){
             console.log(carrito)
-            localStorage.removeItem('cart')
+            localStorage.setItem('cart', JSON.stringify([]))
           }
   
           navigate('/home')

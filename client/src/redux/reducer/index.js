@@ -1,5 +1,6 @@
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
-        GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT
+        GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
+        DELETE_ALL_FROM_CART
 } from '../actions/index'
 
 const initialState = {
@@ -119,6 +120,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cart: state.cart.filter(v => v.id !== action.payload.data.id)
+            }
+        case DELETE_ALL_FROM_CART:
+            return{
+                ...state,
+                cart: []
             }
         case GET_COMMENTS_BY_GAME:
             console.log(action.payload)

@@ -6,6 +6,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import { 
   delFromCart, 
   getCartById,
+  delAllFromCart,
   postMercadoPago } 
 from '../../redux/actions'
 import swal from 'sweetalert'
@@ -76,9 +77,14 @@ export default function ShoppingCart() {
 
   const handleClearCart = () => {
     localStorage.setItem('cart', JSON.stringify([]))
+    if(typeof id_user === 'object'){
+      localStorage.setItem('cart', JSON.stringify([]))
+    }else{
+      dispatch(delAllFromCart())
+    }
     navigate('/my_cart')
   }
-
+  
   const handleBuyMercadoPago = (carrito) => {
     swal({
       title: 'You will be redirected to MercadoPago',
