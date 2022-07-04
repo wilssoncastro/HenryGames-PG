@@ -234,6 +234,15 @@ export default function Detail() {
               </button>
             )}
 
+            <div>
+              {
+                !cartFromLocalStorage.includes(videogame) ?
+              <button onClick={(e) => HandleAddToCart(e)}>
+                Add to Cart
+              </button>
+              : null
+              }
+            </div>
 
             <div className="buttonBackHome">
               <Link to="/home">
