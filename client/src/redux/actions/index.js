@@ -4,6 +4,7 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DELETE_FROM_CART = 'DELETE_FROM_CART'
 export const DELETE_ALL_FROM_CART = 'DELETE_ALL_FROM_CART'
+export const ADD_MANY_TO_CART = 'ADD_MANY_TO_CART'
 export const GET_CART_BY_ID = 'GET_CART_BY_ID'
 export const GET_COMMENTS_BY_GAME = 'GET_COMMENTS_BY_GAME'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
@@ -167,23 +168,29 @@ export function delFromCart(id, id_game){
   }
   }
 
-  // export function delAllFromCart(id) {
-  //   return function(dispatch){
-  //     return axios.delete(`http://localhost:3001/cart/deleteAll/${id}`)
-  //     .then(data => {
-  //       dispatch({
-  //         type: DELETE_ALL_FROM_CART,
-  //         payload: data
-  //       })
-  //     })
-  //   }
-  // }
-
-  export function delAllFromCart(){
-    return {
-      type: DELETE_ALL_FROM_CART
-    }
+export function deleteAllFromCart(id_user){
+  return function(dispatch){
+    return axios.delete(`http://localhost:3001/cart/deleteToMany/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: DELETE_ALL_FROM_CART
+      })
+    })
   }
+}
+
+export function addManyToCart(id_user){
+  return function(dispatch){
+    return axios.post(`http://localhost:3001/cart/addToMany/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: ADD_MANY_TO_CART
+      })
+    })
+  }
+}
+
+
 
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------  

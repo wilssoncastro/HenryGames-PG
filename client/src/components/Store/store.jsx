@@ -53,46 +53,48 @@ export default function Store() {
 
   return (
     <div className='background'>
-      <div>
+      <div className='first-row'>
         <NavBar />
       </div>
-      <h1>Videogames</h1>
-      <SearchBar
-        name= {name} 
-        setName = {setName}
-        setPage={setPage}
-      />
+      <div className='top-filter'>
+        <h1>Videogames</h1>
+        <SearchBar
+          name= {name} 
+          setName = {setName}
+          setPage={setPage}
+        />
 
-      <select onChange={(e) => handleLimit(e)}>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="200">200</option>
-      </select>
+        <select onChange={(e) => handleLimit(e)}>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+        </select>
 
-      <select onChange={(e) => handleSort(e)}>
-          <option disabled={sort}>Sort</option>
-          <option value='name'>Name</option>
-          <option value='price'>Price</option>
-          <option value='rating'>Rating</option>
-      </select>
+        <select onChange={(e) => handleSort(e)}>
+            <option disabled={sort}>Sort</option>
+            <option value='name'>Name</option>
+            <option value='price'>Price</option>
+            <option value='rating'>Rating</option>
+        </select>
 
-      <select onChange={(e) => handleOrder(e)}>
-        <option disabled={order}>Order</option>
-        <option value='ASC'>Upward</option>
-        <option value='DESC'>Downward</option>
-      </select>
+        <select onChange={(e) => handleOrder(e)}>
+          <option disabled={order}>Order</option>
+          <option value='ASC'>Upward</option>
+          <option value='DESC'>Downward</option>
+        </select>
 
-      <div hidden={name.length > 2}>
-        <button onClick={(e) => prev(e)} disabled={page < 10}>PREV</button>
-        <button onClick={(e) => next(e)} disabled={parseInt(limit) + parseInt(page) > 198}>NEXT</button>
-        <div>
-          <Paginado
-            page={page}
-            limit={limit}
-            paginado={paginado}
-          />
+        <div hidden={name.length > 2}>
+          <button onClick={(e) => prev(e)} disabled={page < 10}>PREV</button>
+          <button onClick={(e) => next(e)} disabled={parseInt(limit) + parseInt(page) > 198}>NEXT</button>
+          <div>
+            <Paginado
+              page={page}
+              limit={limit}
+              paginado={paginado}
+            />
+          </div>
         </div>
       </div>
 
