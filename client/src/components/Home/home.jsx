@@ -14,23 +14,6 @@ import CarouselCatCard from '../CarouselCard/CarouselCatCard';
 // import Card from '../Card/card'
 
 export default function Home() {
-<<<<<<< HEAD
-    const dispatch = useDispatch();
-    const videogames = useSelector((state) => state.videogames)
-
-    const [name, setName] = useState('')
-    const [page, setPage] = useState(0)
-    const [sort, setSort] = useState('rating');
-    const [order, setOrder] = useState('desc');
-    const [limit, setLimit] = useState(15);
-    
-    useEffect(() => {
-        // dispatch(getAllVideogames())
-        dispatch(getFilteredVideogames(name, page, sort, order, limit))
-    }, [dispatch, sort, order, limit])
-
-    console.log(videogames)
-=======
     // const dispatch = useDispatch();
     // const videogames = useSelector((state) => state.videogames)
 
@@ -43,7 +26,6 @@ export default function Home() {
     // useEffect(() => {
     //     dispatch(getFilteredVideogames(name, page, sort, order, limit))
     // }, [dispatch, sort, order])
->>>>>>> dev
     
     return (
         <div className='background'>
@@ -153,55 +135,13 @@ export default function Home() {
 
                     {/* Carousel principal */}
                     <div className="ContainerCarousel">
-<<<<<<< HEAD
-                        <h1 className='main-carousel-title'>Best Rated</h1>
-                        <Carousel focusOnSelect={false} >
-                            {videogames.slice(0, 6).map((e) => {
-                                return(
-                                    <item>
-                                        <CarouselCard
-                                            name={e.name}
-                                            id={e.id}
-                                            image={e.image}
-                                            short_screenshots={e.short_screenshots}
-                                            genres={e.genres}
-                                            price={`$${e.price}`}
-                                            rating={e.rating}
-                                            />
-                                    </item>
-                                )
-                            })}
-
-                        </Carousel>
-=======
                         <h1 className='main-carousel-title'>Best rated</h1>
                         <CarouselCard/>
->>>>>>> dev
                     </div>
                     {/* Carousel secundarios del medio del home */}
                     <div className="CategoryContainerCarousel">
-<<<<<<< HEAD
-                        <h3 className='category-carousel-title'>Shooter</h3>
-                        <Carousel focusOnSelect={false} itemsToShow={4}>
-                            {videogames.map((e) => {
-                                console.log(e)
-                                
-                                return(
-                                    <item>
-                                        <CarouselCatCard
-                                            name={e.name}
-                                            image={e.image}
-                                            id={e.id}
-                                            price={`$${e.price}`}
-                                            />
-                                    </item>
-                                )
-                            })}
-                        </Carousel>
-=======
                         <h3 className='category-carousel-title'>Free to Play</h3>
                         <CarouselFP/>
->>>>>>> dev
                     </div>
 
                     <div className="CategoryContainerCarousel">

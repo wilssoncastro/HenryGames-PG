@@ -45,7 +45,7 @@ export default function CarouselCard() {
               <img className='screenshots' src={e.short_screenshots[3]} alt='img not found' />
             </div>
             <div className='c35-footer'>
-              <h5 className='footer-txt'>Rating {rating}</h5>
+              <h5 className='footer-txt'>Rating {e.rating}</h5>
               <div className='genres-section'>
               {/* <span className='genre-style'>{genres[0].name}</span> */}
                 {e.genres.map((g) => (

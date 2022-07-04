@@ -46,56 +46,79 @@ export default function NavBar() {
 
 
     // Data for sidebar, can't separate in modules because of onClick hook context import/export
-    const SidebarData = [
+    let sidebarData = [
         {
             title: 'Profile',
             path: `/profile/${id}`,
             icon: <CgIcons.CgProfile />,
             className: 'nav-text',
-            onClick: showSidebar
+            onClick: showSidebar,
+            loggedIn: true
         },
         {
             title: 'Theme',
             path: '#',
             icon: <VscIcons.VscColorMode />,
             className: 'nav-text',
-            onClick: showSidebar
+            onClick: showSidebar,
         },
         {
             title: 'Language',
             path: '#',
             icon: <BsIcons.BsTranslate />,
             className: 'nav-text',
-            onClick: showSidebar
+            onClick: showSidebar,
         },
         {
             title: 'Friends',
             path: '#',
-<<<<<<< HEAD
-            icon: <FaIcons.FaUserFriends/>,
-            className: 'bottom-text',
-=======
             icon: <FaIcons.FaUserFriends />,
-            className: 'friends-text',
->>>>>>> dev
-            onClick: showFriendBox
+            className: 'bottom-text-first',
+            onClick: showFriendBox,
+            loggedIn: true
+        },
+        {
+            title: 'Log Out',
+            path: '#',
+            icon: <CgIcons.CgProfile/>,
+            className: 'bottom-text',
+            onClick: showSidebar,
+            loggedIn: true
+        },
+        {
+            title: 'Log In',
+            path: '#',
+            icon: <CgIcons.CgProfile/>,
+            className: 'bottom-text-first',
+            onClick: showSidebar,
+            loggedIn: false
         },
         {
             title: 'Sign Up',
             path: '#',
             icon: <CgIcons.CgProfile/>,
             className: 'bottom-text',
-            onClick: showSidebar
-        },
-        {
-            title: 'Log In',
-            path: '#',
-            icon: <CgIcons.CgProfile/>,
-            className: 'bottom-text',
-            onClick: showSidebar
+            onClick: showSidebar,
+            loggedIn: false
         }
     ]
 
+    let sidebarDataInfo = []
+    if (!user.id) {
+        sidebarData.map((e) => {
+            if (e.loggedIn == false || !e.loggedIn) {
+                sidebarDataInfo.push(e)
+            }
+        })
+    } else {
+        sidebarData.map((e) => {
+            if (e.loggedIn === true || e.loggedIn == null) {
+                sidebarDataInfo.push(e)
+            }
+        })
+    }
+
+    console.log(sidebarDataInfo)
 
     return (
         <div>
@@ -177,22 +200,19 @@ export default function NavBar() {
 
                     {/* Tres barritas que las esconde el navbar, las dejamos porque si no se esconde Profile */}
                     <ul className="side-menu-items">
-                        <li className="sidebar-toggle" onClick={showSidebar}>
-                            <Link to="#" className="navbar-icons">
-                                <VscIcons.VscThreeBars />
-                            </Link>
-                        </li>
 
                         {/* Map de los items que muestra el menu: Profile, Theme, Language, Log In, Friends */}
-                        <div className="navbar-side-items">
-                            {SidebarData.map((item, index) => {
+                        <div id="navbar-side-items">
+                            {sidebarDataInfo.map((item, index) => {
                                 return (
-                                    <li key={index} className={item.className} >
-                                        <Link to={item.path} onClick={item.onClick}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
+                                    
+                                        <li key={index} className={item.className} >
+                                            <Link to={item.path} onClick={item.onClick}>
+                                                {item.icon}
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    
                                 )
                             })}
                         </div>

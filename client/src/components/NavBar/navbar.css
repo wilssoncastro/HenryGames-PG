@@ -87,7 +87,6 @@
 
 .side-menu {
     background-color: #151414;
-    width: 250px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -101,16 +100,22 @@
 ul {
     padding-inline-start: 0;
 }
+span {
+    margin-left: 1em;
+}
 
 .side-menu.active {
     right: 0;
     transition: 350ms;
     padding: 0;
+    width: 250px;
 }
 
-.navbar-side-items {
+#navbar-side-items {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
 }
 
 .nav-text {
@@ -141,15 +146,18 @@ ul {
 
 .bottom-text {
     display: flex;
-    justify-content: start;
+    justify-content: flex-end;
+
     align-items: center;
     padding: 8px 16px 8px 16px;
     list-style: none;
     height: 60px;
-    /* justify-content: flex-end; */
-    /* align-self: flex-end; */
     /* align-content: flex-end; */
     /* width: 85%; */
+}
+
+#navbar-side-items .bottom-text {
+    justify-self: flex-end;
 }
 
 .bottom-text a {
@@ -176,4 +184,53 @@ ul {
     padding-right: 4px;
     padding-left: 4px;
     text-decoration: none;
+}
+
+.sidebar-toggle {
+    background-color: #060b26;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.side-menu-items {
+    width: 100%;
+    margin-top: 4em;
+}
+
+
+
+/* PRUEBA */
+
+.bottom-text-first {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+#navbar-side-items .bottom-text-first {
+    justify-self: flex-end;
+}
+
+.bottom-text-first a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+    transition: 250ms;
+}
+
+.bottom-text-first a:hover {
+    background-color: #1a83ff;
 }
