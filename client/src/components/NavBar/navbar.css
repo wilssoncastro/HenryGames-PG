@@ -234,3 +234,98 @@ span {
 .bottom-text-first a:hover {
     background-color: #1a83ff;
 }
+
+
+/* SIGN UP BUTTON */
+
+.sign-up-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    border: 2px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+.sign-up-button a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.sign-up-button a:hover {
+    border: 1px solid #1a83ff;
+    color: #1a83ff;
+    
+}
+
+
+/* Log-In Button */
+.log-in-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    border: 2px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+.log-in-button a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 5px;
+    transition: 250ms;
+}
+
+.log-in-button a:hover {
+    /* border: 1px solid #34d379; */
+    background-color: #13984c;
+    
+}
+
+/* LOG-OUT BUTTON */
+.log-out-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+.log-out-button a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.log-out-button a:hover {
+    background-color: #a11616;
+    
+}

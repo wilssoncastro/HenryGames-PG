@@ -10,6 +10,8 @@ import * as VscIcons from "react-icons/vsc";
 import * as MdIcons from "react-icons/md"
 import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
+import * as FiIcons from "react-icons/fi"
+import * as RiIcons from "react-icons/ri"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -67,7 +69,15 @@ export default function NavBar() {
             path: '#',
             icon: <BsIcons.BsTranslate />,
             className: 'nav-text',
+            onClick: showSidebar
+        },
+        {
+            title: 'Admin Tools',
+            path: '/admin',
+            icon: <RiIcons.RiAdminLine />,
+            className: 'nav-text',
             onClick: showSidebar,
+            loggedIn: true
         },
         {
             title: 'Friends',
@@ -80,24 +90,24 @@ export default function NavBar() {
         {
             title: 'Log Out',
             path: '#',
-            icon: <CgIcons.CgProfile/>,
-            className: 'bottom-text',
+            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b;'}} />,
+            className: 'log-out-button',
             onClick: showSidebar,
             loggedIn: true
         },
         {
             title: 'Log In',
-            path: '#',
-            icon: <CgIcons.CgProfile/>,
-            className: 'bottom-text-first',
+            path: '/log_in',
+            icon: <FiIcons.FiLogIn />,
+            className: 'log-in-button',
             onClick: showSidebar,
             loggedIn: false
         },
         {
             title: 'Sign Up',
-            path: '#',
-            icon: <CgIcons.CgProfile/>,
-            className: 'bottom-text',
+            path: '/sign_up',
+            icon: <CgIcons.CgProfile style={{color: '#1a83ff;'}}/>,
+            className: 'sign-up-button',
             onClick: showSidebar,
             loggedIn: false
         }
@@ -206,7 +216,7 @@ export default function NavBar() {
                             {sidebarDataInfo.map((item, index) => {
                                 return (
                                     
-                                        <li key={index} className={item.className} >
+                                        <li key={index} className={item.className}>
                                             <Link to={item.path} onClick={item.onClick}>
                                                 {item.icon}
                                                 <span>{item.title}</span>
