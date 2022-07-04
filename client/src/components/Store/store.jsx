@@ -50,6 +50,7 @@ export default function Store() {
   e.preventDefault();
   setPage(parseInt(page) + parseInt(limit))
  }
+ 
 
   return (
     <div className='background'>

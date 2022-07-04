@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
           esrb_rating: e.esrb_rating !== null ? e.esrb_rating.name : "Rating Pending",
           requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en)).filter(b => b != false)),
           contador: 0
-        }
+        },
       })
     })
     await Promise.all(juego)
@@ -133,6 +133,47 @@ router.get('/', async (req, res) => {
   }} catch (error) {
     console.log("CATCH")
   }
+})
+
+router.get('/filterType', async (req, res) => {
+  
+  const { name, genre, tag, esrb, limit, page, sort, order } = req.query;
+  
+  let condition = {}
+  let where = {}
+
+  if (name && name.length > 2) {
+    where.name = { [Op.iLike]: `${name}%` }
+  }
+  if (genre) {
+    where.genres = genre
+  }
+  if (tag) {
+    where.tags = { [Op.or]: tag }
+  }
+  if (esrb) {
+    where.esrb_rating = esrb
+  }
+
+  condition.where = where
+  condition.limit = limit
+  condition.offset = page
+  sort&&order?condition.order=[[sort, order]]:!condition.order
+  condition.include = [{
+    model: Genre,
+    attributes: ['name'],
+    through: {
+      attributes: [],
+    }
+  }]
+  
+  try {
+    let videogames = await Videogame.findAll(condition)
+    res.send(videogames)
+  } catch (error) {
+    console.log("catch filter")
+  }
+
 })
 
 router.get('/:id', async (req, res) => {

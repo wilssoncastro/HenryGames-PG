@@ -13,18 +13,6 @@ import './carousel.css'
 // import Card from '../Card/card'
 
 export default function Home() {
-    // const dispatch = useDispatch();
-    // const videogames = useSelector((state) => state.videogames)
-
-    // const [name, setName] = useState('')
-    // const [page, setPage] = useState(0)
-    // const [sort, setSort] = useState('');
-    // const [order, setOrder] = useState('');
-    // const [limit, setLimit] = useState(15);
-    
-    // useEffect(() => {
-    //     dispatch(getFilteredVideogames(name, page, sort, order, limit))
-    // }, [dispatch, sort, order])
     
     return (
         <div className='background'>
@@ -39,7 +27,7 @@ export default function Home() {
                         <div className='filters-column'>
                             <div className='filters-title'>
                                 <span>Genres</span>
-                                <BiIcons.BiTag className="filter-icon"/>
+                                {/* <BiIcons.BiTag className="filter-icon"/> */}
                             </div>
                             <ul className='genres-list'>
                                 <li className='genre-txt' >

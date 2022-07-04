@@ -18,7 +18,8 @@ import FormEdit from './components/VideogameForm/FormEdit'
 import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
-import  EdiProfile from './components/Profile/EditProfile';
+import EdiProfile from './components/Profile/EditProfile';
+
 function App() {
   return (
     <BrowserRouter>
