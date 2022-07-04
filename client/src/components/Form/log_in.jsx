@@ -26,40 +26,45 @@ export default function LogIn() {
     e.preventDefault()
 
     if(input.username && input.password){
-      const login = await axios({
-        method: "post",
-        url: "http://localhost:3001/authentication/login",
-        data: input,
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        withCredentials: true,
-      })
-      .then((res) => {
-        return res;
-      })
-      .catch((error) => console.log(error));
+      let is_authorized = await axios.get('http://localhost:3001/is_online')
 
-      
-      let {log_in, id, name, lastname, type, profile_pic} = login.data
-      
-      
-      if(log_in){
-        let carrito = localStorage.getItem('cart')
-        localStorage.setItem("id", id)
-        localStorage.setItem('name', name)
-        localStorage.setItem('lastname', lastname)
-        localStorage.setItem('type', type)
-        localStorage.setItem('profile_pic', profile_pic)
+      if((is_authorized.data)){
+        setError('Ya estas logueado')
+      }else{
+        const login = await axios({
+          method: "post",
+          url: "http://localhost:3001/authentication/login",
+          data: input,
+          headers: { "X-Requested-With": "XMLHttpRequest" },
+          withCredentials: true,
+        })
+        .then((res) => {
+          return res;
+        })
+        .catch((error) => console.log(error));
+  
         
-        if(!(typeof carrito !== 'object' && carrito.length === 0)){
-          console.log(carrito)
-          localStorage.removeItem('cart')
+        let {log_in, id, name, lastname, type, profile_pic} = login.data
+              
+        if(log_in){
+          let carrito = localStorage.getItem('cart')
+          localStorage.setItem("id", id)
+          localStorage.setItem('name', name)
+          localStorage.setItem('lastname', lastname)
+          localStorage.setItem('type', type)
+          localStorage.setItem('profile_pic', profile_pic)
+          
+          if(!(typeof carrito !== 'object' && carrito.length === 0)){
+            console.log(carrito)
+            localStorage.setItem('cart', JSON.stringify([]))
+          }
+  
+          navigate('/home')
         }
-
-        navigate('/home')
-      }
-
-      if(typeof login.data === 'string'){
-        setError(login.data)
+  
+        if(typeof login.data === 'string'){
+          setError(login.data)
+        }
       }
 
 
