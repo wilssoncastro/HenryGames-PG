@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredVideogames } from '../../redux/actions';
-import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
+// import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
 import Card from '../Card/card.jsx'
-import Cards from '../Card/cards.jsx'
 import NavBar from '../NavBar/navbar';
 import SearchBar from '../Searchbar/searchbar';
-import '../Store/store.css';
+import './store.css';
 import Paginado from '../Paginado/paginado';
 
 export default function Store() {
@@ -53,17 +52,18 @@ export default function Store() {
  }
 
   return (
-    <div>
+    <div className='background'>
       <div>
         <NavBar />
       </div>
       <h1>Videogames</h1>
-      <SearchBar 
+      <SearchBar
         name= {name} 
         setName = {setName}
+        setPage={setPage}
       />
 
-      <select hidden={name} onChange={(e) => handleLimit(e)}>
+      <select onChange={(e) => handleLimit(e)}>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
@@ -71,20 +71,20 @@ export default function Store() {
           <option value="200">200</option>
       </select>
 
-      <select hidden={name} onChange={(e) => handleSort(e)}>
+      <select onChange={(e) => handleSort(e)}>
           <option disabled={sort}>Sort</option>
           <option value='name'>Name</option>
           <option value='price'>Price</option>
           <option value='rating'>Rating</option>
       </select>
 
-      <select hidden={name} onChange={(e) => handleOrder(e)}>
+      <select onChange={(e) => handleOrder(e)}>
         <option disabled={order}>Order</option>
         <option value='ASC'>Upward</option>
         <option value='DESC'>Downward</option>
       </select>
 
-      <div hidden={name}>
+      <div hidden={name.length > 2}>
         <button onClick={(e) => prev(e)} disabled={page < 10}>PREV</button>
         <button onClick={(e) => next(e)} disabled={parseInt(limit) + parseInt(page) > 198}>NEXT</button>
         <div>
@@ -97,35 +97,23 @@ export default function Store() {
       </div>
 
       <div className='containercard'>
-        {currentVideogames.map((v) => {
-          return (
-            !name?
-            <div>
-              <Card
-                key={v.id}
-                image={v.image}
-                name={v.name}
-                price={v.price}
-                free_to_play={v.free_to_play}
-                id={v.id}
-              />
-            </div> : 
-            <div>
-              <Cards
-                key={v.id}
-                image={v.image}
-                name={v.name}
-                rating={v.rating}
-                free_to_play={v.free_to_play}
-                on_sale={v.on_sale}
-                price={v.price}
-                id={v.id}
-              />
-            </div>
-          );
-        })}
+        {
+          currentVideogames.map((v, i) => {
+            return (
+              <div>
+                <Card
+                  key={v.id}
+                  image={v.image}
+                  name={v.name}
+                  price={v.price}
+                  free_to_play={v.free_to_play}
+                  id={v.id}
+                />
+              </div>
+            )
+          })
+        }
       </div>
-
     </div>
   );
 }

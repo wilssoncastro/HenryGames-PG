@@ -15,6 +15,7 @@ const routesComments = require('../controllers/commentsRoutes')
 
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
+const mercadopago = require('../controllers/mercadopago')
 const cartRoutes = require('../controllers/cartRoutes')
 const routesBlog = require('../controllers/blog')
 
@@ -31,11 +32,16 @@ router.use('/esrb', getEsrb)
 router.use('/genres', getGenres)
 router.use('/friends', friendRouters)
 router.use('/wishlist', wishRoutes)
-router.use('/authentication', registerRoutes)
+router.use('/mercadopago', mercadopago)
 router.use('/cart', cartRoutes)
 router.use('/comments', routesComments)
 router.use('/sales', routesSales)
 router.use('/blog', routesBlog)
 
+router.use('/authentication', registerRoutes)
+
+router.get('/is_online', (req, res) => 
+    res.send(req.isAuthenticated())
+)
 
 module.exports = router

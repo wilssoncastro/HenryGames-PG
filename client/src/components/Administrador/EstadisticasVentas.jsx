@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import BarChart from "../Graphics/BarChart";
 import LineChart from "../Graphics/LineChart";
 import UsersVsSales from "../Graphics/UsersVsSales";
+import { ComponentError } from "./componentError";
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -32,6 +33,10 @@ export default function Estadisticas() {
     console.log(totalGanancias);
   }
 
+const id_user_admin = localStorage.getItem('type')
+if (id_user_admin) {
+  if (id_user_admin === "adm") {
+
   return (
     <div>
       <div>
@@ -48,17 +53,17 @@ export default function Estadisticas() {
         onChange={(e) => handleInputChange(e)}
       />
 
-      <h2>Ganancias Totales: ${(totalGanancias).toFixed(2)}</h2>
+    <h2> Total Earns: ${(totalGanancias).toFixed(2)}</h2>
       {
-        name ?
-          videogame.map((e) => (
-            <div>
-              {/* <Card key={e.id} name={e.name} price={e.price} /> */}
-              <h3>{e.name} = ${e.price}</h3>
-              <h4>Ventas: {e.contador}</h4>
-              <h4>Ganancias del juego: ${(e.contador * e.price).toFixed(2)}</h4>
-            </div>
-          )) : null
+        name?
+        videogame.map((e) => (
+          <div>
+            {/* <Card key={e.id} name={e.name} price={e.price} /> */}
+            <h3>{e.name} = ${e.price}</h3>
+            <h4>Sales: {e.contador}</h4>
+            <h4> Game Earns: ${(e.contador * e.price).toFixed(2)}</h4>
+          </div>
+        )) : null
       }
       <div>
         <h2> Top videojuegos vendidos</h2>
@@ -73,5 +78,17 @@ export default function Estadisticas() {
         <UsersVsSales />
       </div>
     </div>
-  );
+  )
+}else{      
+  return (
+    <ComponentError></ComponentError>
+  )
+}
+} else
+return (
+  <ComponentError></ComponentError>
+)
+
+
+
 }

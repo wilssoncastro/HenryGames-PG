@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
           image: e.background_image,
           description: e.slug,
           rating: e.rating,
-          price: ftp ? 0 : ((Math.random() * 10).toFixed(3)),
+          price: ftp ? 0 : ((Math.random() * 10).toFixed(2)),
           on_sale: (Math.random() * 10) < 7 ? false : true,
           free_to_play: ftp,
           short_screenshots: e.short_screenshots.map(s => s.image),
@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
   /////////////////////////////////////////llamado a BD
   else {
     const { name, page, limit, order, sort } = req.query
-    if (name && !(sort && order)) {
+    if (name && (name.length > 2) && !(sort && order)) {
       const videogames = await Videogame.findAll({
         where: {
           name: { [Op.iLike]: `${name}%` },
@@ -87,11 +87,18 @@ router.get('/', async (req, res) => {
       const videogames = await Videogame.findAll({
         limit: limit, // cantidad de videogames por página
         offset: page, // índice del primer videogame que se muestra en la página
-        order: [[sort, order]] // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+        order: [[sort, order]], // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+        include: [{
+          model: Genre,
+          attributes: ['name'],
+          through: {
+            attributes: [],
+          }
+        }],
       })
       res.send(videogames);
     }
-    else if (name && sort && order) {
+    else if (name && (name.length > 2) && sort && order) {
       const videogames = await Videogame.findAll({
         where: {
           name: { [Op.iLike]: `${name}%` },

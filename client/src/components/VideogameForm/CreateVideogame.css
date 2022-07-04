@@ -1,10 +1,16 @@
 .videogame_created_container{
-    background-image: url('https://img.freepik.com/vector-gratis/lamina-oro-fondo-dorado-metal-holografico_186921-52.jpg?w=2000');
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
-    margin-top: 80px;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');
+background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+font-family: sans-serif;
 }
 .error{
     color:  red;

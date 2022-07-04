@@ -1,4 +1,6 @@
-import { GET_USER_BY_ID } from '../actions/index'
+import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
+        GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT
+} from '../actions/index'
 
 const initialState = {
     allVideogames: [],
@@ -7,8 +9,15 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+<<<<<<< HEAD
     my_user: {},
     articles: [],
+=======
+    users: [],
+    my_user: {},
+    cart: [],
+    comments: []
+>>>>>>> 7fb22985d75372b1811e3bb3753324cde3f4846f
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -17,13 +26,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 videogames: action.payload,
-                allVideogames: action.payload
+                allVideogames: action.payload,
             }
 
         case "GET_FILTERED_VIDEOGAMES":
             return {
                 ...state,
-                videogames: action.payload
+                videogames: action.payload,
             }
 
         case "GET_CARD_STATISTICS": 
@@ -66,10 +75,9 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case "GET_WISH_LIST":
-            console.log(action.payload)
             return {
                 ...state,
-                wishList: action.payload
+                wishList: action.payload.wishs
             }
 
         case "ADD_WISH_LIST":
@@ -82,19 +90,78 @@ const rootReducer = (state = initialState, action) => {
         case "DELETE_WISH_LIST":
             return {
                 ...state,
-                wishList: state.wishList.filter(v => v.id.toString() !== action.payload)
+                wishList: state.wishList.filter(v => v.id.toString() !== action.payload.id.toString())
             }
-        case GET_USER_BY_ID:
+            
+        case "POST_CART":
+            return {
+                ...state
+            }
+        
+        case "GET_USER_BY_ID":
             return {
                 ...state,
-                my_user: action.payload.data
+                my_user: action.payload
             }
+        case "GET_ALL_USERS":
+            return {
+                ...state,
+                users: action.payload
+            }
+        case GET_CART_BY_ID:
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: action.payload.data.cart
+            }
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cart: state.cart.concat(action.payload.data)
+            }
+        case DELETE_FROM_CART:
+            console.log(action.payload)
+            return {
+                ...state,
+                cart: state.cart.filter(v => v.id !== action.payload.data.id)
+            }
+        case GET_COMMENTS_BY_GAME:
+            console.log(action.payload)
+            return {
+                ...state,
+                comments: action.payload.data
+            }
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                comments: state.comments.filter(v => v.id !== action.payload.data.id)
+            }
+        case POST_COMMENT:
+            return{
+                ...state,
+                comments: state.comments.concat(action.payload.data)
+            }
+        case EDIT_COMMENT:
+            console.log(state.comments)
+            let elemento = action.payload.data
+            for(let i = 0; i < state.comments.length; i++){
+                if(state.comments[i].id === elemento.id){
+                    state.comments.splice(i, 1, elemento)
+                }
+            }
+            console.log(state.comments)
 
+<<<<<<< HEAD
         case "GET_ARTICLES":
             console.log("reducer", action.payload)
             return {
                 ...state,
                 articles: action.payload.data
+=======
+            return{
+                ...state,
+                comments: state.comments
+>>>>>>> 7fb22985d75372b1811e3bb3753324cde3f4846f
             }
         default:
             return state;

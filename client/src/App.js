@@ -15,10 +15,11 @@ import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
-import Blog from './components/Blog/Blog'
-
+import Blog from './components/Blog/Blog';
+import { Users } from './components/Administrador/Users';
+import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
-
+import  EdiProfile from './components/Profile/EditProfile';
 function App() {
   return (
     <BrowserRouter>
@@ -27,7 +28,6 @@ function App() {
 
           {/* LANDING page que va a pedir Log In, ofrecer tambien un Sign Up, si por COOKIES detecta 
               que ya esta loggeado, te manda directo al Home O ENTRAR COMO INVITADO */}
-
           
           <Route exact path='/' element={<LandingPage />} />
 
@@ -62,9 +62,11 @@ function App() {
           <Route exact path='/log_in' element={<LogIn />}/> 
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile />}/>
+          <Route exact path='/profile/:id/editprofile' element={<EdiProfile/>}/>
 
           {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
+          <Route exact path='/admin/users' element={<Users />} />
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart />}/>
@@ -80,6 +82,7 @@ function App() {
 
 
           
+          <Route path='/comment' element={<Comment />} />
         </Routes>
       </div>
     </BrowserRouter>

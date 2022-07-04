@@ -12,7 +12,6 @@ function isAuthenticated(req, res, next) {
     //console.log(req.cookies,' esto es req.cookies register isAuthenticated' )
     //console.log(req.signedCookies,' esto es req.signedCookies register isAuthenticated' )
     if (req.isAuthenticated()) {
-      console.log('hola')
       res.send('/authentication/register');
     } else {
       next();

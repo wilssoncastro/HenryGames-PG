@@ -14,7 +14,7 @@ router.get('/', async(req, res) => {
     
 
     try {
-        let comments = await Comment.findAll({condition}) 
+        let comments = await Comment.findAll(condition) 
 
         res.json(comments)
     } catch (error) {
@@ -26,11 +26,13 @@ router.post('/madeComment/:id_user/:id_game', async(req, res) => {
 
     const { id_user, id_game} = req.params
     const { comment } = req.body
+    
 
     if(!id_user || !id_game)return res.status(401).send('Faltan parametros obligatorios')
     if(comment.length > 256)return res.status(401).send('El comentario es muy largo.')
 
     try {
+        console.log('Hola!')
         let user = await Player.findByPk(id_user);
         let videogame = await Videogame.findByPk(id_game)
 
@@ -64,7 +66,7 @@ router.put('/editComment/:id_comment', async(req, res) => {
         edit_comment.comment = comment
         await edit_comment.save()
 
-        res.send('El comentario se modifico correctamente.')
+        res.send(edit_comment)
     } catch (error) {
         return res.send(error)
     }
@@ -78,7 +80,7 @@ router.put('/report_comment/:id_comment', async(req, res) => {
         if(!reported_comment)return res.status(401).send('El comentario no existe')
 
         reported_comment.reported = true
-        return res.send('El comentario fue denunciado.')
+        return res.send(reported_comment)
 
     } catch (error) {
         res.status(404).send(error)
@@ -93,7 +95,7 @@ router.put('/unreport_comment/:id_comment', async(req, res) => {
         if(!unreported_comment)return res.status(401).send('El comentario no existe')
 
         reported_comment.reported = false
-        return res.send('Eliminaste el reporte.')
+        return res.send(unreported_comment)
 
     } catch (error) {
         res.status(404).send(error)
@@ -109,7 +111,7 @@ router.delete('/deleteComment/:id_comment', async(req, res) => {
         if(!delete_comment)return res.status(401).send('El comentario no existe')
 
         await delete_comment.destroy()
-        return res.send('El comentario fue eliminado.')
+        return res.send(delete_comment)
 
     } catch (error) {
         res.status(404).send(error)
