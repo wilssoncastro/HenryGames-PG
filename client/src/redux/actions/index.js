@@ -11,6 +11,18 @@ export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const POST_COMMENT = 'POST_COMMENT'
 export const REPORT_COMMENT = 'REPORT_COMMENT'
+export const IS_ONLINE = 'IS_ONLINE'
+
+export function is_authorizated(){
+  return async function(dispatch){
+    return axios.get(`http://localhost:3001/is_online`)
+    .then(data => {
+      dispatch({
+        type: IS_ONLINE
+      })
+    })
+  }
+}
 
 export function getAllVideogames() {
   return async function (dispatch) {
