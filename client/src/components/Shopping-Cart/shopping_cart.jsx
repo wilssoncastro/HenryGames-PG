@@ -74,7 +74,10 @@ export default function ShoppingCart() {
       })
   }
 
-  const handleClearCart = () => {
+  const handleClearCart = (id) => {
+    if(typeof id_user === 'string'){
+      dispatch(delFromCart(id_user, id))
+    }
     localStorage.setItem('cart', JSON.stringify([]))
     navigate('/my_cart')
   }
