@@ -1,6 +1,7 @@
 .allPage {
     background-color: black;
     color: white;
+    
 }
 
 .allDetail {
@@ -8,85 +9,189 @@
 }
 
 .name {
-    text-decoration:underline #c7a94b;
+    text-decoration: underline #c7a94b;
+
+    cursor: default;
+}
+.containerImgList{
+display: flex;
+flex-direction: row;
 }
 
 .image  {
     width: 500px;
     height: 250px;
-    float: left;
     margin: 10px;
+    margin-left: 1rem;
 }
 
-.WishList{
-    float: inline-end;
+.listDetail1{
+    height: 250px;
+    display: flex; 
+    flex-direction: column;
+    list-style: none;
+    justify-content: space-around;
+    margin: 0 6rem ;
+    align-items: flex-start;
 }
+.listDetail2{
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: space-around;
+    margin: 0 3rem ;
+    align-items: flex-start;
+}
+
+.titleList{
+    font-weight: bold;
+    margin-left: 0;
+}
+.titleList:hover{
+    color: #c7a84b;
+    cursor:default;
+    transition: 0.3s;
+}
+
+.divsListDetail{
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 1rem;
+}
+
 .buttonAddWishList {
-    background-color: #c7a84b85;
-    color: black;
-    margin-right: 10px;
-    border-radius: 8px;
-    font-size: small;
-    border: none;
-    float: right;
-}
-.buttonAddWishList:hover{
-    font-size: small;
     background-color: #c7a84b;
     color: black;
-    float: right;
-}
-.buttonDeleteWishList {
-    background-color: #c7a84b85;
-    color: white;
     margin-right: 10px;
     border-radius: 8px;
-    font-size: small;
+    font-size: 30px;
+    padding: 0.5rem;
     border: none;
-    float: right;
+}
+.buttonAddWishList:hover{
+    background-color: rgb(1, 165, 1);
+    color: black;
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.buttonDeleteWishList {
+    background-color: #c7a84b;
+    color: black;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: 30px;
+    padding: 0.5rem;
+    border: none;
 }
 .buttonDeleteWishList:hover{
-    background-color: rgba(160, 0, 0, 0.61);
+    background-color: rgba(196, 1, 1, 0.795);
     color: white;
-    font-size: small;
-    float: right;
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .buttonCart{
-    background-color: #c7a84b85;
+    background-color: #c7a84b;
     color: black;
-    float: right;
     margin-right: 10px;
     border-radius: 8px;
-    font-size: small;
+    font-size: 30px;
+    padding: 0.5rem;
     border: none;
 }
 .buttonCart:hover{
+    background-color: #1a83ff;
+    color: black;
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.buttonBuy{
     background-color: #c7a84b;
     color: black;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-size: 30px;
+    padding: 0.5rem;
+    border: none;
+}
+.buttonBuy:hover{
+    background-color: #1a83ff;
+    color: black;
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+#onSale {
+    color: yellowgreen;
 }
 
-.container1{
-    float: left;
+.tagH4:hover{
+    color: #c7a84b;
+    transition: 0.3s;
+    cursor: default;
+    display: inline-block;
 }
-.price{ 
-    display: flex; 
-    margin-right: 60px;
-    margin-left: 10px;
+.tag{
+    font-size: medium;
+    margin: 0 9rem ;
+    background-color: rgba(27, 27, 27, 0.527);
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
 }
 
-.rating{
-    display: flex ;
+.descriptionH3{
+    display: inline-block;
+}
+.descriptionH3:hover{
+    color: #c7a84b;
+    transition: 0.3s;
+    cursor: default;
+}
+.description{
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0 20px;
+    font-size: large;
+    background-color: rgba(27, 27, 27, 0.527);;
+    border-radius: 0.5rem;
+    padding: 0.2rem 1rem;
+}
+
+.screenshots{
+    width: 500px;
+    height: 250px;
+    margin: 15px;
 }
 
 
-
-
-
-
+.descriptionH3{
+    display: inline-block;
+}
+.requirementsH3:hover{
+    color: #c7a84b;
+    transition: 0.3s;
+    cursor: default;
+}
+.requirements{
+    font-size: medium;
+    margin: 0 3rem ;
+    background-color: rgba(27, 27, 27, 0.527);
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+}
 
 .all_comments{
         display: flex;
         align-items: center;
         flex-direction: column;
-    }
+}
