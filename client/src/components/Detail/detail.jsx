@@ -126,30 +126,45 @@ export default function Detail() {
 
             <img className="image" src={videogame.image} />
 
-            <div className="description">
-              <h4>Description: </h4>
-              <p>{videogame.description}</p>
+            <div className="WishList">
+              {!list?.find((e) => e.id == videogame.id) ? (
+                <button className="buttonAddWishList" onClick={() => handleOnClick(videogame.id)}>
+                  Add Wish List
+                </button>
+              ) : (
+                <button className="buttonDeleteWishList" onClick={() => handleOnClickDelete(videogame.id)}>
+                  Delete from the Wish List 
+                </button>
+              )}
             </div>
 
-    
-              <h4>Price: </h4>
+            <div className="containerButtonCart">
+              <button className="buttonCart" onClick={(e) => HandleAddToCart(e)}>Add to Cart</button>
+            </div>
+                
+           <div className="container1">     
+              <div className="price">
+              <h4 id="PriceH4">Price: </h4>
               {videogame.free_to_play === true ? (
-                <h4>Free to play</h4>
+                <h4 className="price">Free to play</h4>
               ) : (
-                <h4>${videogame.price}</h4>
+                <h4 className="price">${videogame.price}</h4>
               )}
+              </div>
           
 
             <div className="rating">
               <h4>Rating: </h4>
-              <p>{videogame.rating}</p>
+              <h5>{videogame.rating}</h5>
             </div>
 
             <div className="release_date">
               <h4>Release Date: </h4>
               <p>{videogame.release_date}</p>
             </div>
-
+            
+            </div>
+            
 
 
             <div className="genres">
@@ -171,6 +186,13 @@ export default function Detail() {
               <h4>Esrb Rating: </h4>
               {videogame.esrb_rating}
             </div>
+
+
+            <div className="description">
+              <h4>Description: </h4>
+              <p>{videogame.description}</p>
+            </div>
+            
             
 
             <div className="requirements">
@@ -192,6 +214,7 @@ export default function Detail() {
             <div className="onSale">
               {videogame.on_sale === true ? <p>On Sale!</p> : null}
             </div>
+
             <div className="images">
               <Carousel className="Screenshots">
                 {videogame.short_screenshots?.map((e) => {
@@ -200,18 +223,6 @@ export default function Detail() {
                   );
                 })}
               </Carousel>
-            </div>
-
-            <div>
-              {!list?.find((e) => e.id == videogame.id) ? (
-                <button onClick={() => handleOnClick(videogame.id)}>
-                  Add to Wish List
-                </button>
-              ) : (
-                <button onClick={() => handleOnClickDelete(videogame.id)}>
-                  Delete from Wish List
-                </button>
-              )}
             </div>
 
             {videogame.db_created && (
@@ -223,9 +234,6 @@ export default function Detail() {
               </button>
             )}
 
-            <div>
-              <button onClick={(e) => HandleAddToCart(e)}>Add to Cart</button>
-            </div>
 
             <div className="buttonBackHome">
               <Link to="/home">
