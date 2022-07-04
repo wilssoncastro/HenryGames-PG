@@ -186,7 +186,7 @@ export default function SignUp() {
                 <input
                     type="submit"
                     value="Registrarse"
-                    // disabled={disableSubmit}
+                    //disabled={disableSubmit}
                     
                 />
                 <br />
