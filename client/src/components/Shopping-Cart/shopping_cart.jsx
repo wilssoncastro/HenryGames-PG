@@ -151,16 +151,18 @@ export default function ShoppingCart() {
                   )
                 )
               }
-              <button onClick={() => handleClearCart()}>Clear cart</button>
-              <Link to='/home'>
-                <button>Back to the main page</button>
-              </Link>
-              <Link to='/store'>
-                <button>Back to the store</button>
-              </Link>
-              
-              <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(current_cart)} : () => {logInToBuy()}}>Buy</button>
-              
+              </div>
+              <div className='containerButtons' >
+                <button onClick={() => handleClearCart()}>Clear cart</button>
+                <Link to='/home'>
+                  <button>Back to the main page</button>
+                </Link>
+                <Link to='/store'>
+                  <button>Back to the store</button>
+                </Link>
+                
+                <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
+              </div>
             </div>
           ) :
           (
