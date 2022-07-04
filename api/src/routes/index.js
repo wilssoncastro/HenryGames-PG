@@ -12,10 +12,11 @@ const getVideogames = require('../controllers/getVideogames')
 const routesVideogames = require('../controllers/routesVideogames')
 const routesComments = require('../controllers/commentsRoutes')
 
-// const getTags = require ('../controllers/getTags')
+
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
 const cartRoutes = require('../controllers/cartRoutes')
+const routesBlog = require('../controllers/blog')
 
 router.get('/', (req, res) => {
     console.log(req.isAuthenticated())
@@ -34,5 +35,7 @@ router.use('/authentication', registerRoutes)
 router.use('/cart', cartRoutes)
 router.use('/comments', routesComments)
 router.use('/sales', routesSales)
+router.use('/blog', routesBlog)
+
 
 module.exports = router

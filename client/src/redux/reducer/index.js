@@ -7,7 +7,8 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
-    my_user: {}
+    my_user: {},
+    articles: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -89,9 +90,15 @@ const rootReducer = (state = initialState, action) => {
                 my_user: action.payload.data
             }
 
+        case "GET_ARTICLES":
+            console.log("reducer", action.payload)
+            return {
+                ...state,
+                articles: action.payload.data
+            }
         default:
             return state;
     }
-}
+} 
 
 export default rootReducer;

@@ -160,3 +160,15 @@ export function getUserById(id){
     })
   }
 }
+
+export function getArticles() {
+  return async function (dispatch) {
+    var json = await axios.get("http://localhost:3001/blog");
+    console.log("act", json)
+    return dispatch({
+      type: "GET_ARTICLES",
+      payload: json,
+      
+    });
+  };
+}

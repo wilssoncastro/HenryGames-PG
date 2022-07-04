@@ -20,6 +20,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^4.0.0",
+    "react-scroll-motion": "^0.3.0",
     "reactstrap": "^9.1.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",

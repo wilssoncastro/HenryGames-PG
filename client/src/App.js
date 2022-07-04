@@ -15,6 +15,7 @@ import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
+import Blog from './components/Blog/Blog'
 
 import ValidationMail from './components/ValidationMail/validationMail'
 
@@ -62,6 +63,7 @@ function App() {
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile />}/>
 
+          {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
@@ -72,6 +74,10 @@ function App() {
           
           {/* Autorizacion - NO TOCAR */}
           <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
+
+          {/* ingresar al blog, donde encontraremos articlos, noticias, acerca del mundo gamer */}
+          <Route exact path='/blog' element={<Blog />}/>
+
 
           
         </Routes>
