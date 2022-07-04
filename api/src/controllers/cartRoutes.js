@@ -116,6 +116,7 @@ router.delete('/deleteToMany/:id', async (req, res) => {
         
         let user = await Player.findByPk(id)
         if(!user)return res.status(404).send('El usuario no existe')
+        console.log(user)
 
         let response = games.map(e => e.name)
         let games_deleted = await Videogame.findAll({
@@ -124,7 +125,7 @@ router.delete('/deleteToMany/:id', async (req, res) => {
 
         console.log(games_deleted)
 
-        const promise_pendings_array = games_deleted.map(e => Player.removeCart(e))
+        const promise_pendings_array = games_deleted.map(e => user.removeCart(e))
         await Promise.all(promise_pendings_array)
 
         res.send(user)

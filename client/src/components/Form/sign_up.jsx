@@ -30,6 +30,10 @@ export default function SignUp() {
             errors.password = 'Debes ingresar una password con letras y minimo un numero'
         }
 
+        if((input.password) !== (input.repassword)){
+            errors.repassword = 'No confirmaste tu contraseña'
+        }
+
         if(!input.type.length){
             errors.type = 'Falta el type'
         }
@@ -44,6 +48,7 @@ export default function SignUp() {
       user:'',
       email: '',
       password: '',
+      repassword:'',
       type:''
   })
 
@@ -166,6 +171,18 @@ export default function SignUp() {
                         placeholder="Contraseña"
                         required
                         value={input.password}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <input
+                        type="password"
+
+                        name="repassword"
+                        //className={styles.loginInput}
+                        placeholder="Ingrese de nuevo su contraseña"
+                        required
+                        value={input.repassword}
                         onChange={handleChange}
                     />
                 </div>
