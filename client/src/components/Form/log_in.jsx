@@ -115,7 +115,6 @@ export default function LogIn() {
           <Link to='/home'>
            O entra como invitado
           </Link>
-          <LogOut />
         </div>
   )
 }
