@@ -107,7 +107,7 @@ router.delete('/delete/:id/:idGame', async(req, res) => {
 //         res.send(error)
 //     }
 // })
-router.delete('/deleteToMany/:id', async (req, res) => {
+router.post('/deleteToMany/:id', async (req, res) => {
     let { id } = req.params
 
     let { games } = req.body
