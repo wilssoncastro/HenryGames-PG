@@ -7,13 +7,9 @@ import {
   delFromCart, 
   getCartById,
   deleteAllFromCart,
-<<<<<<< HEAD
-  postMercadoPago } 
-=======
   postMercadoPago,
   is_authorizated
 } 
->>>>>>> dev
 from '../../redux/actions'
 import swal from 'sweetalert'
 import './shoppingcart.css'
@@ -86,22 +82,11 @@ export default function ShoppingCart() {
 
   const handleClearCart = (e) => {
     if(typeof id_user === 'string'){
-<<<<<<< HEAD
-      dispatch(delFromCart(id_user, id))
-    }
-    localStorage.setItem('cart', JSON.stringify([]))
-    if(typeof id_user === 'object'){
-      localStorage.setItem('cart', JSON.stringify([]))
-    }
-    else{
-      dispatch(deleteAllFromCart())
-=======
       console.log('Entre y paso algo')
       dispatch(deleteAllFromCart(id_user, {'games':videogamesInCart}))
       console.log('mmmm')
     }else{
       localStorage.setItem('cart', [])
->>>>>>> dev
     }
     navigate('/my_cart')
   }
