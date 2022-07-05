@@ -1,6 +1,7 @@
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
         GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
-        DELETE_ALL_FROM_CART
+        DELETE_ALL_FROM_CART,
+        IS_ONLINE
 } from '../actions/index'
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+    articles: [],
     users: [],
     my_user: {},
     cart: [],
@@ -151,14 +153,22 @@ const rootReducer = (state = initialState, action) => {
                 }
             }
             console.log(state.comments)
-
             return{
                 ...state,
                 comments: state.comments
             }
+        
+
+        case "GET_ARTICLES":
+            return {
+                ...state,
+                articles: action.payload.data
+            }
+            
         default:
             return state;
-    }
+   
+} 
 }
 
 export default rootReducer;

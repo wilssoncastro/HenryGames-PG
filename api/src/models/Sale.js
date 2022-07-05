@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const { Videogame } = require('../db')
 
 module.exports = (sequelize) => {
     sequelize.define('Sale', {
@@ -9,7 +10,7 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
         },
         id_sale: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING,
             allowNull: false
         },
         id_game: {

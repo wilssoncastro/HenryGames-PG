@@ -10,6 +10,8 @@ import {
   getWishList,
   addToCart,
   getCommentsByGame,
+  is_authorizated,
+  getCartById
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -17,6 +19,8 @@ import Carousel from "react-elastic-carousel";
 import swal from "sweetalert";
 import Comment from "../Comment/Comment";
 import Info_Comment from "../Info_Comment/Info_Comment";
+import * as BsIcons from "react-icons/bs";
+import * as FiIcons from "react-icons/fi";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -41,6 +45,7 @@ export default function Detail() {
     if (list) {
       dispatch(getWishList(idProfile));
     }
+    dispatch(getCartById(id_user))
   }, [dispatch, idProfile, id, cart]);
 
   const handleDelete = () => {
@@ -73,13 +78,15 @@ export default function Detail() {
 
   function HandleAddToCart(e) {
     e.preventDefault();
-    if (typeof id_user === "string") {
+    if (typeof id_user === 'string') {
       dispatch(addToCart(id_user, id));
+    }else{
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...cartFromLocalStorage, videogame])
+      );
     }
-    localStorage.setItem(
-      "cart",
-      JSON.stringify([...cartFromLocalStorage, videogame])
-    );
+    
     swal({
       title: "Your game was successfully added to the cart",
       text: "What do you want to do next?",
@@ -121,108 +128,135 @@ export default function Detail() {
       <div className="allDetail">
         {videogame.id == id ? (
           <div className="CardDetail">
-
             <h1 className="name">{videogame.name}</h1>
 
-            <img className="image" src={videogame.image} />
+            <div className="containerImgList">
+              <img className="image" src={videogame.image} />
 
-            <div className="WishList">
-              {!list?.find((e) => e.id == videogame.id) ? (
-                <button className="buttonAddWishList" onClick={() => handleOnClick(videogame.id)}>
-                  Add Wish List
-                </button>
-              ) : (
-                <button className="buttonDeleteWishList" onClick={() => handleOnClickDelete(videogame.id)}>
-                  Delete from the Wish List 
-                </button>
-              )}
-            </div>
+              <div>
+                <ul className="listDetail1">
+                  <li>
+                    <span className="titleList">Price: </span>
+                    {videogame.free_to_play === true ? (
+                      <span>Free to play</span>
+                    ) : (
+                      <span>${videogame.price}</span>
+                    )}
+                  </li>
 
-            <div className="containerButtonCart">
-              <button className="buttonCart" onClick={(e) => HandleAddToCart(e)}>Add to Cart</button>
-            </div>
-                
-           <div className="container1">     
-              <div className="price">
-              <h4 id="PriceH4">Price: </h4>
-              {videogame.free_to_play === true ? (
-                <h4 className="price">Free to play</h4>
-              ) : (
-                <h4 className="price">${videogame.price}</h4>
-              )}
+                  <li className="divsListDetail">
+                    <span className="titleList">Rating: </span>
+                    <span>{videogame.rating} ⭐</span>
+                  </li>
+
+                  <li>
+                    <span className="titleList">Release Date: </span>
+                    <span>{videogame.release_date}</span>
+                  </li>
+                </ul>
               </div>
-          
+              <div>
+                <ul className="listDetail2">
+                  <li>
+                    <span className="titleList">Genres:</span>
+                    {videogame.genres?.map((e) => {
+                      if (typeof e === "string") {
+                        return (
+                          <span className="type" key={e}>
+                            {e.replace(e[0], e[0].toUpperCase())} |
+                          </span>
+                        );
+                      } else if (videogame.genres.length > 1) {
+                        return <span key={e.name}>{e.name} | </span>;
+                      } else {
+                        return <span key={e.name}>{e.name}</span>;
+                      }
+                    })}
+                  </li>
+                  <li>
+                    <span className="titleList">Esrb Rating: </span>
+                    <span>{videogame.esrb_rating}</span>
+                  </li>
 
-            <div className="rating">
-              <h4>Rating: </h4>
-              <h5>{videogame.rating}</h5>
+                  {videogame.on_sale === true ? (
+                    <li id="onSale" className="titleList">
+                      On Sale!
+                    </li>
+                  ) : null}
+                </ul>
+              </div>
             </div>
 
-            <div className="release_date">
-              <h4>Release Date: </h4>
-              <p>{videogame.release_date}</p>
-            </div>
-            
-            </div>
-            
+            <div className="buttons">
+              <div>
+                {!list?.find((e) => e.id == videogame.id) ? (
+                  <button
+                    className="buttonAddWishList"
+                    onClick={() => handleOnClick(videogame.id)}
+                  >
+                    <BsIcons.BsBookmarkStar />
+                  </button>
+                ) : (
+                  <button
+                    className="buttonDeleteWishList"
+                    onClick={() => handleOnClickDelete(videogame.id)}
+                  >
+                    <BsIcons.BsBookmarkStarFill />
+                  </button>
+                )}
+              </div>
 
+              <div>
+                {!cartFromLocalStorage.includes(videogame) ? (
+                  <button
+                    className="buttonCart"
+                    onClick={(e) => HandleAddToCart(e)}
+                  ><BsIcons.BsCartPlus />
+                  </button>
+                ) : null}
+              </div>
 
-            <div className="genres">
-              <h3>Genres:</h3>
-              {videogame.genres?.map((e) => {
-                if (typeof e === "string") {
-                  return (
-                    <span className="type" key={e}>
-                      {e.replace(e[0], e[0].toUpperCase())} | 6
-                    </span>
-                  );
+              <div>
+                <button 
+                  className="buttonBuy"
+                ><FiIcons.FiDollarSign />
+                </button>
+              </div>
+            </div>
+
+            <h3 className="tagH4">Tags:</h3>
+            <div className="tag">
+              {videogame.tags?.map((e) => {
+                if (videogame.tags.length > 1) {
+                  return <span>{e} |</span>;
                 } else {
-                  return <span key={e.name}>{e.name} | </span>;
+                  return <span>{e}</span>;
                 }
               })}
             </div>
 
-            <div className="esrb">
-              <h4>Esrb Rating: </h4>
-              {videogame.esrb_rating}
-            </div>
-
-
+            <h3 className="descriptionH3">Description: </h3>
             <div className="description">
-              <h4>Description: </h4>
               <p>{videogame.description}</p>
             </div>
-            
-            
 
+            <div>
+              <Carousel>
+                {videogame.short_screenshots?.map((e) => {
+                  return (
+                    <img className="screenshots" src={e} alt="Not found" />
+                  );
+                })}
+              </Carousel>
+            </div>
+
+              <h3 className="requirementsH3">Requirements: </h3>
             <div className="requirements">
-              <h3>Requirements: </h3>
               {videogame.requirements === null ? (
                 <span>The videogame has not requirements actually</span>
               ) : (
                 <p>{videogame.requirements}</p>
               )}
-            </div>
-
-            <div className="tags">
-              <h3>Tags:</h3>
-              {videogame.tags?.map((e) => {
-                return <p>{e}</p>;
-              })}
-            </div>
-
-            <div className="onSale">
-              {videogame.on_sale === true ? <p>On Sale!</p> : null}
-            </div>
-
-            <div className="images">
-              <Carousel className="Screenshots">
-                {videogame.short_screenshots?.map((e) => {
-                  return (
-                    <img src={e} alt="Not found" width="700px" height="400px" />
-                  );
-                })}
-              </Carousel>
             </div>
 
             {videogame.db_created && (
@@ -234,24 +268,6 @@ export default function Detail() {
               </button>
             )}
 
-            <div>
-              {
-                !cartFromLocalStorage.includes(videogame) ?
-              <button onClick={(e) => HandleAddToCart(e)}>
-                Add to Cart
-              </button>
-              : null
-              }
-            </div>
-
-            <div className="buttonBackHome">
-              <Link to="/home">
-                <button>Back to the Main Page</button>
-              </Link>
-              <Link to="/store">
-                <button>Back to the store</button>
-              </Link>
-            </div>
             <div className="all_comments">
               {currents_comments?.map((e) => (
                 <Info_Comment

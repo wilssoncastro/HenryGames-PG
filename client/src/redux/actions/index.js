@@ -18,7 +18,8 @@ export function is_authorizated(){
     return axios.get(`http://localhost:3001/is_online`)
     .then(data => {
       dispatch({
-        type: IS_ONLINE
+        type: IS_ONLINE,
+        payload: data
       })
     })
   }
@@ -180,20 +181,23 @@ export function delFromCart(id, id_game){
   }
   }
 
-// export function deleteAllFromCart(id_user){
-//   return function(dispatch){
-//     return axios.delete(`http://localhost:3001/cart/deleteToMany/${id_user}`)
-//     .then(data => {
-//       dispatch({
-//         type: DELETE_ALL_FROM_CART
-//       })
-//     })
-//   }
-// }
-
-export function addManyToCart(id_user){
+export function deleteAllFromCart(id_user, games){
   return function(dispatch){
-    return axios.post(`http://localhost:3001/cart/addToMany/${id_user}`)
+    return axios.post(`http://localhost:3001/cart/deleteToMany/${id_user}`, games)
+    .then(data => {
+      dispatch({
+        type: DELETE_ALL_FROM_CART
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+}
+
+export function addManyToCart(id_user, games){
+  return function(dispatch){
+    return axios.post(`http://localhost:3001/cart/addToMany/${id_user}`, games)
     .then(data => {
       dispatch({
         type: ADD_MANY_TO_CART
@@ -201,16 +205,6 @@ export function addManyToCart(id_user){
     })
   }
 }
-
-export function delAllFromCart(){
-  return function(dispatch){
-    return dispatch({
-        type: DELETE_ALL_FROM_CART
-      })
-    
-  }
-}
-
 
 
 // ----------------------------------------------------------------
@@ -301,6 +295,17 @@ export function edit_comment(id_comment, comentario){
   }
 }
 
+export function getArticles() {
+  return async function (dispatch) {
+    var json = await axios.get("http://localhost:3001/blog");
+    console.log("act", json)
+    return dispatch({
+      type: "GET_ARTICLES",
+      payload: json,
+      
+    });
+  };
+}
 export function delete_comment(id_comment){
   return function(dispatch){
     return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)

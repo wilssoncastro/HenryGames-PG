@@ -22,7 +22,6 @@
 /* container de texto de la carta (nombre y precio) */
 .textCard{
   list-style: none;
-  margin-top: 14.5rem;
   display:flex;
   flex-direction: column;
   align-items:center;

@@ -1,11 +1,15 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
+// import LogOut from '../LogOut/LogOut';
+import { addManyToCart } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 
 export default function LogIn() {
 
   let navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const [input, setInput] = useState({
     username:'',
@@ -52,12 +56,15 @@ export default function LogIn() {
           localStorage.setItem('lastname', lastname)
           localStorage.setItem('type', type)
           localStorage.setItem('profile_pic', profile_pic)
-          
-          if(!(typeof carrito !== 'object' && carrito.length === 0)){
-            console.log(carrito)
-            localStorage.setItem('cart', JSON.stringify([]))
+          console.log(carrito)
+          carrito = JSON.parse(carrito)
+          console.log(carrito)
+          if(typeof carrito !== 'object' || carrito.length === 0){
+            console.log('no entre')
+          }else{
+            dispatch(addManyToCart(id, {'games':carrito}))
           }
-  
+          localStorage.setItem('cart', JSON.stringify([]))
           navigate('/home')
         }
   
