@@ -295,6 +295,17 @@ export function edit_comment(id_comment, comentario){
   }
 }
 
+export function getArticles() {
+  return async function (dispatch) {
+    var json = await axios.get("http://localhost:3001/blog");
+    console.log("act", json)
+    return dispatch({
+      type: "GET_ARTICLES",
+      payload: json,
+      
+    });
+  };
+}
 export function delete_comment(id_comment){
   return function(dispatch){
     return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)

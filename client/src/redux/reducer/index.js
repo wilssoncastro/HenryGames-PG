@@ -11,6 +11,7 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
+    articles: [],
     users: [],
     my_user: {},
     cart: [],
@@ -152,15 +153,22 @@ const rootReducer = (state = initialState, action) => {
                 }
             }
             console.log(state.comments)
-
             return{
                 ...state,
                 comments: state.comments
             }
         
+
+        case "GET_ARTICLES":
+            return {
+                ...state,
+                articles: action.payload.data
+            }
+            
         default:
             return state;
-    }
+   
+} 
 }
 
 export default rootReducer;

@@ -33,7 +33,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Player, Videogame, Genre, Esrb, Comment, Sale} = sequelize.models;
+const { Player, Videogame, Genre, Esrb, Comment, Sale, Article} = sequelize.models;
 
 // Aca vendrian las relaciones
 //Player.hasMany(Player)  En duda, es para amigos.
@@ -51,8 +51,11 @@ Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 // Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 // Esrb.hasMany(Videogame)
 // Videogame.belongsTo(Esrb)
-
-
+//------------------SALE 1:1 VIDEOGAME-----------------------
+/* Sale.hasOne(Videogame)
+Videogame.belongsTo(Sale)  */
+Videogame.hasMany(Sale)
+Sale.belongsTo(Videogame)
 //---------------------PLAYER N:M FRIEND--------------------------------
 Player.belongsToMany(Player, { 
   as: 'friends',
