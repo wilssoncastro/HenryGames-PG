@@ -222,7 +222,7 @@
   justify-content: center;
 }
 
-.screenshots {
+.screenshots-carousel {
   display: grid;
   position: relative;
   object-fit: cover;

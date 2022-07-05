@@ -38,7 +38,6 @@ export default function NavBar() {
             withCredentials: true
         })
         .then((res) => {
-            console.log(res.data)
             if(res){
                 console.log('removiendo store')
                 localStorage.removeItem('profile_pic')
@@ -118,7 +117,7 @@ export default function NavBar() {
         {
             title: 'Log Out',
             path: '#',
-            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b;'}} />,
+            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b'}} />,
             className: 'log-out-button',
             onClick: logOut,
             loggedIn: true
@@ -134,7 +133,7 @@ export default function NavBar() {
         {
             title: 'Sign Up',
             path: '/sign_up',
-            icon: <CgIcons.CgProfile style={{color: '#1a83ff;'}}/>,
+            icon: <CgIcons.CgProfile style={{color: '#1a83ff'}}/>,
             className: 'sign-up-button',
             onClick: showSidebar,
             loggedIn: false
@@ -155,8 +154,6 @@ export default function NavBar() {
             }
         })
     }
-
-    console.log(sidebarDataInfo)
 
     return (
         <div>
