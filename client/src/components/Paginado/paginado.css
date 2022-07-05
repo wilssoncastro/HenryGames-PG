@@ -13,11 +13,46 @@
         
 .pagination li {
     margin: 0 1px;
+    background-color: black;
+    color: #c7a84b;
+}
+
+.buttonPaginado{
+    background-color: black;
+    color: #c7a84b;
+    font-size: medium;
+}
+.buttonPaginado:hover{
+    background-color: #c7a84b;
+    color: black;
+    transition: 0.2s;
+}
+.buttonPaginado:focus{
+    background-color: #c7a84b;
+    color: black;
+}
+
+.number{
+    background-color: black;
+    color: #c7a84b;
 }
 
 .edge {
-    background-color: yellow;
+    background-color: black;
+    color: #c7a84b;
+    font-size: medium;
 }
+.edge:focus{
+    background-color: #c7a84b;
+    color: black;
+}
+.edge:hover{
+    background-color: #c7a84b;
+    color: black;
+    transition: 0.2s;
+}
+
+
 
 
 
