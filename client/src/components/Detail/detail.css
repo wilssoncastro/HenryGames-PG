@@ -1,21 +1,49 @@
 .allPage {
-    background-color: black;
-    color: white;
-    
+    background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    position: relative;
+    z-index: 1; 
 }
 
 .allDetail {
     margin-top: 60px;
 }
 
+.title-lists-top-detail {
+    background-color: rgba(15, 15, 15, 0.979);
+    padding: 1em 2em 2em 2em;
+    width: max-content;
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2em;
+}
+
 .name {
     text-decoration: underline #c7a94b;
-
+    border: 1px solid white;
+    color: white;
     cursor: default;
+    border-radius: 1em;
+    width: max-content;
+    padding: 0.6em;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .containerImgList{
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: white;
 }
 
 .image  {
@@ -26,21 +54,22 @@ flex-direction: row;
 }
 
 .listDetail1{
-    height: 250px;
-    display: flex; 
-    flex-direction: column;
-    list-style: none;
-    justify-content: space-around;
-    margin: 0 6rem ;
-    align-items: flex-start;
-}
-.listDetail2{
-    height: 250px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     list-style: none;
-    justify-content: space-around;
-    margin: 0 3rem ;
+    justify-content: space-evenly;
+    margin: 0 6rem;
+    align-items: flex-start;
+}
+
+.listDetail2{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: space-evenly;
+    margin: 0 6rem;
     align-items: flex-start;
 }
 
@@ -62,8 +91,9 @@ flex-direction: row;
 .buttons{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    justify-content: space-evenly;
     margin-left: 1rem;
+    margin-top: 1rem;
 }
 
 .buttonAddWishList {
@@ -136,35 +166,41 @@ flex-direction: row;
     color: yellowgreen;
 }
 
-.tagH4:hover{
-    color: #c7a84b;
+.tagH4{
+    color: #ffffff;
     transition: 0.3s;
     cursor: default;
     display: inline-block;
+    background-color: rgba(15, 15, 15, 0.979);
+    padding: 0.5em;
+    border-radius: 1em;
 }
 .tag{
     font-size: medium;
     margin: 0 9rem ;
-    background-color: rgba(27, 27, 27, 0.527);
+    color: white;
+    background-color: rgba(15, 15, 15, 0.979);
     border-radius: 0.5rem;
     padding: 0.8rem 1rem;
 }
 
 .descriptionH3{
-    display: inline-block;
-}
-.descriptionH3:hover{
-    color: #c7a84b;
+    color: #ffffff;
     transition: 0.3s;
     cursor: default;
+    display: inline-block;
+    background-color: rgba(15, 15, 15, 0.979);
+    padding: 0.5em;
+    border-radius: 1em;
+    margin-top: 1em;
 }
+
 .description{
-    font-family: 'Times New Roman', Times, serif;
-    margin: 0 20px;
-    font-size: large;
-    background-color: rgba(27, 27, 27, 0.527);;
+    margin: 0 10em;
     border-radius: 0.5rem;
     padding: 0.2rem 1rem;
+    color: white;
+    background-color: rgba(15, 15, 15, 0.979);
 }
 
 .screenshots{
@@ -173,25 +209,35 @@ flex-direction: row;
     margin: 15px;
 }
 
-
-.descriptionH3{
-    display: inline-block;
-}
-.requirementsH3:hover{
-    color: #c7a84b;
+.requirementsH3 {
+    color: #ffffff;
     transition: 0.3s;
     cursor: default;
+    display: inline-block;
+    background-color: rgba(15, 15, 15, 0.979);
+    padding: 0.5em;
+    border-radius: 1em;
+    margin-top: 1em;
 }
 .requirements{
-    font-size: medium;
-    margin: 0 3rem ;
-    background-color: rgba(27, 27, 27, 0.527);
+    margin: auto;
+    width: max-content;
     border-radius: 0.5rem;
-    padding: 0.8rem 1rem;
+    padding: 1rem 1rem;
+    color: white;
+    background-color: rgba(15, 15, 15, 0.979);
 }
 
 .all_comments{
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.carouselcontainer-detail {
+
+    margin: 2em 0.7em 0;
+    padding-top: 2em;
+    background-color: rgba(0, 0, 0, 0.846);
+    border-radius: 2em;
 }
