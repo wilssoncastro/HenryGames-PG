@@ -35,7 +35,7 @@ export default function Paginado({ limit, paginado, page }) {
         {
           pageNum5.map(n => (
             <li className='number' key={n}>
-              <button onClick={() => paginado(n)}>{n}</button>
+              <button className='buttonPaginado' onClick={() => paginado(n)}>{n}</button>
             </li> 
           ))
         }
