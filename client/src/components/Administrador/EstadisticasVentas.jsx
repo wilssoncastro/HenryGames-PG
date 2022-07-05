@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCardStatistics } from "../../redux/actions";
 /* import Card from "../Card/card"; */
 import { Link } from "react-router-dom";
+import BarChart from "../Graphics/BarChart";
+import LineChart from "../Graphics/LineChart";
+import UsersVsSales from "../Graphics/UsersVsSales";
 import { ComponentError } from "./componentError";
 
 export default function Estadisticas() {
@@ -13,6 +16,7 @@ export default function Estadisticas() {
 
   useEffect(() => {
     dispatch(getCardStatistics(name));
+    console.log("juegos", videogame)
   }, [dispatch, name]);
 
   const handleInputChange = (e) => {
@@ -20,14 +24,14 @@ export default function Estadisticas() {
     setName(e.target.value);
   };
 
-let totalPrice = videogame.map((e) => e.price);
-let ventasTotales = videogame.map((e) => e.contador);
-let totalGanancias = 0;
-for(let i = 0; i < totalPrice.length; i++){
-  let ganancias = totalPrice[i]*ventasTotales[i];
-  totalGanancias += ganancias;
-  console.log(totalGanancias);
-}
+  let totalPrice = videogame.map((e) => e.price);
+  let ventasTotales = videogame.map((e) => e.contador);
+  let totalGanancias = 0;
+  for (let i = 0; i < totalPrice.length; i++) {
+    let ganancias = totalPrice[i] * ventasTotales[i];
+    totalGanancias += ganancias;
+    console.log(totalGanancias);
+  }
 
 const id_user_admin = localStorage.getItem('type')
 if (id_user_admin) {
@@ -61,6 +65,18 @@ if (id_user_admin) {
           </div>
         )) : null
       }
+      <div>
+        <h2> Top videojuegos vendidos</h2>
+        <BarChart />
+      </div>
+      <div>
+        <h2>Ganancias por mes</h2>
+        <LineChart />
+      </div>
+      <div>
+        <h2>Numero de usuarios y ventas</h2>
+        <UsersVsSales />
+      </div>
     </div>
   )
 }else{      

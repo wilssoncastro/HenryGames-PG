@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const { Videogame } = require('../db')
 
 module.exports = (sequelize) => {
     sequelize.define('Sale', {
