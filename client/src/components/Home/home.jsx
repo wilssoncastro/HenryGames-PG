@@ -11,7 +11,6 @@ import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
 import './home.css'
 import './carousel.css'
 
-
 export default function Home() {
     
     return (

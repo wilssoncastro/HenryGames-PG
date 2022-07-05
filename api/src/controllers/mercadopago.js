@@ -1,5 +1,6 @@
 const {Router} = require('express');
 const router = Router();
+const { Sale, Player, Videogame } = require('../db.js');
 
 //SDK mercadopago
 const mercadopago = require('mercadopago');
@@ -14,16 +15,14 @@ mercadopago.configure({
 router.post('/', (req, res) => {
     
 //cosas que deberia recibir por body
-    const id_orden = /* req.body */ 1 
-    const carrito = req.body/* [
-        {title: 'GTA V', quantity: 1, price: 1000},
-        {title: 'God of War', quantity: 1, price:  5000},
-        {title: 'NFS Heat', quantity: 1, price: 2000},
-    ]; */
-
+    
+    const carrito = req.body
+    const id_orden = carrito.map(e => e.id).join('-')
+    
 //cosas que requiere MP de tu respectiva compra
     const items_mp = carrito.map(e => ({
-        title: e.title,
+        id: e.id,
+        title: e.name,
         unit_price: e.price,
         quantity: 1
     }));
@@ -41,7 +40,7 @@ let preference = {
         installments: 3 //cuotas
     },
     "back_urls": {
-        "success": "http://localhost:3000/home",
+        "success": "http://localhost:3001/mercadopago/save_data",
         "failure": "http://localhost:3000/home",
         "pending": "http://localhost:3000/home"
     },
@@ -50,14 +49,51 @@ let preference = {
 mercadopago.preferences.create(preference)
 
 .then(function(response){
-    // console.info('respondio')
+    console.info('respondio')
     global.init_point = response.body.init_point
+    global.id = response.body.id;
+    console.log(response.body)
     // console.log(response.body)
-    res.json({ init_point: global.init_point })//lo que devolvemos al front
+    res.json({ id: global.id, init_point: global.init_point })//lo que devolvemos al front
 })
 .catch(function(error){
     console.log(error)
 });
 });
+
+router.get('/save_data', async(req, res) => {
+    console.log('Llegue hasta aca')
+    console.info('lo que me devuelve MP', req.session.passport.user)
+    const id_user = req.session.passport.user
+    const payment_id= req.query.payment_id
+    const payment_status= req.query.status
+    const external_reference = req.query.external_reference.split('-')
+    const merchant_order_id= req.query.merchant_order_id
+    
+    console.log("EXTERNAL REFERENCE ",external_reference)
+    const videogames = await Videogame.findAll({where:{"id":external_reference}})
+    
+    let objeto = videogames.map(e => ({
+        'id_sale':payment_id,
+        'id_game':e.dataValues.id,
+        'id_user':id_user,
+        'price': e.dataValues.price
+    }))
+    
+    const promise_pending_array = objeto.map(e => Sale.create(e))
+
+    await Promise.all(promise_pending_array)
+    
+    let game_stock
+    
+    for(let i = 0; i<external_reference.length; i++){
+        game_stock = await Videogame.findByPk(external_reference[i])
+        game_stock.contador = game_stock.contador + 1
+        await game_stock.save()
+    }
+    
+
+    res.redirect("http://localhost:3000/home")
+})
 
 module.exports = router;

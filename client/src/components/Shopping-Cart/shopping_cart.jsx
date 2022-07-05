@@ -7,7 +7,13 @@ import {
   delFromCart, 
   getCartById,
   deleteAllFromCart,
+<<<<<<< HEAD
   postMercadoPago } 
+=======
+  postMercadoPago,
+  is_authorizated
+} 
+>>>>>>> dev
 from '../../redux/actions'
 import swal from 'sweetalert'
 import './shoppingcart.css'
@@ -19,22 +25,25 @@ export default function ShoppingCart() {
 
   const id_user = localStorage.getItem('id')
   const videogamesInCart = useSelector((state) => state.cart)
+  
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]')
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart'))
   const [cart, /* setCart */] = useState(cartFromLocalStorage)
 
-  console.log(videogamesInCart)
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart))
-    // dispatch(getCartById(id_user))
+    dispatch(getCartById(id_user))
+    dispatch(is_authorizated())
 }, [cart, /* dispatch */])
   
-  //const current_cart = (typeof id_user === 'object') ? cartFromLocalStorage : videogamesInCart
+  const current_cart = (typeof id_user === 'string') ? videogamesInCart : cartFromLocalStorage
+  console.log(current_cart)
+  
 
   const handleDelete = (id) => {
     localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
-    if(typeof id_user === 'object'){
+    if(!dispatch(is_authorizated())){
       localStorage.setItem('cart', JSON.stringify(cartFromLocalStorage.filter(e => e.id !== id)))
     }else{
       dispatch(delFromCart(id_user, id))
@@ -75,8 +84,9 @@ export default function ShoppingCart() {
       })
   }
 
-  const handleClearCart = (id) => {
+  const handleClearCart = (e) => {
     if(typeof id_user === 'string'){
+<<<<<<< HEAD
       dispatch(delFromCart(id_user, id))
     }
     localStorage.setItem('cart', JSON.stringify([]))
@@ -85,6 +95,13 @@ export default function ShoppingCart() {
     }
     else{
       dispatch(deleteAllFromCart())
+=======
+      console.log('Entre y paso algo')
+      dispatch(deleteAllFromCart(id_user, {'games':videogamesInCart}))
+      console.log('mmmm')
+    }else{
+      localStorage.setItem('cart', [])
+>>>>>>> dev
     }
     navigate('/my_cart')
   }
@@ -111,6 +128,7 @@ export default function ShoppingCart() {
           case 'mp':
             dispatch(postMercadoPago(carrito))
               .then((data)=>{
+                console.log(data)
                 window.open(data.data.init_point);
               })
               .catch(err => console.error(err))
@@ -128,18 +146,19 @@ export default function ShoppingCart() {
   }
 
   return (
-    <div>
+    <div className='backgroundCart'>
       <div>
         <NavBar />
       </div>
-      <div>
+      <div >
       
       {
-          cartFromLocalStorage.length > 0 ? 
+          current_cart?.length > 0 ? 
           (
-            <div style={{marginTop: '100px'}}>
+            <div className='cart' /* style={{marginTop: '100px'}} */>
+              <div className='containercard'>
               {
-                cartFromLocalStorage.map((game) => (
+                current_cart.map((game) => (
                   <div>
                     <Card key={game.id} image={game.image} name={game.name} price={game.price} id={game.id} />
                     <button type='reset' onClick={() => handleDelete(game.id)}>Remove game from cart</button>
@@ -147,16 +166,18 @@ export default function ShoppingCart() {
                   )
                 )
               }
-              <button onClick={() => handleClearCart()}>Clear cart</button>
-              <Link to='/home'>
-                <button>Back to the main page</button>
-              </Link>
-              <Link to='/store'>
-                <button>Back to the store</button>
-              </Link>
-              
-              <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
-              
+              </div>
+              <div className='containerButtons' >
+                <button onClick={() => handleClearCart()}>Clear cart</button>
+                <Link to='/home'>
+                  <button>Back to the main page</button>
+                </Link>
+                <Link to='/store'>
+                  <button>Back to the store</button>
+                </Link>
+                
+                <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
+              </div>
             </div>
           ) :
           (

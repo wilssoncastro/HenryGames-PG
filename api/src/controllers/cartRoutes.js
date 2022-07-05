@@ -107,13 +107,12 @@ router.delete('/delete/:id/:idGame', async(req, res) => {
 //         res.send(error)
 //     }
 // })
-router.delete('/deleteToMany/:id', async (req, res) => {
+router.post('/deleteToMany/:id', async (req, res) => {
     let { id } = req.params
 
     let { games } = req.body
 
     try {
-        
         let user = await Player.findByPk(id)
         if(!user)return res.status(404).send('El usuario no existe')
         console.log(user)

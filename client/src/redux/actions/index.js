@@ -4,13 +4,26 @@ export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DELETE_FROM_CART = 'DELETE_FROM_CART'
 export const DELETE_ALL_FROM_CART = 'DELETE_ALL_FROM_CART'
-export const ADD_MANY_TO_CART = 'ADD_MANY_TO_CART'
+export const ADD_MANY_TO_CART = 'ADD_MANY_CART'
 export const GET_CART_BY_ID = 'GET_CART_BY_ID'
 export const GET_COMMENTS_BY_GAME = 'GET_COMMENTS_BY_GAME'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const POST_COMMENT = 'POST_COMMENT'
 export const REPORT_COMMENT = 'REPORT_COMMENT'
+export const IS_ONLINE = 'IS_ONLINE'
+
+export function is_authorizated(){
+  return async function(dispatch){
+    return axios.get(`http://localhost:3001/is_online`)
+    .then(data => {
+      dispatch({
+        type: IS_ONLINE,
+        payload: data
+      })
+    })
+  }
+}
 
 export function getAllVideogames() {
   return async function (dispatch) {
@@ -168,20 +181,23 @@ export function delFromCart(id, id_game){
   }
   }
 
-export function deleteAllFromCart(id_user){
+export function deleteAllFromCart(id_user, games){
   return function(dispatch){
-    return axios.delete(`http://localhost:3001/cart/deleteToMany/${id_user}`)
+    return axios.post(`http://localhost:3001/cart/deleteToMany/${id_user}`, games)
     .then(data => {
       dispatch({
         type: DELETE_ALL_FROM_CART
       })
     })
+    .catch(err => {
+      console.log(err)
+    })
   }
 }
 
-export function addManyToCart(id_user){
+export function addManyToCart(id_user, games){
   return function(dispatch){
-    return axios.post(`http://localhost:3001/cart/addToMany/${id_user}`)
+    return axios.post(`http://localhost:3001/cart/addToMany/${id_user}`, games)
     .then(data => {
       dispatch({
         type: ADD_MANY_TO_CART
@@ -189,7 +205,6 @@ export function addManyToCart(id_user){
     })
   }
 }
-
 
 
 // ----------------------------------------------------------------
@@ -280,6 +295,17 @@ export function edit_comment(id_comment, comentario){
   }
 }
 
+export function getArticles() {
+  return async function (dispatch) {
+    var json = await axios.get("http://localhost:3001/blog");
+    console.log("act", json)
+    return dispatch({
+      type: "GET_ARTICLES",
+      payload: json,
+      
+    });
+  };
+}
 export function delete_comment(id_comment){
   return function(dispatch){
     return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)

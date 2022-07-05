@@ -15,6 +15,7 @@ import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
+import Blog from './components/Blog/Blog';
 import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
@@ -64,6 +65,7 @@ function App() {
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/profile/:id/editprofile' element={<EdiProfile/>}/>
 
+          {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
           <Route exact path='/admin/users' element={<Users />} />
 
@@ -75,6 +77,11 @@ function App() {
           
           {/* Autorizacion - NO TOCAR */}
           <Route path='/activation/:user_id/:token' element={<ValidationMail />} />
+
+          {/* ingresar al blog, donde encontraremos articlos, noticias, acerca del mundo gamer */}
+          <Route exact path='/blog' element={<Blog />}/>
+
+
           
           <Route path='/comment' element={<Comment />} />
         </Routes>
