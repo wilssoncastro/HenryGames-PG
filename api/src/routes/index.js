@@ -12,11 +12,12 @@ const getVideogames = require('../controllers/getVideogames')
 const routesVideogames = require('../controllers/routesVideogames')
 const routesComments = require('../controllers/commentsRoutes')
 
-// const getTags = require ('../controllers/getTags')
+
 const getEsrb = require('../controllers/getEsrb')
 const getGenres = require('../controllers/getGenres')
 const mercadopago = require('../controllers/mercadopago')
 const cartRoutes = require('../controllers/cartRoutes')
+const routesBlog = require('../controllers/blog')
 
 router.get('/', (req, res) => {
     
@@ -35,6 +36,8 @@ router.use('/mercadopago', mercadopago)
 router.use('/cart', cartRoutes)
 router.use('/comments', routesComments)
 router.use('/sales', routesSales)
+router.use('/blog', routesBlog)
+
 router.use('/authentication', registerRoutes)
 
 router.get('/is_online', (req, res) => 

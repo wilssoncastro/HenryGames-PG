@@ -79,4 +79,20 @@ router.post('/made/:id_user', async (req, res) => {
     }
 })
 
+
+
+
+// ruta de prueba para cargar ventas par aprobar las estadisticas
+
+router.get('/newsales', async (req, res) => {
+
+    try {
+        
+        const allsales= await Sale.findAll()
+        res.send(allsales)
+    } catch (error) {
+        console.log("error", error)
+    }
+}) 
+
 module.exports = router
