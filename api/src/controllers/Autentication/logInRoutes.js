@@ -14,9 +14,9 @@ router.post('/login',
                 return res.send('Debes activar la cuenta')
             }
             
-            let { id, name, lastname, type, profile_pic} = req.user;
+            let { id, name, lastname, type, profile_pic, user} = req.user;
             
-            return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic: profile_pic})
+            return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic: profile_pic, user: user})
         } catch (error) {
             res.status(404).send('ERRRRROOOOOOOOOOOOOR')
         }

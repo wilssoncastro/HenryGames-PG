@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { delete_comment, edit_comment, report_comment} from '../../redux/actions'
 import './Info_Comment.css'
 
-export default function Info_Comment({id, id_user, comment, createdAt}){
+export default function Info_Comment({id, id_user, comment, createdAt, user}){
     const dispatch = useDispatch()
     let [edit_mode, setEditMode] = useState(false)
     let [edittedComment, setEditedComment] = useState(comment)
@@ -52,12 +52,17 @@ export default function Info_Comment({id, id_user, comment, createdAt}){
     function clickDelete(id){
         dispatch(delete_comment(id))
     }
+
+    function click_report(id){
+        alert('Comentario denunciado')
+        dispatch(report_comment(id))
+    }
     
 
     return (
         <div className="Info_Comment">
             <div className="info">
-                <p>{its_mine ? 'Tu' : 'Anonimo'}</p>
+                <p>{ its_mine ? 'Tú' : user }</p>
                 <p>{createdAt}</p>
             </div>
             <div className="body">
@@ -70,7 +75,7 @@ export default function Info_Comment({id, id_user, comment, createdAt}){
                     {!is_auhorized ? <></> : (!its_mine &&
                             <>
                                 <button 
-                                    onClick={() => dispatch(report_comment(id))}
+                                    onClick={() => click_report(id)}
                                 >Denunciar
                                 </button>
                             </>)}
