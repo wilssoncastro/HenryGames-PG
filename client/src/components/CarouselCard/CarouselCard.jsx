@@ -39,15 +39,14 @@ export default function CarouselCard() {
             <h3 className="legend">{e.name}</h3>
             <div className='screenshots-div'>
               {/* map por los 4 screenshots */}
-              <img className='screenshots' src={e.short_screenshots[0]} alt='img not found' />
-              <img className='screenshots' src={e.short_screenshots[1]} alt='img not found' />
-              <img className='screenshots' src={e.short_screenshots[2]} alt='img not found' />
-              <img className='screenshots' src={e.short_screenshots[3]} alt='img not found' />
+              <img className='screenshots-carousel' src={e.short_screenshots[0]} alt='img not found' />
+              <img className='screenshots-carousel' src={e.short_screenshots[1]} alt='img not found' />
+              <img className='screenshots-carousel' src={e.short_screenshots[2]} alt='img not found' />
+              <img className='screenshots-carousel' src={e.short_screenshots[3]} alt='img not found' />
             </div>
             <div className='c35-footer'>
               <h5 className='footer-txt'>Rating {e.rating}</h5>
               <div className='genres-section'>
-              {/* <span className='genre-style'>{genres[0].name}</span> */}
                 {e.genres.map((g) => (
                   <span className='genre-style'>{g.name}</span>
                 ))}
