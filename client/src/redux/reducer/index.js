@@ -1,6 +1,7 @@
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
         GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
-        DELETE_ALL_FROM_CART
+        DELETE_ALL_FROM_CART,
+        IS_ONLINE
 } from '../actions/index'
 
 const initialState = {
@@ -169,6 +170,7 @@ const rootReducer = (state = initialState, action) => {
                 comments: state.comments
 >>>>>>> 7fb22985d75372b1811e3bb3753324cde3f4846f
             }
+        
         default:
             return state;
     }
