@@ -87,7 +87,6 @@
 
 .side-menu {
     background-color: #151414;
-    width: 250px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -101,11 +100,22 @@
 ul {
     padding-inline-start: 0;
 }
+span {
+    margin-left: 1em;
+}
 
 .side-menu.active {
     right: 0;
     transition: 350ms;
     padding: 0;
+    width: 250px;
+}
+
+#navbar-side-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
 }
 
 .nav-text {
@@ -134,38 +144,23 @@ ul {
     background-color: #1a83ff;
 }
 
-.side-menu-items {
-    width: 100%;
-    margin: 0;
-}
-
-.sidebar-toggle {
-    background-color: #000000;
-    width: 100%;
-    height: 4em;
+.bottom-text {
     display: flex;
-    justify-content: start;
-    align-items: center;
-    padding-left: 28px;
-}
+    justify-content: flex-end;
 
-span {
-    margin-left: 16px;
-}
-
-.friends-text {
-    display: flex;
-    justify-content: start;
     align-items: center;
-    padding: 8px 16px 24px 16px;
+    padding: 8px 16px 8px 16px;
     list-style: none;
     height: 60px;
-    bottom: 0;
-    position: absolute;
-    width: 85%;
+    /* align-content: flex-end; */
+    /* width: 85%; */
 }
 
-.friends-text a {
+#navbar-side-items .bottom-text {
+    justify-self: flex-end;
+}
+
+.bottom-text a {
     text-decoration: none;
     color: #f5f5f5;
     font-size: 18px;
@@ -178,7 +173,7 @@ span {
     transition: 250ms;
 }
 
-.friends-text a:hover {
+.bottom-text a:hover {
     background-color: #1a83ff;
 }
 
@@ -189,4 +184,148 @@ span {
     padding-right: 4px;
     padding-left: 4px;
     text-decoration: none;
+}
+
+.sidebar-toggle {
+    background-color: #060b26;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.side-menu-items {
+    width: 100%;
+    margin-top: 4em;
+}
+
+
+
+/* PRUEBA */
+
+.bottom-text-first {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+#navbar-side-items .bottom-text-first {
+    justify-self: flex-end;
+}
+
+.bottom-text-first a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+    transition: 250ms;
+}
+
+.bottom-text-first a:hover {
+    background-color: #1a83ff;
+}
+
+
+/* SIGN UP BUTTON */
+
+.sign-up-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    border: 2px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+.sign-up-button a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.sign-up-button a:hover {
+    border: 1px solid #1a83ff;
+    color: #1a83ff;
+    
+}
+
+
+/* Log-In Button */
+.log-in-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    border: 2px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+.log-in-button a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 5px;
+    transition: 250ms;
+}
+
+.log-in-button a:hover {
+    /* border: 1px solid #34d379; */
+    background-color: #13984c;
+    
+}
+
+/* LOG-OUT BUTTON */
+.log-out-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 8px 16px 8px 16px;
+    list-style: none;
+    height: 60px;
+    /* align-content: flex-end; */
+    /* width: 85%; */
+}
+
+.log-out-button a {
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 8px;
+}
+
+.log-out-button a:hover {
+    background-color: #a11616;
+    
 }
