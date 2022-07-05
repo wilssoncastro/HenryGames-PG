@@ -52,7 +52,7 @@ export default function CarouselCard() {
                   <span className='genre-style'>{g.name}</span>
                 ))}
               </div>
-              <span className='price-tag'>{e.price}</span>
+              <span className='price-tag'>${e.price}</span>
             </div>
           </div>
 
