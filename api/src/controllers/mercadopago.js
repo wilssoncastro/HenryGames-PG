@@ -16,14 +16,9 @@ router.post('/', (req, res) => {
     
 //cosas que deberia recibir por body
     
-    const carrito = req.body/* [
-        {title: 'GTA V', quantity: 1, price: 1000},
-        {title: 'God of War', quantity: 1, price:  5000},
-        {title: 'NFS Heat', quantity: 1, price: 2000},
-    ]; */
+    const carrito = req.body
     const id_orden = carrito.map(e => e.id).join('-')
-    console.log(carrito)
-    console.log(id_orden)
+    
 //cosas que requiere MP de tu respectiva compra
     const items_mp = carrito.map(e => ({
         id: e.id,
@@ -69,7 +64,6 @@ mercadopago.preferences.create(preference)
 router.get('/save_data', async(req, res) => {
     console.log('Llegue hasta aca')
     console.info('lo que me devuelve MP', req.session.passport.user)
-    console.log('Querys', req.query)
     const id_user = req.session.passport.user
     const payment_id= req.query.payment_id
     const payment_status= req.query.status
@@ -89,7 +83,7 @@ router.get('/save_data', async(req, res) => {
     const promise_pending_array = objeto.map(e => Sale.create(e))
 
     await Promise.all(promise_pending_array)
-    console.log('Creado')
+    
     let game_stock
     
     for(let i = 0; i<external_reference.length; i++){
