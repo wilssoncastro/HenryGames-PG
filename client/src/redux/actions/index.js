@@ -295,7 +295,6 @@ export function edit_comment(id_comment, comentario){
   }
 }
 
-<<<<<<< HEAD
 export function getArticles() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/blog");
@@ -307,7 +306,6 @@ export function getArticles() {
     });
   };
 }
-=======
 export function delete_comment(id_comment){
   return function(dispatch){
     return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)
@@ -349,4 +347,3 @@ export function report_comment(id_comment){
 //FIN ACTIONS 
 // COMENTARIOS
 //
->>>>>>> 7fb22985d75372b1811e3bb3753324cde3f4846f
