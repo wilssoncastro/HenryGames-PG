@@ -15,20 +15,14 @@
 } 
 
 .inputSearchStore{
-  background-color: rgba(0, 0, 0, 0.842);
+  background-color: rgb(0, 0, 0);
   color: #c7a84b;
-  font-size: medium;
+  font-size: 16px;
   border: none;
   border-radius: 8px;
   margin: 5px;
   margin-right: 10px;
-}
-.inputSearchStore:focus{
-  background-color: black;
-  color: #c7a84b;
-  transform: scale(1.05);
   padding: 5px;
-  border: none;
 }
 
 .selectPages{
