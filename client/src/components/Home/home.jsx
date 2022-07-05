@@ -10,7 +10,7 @@ import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
 import './home.css'
 import './carousel.css'
-// import Card from '../Card/card'
+
 
 export default function Home() {
     

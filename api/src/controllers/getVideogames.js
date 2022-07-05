@@ -52,129 +52,53 @@ router.get('/', async (req, res) => {
     console.log('Todos los juegos han sido cargados,⭐️ ¡Ya puedes comprar juegos en la tienda! ⭐️')
     let totalData = await Videogame.findAll(
       {
-        include: [{
+        include: {
           model: Genre,
-          attributes: ['name'],
+          attributes: ["name"],
           through: {
-            attributes: [],
+            attributes: []
           }
-        }]
+        }
       }
     )
     res.send(totalData);
   }
   /////////////////////////////////////////llamado a BD
   else {
-    const { name, page, limit, order, sort } = req.query
-    if (name && (name.length > 2) && !(sort && order)) {
-      const videogames = await Videogame.findAll({
-        where: {
-          name: { [Op.iLike]: `${name}%` },
-        },
-        limit: limit,
-        offset: page,
-        include: [{
-          model: Genre,
-          attributes: ['name'],
-          through: {
-            attributes: [],
-          }
-        }],
-      })
-      res.send(videogames);
+    const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+    let condition = {}
+    let where = {}
+    if (name && name.length > 2) {
+      where.name = { [Op.iLike]: `${name}%` }
     }
-    else if ((sort && order) && !name) {
-      const videogames = await Videogame.findAll({
-        limit: limit, // cantidad de videogames por página
-        offset: page, // índice del primer videogame que se muestra en la página
-        order: [[sort, order]], // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
-        include: [{
-          model: Genre,
-          attributes: ['name'],
-          through: {
-            attributes: [],
-          }
-        }],
-      })
-      res.send(videogames);
+    if (esrb) {
+      where.esrb_rating = esrb
     }
-    else if (name && (name.length > 2) && sort && order) {
-      const videogames = await Videogame.findAll({
-        where: {
-          name: { [Op.iLike]: `${name}%` },
-        },
-        limit: limit,
-        offset: page,
-        order: [[sort, order]],
-        include: [{
-          model: Genre,
-          attributes: ['name'],
-          through: {
-            attributes: [],
-          }
-        }],
-      })
-      res.send(videogames);
+    if (tag) {
+      where.tags = { [Op.contains]: [tag] }
     }
-    else {
-      const videogames = await Videogame.findAll({
-        limit: limit || 200,
-        offset: page,
-        include: [{
-          model: Genre,
-          attributes: ['name'],
-          through: {
-            attributes: [],
-          }
-        }]
-      })
-      res.send(videogames);
+    condition.where = where;
+    condition.limit = limit;
+    page?condition.offset=page:!condition.offset;
+    sort&&order?condition.order=[[sort, order]]:!condition.order;
+    condition.include = {
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      }
     }
-  }} catch (error) {
+    let videogames = await Videogame.findAll(condition)
+    let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+    gen?res.send(gameGenre):res.send(videogames)
+    //-A
+  }
+} catch (error) {
     console.log("CATCH")
   }
 })
 
-router.get('/filterType', async (req, res) => {
-  
-  const { name, genre, tag, esrb, limit, page, sort, order } = req.query;
-  
-  let condition = {}
-  let where = {}
-
-  if (name && name.length > 2) {
-    where.name = { [Op.iLike]: `${name}%` }
-  }
-  if (genre) {
-    where.genres = genre
-  }
-  if (tag) {
-    where.tags = { [Op.or]: tag }
-  }
-  if (esrb) {
-    where.esrb_rating = esrb
-  }
-
-  condition.where = where
-  condition.limit = limit
-  condition.offset = page
-  sort&&order?condition.order=[[sort, order]]:!condition.order
-  condition.include = [{
-    model: Genre,
-    attributes: ['name'],
-    through: {
-      attributes: [],
-    }
-  }]
-  
-  try {
-    let videogames = await Videogame.findAll(condition)
-    res.send(videogames)
-  } catch (error) {
-    console.log("catch filter")
-  }
-
-})
+//-B
 
 router.get('/:id', async (req, res) => {
   const id = req.params.id
@@ -220,3 +144,104 @@ router.get('/:id', async (req, res) => {
 })
 
 module.exports = router;
+
+//A- 
+    // const { name, page, limit, order, sort } = req.query
+    // if (name && (name.length > 2) && !(sort && order)) {
+    //   const videogames = await Videogame.findAll({
+    //     where: {
+    //       name: { [Op.iLike]: `${name}%` },
+    //     },
+    //     limit: limit,
+    //     offset: page,
+    //     include: [{
+    //       model: Genre,
+    //       attributes: ['name'],
+    //       through: {
+    //         attributes: [],
+    //       }
+    //     }],
+    //   })
+    //   res.send(videogames);
+    // }
+    // else if ((sort && order) && !name) {
+    //   const videogames = await Videogame.findAll({
+    //     limit: limit, // cantidad de videogames por página
+    //     offset: page, // índice del primer videogame que se muestra en la página
+    //     order: [[sort, order]], // sort (ordenamiento por) y order (ordenamiento ASC o DESC)
+    //     include: [{
+    //       model: Genre,
+    //       attributes: ['name'],
+    //       through: {
+    //         attributes: [],
+    //       }
+    //     }],
+    //   })
+    //   res.send(videogames);
+    // }
+    // else if (name && (name.length > 2) && sort && order) {
+    //   const videogames = await Videogame.findAll({
+    //     where: {
+    //       name: { [Op.iLike]: `${name}%` },
+    //     },
+    //     limit: limit,
+    //     offset: page,
+    //     order: [[sort, order]],
+    //     include: [{
+    //       model: Genre,
+    //       attributes: ['name'],
+    //       through: {
+    //         attributes: [],
+    //       }
+    //     }],
+    //   })
+    //   res.send(videogames);
+    // }
+    // else {
+    //   const videogames = await Videogame.findAll({
+    //     limit: limit || 200,
+    //     offset: page,
+    //     include: [{
+    //       model: Genre,
+    //       attributes: ['name'],
+    //       through: {
+    //         attributes: [],
+    //       }
+    //     }]
+    //   })
+    //   res.send(videogames);
+    // }
+
+//B-
+    // router.get('/filter', async (req, res) => {
+    //   try {
+    //     const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+    //     let condition = {}
+    //     let where = {}
+    //     if (name && name.length > 2) {
+    //       where.name = { [Op.iLike]: `${name}%` }
+    //     }
+    //     if (esrb) {
+    //       where.esrb_rating = esrb
+    //     }
+    //     if (tag) {
+    //       where.tags = { [Op.contains]: [tag] }
+    //     }
+    //     condition.where = where;
+    //     condition.limit = limit;
+    //     page?condition.offset=page:!condition.offset;
+    //     sort&&order?condition.order=[[sort, order]]:!condition.order;
+    //     condition.include = {
+    //       model: Genre,
+    //       attributes: ["name"],
+    //       through: {
+    //         attributes: [],
+    //       }
+    //     }
+    //     let videogames = await Videogame.findAll(condition)
+    //     let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+    //     gen?res.send(gameGenre):res.send(videogames)
+    //   } catch (error) {
+    //     console.log("catch filter")
+    //   }
+    // })
