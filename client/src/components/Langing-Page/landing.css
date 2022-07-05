@@ -54,7 +54,7 @@
  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin: 8px 10px 12px;
     color:black;
-    font-size: 25px;
+    transform: scale(1.25);
     background-color: #c7a94b;
  }
 
@@ -79,8 +79,8 @@
  .btn_log_in:hover{
  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin: 8px 10px 12px;
-    font-size: 25px;
     background: -webkit-linear-gradient(royalblue, rgb(249, 249, 249));
+    transform: scale(1.25);
  }
 
 .btn_sign_up{
@@ -104,7 +104,7 @@
  .btn_sign_up:hover{
  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     margin: 8px 10px 12px;
-    font-size: 25px;
+    transform: scale(1.25);
     background: -webkit-linear-gradient(rgb(32, 146, 63), rgb(132, 132, 132));
  }
 

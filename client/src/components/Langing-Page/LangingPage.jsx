@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./landing.css";
+import GoogleLogin from 'react-google-login';
 
 export default function LandingPage() {
   // falta ternario para saber si ya estas registrado o no. y dependiendo de ahi va a mostrar el registrarse
   // o el login.
+
+  
+const responseGoogle = (response) => {
+  console.log(response);
+}
+
   return (
     <div className="landing">
       <div className="landing_content">
@@ -20,6 +27,9 @@ export default function LandingPage() {
           <Link to="/sign_up">
             <button class="btn_sign_up">SIGN UP</button>
           </Link>
+        </div>
+        <div>
+          <a href="http://localhost:3001/login/federated/google">Log in with Google</a>
         </div>
       </div>
     </div>
