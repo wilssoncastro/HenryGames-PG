@@ -19,7 +19,7 @@ const mercadopago = require('../controllers/mercadopago')
 const cartRoutes = require('../controllers/cartRoutes')
 
 router.get('/', (req, res) => {
-    console.log(req.isAuthenticated())
+    
     res.json({msg:'HENRYGAMES'})
 })
 
