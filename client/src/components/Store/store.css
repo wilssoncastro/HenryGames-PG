@@ -10,5 +10,91 @@
   margin: 0;
 }
 
+.containerFilters{
+  margin-right: 10rem;
+} 
 
+.inputSearchStore{
+  background-color: rgba(0, 0, 0, 0.842);
+  color: #c7a84b;
+  font-size: medium;
+  border: none;
+  border-radius: 8px;
+  margin: 5px;
+  margin-right: 10px;
+}
+.inputSearchStore:focus{
+  background-color: black;
+  color: #c7a84b;
+  transform: scale(1.05);
+  padding: 5px;
+  border: none;
+}
 
+.selectPages{
+  background-color:black;
+  color: #c7a84b;
+  height: 2rem;
+  font-size: medium;
+}
+.selectPages:hover{
+  transition: 0.5s;
+  background-color: #c7a84b;
+  color: black;
+}
+
+.selectFilters{
+  background-color:black;
+  color: #c7a84b;
+  height: 2rem;
+  font-size: medium;
+}
+.selectFilters:hover{
+  transition: 0.5s;
+  background-color: #c7a84b;
+  color: black;
+}
+
+.selectOrder{
+  background-color:black;
+  color: #c7a84b;
+  height: 2rem;
+  font-size: medium;
+}
+.selectOrder:hover{
+  transition: 0.5s;
+  background-color: #c7a84b;
+  color: black;
+}
+
+.buttonPrev{
+  background-color:black;
+  color: #c7a84b;
+  height: 2rem;
+  margin-top: 0.5rem;
+  margin-right: 2.5px;
+  border-radius: 7px;
+  border: none;
+}
+.buttonPrev:hover{
+  background-color: #c7a84b;
+  color: black;
+  transition: 0.5s;
+  transform: scale(1.05);
+}
+
+.buttonNext{
+  background-color:black;
+  color: #c7a84b;
+  height: 2rem;
+  margin-top: 0.5rem;
+  margin-left: 2.5px;
+  border-radius: 7px;
+  border:none;
+}
+.buttonNext:hover{
+  background-color: #c7a84b;
+  color: black;
+  transition: 0.5s;
+  transform: scale(1.05);
+}
