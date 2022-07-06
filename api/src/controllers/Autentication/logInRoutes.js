@@ -13,6 +13,10 @@ router.post('/login',
             if(!req.user.active){
                 return res.send('Debes activar la cuenta')
             }
+
+            if(req.user.banned){
+                return res.send('Tu cuenta fue banneada. No puedes ingresar')
+            }
             
             let { id, name, lastname, type, profile_pic, user} = req.user;
             
