@@ -161,7 +161,7 @@ export default function ShoppingCart() {
                   <button>Back to the store</button>
                 </Link>
                 
-                <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(cartFromLocalStorage)} : () => {logInToBuy()}}>Buy</button>
+                <button onClick={typeof id_user === 'string' ? () => {handleBuyMercadoPago(current_cart)} : () => {logInToBuy()}}>Buy</button>
               </div>
             </div>
           ) :
