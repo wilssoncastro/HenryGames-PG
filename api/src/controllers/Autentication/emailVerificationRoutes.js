@@ -63,11 +63,38 @@ router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     }
 })
 
-router.get('/email/gameActivation/:secretCode', (req, res) => {
+router.get('/email/gameActivation/:secretCode/:id_user', async(req, res) => {
+    const { secretCode } = req.params
+    const id_user = req.session.passport.user
+
+    const user = await Player.findByPk(id_user)
+    let mail = user.email
+    console.log(mail)
+
+    const link = `http://localhost:3000/activation/games/${secretCode}/${id_user}`
+    
     try {
-        const { secretCode } = req.params
+        let mail_options = {
+            from: '🎮🕹 <nicolasgonzalezdev@gmail.com> ',
+            to: mail,
+            subject: 'Activacion de juegos',
+            html:`
+            <b>Su compra fue realizada exitosamente!</b>
+            <b>Por favor has click en el siguiente link para verificar tu compra</b>
+            <br>
+            <a href="${link}">LINK</a> 
+            `
+        }
+
+        let info = await transporter.sendMail(mail_options, (error, info) => {
+            if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
+        })
+
+        return res.send(info)
+
+
     } catch (error) {
-        
+        res.status(404).send(error)
     }
 })
 

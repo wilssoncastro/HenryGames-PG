@@ -148,7 +148,7 @@ export default function ShoppingCart() {
                 onClick={
                   typeof id_user === "string"
                     ? () => {
-                        handleBuyMercadoPago(cartFromLocalStorage);
+                        handleBuyMercadoPago(current_cart);
                       }
                     : () => {
                         logInToBuy();
