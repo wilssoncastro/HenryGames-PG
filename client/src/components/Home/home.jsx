@@ -21,12 +21,11 @@ export default function Home() {
 
             <div className='home-component-box'>
 
-                <div className='home20'>
+                {/* <div className='home20'>
                     <div className='genres-filter'>
                         <div className='filters-column'>
                             <div className='filters-title'>
                                 <span>Genres</span>
-                                {/* <BiIcons.BiTag className="filter-icon"/> */}
                             </div>
                             <ul className='genres-list'>
                                 <li className='genre-txt' >
@@ -115,7 +114,7 @@ export default function Home() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='home60'>
 

@@ -25,9 +25,9 @@ export function is_authorizated(){
   }
 }
 
-export function getAllVideogames() {
+export function getAllVideogames(sort, order) {
   return async function (dispatch) {
-    let json = await axios("http://localhost:3001/videogames");
+    let json = await axios(`http://localhost:3001/videogames?sort=${sort}&order=${order}`);
     return dispatch({
       type: "GET_ALL_VIDEOGAMES",
       payload: json.data,
@@ -35,9 +35,9 @@ export function getAllVideogames() {
   };
 }
 
-export function getFilteredVideogames(name, page, sort, order, limit) {
+export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data

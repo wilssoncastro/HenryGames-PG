@@ -12,7 +12,8 @@ const getAllApiGames = require('../services/services');
 router.get('/', async (req, res) => {
   try {
   const testGames = await Videogame.findAll()
-  if (!testGames.length) {
+  if (!testGames.length) 
+  {
     console.log('creando juegos en la base de datos')
     let juego = getAllApiGames()
     let copi = juego
@@ -64,22 +65,41 @@ router.get('/', async (req, res) => {
     res.send(totalData);
   }
   /////////////////////////////////////////llamado a BD
-  else {
-    const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+  else 
+  // {
+  //   const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+  //   let condition = {}
+  //   let where = {}
+  //   if (name && name.length > 2) {
+  //     where.name = { [Op.iLike]: `${name}%` }
+  //   }
+  //   if (esrb) {
+  //     where.esrb_rating = esrb
+  //   }
+  //   if (tag) {
+  //     where.tags = { [Op.contains]: [tag] }
+  //   }
+  //   condition.where = where;
+  //   condition.limit = limit;
+  //   page?condition.offset=page:!condition.offset;
+  //   sort&&order?condition.order=[[sort, order]]:!condition.order;
+  //   condition.include = {
+  //     model: Genre,
+  //     attributes: ["name"],
+  //     through: {
+  //       attributes: [],
+  //     }
+  //   }
+  //   let videogames = await Videogame.findAll(condition)
+  //   let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+  //   gen?res.send(gameGenre):res.send(videogames)
+  //   //-A
+  // }
+  {
+    const { sort, order } = req.query;
     let condition = {}
     let where = {}
-    if (name && name.length > 2) {
-      where.name = { [Op.iLike]: `${name}%` }
-    }
-    if (esrb) {
-      where.esrb_rating = esrb
-    }
-    if (tag) {
-      where.tags = { [Op.contains]: [tag] }
-    }
     condition.where = where;
-    condition.limit = limit;
-    page?condition.offset=page:!condition.offset;
     sort&&order?condition.order=[[sort, order]]:!condition.order;
     condition.include = {
       model: Genre,
@@ -89,9 +109,7 @@ router.get('/', async (req, res) => {
       }
     }
     let videogames = await Videogame.findAll(condition)
-    let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-    gen?res.send(gameGenre):res.send(videogames)
-    //-A
+    res.send(videogames)
   }
 } catch (error) {
     console.log("CATCH")
