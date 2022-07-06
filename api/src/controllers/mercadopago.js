@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const { Sale, Player, Videogame } = require('../db.js');
+const randomstring = require("randomstring");
 
 //SDK mercadopago
 const mercadopago = require('mercadopago');
@@ -100,12 +101,18 @@ router.get('/save_data', async(req, res) => {
     /////////////////
     
     //[ '3328', '4200' ]
+    let secret_code = await randomstring.generate(7);
     let resultado = await user.addLibrary(videogames)
 
-    //Vaciar carrito despues de la compra
-    //Actualizar codigo
+    console.log(resultado)
+
+    for(let i = 0; i < resultado.length; i++){
+        resultado[i].code = secret_code
+        await resultado[i].save()
+    }
     //Enviar mail
     
+
 
     res.redirect("http://localhost:3000/home")
 })
