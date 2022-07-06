@@ -306,7 +306,6 @@ export default function VideogameCreate() {
                   value={input.name}
                   onChange={(e) => handleChange(e)}
                 />
-
               </div>
               <div>
                 <label>Description</label>
