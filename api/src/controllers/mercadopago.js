@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const { Sale, Player, Videogame } = require('../db.js');
+const randomstring = require("randomstring");
 
 //SDK mercadopago
 const mercadopago = require('mercadopago');
@@ -62,9 +63,9 @@ mercadopago.preferences.create(preference)
 });
 
 router.get('/save_data', async(req, res) => {
-    console.log('Llegue hasta aca')
+    //console.log('Llegue hasta aca')
     //console.info('lo que me devuelve MP', req.session.passport.user)
-    console.log('hola')
+    //console.log('hola')
     const id_user = req.session.passport.user
     const payment_id= req.query.payment_id
     const payment_status= req.query.status
@@ -76,7 +77,6 @@ router.get('/save_data', async(req, res) => {
     const user = await Player.findByPk(id_user)
 
     //Agrega a libreria los juegos
-    await user.addLibrary(videogames)
     
 
     let objeto = videogames.map(e => ({
@@ -92,15 +92,34 @@ router.get('/save_data', async(req, res) => {
     
     let game_stock
     
+    //Aumentar stock
     for(let i = 0; i<external_reference.length; i++){
         game_stock = await Videogame.findByPk(external_reference[i])
         game_stock.contador = game_stock.contador + 1
         await game_stock.save()
     }
+    /////////////////
     
-    //[ '3328', '4200' ]
+    
+    let secret_code = await randomstring.generate(7);
+    let resultado = await user.addLibrary(videogames)
 
-    res.redirect("http://localhost:3000/home")
+
+    for(let i = 0; i < resultado.length; i++){
+        resultado[i].code = secret_code
+        await resultado[i].save()
+    }
+    //Vaciar carrito despues de la compra
+    if(payment_status === 'approved') {
+        const promise_delete_array = videogames.map(e => user.removeCart(e))
+        await Promise.all(promise_delete_array)
+    }
+    //Actualizar codigo
+    //Enviar mail
+    
+
+
+    res.redirect(`http://localhost:3001/authentication/email/gameActivation/${secret_code}/${id_user}`)
 })
 
 module.exports = router;

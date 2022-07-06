@@ -4,6 +4,7 @@ import axios from "axios";
 // import LogOut from '../LogOut/LogOut';
 import { addManyToCart } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+/* import './loginForm.css'; */
 
 
 export default function LogIn() {
@@ -116,7 +117,7 @@ export default function LogIn() {
           <Link to='/home'>
            O entra como invitado
           </Link>
-        </div>
-  )
+        </div> 
+    );
 }
 // OPCION "Sign Up" abajo de todo
