@@ -20,7 +20,7 @@ const cartRoutes = require('../controllers/cartRoutes')
 const routesBlog = require('../controllers/blog')
 
 router.get('/', (req, res) => {
-    console.log(req.isAuthenticated())
+    
     res.json({msg:'HENRYGAMES'})
 })
 

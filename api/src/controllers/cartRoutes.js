@@ -113,7 +113,6 @@ router.post('/deleteToMany/:id', async (req, res) => {
     let { games } = req.body
 
     try {
-        
         let user = await Player.findByPk(id)
         if(!user)return res.status(404).send('El usuario no existe')
         console.log(user)

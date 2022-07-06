@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
             defaultValue: DataTypes.UUIDV4,
         },
         id_sale: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING,
             allowNull: false
         },
         id_game: {

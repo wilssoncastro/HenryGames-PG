@@ -10,7 +10,7 @@ import {
   getWishList,
   addToCart,
   getCommentsByGame,
-  is_authorizated,
+  comment_info,
   getCartById
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
@@ -35,12 +35,14 @@ export default function Detail() {
   const list = useSelector((state) => state.wishList);
   const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
+  //const info_comments = useSelector((state) => state.new_comments)
 
   let idProfile = localStorage.getItem("id");
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
     dispatch(getCommentsByGame(id));
+    dispatch(comment_info(id))
     localStorage.setItem("cart", JSON.stringify(cart));
     if (list) {
       dispatch(getWishList(idProfile));
@@ -128,120 +130,134 @@ export default function Detail() {
       <div className="allDetail">
         {videogame.id == id ? (
           <div className="CardDetail">
-            <h1 className="name">{videogame.name}</h1>
 
-            <div className="containerImgList">
-              <img className="image" src={videogame.image} />
+            <div className="title-lists-top-detail">
+              <h1 className="name">{videogame.name}</h1>
 
-              <div>
-                <ul className="listDetail1">
-                  <li>
-                    <span className="titleList">Price: </span>
-                    {videogame.free_to_play === true ? (
-                      <span>Free to play</span>
-                    ) : (
-                      <span>${videogame.price}</span>
-                    )}
-                  </li>
+              <div className="containerImgList">
 
-                  <li className="divsListDetail">
-                    <span className="titleList">Rating: </span>
-                    <span>{videogame.rating} ⭐</span>
-                  </li>
+                <div>
+                  <img className="image" src={videogame.image} />
 
-                  <li>
-                    <span className="titleList">Release Date: </span>
-                    <span>{videogame.release_date}</span>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <ul className="listDetail2">
-                  <li>
-                    <span className="titleList">Genres:</span>
-                    {videogame.genres?.map((e) => {
-                      if (typeof e === "string") {
-                        return (
-                          <span className="type" key={e}>
-                            {e.replace(e[0], e[0].toUpperCase())} |
-                          </span>
-                        );
-                      } else if (videogame.genres.length > 1) {
-                        return <span key={e.name}>{e.name} | </span>;
-                      } else {
-                        return <span key={e.name}>{e.name}</span>;
-                      }
-                    })}
-                  </li>
-                  <li>
-                    <span className="titleList">Esrb Rating: </span>
-                    <span>{videogame.esrb_rating}</span>
-                  </li>
+                  <div className="buttons">
+                    <div>
+                      {!list?.find((e) => e.id == videogame.id) ? (
+                        <button
+                          className="buttonAddWishList"
+                          onClick={() => handleOnClick(videogame.id)}
+                        >
+                          <BsIcons.BsBookmarkStar />
+                        </button>
+                      ) : (
+                        <button
+                          className="buttonDeleteWishList"
+                          onClick={() => handleOnClickDelete(videogame.id)}
+                        >
+                          <BsIcons.BsBookmarkStarFill />
+                        </button>
+                      )}
+                    </div>
 
-                  {videogame.on_sale === true ? (
-                    <li id="onSale" className="titleList">
-                      On Sale!
+                    <div>
+                      {!cartFromLocalStorage.includes(videogame) ? (
+                        <button
+                          className="buttonCart"
+                          onClick={(e) => HandleAddToCart(e)}
+                        ><BsIcons.BsCartPlus />
+                        </button>
+                      ) : null}
+                    </div>
+
+                    <div>
+                      <button
+                        className="buttonBuy"
+                      ><FiIcons.FiDollarSign />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div>
+                  <ul className="listDetail1">
+                    <li>
+                      <span className="titleList">Price: </span>
+                      {videogame.free_to_play === true ? (
+                        <span>Free to play</span>
+                      ) : (
+                        <span>${videogame.price}</span>
+                      )}
                     </li>
-                  ) : null}
-                </ul>
-              </div>
-            </div>
 
-            <div className="buttons">
-              <div>
-                {!list?.find((e) => e.id == videogame.id) ? (
-                  <button
-                    className="buttonAddWishList"
-                    onClick={() => handleOnClick(videogame.id)}
-                  >
-                    <BsIcons.BsBookmarkStar />
-                  </button>
-                ) : (
-                  <button
-                    className="buttonDeleteWishList"
-                    onClick={() => handleOnClickDelete(videogame.id)}
-                  >
-                    <BsIcons.BsBookmarkStarFill />
-                  </button>
-                )}
-              </div>
+                    <li className="divsListDetail">
+                      <span className="titleList">Rating: </span>
+                      <span>{videogame.rating} ⭐</span>
+                    </li>
 
-              <div>
-                {!cartFromLocalStorage.includes(videogame) ? (
-                  <button
-                    className="buttonCart"
-                    onClick={(e) => HandleAddToCart(e)}
-                  ><BsIcons.BsCartPlus />
-                  </button>
-                ) : null}
-              </div>
+                    <li>
+                      <span className="titleList">Release Date: </span>
+                      <span>{videogame.release_date}</span>
+                    </li>
+                  </ul>
+                </div>
 
-              <div>
-                <button 
-                  className="buttonBuy"
-                ><FiIcons.FiDollarSign />
-                </button>
-              </div>
-            </div>
+                <div>
+                  <ul className="listDetail2">
+                    <li>
+                      <span className="titleList">Genres:</span>
+                      {videogame.genres?.map((e) => {
+                        if (typeof e === "string") {
+                          return (
+                            <span className="type" key={e}>
+                              {e.replace(e[0], e[0].toUpperCase())} |
+                            </span>
+                          );
+                        } else if (videogame.genres.length > 1) {
+                          return <span key={e.name}>{e.name} | </span>;
+                        } else {
+                          return <span key={e.name}>{e.name}</span>;
+                        }
+                      })}
+                    </li>
+                    <li>
+                      <span className="titleList">Esrb Rating: </span>
+                      <span>{videogame.esrb_rating}</span>
+                    </li>
 
-            <h3 className="tagH4">Tags:</h3>
+                    {videogame.on_sale === true ? (
+                      <li id="onSale" className="titleList">
+                        On Sale!
+                      </li>
+                    ) : null}
+                  </ul>
+
+                </div>
+
+              </div> {/* Cierra CONTAINER IMG + LISTS */}
+
+            </div> {/* Cierra TITULO y CONTAINER */}
+
+            {/* <h3 className="tagH4">Tags:</h3> */}
+            <br/>
             <div className="tag">
               {videogame.tags?.map((e) => {
                 if (videogame.tags.length > 1) {
-                  return <span>{e} |</span>;
+                  return <span>|<span>{e}</span></span>
                 } else {
                   return <span>{e}</span>;
                 }
               })}
+              <span>|</span>
             </div>
 
-            <h3 className="descriptionH3">Description: </h3>
+            {/* <h3 className="descriptionH3">Description: </h3> */}
+            <br/>
             <div className="description">
               <p>{videogame.description}</p>
             </div>
 
-            <div>
-              <Carousel>
+            <div className="carouselcontainer-detail">
+              <Carousel focusOnSelect={false} itemsToShow={4}>
                 {videogame.short_screenshots?.map((e) => {
                   return (
                     <img className="screenshots" src={e} alt="Not found" />
@@ -250,10 +266,10 @@ export default function Detail() {
               </Carousel>
             </div>
 
-              <h3 className="requirementsH3">Requirements: </h3>
+            <h3 className="requirementsH3">Requirements: </h3>
             <div className="requirements">
-              {videogame.requirements === null ? (
-                <span>The videogame has not requirements actually</span>
+              {videogame.requirements == '' || videogame.requirements == 'null' ? (
+                <span>The videogame has not specified requirements.</span>
               ) : (
                 <p>{videogame.requirements}</p>
               )}
@@ -275,8 +291,18 @@ export default function Detail() {
                   id_user={e.id_user}
                   comment={e.comment}
                   createdAt={e.createdAt}
+                  user={e.username}
                 />
               ))}
+              {/* {info_comments?.map((e) => (
+                <Info_Comment
+                  id={e.Comment.id}
+                  id_user={e.Comment.id_user}
+                  comment = {e.Comment.comment}
+                  createdAt = {e.Comment.createdAt}
+                  user = {e.user}
+                />
+              ))} */}
             </div>
 
             <div>

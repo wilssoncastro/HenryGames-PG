@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
-/* import LogOut from '../LogOut/LogOut'; */
+// import LogOut from '../LogOut/LogOut';
 import { addManyToCart } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+/* import './loginForm.css'; */
 
 
 export default function LogIn() {
@@ -47,7 +48,7 @@ export default function LogIn() {
         .catch((error) => console.log(error));
   
         
-        let {log_in, id, name, lastname, type, profile_pic} = login.data
+        let {log_in, id, name, lastname, type, profile_pic, user} = login.data
               
         if(log_in){
           let carrito = localStorage.getItem('cart')
@@ -56,6 +57,7 @@ export default function LogIn() {
           localStorage.setItem('lastname', lastname)
           localStorage.setItem('type', type)
           localStorage.setItem('profile_pic', profile_pic)
+          localStorage.setItem('user', user)
           console.log(carrito)
           carrito = JSON.parse(carrito)
           console.log(carrito)
@@ -115,7 +117,7 @@ export default function LogIn() {
           <Link to='/home'>
            O entra como invitado
           </Link>
-        </div>
-  )
+        </div> 
+    );
 }
 // OPCION "Sign Up" abajo de todo
