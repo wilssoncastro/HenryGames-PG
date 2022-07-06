@@ -20,11 +20,17 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.serializeUser(function(user, done) {
+    console.log(`\n--------> Serialize User:`)
+    console.log(user)
+
     done(null, user)
 })
 
 passport.deserializeUser(function(user, done) {
-    done(null, user)
+    console.log("\n--------- Deserialized User:")
+    console.log(user)
+    
+    done (null, user)
 })
 
 
