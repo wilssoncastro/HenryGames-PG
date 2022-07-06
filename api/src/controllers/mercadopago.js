@@ -103,6 +103,10 @@ router.get('/save_data', async(req, res) => {
     let resultado = await user.addLibrary(videogames)
 
     //Vaciar carrito despues de la compra
+    if(payment_status === 'approved') {
+        const promise_delete_array = videogames.map(e => user.removeCart(e))
+        await Promise.all(promise_delete_array)
+    }
     //Actualizar codigo
     //Enviar mail
     
