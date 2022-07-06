@@ -63,7 +63,8 @@ mercadopago.preferences.create(preference)
 
 router.get('/save_data', async(req, res) => {
     console.log('Llegue hasta aca')
-    console.info('lo que me devuelve MP', req.session.passport.user)
+    //console.info('lo que me devuelve MP', req.session.passport.user)
+    console.log('hola')
     const id_user = req.session.passport.user
     const payment_id= req.query.payment_id
     const payment_status= req.query.status
@@ -72,7 +73,12 @@ router.get('/save_data', async(req, res) => {
     
     console.log("EXTERNAL REFERENCE ",external_reference)
     const videogames = await Videogame.findAll({where:{"id":external_reference}})
+    const user = await Player.findByPk(id_user)
+
+    //Agrega a libreria los juegos
+    await user.addLibrary(videogames)
     
+
     let objeto = videogames.map(e => ({
         'id_sale':payment_id,
         'id_game':e.dataValues.id,
@@ -92,6 +98,7 @@ router.get('/save_data', async(req, res) => {
         await game_stock.save()
     }
     
+    //[ '3328', '4200' ]
 
     res.redirect("http://localhost:3000/home")
 })
