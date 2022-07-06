@@ -75,7 +75,7 @@ export default function Profile() {
               </div>
               <div className="wish_list_container">
                 <label>Wish List :</label>
-                {list.length ? list?.map((e) =>
+                {list?.length ? list?.map((e) =>
                   <div>
                     <p>{e.name}</p>
                     <img className="img_profile" src={e.image} alt='' />

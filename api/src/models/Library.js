@@ -11,6 +11,9 @@ module.exports = (sequelize) => {
         active:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
+        },
+        code: {
+            type: DataTypes.STRING
         }
     },{timestamps: false})
 }
