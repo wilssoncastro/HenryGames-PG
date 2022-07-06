@@ -2,16 +2,16 @@
 .background {
   background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg');
   background-color: #151414;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  overflow-x:hidden;
-  overflow-y: scroll;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  position: relative;
-  z-index: 1; 
+   background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    position: relative;
+    z-index: 1; 
 }
 
 .home-component-box {
@@ -90,12 +90,6 @@
   flex-basis: 85%;
   margin: 0 7em;
 }
-
-.filter-icon {
-  
-}
-
-
 
 
 /* PARTE DERECHA DE LA PANTALLA */
@@ -222,7 +216,7 @@
   justify-content: center;
 }
 
-.screenshots {
+.screenshots-carousel {
   display: grid;
   position: relative;
   object-fit: cover;
@@ -321,9 +315,9 @@
     position:relative;
     }
 
-  *::-webkit-scrollbar-track {
-    /* border-radius: 15px; */
-    }
+  /* *::-webkit-scrollbar-track {
+    border-radius: 15px;
+    } */
 
   *::-webkit-scrollbar-thumb {
     background-color: #626262;

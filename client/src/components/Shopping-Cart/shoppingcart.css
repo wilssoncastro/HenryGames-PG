@@ -13,3 +13,63 @@
     z-index: 1; 
   }
 
+.cardCart{
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.containerButtonsCart{
+  margin-top:100px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonCleanCart{
+  background-color: #c0a956;
+  color: black;
+  font-size: 25px;
+  border-radius: 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+.buttonCleanCart:hover{
+  transition: 0.8s;
+  background-color: black;
+  color: #c0a956;
+}
+
+.buttonBuyCart{
+  background-color: #c0a956;
+  color: black;
+  font-size: 25px;
+  border-radius: 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+.buttonBuyCart:hover{
+  transition: 0.8s;
+  background-color: black;
+  color: #c0a956;
+}
+
+.buttonRemove{
+  margin-top: 20px;
+  background-color: black;
+  color: #c0a956;
+  font-size: large;
+  padding: 10px;
+  border-radius: 9px;
+}
+.buttonRemove:hover{
+  background-color: #c0a956;
+  color: black;
+  transition: 0.5s;
+}
+

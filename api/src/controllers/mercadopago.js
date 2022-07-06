@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const { Sale, Player, Videogame } = require('../db.js');
+const randomstring = require("randomstring");
 
 //SDK mercadopago
 const mercadopago = require('mercadopago');
@@ -16,14 +17,9 @@ router.post('/', (req, res) => {
     
 //cosas que deberia recibir por body
     
-    const carrito = req.body/* [
-        {title: 'GTA V', quantity: 1, price: 1000},
-        {title: 'God of War', quantity: 1, price:  5000},
-        {title: 'NFS Heat', quantity: 1, price: 2000},
-    ]; */
+    const carrito = req.body
     const id_orden = carrito.map(e => e.id).join('-')
-    console.log(carrito)
-    console.log(id_orden)
+    
 //cosas que requiere MP de tu respectiva compra
     const items_mp = carrito.map(e => ({
         id: e.id,
@@ -67,9 +63,9 @@ mercadopago.preferences.create(preference)
 });
 
 router.get('/save_data', async(req, res) => {
-    console.log('Llegue hasta aca')
-    console.info('lo que me devuelve MP', req.session.passport.user)
-    console.log('Querys', req.query)
+    //console.log('Llegue hasta aca')
+    //console.info('lo que me devuelve MP', req.session.passport.user)
+    //console.log('hola')
     const id_user = req.session.passport.user
     const payment_id= req.query.payment_id
     const payment_status= req.query.status
@@ -78,7 +74,11 @@ router.get('/save_data', async(req, res) => {
     
     console.log("EXTERNAL REFERENCE ",external_reference)
     const videogames = await Videogame.findAll({where:{"id":external_reference}})
+    const user = await Player.findByPk(id_user)
+
+    //Agrega a libreria los juegos
     
+
     let objeto = videogames.map(e => ({
         'id_sale':payment_id,
         'id_game':e.dataValues.id,
@@ -89,17 +89,37 @@ router.get('/save_data', async(req, res) => {
     const promise_pending_array = objeto.map(e => Sale.create(e))
 
     await Promise.all(promise_pending_array)
-    console.log('Creado')
+    
     let game_stock
     
+    //Aumentar stock
     for(let i = 0; i<external_reference.length; i++){
         game_stock = await Videogame.findByPk(external_reference[i])
         game_stock.contador = game_stock.contador + 1
         await game_stock.save()
     }
+    /////////////////
+    
+    
+    let secret_code = await randomstring.generate(7);
+    let resultado = await user.addLibrary(videogames)
+
+
+    for(let i = 0; i < resultado.length; i++){
+        resultado[i].code = secret_code
+        await resultado[i].save()
+    }
+    //Vaciar carrito despues de la compra
+    if(payment_status === 'approved') {
+        const promise_delete_array = videogames.map(e => user.removeCart(e))
+        await Promise.all(promise_delete_array)
+    }
+    //Actualizar codigo
+    //Enviar mail
     
 
-    res.redirect("http://localhost:3000/home")
+
+    res.redirect(`http://localhost:3001/authentication/email/gameActivation/${secret_code}/${id_user}`)
 })
 
 module.exports = router;

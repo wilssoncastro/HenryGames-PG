@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { FriendList } from "./FriendList";
+import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -16,7 +16,7 @@ import * as RiIcons from "react-icons/ri"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById ,getFriends} from "../../redux/actions";
+import { getFriends, getUserById } from "../../redux/actions";
 
 export default function NavBar() {
     const dispatch = useDispatch();
@@ -27,8 +27,7 @@ export default function NavBar() {
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
-    const friends = useSelector((state) => state.friends)
-    
+    const friends = useSelector((state) => state.friends) 
 
     function logOut(e){
         e.preventDefault()
@@ -40,7 +39,6 @@ export default function NavBar() {
             withCredentials: true
         })
         .then((res) => {
-            console.log(res.data)
             if(res){
                 console.log('removiendo store')
                 localStorage.removeItem('profile_pic')
@@ -61,8 +59,8 @@ export default function NavBar() {
     
     useEffect(() => {
         if (id) {
-          dispatch(getUserById(id))  
-          dispatch(getFriends(id))        
+          dispatch(getUserById(id))          
+          dispatch(getFriends(id))          
         }
         
       }, [dispatch, id])
@@ -121,7 +119,7 @@ export default function NavBar() {
         {
             title: 'Log Out',
             path: '#',
-            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b;'}} />,
+            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b'}} />,
             className: 'log-out-button',
             onClick: logOut,
             loggedIn: true
@@ -137,7 +135,7 @@ export default function NavBar() {
         {
             title: 'Sign Up',
             path: '/sign_up',
-            icon: <CgIcons.CgProfile style={{color: '#1a83ff;'}}/>,
+            icon: <CgIcons.CgProfile style={{color: '#1a83ff'}}/>,
             className: 'sign-up-button',
             onClick: showSidebar,
             loggedIn: false
@@ -158,8 +156,6 @@ export default function NavBar() {
             }
         })
     }
-
-    console.log(sidebarDataInfo)
 
     return (
         <div>
@@ -216,7 +212,7 @@ export default function NavBar() {
                             cartLocal ?
 
                                 (<Link to="/my_cart">
-                                    {cartLocal.length ? <span className="numC">{cartLocal.length}</span> : null}
+                                    {cart.length ? <span className="numC">{cart.length}</span> : null}
                                     <MdIcons.MdShoppingCart className="navbar-icons" />
                                 </Link>) :
                                 (<Link to="/my_cart">
@@ -258,7 +254,6 @@ export default function NavBar() {
                             })}
                         </div>
 
-                        {/* Renderiza componente de lista de amigos */}
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <h3 className="friendBoxTitle">Friend List</h3>
                             <div className="FriendListBox">
@@ -269,7 +264,7 @@ export default function NavBar() {
                                         <li key={e.id} className= "friend-tag">
                                             <FaIcons.FaUserFriends/>
                                                 <div className="userData">
-                                                    <span className="userName">{e.name}</span>
+                                                    <span className="userName">{e.user}</span>
                                                     {/* <span className={user.status === 'Online' ? "userStatusOnline" : "userStatusOffline"}>{user.status}</span> */}
                                                 </div>
                                             
@@ -279,6 +274,8 @@ export default function NavBar() {
                                 }):<p>You have no friends yet</p>}
                             </div>
                         </nav> 
+
+
 
                         {/* Renderiza componente de lista de amigos
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
@@ -308,5 +305,3 @@ export default function NavBar() {
         </div>
     )
 }
-
-
