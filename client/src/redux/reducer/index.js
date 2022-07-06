@@ -1,7 +1,8 @@
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
         GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
         DELETE_ALL_FROM_CART,
-        IS_ONLINE
+        IS_ONLINE,
+        INFO_COMMENT
 } from '../actions/index'
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
     users: [],
     my_user: {},
     cart: [],
-    comments: []
+    comments: [],
+    new_comments: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -107,7 +109,7 @@ const rootReducer = (state = initialState, action) => {
                 users: action.payload
             }
         case GET_CART_BY_ID:
-            console.log(action.payload)
+            
             return {
                 ...state,
                 cart: action.payload.data.cart
@@ -129,7 +131,7 @@ const rootReducer = (state = initialState, action) => {
                 cart: []
             }
         case GET_COMMENTS_BY_GAME:
-            console.log(action.payload)
+            
             return {
                 ...state,
                 comments: action.payload.data
@@ -137,12 +139,14 @@ const rootReducer = (state = initialState, action) => {
         case DELETE_COMMENT:
             return {
                 ...state,
-                comments: state.comments.filter(v => v.id !== action.payload.data.id)
+                comments: state.comments.filter(v => v.id !== action.payload.data.id),
+                new_comments: state.new_comments.filter(v => v.Comment.id !== action.payload.data.id)
             }
         case POST_COMMENT:
             return{
                 ...state,
-                comments: state.comments.concat(action.payload.data)
+                comments: state.comments.concat(action.payload.data),
+                new_comments: state.new_comments.concat({Comment:action.payload.data})
             }
         case EDIT_COMMENT:
             console.log(state.comments)
@@ -156,6 +160,13 @@ const rootReducer = (state = initialState, action) => {
             return{
                 ...state,
                 comments: state.comments
+            }
+        case INFO_COMMENT:
+            console.log(action.payload.data)
+            console.log('Hola')
+            return{
+                ...state,
+                new_comments: action.payload.data.comments_videogame
             }
         
 

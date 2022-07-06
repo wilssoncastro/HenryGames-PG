@@ -94,6 +94,19 @@ Videogame.belongsToMany(Player,{
   through: 'Cart'
 })
 
+//---------------------PLAYER N:M COMMENTS ----------------------------------------//
+
+Player.belongsToMany(Videogame, {
+  as: 'comments_player',
+  foreignKey: 'id_user',
+  through: Comment
+})
+
+Videogame.belongsToMany(Player,{
+  as: 'comments_videogame',
+  foreignKey: 'id_game',
+  through: Comment
+})
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
