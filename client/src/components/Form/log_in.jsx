@@ -4,6 +4,7 @@ import axios from "axios";
 // import LogOut from '../LogOut/LogOut';
 import { addManyToCart } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+/* import './loginForm.css'; */
 
 
 export default function LogIn() {
@@ -47,7 +48,7 @@ export default function LogIn() {
         .catch((error) => console.log(error));
   
         
-        let {log_in, id, name, lastname, type, profile_pic} = login.data
+        let {log_in, id, name, lastname, type, profile_pic, user} = login.data
               
         if(log_in){
           let carrito = localStorage.getItem('cart')
@@ -56,9 +57,9 @@ export default function LogIn() {
           localStorage.setItem('lastname', lastname)
           localStorage.setItem('type', type)
           localStorage.setItem('profile_pic', profile_pic)
-          console.log(carrito)
+          localStorage.setItem('user', user)
           carrito = JSON.parse(carrito)
-          console.log(carrito)
+          //Aca hay un error
           if(typeof carrito !== 'object' || carrito.length === 0){
             console.log('no entre')
           }else{
@@ -115,7 +116,7 @@ export default function LogIn() {
           <Link to='/home'>
            O entra como invitado
           </Link>
-        </div>
-  )
+        </div> 
+    );
 }
 // OPCION "Sign Up" abajo de todo
