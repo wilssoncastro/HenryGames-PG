@@ -3,11 +3,18 @@ import "./paginado.css"
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllVideogames, getFilteredVideogames } from '../../redux/actions';
 
-export default function Paginado({ filterGame, currentPage, videogamesPerPage, allVideogames, paginado }) {
+export default function Paginado({ limit, page, paginado }) {
+
+  const allVideogames = useSelector((state) => state.allVideogames)
+  const dispatch = useDispatch()
+  useEffect(() => {  
+    dispatch(getAllVideogames());
+  }, [dispatch]);
   
   const pageNumbers = [];
   const pageNum5 = []
-  const pageQty = allVideogames.length/videogamesPerPage
+  const pageQty = allVideogames.length/limit
+  const currentPage = (page/limit)
 
   for (let i = 0; i < pageQty; i++) {
     pageNumbers.push(i+1)
@@ -18,9 +25,6 @@ export default function Paginado({ filterGame, currentPage, videogamesPerPage, a
       pageNum5.push(pageNumbers[j-2])
     }
   }
-
-  console.log(currentPage)
-  console.log(pageNum5)
   
   return  (
     <div className='paginado'>

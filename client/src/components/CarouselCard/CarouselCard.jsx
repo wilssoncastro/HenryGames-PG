@@ -9,12 +9,18 @@ export default function CarouselCard() {
   const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames)
 
+  const [name, setName] = useState("");
+  const [tag, setTag] = useState("");
+  const [esrb, setEsrb] = useState("");
+  const [page, setPage] = useState(0)
+  const [limit, setLimit] = useState(10)
   const [sort, setSort] = useState('rating');
   const [order, setOrder] = useState('desc');
 
   useEffect(() => {
-    dispatch(getAllVideogames(sort, order))
-  }, [dispatch, sort, order])
+    dispatch(getFilteredVideogames(name, tag, esrb, page, sort, order, limit))
+    // dispatch(getAllVideogames(sort, order))
+  }, [dispatch, name, tag, esrb, page, sort, order, limit])
   
   return (
     <div>

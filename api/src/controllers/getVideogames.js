@@ -66,40 +66,22 @@ router.get('/', async (req, res) => {
   }
   /////////////////////////////////////////llamado a BD
   else 
-  // {
-  //   const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
-  //   let condition = {}
-  //   let where = {}
-  //   if (name && name.length > 2) {
-  //     where.name = { [Op.iLike]: `${name}%` }
-  //   }
-  //   if (esrb) {
-  //     where.esrb_rating = esrb
-  //   }
-  //   if (tag) {
-  //     where.tags = { [Op.contains]: [tag] }
-  //   }
-  //   condition.where = where;
-  //   condition.limit = limit;
-  //   page?condition.offset=page:!condition.offset;
-  //   sort&&order?condition.order=[[sort, order]]:!condition.order;
-  //   condition.include = {
-  //     model: Genre,
-  //     attributes: ["name"],
-  //     through: {
-  //       attributes: [],
-  //     }
-  //   }
-  //   let videogames = await Videogame.findAll(condition)
-  //   let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-  //   gen?res.send(gameGenre):res.send(videogames)
-  //   //-A
-  // }
   {
-    const { sort, order } = req.query;
+    const { name, tag, esrb, limit, page, sort, order } = req.query;
     let condition = {}
     let where = {}
+    if (name && name.length > 2) {
+      where.name = { [Op.iLike]: `${name}%` }
+    }
+    if (esrb) {
+      where.esrb_rating = esrb
+    }
+    if (tag) {
+      where.tags = { [Op.contains]: [tag] }
+    }
     condition.where = where;
+    limit?condition.limit=limit:!condition.limit;
+    page?condition.offset=page:!condition.offset;
     sort&&order?condition.order=[[sort, order]]:!condition.order;
     condition.include = {
       model: Genre,
@@ -110,7 +92,26 @@ router.get('/', async (req, res) => {
     }
     let videogames = await Videogame.findAll(condition)
     res.send(videogames)
+    // let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+    // gen?res.send(gameGenre):res.send(videogames)
+    //-A
   }
+  // {
+  //   const { sort, order } = req.query;
+  //   let condition = {}
+  //   let where = {}
+  //   condition.where = where;
+  //   sort&&order?condition.order=[[sort, order]]:!condition.order;
+  //   condition.include = {
+  //     model: Genre,
+  //     attributes: ["name"],
+  //     through: {
+  //       attributes: [],
+  //     }
+  //   }
+  //   let videogames = await Videogame.findAll(condition)
+  //   res.send(videogames)
+  // }
 } catch (error) {
     console.log("CATCH")
   }

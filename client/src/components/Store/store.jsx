@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFilteredVideogames, getAllVideogames, getGenres } from "../../redux/actions";
+import { getFilteredVideogames, getAllVideogames, getGenres, filterVideogamesByGenre } from "../../redux/actions";
 // import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
 import Card from "../Card/card.jsx";
 import NavBar from "../NavBar/navbar";
@@ -10,7 +10,8 @@ import Paginado from "../Paginado/paginado";
 
 export default function Store() {
   const dispatch = useDispatch();
-  const allVideogames = useSelector((state) => state.videogames);
+  const allVideogames = useSelector((state) => state.allVideogames)
+  const videogames = useSelector((state) => state.videogames);
   const allGenres = useSelector((state) => state.genres)
 
   const [name, setName] = useState("");
@@ -19,27 +20,36 @@ export default function Store() {
   const [esrb, setEsrb] = useState("");
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
+  const [page, setPage] = useState(0)
+  const [limit, setLimit] = useState(200)
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [videogamesPerPage, setVideogamesPerPage] = useState(200)
-  const indexOfLastVideogame = currentPage * videogamesPerPage
-  const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
-  const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
-  const pageQty = allVideogames.length/videogamesPerPage
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [videogamesPerPage, setVideogamesPerPage] = useState(limit)
+  // const indexOfLastVideogame = currentPage * videogamesPerPage
+  // const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
+  // const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
+  // const pageQty = allVideogames.length/videogamesPerPage
+  // const pageQty = allVideogames.length/limit
+  // const currentPage = (page/limit)
+
+  // console.log("length = "+ allVideogames.length + " y limit = "+ limit)
+  // console.log("resta = "+ (allVideogames.length-limit))
+  // console.log("page = "+ page)
   
   const paginado = (pageNum) => {
-    setCurrentPage((pageNum));
+    setPage((pageNum-1)*limit);
   };
 
   useEffect(() => {
-    dispatch(getAllVideogames(sort, order))
+    dispatch(getAllVideogames())
+    dispatch(getFilteredVideogames(name, tag, esrb, page, sort, order, limit))
     dispatch(getGenres())
-  }, [dispatch, sort, order])
+  }, [dispatch, name, tag, esrb, page, sort, order, limit])
 
-  let filterGame = name!==""?currentVideogames.filter((e) => e.name.toLowerCase().includes(name)):currentVideogames
-  gen!==""?filterGame=filterGame.filter((e) => e.genres.find((e) => e.name === gen)):filterGame=filterGame
-  tag!==""?filterGame=filterGame.filter((e) => e.tags.find(e => e.toLowerCase().includes(tag))):filterGame=filterGame
-  esrb!==""?filterGame=filterGame.filter((e) => e.esrb_rating.includes(esrb)):filterGame=filterGame
+  // let filterGame = name!==""?currentVideogames.filter((e) => e.name.toLowerCase().includes(name)):currentVideogames
+  // gen!==""?filterGame=filterGame.filter((e) => e.genres.find((e) => e.name === gen)):filterGame=filterGame
+  // tag!==""?filterGame=filterGame.filter((e) => e.tags.find(e => e.toLowerCase().includes(tag))):filterGame=filterGame
+  // esrb!==""?filterGame=filterGame.filter((e) => e.esrb_rating.includes(esrb)):filterGame=filterGame
   
 
   const handleSort = (e) => {
@@ -54,50 +64,55 @@ export default function Store() {
 
   const handleLimit = (e) => {
     e.preventDefault();
-    setVideogamesPerPage(e.target.value);
-    setCurrentPage(1)
+    setLimit(e.target.value)
+    // setVideogamesPerPage(e.target.value);
+    // setCurrentPage(1)
   }
 
   const prev = (e) => {
     e.preventDefault();
-    setCurrentPage(parseInt(currentPage) - 1)
+    setPage(page - limit)
+    // setCurrentPage(parseInt(currentPage) - 1)
   }
 
   const next = (e) => {
     e.preventDefault();
-    setCurrentPage(parseInt(currentPage) + 1)
+    setPage(page + parseInt(limit))
+    // setCurrentPage(parseInt(currentPage) + 1)
   }
 
   const handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
-    if (e.target.value !== "") {
-      setVideogamesPerPage(allVideogames.length)
-    }
   };
 
   const handleInputTag = (e) => {
     e.preventDefault();
     setTag(e.target.value);
-    if (e.target.value !== "") {
-      setVideogamesPerPage(allVideogames.length)
-    }
+    // if (e.target.value !== "") {
+    //   setVideogamesPerPage(allVideogames.length)
+    // }
   };
 
   const handleGen = (e) => {
     e.preventDefault();
-    setGen(e.target.value)
-    if (e.target.value !== "") {
-      setVideogamesPerPage(allVideogames.length)
-    }
+    dispatch(filterVideogamesByGenre(e.target.value))
+    //setCurrentPage(1)
   }
+  // const handleGen = (e) => {
+  //   e.preventDefault();
+  //   setGen(e.target.value)
+  //   if (e.target.value !== "") {
+  //     setVideogamesPerPage(allVideogames.length)
+  //   }
+  // }
 
   const handleEsrb = (e) => {
     e.preventDefault();
     setEsrb(e.target.value)
-    if (e.target.value !== "") {
-      setVideogamesPerPage(allVideogames.length)
-    }
+    // if (e.target.value !== "") {
+    //   setVideogamesPerPage(allVideogames.length)
+    // }
   }
 
   return (
@@ -126,7 +141,7 @@ export default function Store() {
           />
 
           <select className="selectPages" onChange={(e) => handleGen(e)}>
-            <option value="">All Genres</option>
+            <option value="all">All Genres</option>
             {
               allGenres.map((e) => {
                 return (
@@ -146,7 +161,7 @@ export default function Store() {
           </select>
 
           <select className="selectPages" onChange={(e) => handleLimit(e)}>
-            <option value="200">Items per page</option>
+            <option value="200">Games per page</option>
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
@@ -171,25 +186,25 @@ export default function Store() {
           <button
             className="buttonPrev"
             onClick={(e) => prev(e)}
-            disabled={currentPage < 2}
+            disabled={page < 1}
           >
           PREV
           </button>
           <button
             className="buttonNext"
             onClick={(e) => next(e)}
-            disabled={currentPage >= pageQty}
+            disabled={parseInt(page) >= (allVideogames.length-limit)}
           >
           NEXT
           </button>
           <div>
-            <Paginado filterGame={filterGame} currentPage={currentPage} videogamesPerPage={videogamesPerPage} allVideogames={allVideogames} paginado={paginado} />
+            <Paginado limit={limit} page={page} paginado={paginado}/>
           </div>
         </div>
       </div>
 
       <div className="containercard">
-        {filterGame.map((v, i) => {
+        {videogames.map((v, i) => {
           return (
             <div>
               <Card
