@@ -100,7 +100,7 @@ router.get('/save_data', async(req, res) => {
     }
     /////////////////
     
-    //[ '3328', '4200' ]
+    
     let secret_code = await randomstring.generate(7);
     let resultado = await user.addLibrary(videogames)
 

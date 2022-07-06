@@ -63,4 +63,14 @@ router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     }
 })
 
+router.get('/email/gameActivation/:secretCode', (req, res) => {
+    try {
+        const { secretCode } = req.params
+    } catch (error) {
+        
+    }
+})
+
+
+
 module.exports = router
