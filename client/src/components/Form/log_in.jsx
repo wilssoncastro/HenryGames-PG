@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
-import LogOut from '../LogOut/LogOut';
+/* import LogOut from '../LogOut/LogOut'; */
 import { addManyToCart } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 

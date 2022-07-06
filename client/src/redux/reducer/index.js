@@ -11,15 +11,12 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
-<<<<<<< HEAD
     my_user: {},
     articles: [],
-=======
+    article:[],
     users: [],
-    my_user: {},
     cart: [],
     comments: []
->>>>>>> 7fb22985d75372b1811e3bb3753324cde3f4846f
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -157,20 +154,21 @@ const rootReducer = (state = initialState, action) => {
                 }
             }
             console.log(state.comments)
-
-<<<<<<< HEAD
-        case "GET_ARTICLES":
-            console.log("reducer", action.payload)
-            return {
-                ...state,
-                articles: action.payload.data
-=======
             return{
                 ...state,
                 comments: state.comments
->>>>>>> 7fb22985d75372b1811e3bb3753324cde3f4846f
             }
-        
+         case "GET_ARTICLES":
+                console.log("reducer", action.payload)
+                return {
+                    ...state,
+                    articles: action.payload.data
+                }
+        case "FIND_ARTICLE":
+                return{
+                    ...state,
+                    article: action.payload
+                }
         default:
             return state;
     }

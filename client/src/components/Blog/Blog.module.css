@@ -47,11 +47,26 @@
     border-radius: 1rem;
     margin: 0.2rem;
     padding: 0 0.3rem;
+    transition: all .3s ease;
 }
-.border:hover {filter: saturate(180%);}
+.border:hover{
+    background-color: rgb(255,201,38);
+    box-shadow: 0 1rem 1.5rem rgba(0,0,0, 0.5);
+    cursor: pointer;
+    filter: saturate(1.6);
+    transform: scale(1.05);
+  }
 
 .img{
     border-radius: 2rem;
     margin-top: 1.5rem;
     box-shadow: 1px 0px 22px rgba(77, 78, 78, 0.64);
 }
+
+/* .img:hover{
+    background-color: #1a83ff;
+    box-shadow: 0 1rem 1.5rem rgba(0,0,0, 0.5);
+    cursor: pointer;
+    filter: saturate(1.6);
+    transform: scale(1.05);
+  } */

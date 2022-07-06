@@ -16,6 +16,7 @@ import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
+import Article from './components/Blog/Article';
 import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
@@ -79,6 +80,8 @@ function App() {
 
           {/* ingresar al blog, donde encontraremos articlos, noticias, acerca del mundo gamer */}
           <Route exact path='/blog' element={<Blog />}/>
+
+          <Route exact path= '/blog/:id' element={<Article/>} />
 
 
           
