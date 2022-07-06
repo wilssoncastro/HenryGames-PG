@@ -115,6 +115,40 @@ router.put('/update', async (req, res) => {
     }
 })
 
+router.put('/ban/:id_user', async(req, res) => {
+    const { id_user } = req.params
+
+    try {
+        let user = await Player.findByPk(id_user)
+
+        if(!user)return res.status(404).send('El usuario no existe')
+
+        user.banned = true
+        await user.save()
+
+        return res.send(user)
+    } catch (error) {
+        return res.send('Error')
+    }
+})
+
+router.put('/unbanned/:id_user', async(req, res) => {
+    const { id_user } = req.params
+
+    try {
+        let user = await Player.findByPk(id_user)
+
+        if(!user)return res.status(404).send('El usuario no existe')
+
+        user.banned = false
+        await user.save()
+
+        return res.send(user)
+    } catch (error) {
+        return res.send('Error')
+    }
+})
+
 
 
 module.exports = router

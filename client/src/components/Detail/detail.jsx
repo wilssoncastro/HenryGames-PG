@@ -10,7 +10,7 @@ import {
   getWishList,
   addToCart,
   getCommentsByGame,
-  is_authorizated,
+  comment_info,
   getCartById
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
@@ -35,12 +35,14 @@ export default function Detail() {
   const list = useSelector((state) => state.wishList);
   const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
+  //const info_comments = useSelector((state) => state.new_comments)
 
   let idProfile = localStorage.getItem("id");
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
     dispatch(getCommentsByGame(id));
+    dispatch(comment_info(id))
     localStorage.setItem("cart", JSON.stringify(cart));
     if (list) {
       dispatch(getWishList(idProfile));
@@ -289,8 +291,18 @@ export default function Detail() {
                   id_user={e.id_user}
                   comment={e.comment}
                   createdAt={e.createdAt}
+                  user={e.username}
                 />
               ))}
+              {/* {info_comments?.map((e) => (
+                <Info_Comment
+                  id={e.Comment.id}
+                  id_user={e.Comment.id_user}
+                  comment = {e.Comment.comment}
+                  createdAt = {e.Comment.createdAt}
+                  user = {e.user}
+                />
+              ))} */}
             </div>
 
             <div>

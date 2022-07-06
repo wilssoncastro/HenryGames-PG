@@ -27,8 +27,8 @@ export default function Comment({id_game}){
         
         
         if(error.length === 0 && comment.length !== 0){
-            console.log('Enviado')
-            dispatch(post_comment(id_user,id_game,{comment:comment}))
+            let username = localStorage.getItem('user')
+            dispatch(post_comment(id_user,id_game,{comment:comment, username: username}))
 
             setComment('')
             setError('')

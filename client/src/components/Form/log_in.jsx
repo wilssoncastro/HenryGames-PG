@@ -47,7 +47,7 @@ export default function LogIn() {
         .catch((error) => console.log(error));
   
         
-        let {log_in, id, name, lastname, type, profile_pic} = login.data
+        let {log_in, id, name, lastname, type, profile_pic, user} = login.data
               
         if(log_in){
           let carrito = localStorage.getItem('cart')
@@ -56,6 +56,7 @@ export default function LogIn() {
           localStorage.setItem('lastname', lastname)
           localStorage.setItem('type', type)
           localStorage.setItem('profile_pic', profile_pic)
+          localStorage.setItem('user', user)
           console.log(carrito)
           carrito = JSON.parse(carrito)
           console.log(carrito)

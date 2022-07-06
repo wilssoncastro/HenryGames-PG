@@ -12,6 +12,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const POST_COMMENT = 'POST_COMMENT'
 export const REPORT_COMMENT = 'REPORT_COMMENT'
 export const IS_ONLINE = 'IS_ONLINE'
+export const INFO_COMMENT = 'INFO_COMMENT'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -332,10 +333,23 @@ export function post_comment(id_user, id_game, commentary){
 
 export function report_comment(id_comment){
   return function(dispatch){
-    return axios.put(`http://localhost:3001/report_comment/${id_comment}`)
+    return axios.put(`http://localhost:3001/comments/report_comment/${id_comment}`)
     .then(data => {
+      console.log('Reportado?')
       dispatch({
         type: REPORT_COMMENT
+      })
+    })
+  }
+}
+
+export function comment_info(id_game){
+  return function(dispatch){
+    return axios.get(`http://localhost:3001/comments/${id_game}`)
+    .then(data => {
+      dispatch({
+        type: INFO_COMMENT,
+        payload: data
       })
     })
   }
