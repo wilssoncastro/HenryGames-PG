@@ -104,12 +104,17 @@ router.get('/save_data', async(req, res) => {
     let secret_code = await randomstring.generate(7);
     let resultado = await user.addLibrary(videogames)
 
-    console.log(resultado)
 
     for(let i = 0; i < resultado.length; i++){
         resultado[i].code = secret_code
         await resultado[i].save()
     }
+    //Vaciar carrito despues de la compra
+    if(payment_status === 'approved') {
+        const promise_delete_array = videogames.map(e => user.removeCart(e))
+        await Promise.all(promise_delete_array)
+    }
+    //Actualizar codigo
     //Enviar mail
     
 
