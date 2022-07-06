@@ -9,6 +9,7 @@ import LineChart from "../Graphics/LineChart";
 import UsersVsSales from "../Graphics/UsersVsSales";
 import { ComponentError } from "./componentError";
 import NavBar from "../NavBar/navbar";
+import './Estadisticas.css';
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ if (id_user_admin) {
     <div>
       <NavBar />
       <br></br>
+     <div className="containerEstatistics"> 
       <input
         placeholder="Search Videogame..."
         value={name}
@@ -74,6 +76,7 @@ if (id_user_admin) {
         <h2>Numero de usuarios y ventas</h2>
         <UsersVsSales />
       </div>
+    </div>
     </div>
   )
 }else{      

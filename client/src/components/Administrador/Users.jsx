@@ -22,6 +22,7 @@ export function Users() {
       return (
         <div>
           <NavBar />
+          <div className="containerUsersAdmin">
           <h3>Users List: </h3>
           <table className="tableUsers">
             <tr>
@@ -50,6 +51,7 @@ export function Users() {
               ))}
             </tr>
           </table>
+        </div>
         </div>
       );
     }else{      

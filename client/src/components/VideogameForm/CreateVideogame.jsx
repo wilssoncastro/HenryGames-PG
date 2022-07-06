@@ -292,7 +292,7 @@ export default function VideogameCreate() {
 
       <p>Please fill out the following form with information about the video game you want to publish</p>
 
-      <div>
+      <div className="containerPublishVideogame">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
             <div>
