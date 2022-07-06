@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const nodemailer = require('nodemailer')
-const { Player } = require('../../db')
+const { Player } = require('../../db');
 
 const { MAIL_USER, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN} = process.env
 
