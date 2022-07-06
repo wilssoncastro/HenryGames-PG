@@ -1,16 +1,19 @@
 import React from 'react';
 import './loginForm.css';
 
+const signUpBtn = document.getElementById('signUp'),
+signInBtn = document.getElementById('signIn'),
+container = document.getElementById('container')
+
+signUpBtn.addEventListener('click', () => {
+container.classList.add('right-panel-active')
+}) 
+
+signInBtn.addEventListener('click', () => {
+container.classList.remove('right-panel-active')
+}) 
 
 export default function Login(){
-
-    const signUpBtn = document.getElementById('signUp');
-    const signInBtn = document.getElementById('signIn');
-    const container = document.getElementById('container');
-
-    signUpBtn.addEventListener('click', () => {
-        container.classList.add('right-panel-active')
-    })
 
     return (
         <div className="body">
@@ -48,7 +51,7 @@ export default function Login(){
                 </button>
               </div>
 
-              <div className="overlay-panel overlay-right">
+              <div className="overlay-panel overlay-right"> 
                 <h1>Hello Friend!</h1>
                 <p>
                   Enter your personal details to create a <strong>Joaco</strong>{" "}
