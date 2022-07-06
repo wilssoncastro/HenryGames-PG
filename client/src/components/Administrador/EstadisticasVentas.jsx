@@ -8,6 +8,7 @@ import BarChart from "../Graphics/BarChart";
 import LineChart from "../Graphics/LineChart";
 import UsersVsSales from "../Graphics/UsersVsSales";
 import { ComponentError } from "./componentError";
+import NavBar from "../NavBar/navbar";
 
 export default function Estadisticas() {
   const dispatch = useDispatch();
@@ -39,11 +40,7 @@ if (id_user_admin) {
 
   return (
     <div>
-      <div>
-        <Link to="/admin">
-          <button>Back to Admin page</button>
-        </Link>
-      </div>
+      <NavBar />
       <br></br>
       <input
         placeholder="Search Videogame..."
