@@ -15,7 +15,8 @@ const initialState = {
     users: [],
     my_user: {},
     cart: [],
-    comments: []
+    comments: [],
+    friends: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -163,6 +164,24 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 articles: action.payload.data
+            }
+            
+        case "GET_FRIENDS":
+            return {
+                ...state,
+                friends: action.payload
+            }
+            
+        case "ADD_FRIEND":
+            return {
+                ...state,
+                friends: state.friends.concat(action.payload)
+            }
+        case "DELETE_FRIEND":
+            console.log(action.payload)
+            return {
+                ...state,
+                friends: state.friends.filter(v => v.id !== action.payload.id)
             }
             
         default:

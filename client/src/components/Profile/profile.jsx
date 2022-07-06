@@ -36,6 +36,9 @@ export default function Profile() {
   if (user.name) {
     return (
       <div className="profile_container">
+        <div>
+          <NavBar />
+        </div>
         <div className="profile">
           <div>
             <NavBar />
@@ -70,6 +73,9 @@ export default function Profile() {
 
                   <Link to={`/profile/${id_user}/editprofile`}>
                     <button className="btn_profile">Edit Profile</button>
+                  </Link>
+                  <Link to={`/friends/${id_user}`}>
+                    <button className="btn_profile">Admin Friends</button>
                   </Link>
                 </div>
               </div>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FriendList } from "./FriendList";
+// import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -16,7 +16,7 @@ import * as RiIcons from "react-icons/ri"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../redux/actions";
+import { getUserById ,getFriends} from "../../redux/actions";
 
 export default function NavBar() {
     const dispatch = useDispatch();
@@ -27,6 +27,8 @@ export default function NavBar() {
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
+    const friends = useSelector((state) => state.friends)
+    
 
     function logOut(e){
         e.preventDefault()
@@ -59,7 +61,8 @@ export default function NavBar() {
     
     useEffect(() => {
         if (id) {
-          dispatch(getUserById(id))          
+          dispatch(getUserById(id))  
+          dispatch(getFriends(id))        
         }
         
       }, [dispatch, id])
@@ -259,6 +262,28 @@ export default function NavBar() {
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <h3 className="friendBoxTitle">Friend List</h3>
                             <div className="FriendListBox">
+                               
+                                {friends.length?friends.map((e) => {
+                                    return (                                      
+                                        <ul>
+                                        <li key={e.id} className= "friend-tag">
+                                            <FaIcons.FaUserFriends/>
+                                                <div className="userData">
+                                                    <span className="userName">{e.name}</span>
+                                                    {/* <span className={user.status === 'Online' ? "userStatusOnline" : "userStatusOffline"}>{user.status}</span> */}
+                                                </div>
+                                            
+                                        </li>
+                                    </ul>
+                                      )
+                                }):<p>You have no friends yet</p>}
+                            </div>
+                        </nav> 
+
+                        {/* Renderiza componente de lista de amigos
+                        <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
+                            <h3 className="friendBoxTitle">Friend List</h3>
+                            <div className="FriendListBox">
                                 {FriendList.map((user, index) => {
                                     return (
                                         <ul>
@@ -275,7 +300,7 @@ export default function NavBar() {
                                     )
                                 })}
                             </div>
-                        </nav>
+                        </nav> */}
 
                     </ul>
                 </nav>
