@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const nodemailer = require('nodemailer')
+const { Player } = require('../db.js');
 
 const { MAIL_USER, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN} = process.env
 
@@ -90,7 +91,7 @@ router.get('/email/gameActivation/:secretCode/:id_user', async(req, res) => {
             if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
         })
 
-        return res.send(info)
+        res.redirect("http://localhost:3000/home")
 
 
     } catch (error) {
