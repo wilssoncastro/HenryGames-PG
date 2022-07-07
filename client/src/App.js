@@ -6,7 +6,6 @@ import Detail from './components/Detail/detail';
 import ShoppingCart from './components/Shopping-Cart/shopping_cart';
 import Profile from './components/Profile/profile';
 import LogIn from './components/Form/log_in';
-import SignupForm from './components/Form/signupForm';
 import SignUp from './components/Form/sign_up';
 import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
@@ -59,7 +58,7 @@ function App() {
           <Route exact path='/store/:id' element={<Detail />}/>
 
           {/* Te manda a un form para crear tu perfil que va a ser ingresado en la Base de Datos. AUTENTICACION!!!!!! */}
-          <Route exact path='/sign_up' element={<SignupForm />}/>
+          <Route exact path='/sign_up' element={<SignUp />}/>
           <Route exact path='/log_in' element={<LogIn />}/> 
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile />}/>

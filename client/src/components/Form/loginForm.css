@@ -6,9 +6,15 @@
 
 .lf-body-login {
     background-color: #fff;
+    background-image: url(https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
     justify-content: center;
+    overflow-x:hidden;
+    overflow-y: scroll;
     font-family: 'Montserrat', sans-serif;
-    min-height: fit-content;
     text-align: center;   
 }
 
@@ -21,6 +27,7 @@
     width: 50%;
     justify-content: center;
     margin: auto;
+    margin-left: auto;
     margin-top: 10em;
 }
 
@@ -35,18 +42,24 @@
     text-align: center;
     top: 0;
     height: 100%;
-    background: #ff4b2b;
-    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    background: rgb(245, 230, 145);
+    background-color: rgb(26, 25, 25); 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
     color: #fff;
 }
 
+.lf-right-container {
+    background: rgb(245, 230, 145);
+    background: -webkit-linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+    background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+}
+
 .lf-h1 {
     font-weight: bold;
     margin: 0;
+    color: #fff;
 }
 
 .lf-h2 {
@@ -74,9 +87,9 @@
 
 .lf-button {
     border-radius: 20px;
-    border: 1px solid #ff4b2b;
-    background-color: #ff4b2b;
-    color: #fff;
+    border: 1px solid #ffffff;
+    /* background-color: #000000; */
+    color: rgb(0, 0, 0);
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -92,32 +105,36 @@
 .lf-button:hover {
     outline: none;
     cursor: pointer;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
 }
 
-.lf-button-redside {
+.lf-button-leftside {
     border-radius: 20px;
     border: 1px solid #fff;
     background-color: #fff;
-    color: #ff4b2b;
+    color: rgb(245, 230, 145);
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    transition: transform 80ms ease-in;
 }
 
-.lf-button-redside:active {
+.lf-button-leftside:active {
     transform: scale(0.95);
 }
 
-.lf-button-redside:hover {
+.lf-button-leftside:hover {
     outline: none;
     cursor: pointer;
+    background-color: rgb(245, 230, 145);
+    color: black;
+    border: 1px solid rgb(245, 230, 145);
 }
 
 .lf-form {
-    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,11 +145,13 @@
 }
 
 .lf-input {
-    background-color: #eee;
+    /* background-color: rgb(0, 0, 0); */
+    color: rgb(245, 230, 145);
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
+    border-radius: 2em;
 }
 
 .lf-link {
@@ -154,4 +173,29 @@
     color: rgb(0, 0, 0);
     font-size: 15px;
 
+}
+
+.lf-button-guest {
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4em;
+}
+
+.lf-button-guest:active {
+    transform: scale(0.95);
+}
+
+.lf-button-guest:hover {
+    outline: none;
+    cursor: pointer;
+    background-color: #1a83ff;
+    color: rgb(255, 255, 255);
+    border: 1px solid #1a83ff;
 }

@@ -93,12 +93,12 @@ export default function LogIn() {
           <div className="lf-left-container">
             <h1 className='lf-h1'>Welcome Back!</h1>
             <br />
-            <p className='lf-p'>
-              Please login to your <strong>Henry Games</strong> account with your personal info</p>
+            <p className='lf-p'>Please login to your <strong>Henry Games</strong> account with your personal info</p>
+            <br/>
             <p className='lf-p'>Don't have an account yet?</p>
-            <Link to='/sign_up'><button className='lf-button-redside'>Sign Up</button></Link>
-              <br />
-              <Link to='/home' className='lf-link'><strong>Or enter as a guest</strong></Link>
+            <Link to='/sign_up'><button className='lf-button-leftside'>Sign Up</button></Link>
+            <br />
+            <Link to='/home'><button className='lf-button-guest'>Or enter as a guest</button></Link>
           </div>
 
           {/* RIGHT */}
