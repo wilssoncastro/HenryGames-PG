@@ -22,8 +22,9 @@ export default function ShoppingCart() {
   const id_user = localStorage.getItem("id");
   const videogamesInCart = useSelector((state) => state.cart);
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart /* setCart */] = useState(cartFromLocalStorage);
+  console.log('cart LocalStorage ', cartFromLocalStorage)
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
