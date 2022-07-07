@@ -12,6 +12,10 @@ import './home.css'
 import './carousel.css'
 
 export default function Home() {
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //     dispatch(getAllVideogames())
+    // }, [dispatch])
     
     return (
         <div className='background'>

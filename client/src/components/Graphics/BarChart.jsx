@@ -1,4 +1,4 @@
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -23,11 +23,6 @@ import {
     Legend
   );
 
- const salesdata= {
-    label: "top sales",
-    data: ["9", "8", "7", "8", "3", "4", "2", "8", "5", "6"]
- }
-
 const options = {
     fill: true,
     responsive: false,
@@ -39,12 +34,16 @@ const options = {
     }
 }
 
-export default function BarChart(){
-    const data = useMemo(function (){
-        return {
-            datasets: [salesdata],
-            labels: ["play1","play2","play3","play4","play5","play6","play7","play8","play9","play10"]
-        }
-    }, []);
-    return <Bar data ={data} options={options}/>
+export default function BarChart({ orderVG }){
+    let sales = orderVG.map(e => e.contador)
+    let names = orderVG.map(e => e.name.slice(0,5))
+    const salesdata= {
+        label: "top sales",
+        data: sales
+    }
+    const data = {
+        datasets: [salesdata],
+        labels: names,
+    }
+    return <Bar data={data} options={options}/>
 }

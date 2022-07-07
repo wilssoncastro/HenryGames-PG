@@ -53,13 +53,13 @@ router.get('/', async (req, res) => {
     console.log('Todos los juegos han sido cargados,⭐️ ¡Ya puedes comprar juegos en la tienda! ⭐️')
     let totalData = await Videogame.findAll(
       {
-        include: {
+        include: [{
           model: Genre,
           attributes: ["name"],
           through: {
             attributes: []
           }
-        }
+        }]
       }
     )
     res.send(totalData);
@@ -86,13 +86,13 @@ router.get('/', async (req, res) => {
     limit?condition.limit=limit:!condition.limit;
     page?condition.offset=page:!condition.offset;
     sort&&order?condition.order=[[sort, order]]:!condition.order;
-    condition.include = {
+    condition.include = [{
       model: Genre,
       attributes: ["name"],
       through: {
         attributes: [],
       }
-    }
+    }]
 
     //let conVideogames = await videogames.findAll(condition)
     //res.send(conVideogames)

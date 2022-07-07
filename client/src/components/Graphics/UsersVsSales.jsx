@@ -29,7 +29,7 @@ import {
 
 const options = {
     fill: true,
-    responsive: true,
+    responsive: false,
     scales: {
         y:{
             min: 0,

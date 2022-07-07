@@ -18,7 +18,8 @@ const initialState = {
     my_user: {},
     cart: [],
     comments: [],
-    new_comments: []
+    new_comments: [],
+    sales: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -197,6 +198,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 articles: action.payload.data
+            }
+
+        case "GET_SALES":
+            return {
+                ...state,
+                sales: action.payload
             }
 
         default:
