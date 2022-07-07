@@ -67,7 +67,10 @@ router.get('/', async (req, res) => {
   /////////////////////////////////////////llamado a BD
   else 
   {
-    const { name, tag, esrb, limit, page, sort, order } = req.query;
+    const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+
+    //let videogames = gen?await Videogame.findAll().filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll()
+
     let condition = {}
     let where = {}
     if (name && name.length > 2) {
@@ -90,10 +93,17 @@ router.get('/', async (req, res) => {
         attributes: [],
       }
     }
+
+    //let conVideogames = await videogames.findAll(condition)
+    //res.send(conVideogames)
+
+    //let videogames = gen?await Videogame.findAll(condition).filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll(condition)
+    //res.send(videogames)
+
     let videogames = await Videogame.findAll(condition)
-    res.send(videogames)
-    // let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-    // gen?res.send(gameGenre):res.send(videogames)
+    let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+    gen?res.send(gameGenre):res.send(videogames)
+
     //-A
   }
   // {

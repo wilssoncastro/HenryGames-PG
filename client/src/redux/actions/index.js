@@ -37,9 +37,9 @@ export function getAllVideogames() {
 }
 
 
-export function getFilteredVideogames(name, tag, esrb, page, sort, order, limit) {
+export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
@@ -47,11 +47,14 @@ export function getFilteredVideogames(name, tag, esrb, page, sort, order, limit)
   };
 }
 
-export function filterVideogamesByGenre(payload) {
-  return ({
-    type: "FILTER_BY_GENRE",
-    payload,
-  });
+export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
+  //return async function (dispatch) {
+    //let json = await axios(`http://localhost:3001/videogames?name=${name}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    return ({
+      type: "FILTER_BY_GENRE",
+      payload,
+    });
+  //}
 }
 
 export function getGenres() {

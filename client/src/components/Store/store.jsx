@@ -42,9 +42,9 @@ export default function Store() {
 
   useEffect(() => {
     dispatch(getAllVideogames())
-    dispatch(getFilteredVideogames(name, tag, esrb, page, sort, order, limit))
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit))
     dispatch(getGenres())
-  }, [dispatch, name, tag, esrb, page, sort, order, limit])
+  }, [dispatch, name, gen, tag, esrb, page, sort, order, limit])
 
   // let filterGame = name!==""?currentVideogames.filter((e) => e.name.toLowerCase().includes(name)):currentVideogames
   // gen!==""?filterGame=filterGame.filter((e) => e.genres.find((e) => e.name === gen)):filterGame=filterGame
@@ -94,18 +94,18 @@ export default function Store() {
     // }
   };
 
-  const handleGen = (e) => {
-    e.preventDefault();
-    dispatch(filterVideogamesByGenre(e.target.value))
-    //setCurrentPage(1)
-  }
   // const handleGen = (e) => {
   //   e.preventDefault();
-  //   setGen(e.target.value)
-  //   if (e.target.value !== "") {
-  //     setVideogamesPerPage(allVideogames.length)
-  //   }
+  //   dispatch(filterVideogamesByGenre(e.target.value))
+  //   //setCurrentPage(1)
   // }
+  const handleGen = (e) => {
+    e.preventDefault();
+    setGen(e.target.value)
+    // if (e.target.value !== "") {
+    //   setVideogamesPerPage(allVideogames.length)
+    // }
+  }
 
   const handleEsrb = (e) => {
     e.preventDefault();
@@ -141,7 +141,7 @@ export default function Store() {
           />
 
           <select className="selectPages" onChange={(e) => handleGen(e)}>
-            <option value="all">All Genres</option>
+            <option value="">All Genres</option>
             {
               allGenres.map((e) => {
                 return (

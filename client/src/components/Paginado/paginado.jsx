@@ -6,6 +6,7 @@ import { getAllVideogames, getFilteredVideogames } from '../../redux/actions';
 export default function Paginado({ limit, page, paginado }) {
 
   const allVideogames = useSelector((state) => state.allVideogames)
+  const videogames = useSelector((state) => state.videogames)
   const dispatch = useDispatch()
   useEffect(() => {  
     dispatch(getAllVideogames());
@@ -29,7 +30,9 @@ export default function Paginado({ limit, page, paginado }) {
   return  (
     <div className='paginado'>
       <ul className="pagination">
-        <button className='edge' onClick={() => paginado(1)}>{1}</button>
+        {
+          pageNumbers.length>1?<button className='edge' onClick={() => paginado(1)}>{1}</button>:null
+        }
         { 
           pageNum5.map(number =>(
             <li className="number" key={number}>
@@ -38,7 +41,7 @@ export default function Paginado({ limit, page, paginado }) {
           ))
         }
         {
-          <button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>
+          pageNumbers.length>1?<button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>:null
         }
       </ul>
     </div>
