@@ -201,11 +201,7 @@ export default function NavBar() {
 
                         {/* ShoppingCart clickable */}
                         {
-<<<<<<< HEAD
-                            cart ?
-=======
                             current_cart ?
->>>>>>> dev
 
                                 (<Link to="/my_cart">
                                     {current_cart && current_cart.length ? <span className="numC">{current_cart.length}</span> : <></>}
