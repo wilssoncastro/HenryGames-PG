@@ -41,7 +41,6 @@ export default function SignUp() {
     if (input.password !== input.repassword) {
       errors.repassword = "The password doesn't match";
     }
-
     if (!input.type.length) {
       errors.type = "Falta el type";
     }
@@ -55,7 +54,7 @@ export default function SignUp() {
     email: "",
     password: "",
     repassword: "",
-    type: "",
+    type: "user",
   });
 
   const [errors, setErrors] = useState({});
@@ -74,7 +73,7 @@ export default function SignUp() {
     );
   }
 
-  function handleSelect(e) {
+ /*  function handleSelect(e) {
     setInput({
       ...input,
       type: e.target.value,
@@ -86,7 +85,7 @@ export default function SignUp() {
         type: e.target.value,
       })
     );
-  }
+  } */
 
   function onSubmit(e) {
     e.preventDefault();
@@ -95,13 +94,13 @@ export default function SignUp() {
     if (Object.keys(errors).length === 0) {
       Swal.fire("Check your email to activate the account!");
       axios.post("http://localhost:3001/authentication/register", input);
-    } else {
+    } else { 
+      console.log("Entrooooo")
       if (errors.password) {
         log_error = errors.password;
       } else {
         log_error = "Missing data required";
       }
-
       return log_error;
     }
   }
@@ -234,8 +233,8 @@ export default function SignUp() {
           <Link to="/log_in">
             <button className="lf-button-leftside">Sign In</button>
           </Link>
-          <Link to="/registerAdmi">
-            <button className="linkAdmi"> <GrIcons.GrUserAdmin /> Are administrator? Enter here!</button>
+          <Link to="/registerAdmin" className="linkAdmin">
+            <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
           </Link>
         </div>
 >>>>>>> dev
@@ -252,7 +251,7 @@ export default function SignUp() {
               value={input.name}
               onChange={handleChange}
             />
-             <p>{errors ? errors.name : "Missing data required"} </p>
+             <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
 
             <input
               className="lf-input"
@@ -262,7 +261,7 @@ export default function SignUp() {
               value={input.lastname}
               onChange={handleChange}
             />
-            <p>{errors ? errors.lastname : "Missing data required"}</p>
+            <p className="errorsLog">{errors ? errors.lastname : "Missing data required"}</p>
 
             <input
               className="lf-input"
@@ -272,7 +271,7 @@ export default function SignUp() {
               value={input.user}
               onChange={handleChange}
             />
-            <p>{errors ? errors.user : "Missing data required"}</p>
+            <p className="errorsLog">{errors ? errors.user : "Missing data required"}</p>
 
             <input
               className="lf-input"
@@ -282,7 +281,7 @@ export default function SignUp() {
               value={input.email}
               onChange={handleChange}
             />
-            <p>{errors ? errors.email : "Missing data required"}</p>
+            <p className="errorsLog">{errors ? errors.email : "Missing data required"}</p>
 
             <input
               className="lf-input"
@@ -292,18 +291,18 @@ export default function SignUp() {
               value={input.password}
               onChange={handleChange}
             />
-           <p>{errors ? errors.password : "Missing data required"}</p>
+           <p className="errorsLog">{errors ? errors.password : "Missing data required"}</p>
            
 
             <input
               className="lf-input"
               type="password"
               name="repassword"
-              placeholder="Repeat password"
+              placeholder="Confirm password"
               value={input.repassword}
               onChange={handleChange}
               />
-              <p>{errors ? errors.repassword : "Missing data required"}</p>
+              <p className="errorsLog">{errors ? errors.repassword : "Missing data required"}</p>
 
 
             <button type="submit" className="lf-button">

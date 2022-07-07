@@ -21,6 +21,8 @@ import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
+import ValidationGame from './components/ValidationGame/validationGame';
+
 function App() {
   return (
     <BrowserRouter>
@@ -83,10 +85,10 @@ function App() {
 
           {/* amigos*/} 
           <Route exact path='/friends/:id' element={<Friends/>}/>
-
+          <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
 
           
-          <Route path='/comment' element={<Comment />} />
+          {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

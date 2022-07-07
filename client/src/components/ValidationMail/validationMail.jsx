@@ -20,7 +20,7 @@ export default function ValidationMail(){
             });
         
         setTimeout(() => {
-            navigate('/home')
+            navigate('/log_in')
         }, 1000)
       }, [user_id, token]);
       
