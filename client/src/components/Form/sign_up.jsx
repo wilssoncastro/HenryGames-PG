@@ -118,8 +118,8 @@ export default function SignUp() {
           <Link to="/log_in">
             <button className="lf-button-leftside">Sign In</button>
           </Link>
-          <Link to="/registerAdmi">
-            <button className="linkAdmi"> <GrIcons.GrUserAdmin /> Are administrator? Enter here!</button>
+          <Link to="/registerAdmin" className="linkAdmin">
+            <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
           </Link>
         </div>
 
@@ -182,7 +182,7 @@ export default function SignUp() {
               className="lf-input"
               type="password"
               name="repassword"
-              placeholder="Repeat password"
+              placeholder="Confirm password"
               value={input.repassword}
               onChange={handleChange}
               />

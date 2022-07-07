@@ -28,7 +28,7 @@
     justify-content: center;
     margin: auto;
     margin-left: auto;
-    margin-top: 3em;
+    margin-top: 8vh;
 }
 
 .lf-left-container {
@@ -111,20 +111,24 @@
     transition: 0.6s;
 }
 
-.linkAdmi{
-    background-color: #fff;
+.buttonAdmin{
     color: black;
-    margin-top: 5rem;
     font-size: medium;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-decoration: none;
     border-radius: 10px;
     padding: 3px 8px;
 }
-.linkAdmi:hover{
+
+.buttonAdmin:hover{
     background-color: #c7a94b;
     color: black;
     transition: 0.5s;
+    cursor: pointer;
+}
+
+.linkAdmin {
+    margin-top: 5rem;
 }
 
 
