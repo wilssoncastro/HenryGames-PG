@@ -3,19 +3,12 @@ const router = Router()
 const passport = require('passport')
 require('../../app.js')
 
-//const session = require('express-session')
-//const { Player } = require('../../db')
-//const { Op } = require('sequelize')
+const CLIENT_URL = 'http://localhost:3000/'
 
 //middleware
 function isLoggedIn(req, res, next) {
     req.user ? next() : res.sendStatus(401);
 }
-
-//cositas de express-session
-// router.use(session({ secret: 'cats' }))
-// router.use(passport.initialize())
-// router.use(passport.session())
 
 //ruta donde elegimos la cuenta de google
 router.get('/auth/google',
@@ -25,23 +18,33 @@ router.get('/auth/google',
 //ruta del callback que nos da google
 router.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: '/protected',
-        failureRedirect: '/auth/failure'
+        successRedirect: CLIENT_URL,
+        failureRedirect: '/auth/google/failure'
     })
 )
 
 //en caso de que falle el inicio de sesion, esto es a donde nos llevara el callback
-router.get('/auth/failure', (req, res) => {
-    res.send('Algo salio mal')
+router.get('/auth/google/failure', (req, res) => {
+    res.status(401).json({
+        success: false,
+        message: "failure",
+    })
 })
 
 //en caso de que salga bien el inicio de sesion, esto es a donde nos llevara el callback
-router.get('/protected', isLoggedIn, async (req, res) => {
-    res.send(req.user)
+router.get('/auth/google/protected', isLoggedIn, async (req, res) => {
+    if(req.user){
+        res.status(200).json({
+            success: true,
+            message: "successfull",
+            user: req.user,
+            //cookies: req.cookies
+        })
+    }
 })
 
 //cerrar sesion de google
-router.get('/logoutGoogle', (req, res) => {
+router.get('/auth/google/logoutGoogle', (req, res) => {
     /* req.logout() */
     req.session.destroy(function (err) {
         res.redirect('/'); 
