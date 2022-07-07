@@ -27,6 +27,10 @@ export default function NavBar() {
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
+    
+    //const is_online = useSelector((state) => state.is_online)
+    const current_cart = (typeof id === 'object') ? cartLocal : cart
+    
     const friends = useSelector((state) => state.friends) 
 
 
@@ -63,6 +67,7 @@ export default function NavBar() {
           dispatch(getUserById(id))          
           dispatch(getFriends(id))          
         }
+
         
       }, [dispatch, id])
 
@@ -144,7 +149,7 @@ export default function NavBar() {
     ]
 
     let sidebarDataInfo = []
-    if (!user.id) {
+    if (!user) {
         sidebarData.map((e) => {
             if (e.loggedIn == false || !e.loggedIn) {
                 sidebarDataInfo.push(e)
@@ -196,10 +201,10 @@ export default function NavBar() {
 
                         {/* ShoppingCart clickable */}
                         {
-                            cartLocal ?
+                            current_cart ?
 
                                 (<Link to="/my_cart">
-                                    {cart.length ? <span className="numC">{cart.length}</span> : null}
+                                    {current_cart && current_cart.length ? <span className="numC">{current_cart.length}</span> : <></>}
                                     <MdIcons.MdShoppingCart className="navbar-icons" />
                                 </Link>) :
                                 (<Link to="/my_cart">
