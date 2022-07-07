@@ -29,6 +29,7 @@ export default function NavBar() {
     const user = useSelector((state) => state.my_user)
     const friends = useSelector((state) => state.friends) 
 
+
     function logOut(e){
         e.preventDefault()
 
@@ -58,7 +59,7 @@ export default function NavBar() {
 
     
     useEffect(() => {
-        if (id) {
+        if (id && id != null) {
           dispatch(getUserById(id))          
           dispatch(getFriends(id))          
         }
@@ -256,16 +257,15 @@ export default function NavBar() {
 
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <h3 className="friendBoxTitle">Friend List</h3>
-                            <div className="FriendListBox">
-                               
-                                {friends.length?friends.map((e) => {
+                            <div className="FriendListBox">                               
+                                {friends&&friends.length?friends.map((e) => {
                                     return (                                      
                                         <ul>
                                         <li key={e.id} className= "friend-tag">
                                             <FaIcons.FaUserFriends/>
                                                 <div className="userData">
                                                     <span className="userName">{e.user}</span>
-                                                    {/* <span className={user.status === 'Online' ? "userStatusOnline" : "userStatusOffline"}>{user.status}</span> */}
+                                                     <span className="userStatusOnline">Online</span> 
                                                 </div>
                                             
                                         </li>
