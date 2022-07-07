@@ -1,7 +1,5 @@
 const { Router } = require("express");
 var passport = require("passport");
-const { Player } = require('../../db');
-
 const router = Router()
 
 router.post('/login', 
@@ -24,7 +22,6 @@ router.post('/login',
      
             return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic: profile_pic, user: user})
         } catch (error) {
-            console.log(error)
             res.status(404).send('ERRRRROOOOOOOOOOOOOR')
         }
     })
