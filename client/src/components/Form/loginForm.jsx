@@ -1,69 +1,53 @@
 import React from 'react';
-import './loginForm.css';
+import { Link } from 'react-router-dom';
+import './loginForm.css'
 
-const signUpBtn = document.getElementById('signUp'),
-signInBtn = document.getElementById('signIn'),
-container = document.getElementById('container')
+// const signUpBtn = document.getElementById('signUp'),
+// signInBtn = document.getElementById('signIn'),
+// container = document.getElementById('container')
 
-signUpBtn.addEventListener('click', () => {
-container.classList.add('right-panel-active')
-}) 
+// signUpBtn.addEventListener('click', () => {
+//   container.classList.add('right-panel-active')
+// }) 
 
-signInBtn.addEventListener('click', () => {
-container.classList.remove('right-panel-active')
-}) 
+// signInBtn.addEventListener('click', () => {
+//   container.classList.remove('right-panel-active')
+// }) 
 
-export default function Login(){
+// export default function LoginForm(){
+//   return (
+    // <div className="lf-body-login">
 
-    return (
-        <div className="body">
-        <div className="container" id="container">
-          <div className="form-container sign-up container">
-            <form action="">
-              <h1>Create Account</h1>
-              <span>Or use you email for registration</span>
-              <input type="text" placeholder="Name.." />
-              <input type="email" placeholder="Email.." />
-              <input type="password" placeholder="Password.." />
-              <button>Sign Up</button>
-            </form>
-          </div>
-          <div className="form-container sign-in-container">
-            <form action="">
-              <h1>Sign In</h1>
-              <span>Or use your account</span>
-              <input type="text" placeholder="Name.." />
-              <input type="email" placeholder="Email.." />
-              <input type="password" placeholder="Password.." />
-              <button>Sign In</button>
-            </form>
-          </div>
-          <div className="overlay-container">
-            <div className="overlay">
-              <div className="overlay-panel overlay-left">
-                <h1>Welcome Back!</h1>
-                <p>
-                  Please login to your <strong>Joaco</strong> acount with your
-                  personal info
-                </p>
-                <button className="ghost" id="signIn">
-                  Sign In
-                </button>
-              </div>
 
-              <div className="overlay-panel overlay-right"> 
-                <h1>Hello Friend!</h1>
-                <p>
-                  Enter your personal details to create a <strong>Joaco</strong>{" "}
-                  acount
-                </p>
-                <button className="ghost" id="signUp">
-                  Sign Up
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-}
+    //   <div className='lf-login-component'>
+
+    //     {/* LEFT */}
+    //     <div className="lf-left-container">
+    //       <h1 className='lf-h1'>Welcome Back!</h1>
+    //       <br/>
+    //       <p className='lf-p'>
+    //         Please login to your <strong>Henry Games</strong> account with your
+    //         personal info
+    //       </p>
+    //       <p className='lf-p'>Don't have an account yet? <Link to='/sign_up'><button className='lf-button-redside'>Sign Up</button></Link></p>
+    //     </div>
+
+    //     {/* RIGHT */}
+    //     <div className="lf-right-container">
+    //       <form className='lf-form' onSubmit={onSubmit}>
+    //         <h1 className='lf-h1'>Sign In</h1>
+    //         <br/>
+    //         {/* <span className='lf-span'>Or use your account</span> */}
+    //         <input className='lf-input' type="text" name='username' value={input.username} onChange={handleChange} placeholder="Username" />
+    //         <input className='lf-input' type='password' name='password' value={input.password} onChange={handleChange} placeholder="Password" />            
+    //         <br/>
+    //         <button className='lf-button' type="submit">Log In</button>
+    //       </form>
+    //     </div>
+
+    //   </div>
+
+
+    // </div>
+//   )
+// }

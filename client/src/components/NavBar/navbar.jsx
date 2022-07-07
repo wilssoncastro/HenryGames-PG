@@ -179,19 +179,6 @@ export default function NavBar() {
                             <BiIcons.BiLibrary className="navbar-left-icons" />
                             <h3 className="navleft-text">LIBRARY </h3>
                         </Link>
-
-                    {/* {!user.id? 
-                    <div>
-                        <Link to="/log_in">
-                            <button className="btn_log_in">LOG IN</button>
-                        </Link>
-                        <Link to="/sign_up">
-                            <button class="btn_sign_up">SIGN UP</button>
-                        </Link>
-                    </div>
-                    : 
-                    <LogOut />
-                    } */}
                      </div>
 
 
@@ -205,7 +192,6 @@ export default function NavBar() {
                         </Link>
 
                         {/* ShoppingCart clickable */}
-
                         {
                             cartLocal ?
 
