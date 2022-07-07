@@ -207,10 +207,9 @@ export default function NavBar() {
                         {/* ShoppingCart clickable */}
 
                         {
-                            cartLocal ?
-
+                            cartLocal?
                                 (<Link to="/my_cart">
-                                    {cart.length ? <span className="numC">{cart.length}</span> : null}
+                                    {cart.length?<span className="numC">{cart.length}</span>:null}
                                     <MdIcons.MdShoppingCart className="navbar-icons" />
                                 </Link>) :
                                 (<Link to="/my_cart">
