@@ -31,7 +31,7 @@ server.use((req, res, next) => {
   next();
 });
 
-//---------AUTENTHICATION-------------//
+//---------AUTHENTICATION-------------//
 
 passport.use(
   new Strategy(function (username, password, done) {
@@ -63,6 +63,46 @@ passport.use(
 
   })
 )
+
+//---------GOOGLE STRATEGY-------------//
+
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: process.env['GOOGLE_CLIENT_ID'],
+    clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
+    callbackURL: "http://localhost:3001/google/callback",
+    passReqToCallback: true
+  },
+  async function(request, accessToken, refreshToken, profile, done) {
+    console.log('entre en la funcion de GoogleStrategy')
+    await Player.findOne({where:{email: profile.email}})
+      .then(async (user) => {
+        if(!user){
+          console.log('No se encontro el user')
+
+          const createUserGoogle = await Player.create({
+            //id: '697abc1c-7cab-4cf6-84b8-c792f5282178',
+            name: profile.given_name, 
+            lastname: profile.family_name, 
+            email: profile.email, 
+            profile_pic: profile.picture, 
+            active: profile.email_verified, 
+            user: profile.displayName,
+            password: 'googlepassword'
+          })
+          return done(null, createUserGoogle)
+        }
+        if(user){
+            console.log('Se encontro el user')
+            return done(null, user)
+          }
+        })
+      .catch( err => {
+        console.log(err)
+        return done(err)
+      })
+}));
 
 passport.serializeUser(function(user, done) {
   console.log('paso dos de la autenticación')

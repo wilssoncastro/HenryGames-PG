@@ -29,7 +29,7 @@ const responseGoogle = (response) => {
           </Link>
         </div>
         <div>
-          <a href="http://localhost:3001/loginGoogle">Log in with Google</a>
+          <a href="http://localhost:3001/auth/google">Log in with Google</a>
         </div>
       </div>
     </div>
