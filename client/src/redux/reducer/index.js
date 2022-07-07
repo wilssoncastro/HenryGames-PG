@@ -1,9 +1,9 @@
-import {
-    GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART,
-    GET_COMMENTS_BY_GAME, DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
-    DELETE_ALL_FROM_CART,
-    IS_ONLINE,
-    INFO_COMMENT
+import { stat } from 'fs'
+import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
+        GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
+        DELETE_ALL_FROM_CART,
+        IS_ONLINE,
+        INFO_COMMENT
 } from '../actions/index'
 
 const initialState = {
@@ -19,7 +19,9 @@ const initialState = {
     cart: [],
     comments: [],
     new_comments: [],
-    sales: []
+    sales: [],
+    is_online: false,
+    friends: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -206,6 +208,31 @@ const rootReducer = (state = initialState, action) => {
                 sales: action.payload
             }
 
+        case IS_ONLINE:
+            
+            return{
+                ...state,
+                is_online: action.payload.data
+            }
+            
+        case "GET_FRIENDS":
+            return {
+                ...state,
+                friends: action.payload
+            }
+            
+        case "ADD_FRIEND":
+            return {
+                ...state,
+                friends: state.friends.concat(action.payload)
+            }
+        case "DELETE_FRIEND":
+            console.log(action.payload)
+            return {
+                ...state,
+                friends: state.friends.filter(v => v.id !== action.payload.id)
+            }
+            
         default:
             return state;
 

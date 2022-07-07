@@ -4,6 +4,7 @@ import { getGenres, postVideogame, getEsrb } from "../../redux/actions/index.js"
 import { useDispatch, useSelector } from "react-redux";
 import './CreateVideogame.css'
 import swal from 'sweetalert'
+import NavBar from "../NavBar/navbar.jsx";
 import {
   validateAlertName, validateAlertDescription, validateAlertdRelease, validateAlertMainImage,
   validateAlertShortScreeen, validateAlertFreeToPlay, validateAlertGenres, validateAlertEsrb, validateAlertRequeriments,
@@ -287,13 +288,11 @@ export default function VideogameCreate() {
 
   return (
     <div className="videogame_created_container">
-      <Link to="/admin">
-        <button>Back to Admin page</button>
-      </Link>
+      <NavBar />
 
       <p>Please fill out the following form with information about the video game you want to publish</p>
 
-      <div>
+      <div className="containerPublishVideogame">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
             <div>
@@ -307,7 +306,6 @@ export default function VideogameCreate() {
                   value={input.name}
                   onChange={(e) => handleChange(e)}
                 />
-
               </div>
               <div>
                 <label>Description</label>

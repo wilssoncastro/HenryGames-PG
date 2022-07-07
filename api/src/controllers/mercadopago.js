@@ -100,7 +100,7 @@ router.get('/save_data', async(req, res) => {
     }
     /////////////////
     
-    
+    let longitude = external_reference.length
     let secret_code = await randomstring.generate(7);
     let resultado = await user.addLibrary(videogames)
 
@@ -119,7 +119,7 @@ router.get('/save_data', async(req, res) => {
     
 
 
-    res.redirect(`http://localhost:3001/authentication/email/gameActivation/${secret_code}/${id_user}`)
+    res.redirect(`http://localhost:3001/authentication/email/gameActivation/${secret_code}/${id_user}/${longitude}`)
 })
 
 module.exports = router;

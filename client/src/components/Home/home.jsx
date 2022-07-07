@@ -12,7 +12,18 @@ import './home.css'
 import './carousel.css'
 
 export default function Home() {
-    // const dispatch = useDispatch()
+   
+
+    
+    // const dispatch = useDispatch();
+    // const videogames = useSelector((state) => state.videogames)
+
+    // const [name, setName] = useState('')
+    // const [page, setPage] = useState(0)
+    // const [sort, setSort] = useState('');
+    // const [order, setOrder] = useState('');
+    // const [limit, setLimit] = useState(15);
+    
     // useEffect(() => {
     //     dispatch(getAllVideogames())
     // }, [dispatch])

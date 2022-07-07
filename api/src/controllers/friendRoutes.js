@@ -41,10 +41,11 @@ router.post('/addFriend/:id/:idF', async(req, res) => {
             return res.send('No se encontro el usuario')
         }
 
-        return res.send('Amigo agregado')
+        return res.send(userF)
 
     } catch (error) {
         res.send(error)
+        console.log(error)
     }
 })
 
@@ -62,7 +63,7 @@ router.delete('/delete/:id/:idF', async(req, res) => {
             return res.send('No se encontro el usuario')
         }
 
-        return res.send('Amigo eliminado')
+        return res.send(userF)
     } catch (error) {
         res.send(error)
     }

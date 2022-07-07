@@ -19,8 +19,8 @@ import Blog from './components/Blog/Blog';
 import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
-import EdiProfile from './components/Profile/EditProfile';
-
+import  EdiProfile from './components/Profile/EditProfile';
+import  Friends  from './components/Friends/Friends';
 function App() {
   return (
     <BrowserRouter>
@@ -80,6 +80,9 @@ function App() {
 
           {/* ingresar al blog, donde encontraremos articlos, noticias, acerca del mundo gamer */}
           <Route exact path='/blog' element={<Blog />}/>
+
+          {/* amigos*/} 
+          <Route exact path='/friends/:id' element={<Friends/>}/>
 
 
           
