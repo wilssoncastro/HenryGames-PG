@@ -31,7 +31,7 @@ export default function LogIn() {
       let is_authorized = await axios.get("http://localhost:3001/is_online");
 
       if (is_authorized.data) {
-        setError("Ya estas logueado");
+        setError("You are already register");
       } else {
         const login = await axios({
           method: "post",
@@ -44,8 +44,7 @@ export default function LogIn() {
           return res;
         })
         .catch((error) => console.log(error));
-  
-        
+
         let {log_in, id, name, lastname, type, profile_pic, user} = login.data
               
         if(log_in){
@@ -57,25 +56,23 @@ export default function LogIn() {
           localStorage.setItem('profile_pic', profile_pic)
           localStorage.setItem('user', user)
           carrito = JSON.parse(carrito)
-          console.log(carrito)
-          if(typeof carrito !== 'object'){
-            console.log('no entre')
+
+          if(typeof carrito !== 'object'){   
           }else{
             dispatch(addManyToCart(id, {'games':carrito}))
           }
           localStorage.setItem("cart", JSON.stringify([]));
           navigate("/home");
         }
-
         if (typeof login.data === "string") {
           setError(login.data);
         }
       }
     } else {
-      setError("Faltan datos");
+      setError("Missing data");
     }
   }
-
+  
   return (
     <div className="lf-body-login">
       <div className="lf-login-component">
@@ -120,6 +117,7 @@ export default function LogIn() {
             <button className="lf-button" type="submit">
               Log In
             </button>
+             {error ? <p>{error}</p> : <></>}
           </form>
         </div>
       </div>
