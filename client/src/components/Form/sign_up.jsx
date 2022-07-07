@@ -135,7 +135,7 @@ export default function SignUp() {
               value={input.name}
               onChange={handleChange}
             />
-             <p>{errors ? errors.name : "Missing data required"} </p>
+             <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
 
             <input
               className="lf-input"
@@ -145,7 +145,7 @@ export default function SignUp() {
               value={input.lastname}
               onChange={handleChange}
             />
-            <p>{errors ? errors.lastname : "Missing data required"}</p>
+            <p className="errorsLog">{errors ? errors.lastname : "Missing data required"}</p>
 
             <input
               className="lf-input"
@@ -155,7 +155,7 @@ export default function SignUp() {
               value={input.user}
               onChange={handleChange}
             />
-            <p>{errors ? errors.user : "Missing data required"}</p>
+            <p className="errorsLog">{errors ? errors.user : "Missing data required"}</p>
 
             <input
               className="lf-input"
@@ -165,7 +165,7 @@ export default function SignUp() {
               value={input.email}
               onChange={handleChange}
             />
-            <p>{errors ? errors.email : "Missing data required"}</p>
+            <p className="errorsLog">{errors ? errors.email : "Missing data required"}</p>
 
             <input
               className="lf-input"
@@ -175,7 +175,7 @@ export default function SignUp() {
               value={input.password}
               onChange={handleChange}
             />
-           <p>{errors ? errors.password : "Missing data required"}</p>
+           <p className="errorsLog">{errors ? errors.password : "Missing data required"}</p>
            
 
             <input
@@ -186,7 +186,7 @@ export default function SignUp() {
               value={input.repassword}
               onChange={handleChange}
               />
-              <p>{errors ? errors.repassword : "Missing data required"}</p>
+              <p className="errorsLog">{errors ? errors.repassword : "Missing data required"}</p>
 
 
             <button type="submit" className="lf-button">
