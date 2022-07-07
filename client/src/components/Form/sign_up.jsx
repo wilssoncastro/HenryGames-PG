@@ -41,7 +41,6 @@ export default function SignUp() {
     if (input.password !== input.repassword) {
       errors.repassword = "The password doesn't match";
     }
-
     if (!input.type.length) {
       errors.type = "Falta el type";
     }
@@ -55,7 +54,7 @@ export default function SignUp() {
     email: "",
     password: "",
     repassword: "",
-    type: "",
+    type: "user",
   });
 
   const [errors, setErrors] = useState({});
@@ -74,7 +73,7 @@ export default function SignUp() {
     );
   }
 
-  function handleSelect(e) {
+ /*  function handleSelect(e) {
     setInput({
       ...input,
       type: e.target.value,
@@ -86,7 +85,7 @@ export default function SignUp() {
         type: e.target.value,
       })
     );
-  }
+  } */
 
   function onSubmit(e) {
     e.preventDefault();
@@ -95,13 +94,13 @@ export default function SignUp() {
     if (Object.keys(errors).length === 0) {
       Swal.fire("Check your email to activate the account!");
       axios.post("http://localhost:3001/authentication/register", input);
-    } else {
+    } else { 
+      console.log("Entrooooo")
       if (errors.password) {
         log_error = errors.password;
       } else {
         log_error = "Missing data required";
       }
-
       return log_error;
     }
   }

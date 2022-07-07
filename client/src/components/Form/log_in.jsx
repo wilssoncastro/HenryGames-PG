@@ -75,7 +75,7 @@ export default function LogIn() {
       setError("Faltan datos");
     }
   }
-
+console.log(error)
   return (
     <div className="lf-body-login">
       <div className="lf-login-component">
@@ -120,6 +120,7 @@ export default function LogIn() {
             <button className="lf-button" type="submit">
               Log In
             </button>
+             {error ? <p>{error}</p> : <></>}
           </form>
         </div>
       </div>
