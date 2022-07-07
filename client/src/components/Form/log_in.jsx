@@ -61,7 +61,7 @@ export default function LogIn() {
           console.log(carrito)
           carrito = JSON.parse(carrito)
           console.log(carrito)
-          if(typeof carrito !== 'object' || carrito.length === 0){
+          if(typeof carrito !== 'object'){
             console.log('no entre')
           }else{
             dispatch(addManyToCart(id, {'games':carrito}))

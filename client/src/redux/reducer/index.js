@@ -1,3 +1,4 @@
+import { stat } from 'fs'
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
         GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
         DELETE_ALL_FROM_CART,
@@ -17,7 +18,8 @@ const initialState = {
     my_user: {},
     cart: [],
     comments: [],
-    new_comments: []
+    new_comments: [],
+    is_online: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -174,6 +176,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 articles: action.payload.data
+            }
+        case IS_ONLINE:
+            
+            return{
+                ...state,
+                is_online: action.payload.data
             }
             
         default:

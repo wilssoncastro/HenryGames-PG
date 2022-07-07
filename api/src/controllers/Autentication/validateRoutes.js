@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { Player } = require('../../db')
+const { Player, LibraryPlayer } = require('../../db')
 const router = Router()
 
 //-----------------------------------------------------------------------
@@ -24,6 +24,35 @@ router.get('/activation/:userId/:secretToken', async(req, res) => {
 
     } catch (error) {
         res.status(400).send('Ocurrió un error durante la activación')
+    }
+})
+
+router.get(`/activation/games/:secretCode/:id_user/:longitude`, async(req, res) => {
+    const { secretCode, id_user, longitude } = req.params
+    console.log('Hola')
+    console.log(secretCode)
+    try {
+        
+
+        let user = await Player.findByPk(id_user)
+
+        if(!user){
+            return res.send('No se encontro el usuario!')
+        }
+
+        let registros = await LibraryPlayer.findAll({
+            where: {
+                code: secretCode,
+                id_user: id_user
+            }
+        })
+
+        console.log(registros)
+
+
+        return res.send(user)
+    } catch (error) {
+        res.status(404).send(error)
     }
 })
 
