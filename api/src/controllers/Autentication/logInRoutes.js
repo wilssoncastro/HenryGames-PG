@@ -1,6 +1,5 @@
 const { Router } = require("express");
 var passport = require("passport");
-
 const router = Router()
 
 router.post('/login', 
@@ -20,6 +19,7 @@ router.post('/login',
             
             let { id, name, lastname, type, profile_pic, user} = req.user;
             
+     
             return res.json({log_in: true, id:id, name: name, lastname:lastname, type:type, profile_pic: profile_pic, user: user})
         } catch (error) {
             res.status(404).send('ERRRRROOOOOOOOOOOOOR')

@@ -14,6 +14,8 @@ import CarouselCatCard from '../CarouselCard/CarouselCatCard';
 // import Card from '../Card/card'
 
 export default function Home() {
+   
+
     
     // const dispatch = useDispatch();
     // const videogames = useSelector((state) => state.videogames)
