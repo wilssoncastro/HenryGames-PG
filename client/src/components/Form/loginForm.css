@@ -217,4 +217,5 @@
     background-color: #1a83ff;
     color: rgb(255, 255, 255);
     border: 1px solid #1a83ff;
+    transition: 0.5s;
 }

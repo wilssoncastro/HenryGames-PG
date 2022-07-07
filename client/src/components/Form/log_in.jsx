@@ -83,10 +83,7 @@ export default function LogIn() {
         <div className="lf-left-container">
           <h1 className="lf-h1">Welcome Back!</h1>
           <br />
-          <p className="lf-p">
-            Please login to your <strong>Henry Games</strong> account with your
-            personal info
-          </p>
+          <p className="lf-p">Log in to your Henry Games account</p>
           <br />
           <p className="lf-p">Don't have an account yet?</p>
           <Link to="/sign_up">
@@ -103,7 +100,6 @@ export default function LogIn() {
           <form className="lf-form" onSubmit={onSubmit}>
             <h1 className="lf-h1">Sign In</h1>
             <br />
-            {/* <span className='lf-span'>Or use your account</span> */}
             <input
               className="lf-input"
               type="text"
@@ -127,9 +123,7 @@ export default function LogIn() {
           </form>
         </div>
       </div>
-
-      <p>{error}</p>
     </div>
   );
 }
-// OPCION "Sign Up" abajo de todo
+
