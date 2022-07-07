@@ -64,15 +64,15 @@ router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     }
 })
 
-router.get('/email/gameActivation/:secretCode/:id_user', async(req, res) => {
-    const { secretCode } = req.params
-    const id_user = req.session.passport.user
+router.get('/email/gameActivation/:secretCode/:id_user/:longitude', async(req, res) => {
+    const { secretCode, id_user, longitude } = req.params
+    
 
     const user = await Player.findByPk(id_user)
     let mail = user.email
     console.log(mail)
 
-    const link = `http://localhost:3000/activation/games/${secretCode}/${id_user}`
+    const link = `http://localhost:3000/activation/games/${secretCode}/${id_user}/${longitude}`
     
     try {
         let mail_options = {

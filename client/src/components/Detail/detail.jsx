@@ -11,7 +11,8 @@ import {
   addToCart,
   getCommentsByGame,
   comment_info,
-  getCartById
+  getCartById,
+  is_authorizated
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -28,15 +29,15 @@ export default function Detail() {
   const { id } = useParams();
   const id_user = localStorage.getItem("id");
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || []);
   const [cart /* setCart */] = useState(cartFromLocalStorage);
 
   const videogame = useSelector((state) => state.details);
   const list = useSelector((state) => state.wishList);
   const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
-  //const info_comments = useSelector((state) => state.new_comments)
-
+  const is_online = useSelector((state) => state.is_online)
+  console.log(is_online)
   let idProfile = localStorage.getItem("id");
 
   useEffect(() => {
@@ -48,6 +49,8 @@ export default function Detail() {
       dispatch(getWishList(idProfile));
     }
     dispatch(getCartById(id_user))
+    dispatch(is_authorizated())
+
   }, [dispatch, idProfile, id, cart]);
 
   const handleDelete = () => {
@@ -294,15 +297,7 @@ export default function Detail() {
                   user={e.username}
                 />
               ))}
-              {/* {info_comments?.map((e) => (
-                <Info_Comment
-                  id={e.Comment.id}
-                  id_user={e.Comment.id_user}
-                  comment = {e.Comment.comment}
-                  createdAt = {e.Comment.createdAt}
-                  user = {e.user}
-                />
-              ))} */}
+              
             </div>
 
             <div>
