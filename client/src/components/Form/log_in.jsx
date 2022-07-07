@@ -117,7 +117,7 @@ export default function LogIn() {
             <button className="lf-button" type="submit">
               Log In
             </button>
-             {error ? <p>{error}</p> : <></>}
+             {error ? <p className="errorsLog">{error}</p> : <></>}
           </form>
         </div>
       </div>
