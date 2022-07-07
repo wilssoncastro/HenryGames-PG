@@ -4,7 +4,7 @@ import axios from "axios";
 // import LogOut from '../LogOut/LogOut';
 import { addManyToCart } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-/* import './loginForm.css'; */
+import './loginForm.css';
 
 
 export default function LogIn() {
@@ -25,6 +25,8 @@ export default function LogIn() {
       [e.target.name]:e.target.value
     })
   }
+
+
 
   async function onSubmit(e){
     e.preventDefault()
@@ -59,8 +61,8 @@ export default function LogIn() {
           localStorage.setItem('profile_pic', profile_pic)
           localStorage.setItem('user', user)
           carrito = JSON.parse(carrito)
-          //Aca hay un error
-          if(typeof carrito !== 'object' || carrito.length === 0){
+          console.log(carrito)
+          if(typeof carrito !== 'object'){
             console.log('no entre')
           }else{
             dispatch(addManyToCart(id, {'games':carrito}))
@@ -82,41 +84,44 @@ export default function LogIn() {
 
   }
 
-    return (
-        <div>
-          <form onSubmit={onSubmit}>
-            <div>
-              <p>Usuario: </p>
-              <input 
-                type='text' 
-                name='username' 
+  return (
+      <div className="lf-body-login">
 
-                value={input.username}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <p>Contraseña: </p>
-              <input 
-                type='password' 
-                name='password' 
 
-                value={input.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <button type="submit">Ingresar</button>
-            </div>
-            <div>
-              <p>¿Todavia no sos usuario? <Link to='/sign_up'>Registrate ahora!</Link></p>
-            </div>
-          </form>
-          <p>{error}</p>
-          <Link to='/home'>
-           O entra como invitado
-          </Link>
-        </div> 
-    );
+        <div className='lf-login-component'>
+
+          {/* LEFT */}
+          <div className="lf-left-container">
+            <h1 className='lf-h1'>Welcome Back!</h1>
+            <br />
+            <p className='lf-p'>Please login to your <strong>Henry Games</strong> account with your personal info</p>
+            <br/>
+            <p className='lf-p'>Don't have an account yet?</p>
+            <Link to='/sign_up'><button className='lf-button-leftside'>Sign Up</button></Link>
+            <br />
+            <Link to='/home'><button className='lf-button-guest'>Or enter as a guest</button></Link>
+          </div>
+
+          {/* RIGHT */}
+          <div className="lf-right-container">
+            <form className='lf-form' onSubmit={onSubmit}>
+              <h1 className='lf-h1'>Sign In</h1>
+              <br />
+              {/* <span className='lf-span'>Or use your account</span> */}
+              <input className='lf-input' type="text" name='username' value={input.username} onChange={handleChange} placeholder="Username" />
+              <input className='lf-input' type='password' name='password' value={input.password} onChange={handleChange} placeholder="Password" />
+              <br />
+              <button className='lf-button' type="submit">Log In</button>
+            </form>
+          </div>
+
+        </div>
+
+        <p>{error}</p>
+        
+
+      </div>
+
+  );
 }
 // OPCION "Sign Up" abajo de todo

@@ -28,8 +28,11 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    dispatch(getCartById(id_user));
-    dispatch(is_authorizated());
+    if(typeof id_user === "string"){
+      dispatch(getCartById(id_user));
+    }else{
+      console.log('estoy en local')
+    }
   }, [cart /* dispatch */]);
 
   const current_cart =
@@ -40,13 +43,14 @@ export default function ShoppingCart() {
       "cart",
       JSON.stringify(cartFromLocalStorage.filter((e) => e.id !== id))
     );
-    if (!dispatch(is_authorizated())) {
+    if (typeof id_user === "string") {
+      dispatch(delFromCart(id_user, id));
+      
+    } else {
       localStorage.setItem(
         "cart",
         JSON.stringify(cartFromLocalStorage.filter((e) => e.id !== id))
       );
-    } else {
-      dispatch(delFromCart(id_user, id));
     }
     navigate("/my_cart");
   };

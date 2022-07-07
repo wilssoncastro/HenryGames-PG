@@ -356,6 +356,37 @@ export function comment_info(id_game){
 }
 
 
+export function getFriends(id) {
+  return async function (dispatch) {
+    var json = await axios.get(`http://localhost:3001/friends/${id}`);
+    return dispatch({
+      type: "GET_FRIENDS",
+      payload: json.data,
+      
+    });
+  };
+}
+
+export function addFriend(id, idfriend) {
+  return async function (dispatch) {
+    var json = await axios.post(`http://localhost:3001/friends/addFriend/${id}/${idfriend}`);
+    return dispatch({
+          type: "ADD_FRIEND",
+          payload: json.data
+      });
+  };
+}
+
+export function deleteFriend(id,idfriend){
+  return async function(dispatch){
+      var json = await axios.delete(`http://localhost:3001/friends/delete/${id}/${idfriend}`);
+      return dispatch({
+          type: "DELETE_FRIEND",
+          payload: json.data
+      });
+  }
+}
+
 
 
 //FIN ACTIONS 
