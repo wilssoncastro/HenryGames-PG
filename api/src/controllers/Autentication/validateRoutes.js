@@ -28,9 +28,8 @@ router.get('/activation/:userId/:secretToken', async(req, res) => {
 })
 
 router.get(`/activation/games/:secretCode/:id_user/:longitude`, async(req, res) => {
-    const { secretCode, id_user, longitude } = req.params
-    console.log('Hola')
-    console.log(secretCode)
+    let { secretCode, id_user, longitude } = req.params
+    longitude = parseInt(longitude)
     try {
         
 
@@ -47,11 +46,23 @@ router.get(`/activation/games/:secretCode/:id_user/:longitude`, async(req, res) 
             }
         })
 
-        console.log(registros)
+        if(registros.length === longitude){
+            console.log('Entro a modificar registros')
+            for(let i = 0; i < registros.length; i++){
+                registros[i].active = true
+                await registros[i].save()
+            }
+        }else{
+            
+            return res.send('Error en la validacion')
+        }
 
+        
 
+        
         return res.send(user)
     } catch (error) {
+        console.log('mmm')
         res.status(404).send(error)
     }
 })
