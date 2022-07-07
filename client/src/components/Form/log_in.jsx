@@ -58,9 +58,8 @@ export default function LogIn() {
           localStorage.setItem('type', type)
           localStorage.setItem('profile_pic', profile_pic)
           localStorage.setItem('user', user)
-          console.log(carrito)
           carrito = JSON.parse(carrito)
-          console.log(carrito)
+          //Aca hay un error
           if(typeof carrito !== 'object' || carrito.length === 0){
             console.log('no entre')
           }else{

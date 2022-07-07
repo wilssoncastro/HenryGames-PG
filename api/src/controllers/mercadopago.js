@@ -100,7 +100,7 @@ router.get('/save_data', async(req, res) => {
     }
     /////////////////
     
-    //[ '3328', '4200' ]
+    
     let secret_code = await randomstring.generate(7);
     let resultado = await user.addLibrary(videogames)
 
@@ -119,7 +119,7 @@ router.get('/save_data', async(req, res) => {
     
 
 
-    res.redirect("http://localhost:3000/home")
+    res.redirect(`http://localhost:3001/authentication/email/gameActivation/${secret_code}/${id_user}`)
 })
 
 module.exports = router;
