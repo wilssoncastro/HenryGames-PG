@@ -15,7 +15,10 @@ export default function ValidationGame(){
             .catch((error) => {
                 return error
             });
-            
+
+            setTimeout(() => {
+                navigate('/library')
+            }, 3000)
         
     }, [secretCode, id_user, longitude])
 
@@ -23,6 +26,7 @@ export default function ValidationGame(){
     return (
         <div>
             <h1>Juegos validados</h1>
+            <p>Espere a ser redirigido a la libreria</p>
         </div>
     )
 }
