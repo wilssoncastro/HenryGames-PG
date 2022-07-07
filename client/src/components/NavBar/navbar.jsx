@@ -16,7 +16,7 @@ import * as RiIcons from "react-icons/ri"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../redux/actions";
+import { getFriends, getUserById } from "../../redux/actions";
 
 export default function NavBar() {
     const dispatch = useDispatch();
@@ -27,6 +27,8 @@ export default function NavBar() {
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
+    const friends = useSelector((state) => state.friends) 
+
 
     function logOut(e){
         e.preventDefault()
@@ -57,8 +59,9 @@ export default function NavBar() {
 
     
     useEffect(() => {
-        if (id) {
+        if (id && id != null) {
           dispatch(getUserById(id))          
+          dispatch(getFriends(id))          
         }
         
       }, [dispatch, id])
@@ -252,7 +255,29 @@ export default function NavBar() {
                             })}
                         </div>
 
-                        {/* Renderiza componente de lista de amigos */}
+                        <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
+                            <h3 className="friendBoxTitle">Friend List</h3>
+                            <div className="FriendListBox">                               
+                                {friends&&friends.length?friends.map((e) => {
+                                    return (                                      
+                                        <ul>
+                                        <li key={e.id} className= "friend-tag">
+                                            <FaIcons.FaUserFriends/>
+                                                <div className="userData">
+                                                    <span className="userName">{e.user}</span>
+                                                     <span className="userStatusOnline">Online</span> 
+                                                </div>
+                                            
+                                        </li>
+                                    </ul>
+                                      )
+                                }):<p>You have no friends yet</p>}
+                            </div>
+                        </nav> 
+
+
+
+                        {/* Renderiza componente de lista de amigos
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <h3 className="friendBoxTitle">Friend List</h3>
                             <div className="FriendListBox">
@@ -272,7 +297,7 @@ export default function NavBar() {
                                     )
                                 })}
                             </div>
-                        </nav>
+                        </nav> */}
 
                     </ul>
                 </nav>
@@ -280,5 +305,3 @@ export default function NavBar() {
         </div>
     )
 }
-
-
