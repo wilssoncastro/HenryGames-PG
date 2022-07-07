@@ -40,28 +40,28 @@ export default function LogIn() {
           headers: { "X-Requested-With": "XMLHttpRequest" },
           withCredentials: true,
         })
-          .then((res) => {
-            return res;
-          })
-          .catch((error) => console.log(error));
-
-        let { log_in, id, name, lastname, type, profile_pic, user } =
-          login.data;
-
-        if (log_in) {
-          let carrito = localStorage.getItem("cart");
-          localStorage.setItem("id", id);
-          localStorage.setItem("name", name);
-          localStorage.setItem("lastname", lastname);
-          localStorage.setItem("type", type);
-          localStorage.setItem("profile_pic", profile_pic);
-          localStorage.setItem("user", user);
-          carrito = JSON.parse(carrito);
-          //Aca hay un error
-          if (typeof carrito !== "object" || carrito.length === 0) {
-            console.log("no entre");
-          } else {
-            dispatch(addManyToCart(id, { games: carrito }));
+        .then((res) => {
+          return res;
+        })
+        .catch((error) => console.log(error));
+  
+        
+        let {log_in, id, name, lastname, type, profile_pic, user} = login.data
+              
+        if(log_in){
+          let carrito = localStorage.getItem('cart')
+          localStorage.setItem("id", id)
+          localStorage.setItem('name', name)
+          localStorage.setItem('lastname', lastname)
+          localStorage.setItem('type', type)
+          localStorage.setItem('profile_pic', profile_pic)
+          localStorage.setItem('user', user)
+          carrito = JSON.parse(carrito)
+          console.log(carrito)
+          if(typeof carrito !== 'object'){
+            console.log('no entre')
+          }else{
+            dispatch(addManyToCart(id, {'games':carrito}))
           }
           localStorage.setItem("cart", JSON.stringify([]));
           navigate("/home");
