@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/navbar";
 import Card from "../Card/card";
-import { /* Link */ useNavigate } from "react-router-dom";
+import {  Link , useNavigate } from "react-router-dom";
 import {
   delFromCart,
   getCartById,
@@ -132,11 +132,11 @@ export default function ShoppingCart() {
 
   return (
     <div className="backgroundCart">
-      <div>
+    {/*   <div>
         <NavBar />
-      </div>
+      </div> */}
       <div>
-        {current_cart?.length > 0 ? (
+        {current_cart?.length > 0 ? ( 
           <div className="cart">
             <div className="containerButtonsCart">
               <button 
@@ -180,9 +180,14 @@ export default function ShoppingCart() {
             </div>
           </div>
         ) : (
-          <div>
-            <h1>No games in cart...</h1>
-          </div>
+            <div className="div">
+              <h2 className="CartIsEmpty">The Cart is Empty..</h2>
+              <p className="AddGamesCart">Do you want to add games to your Cart ?  <br/>
+               <Link to="/store">
+                 <button className="btnAddToCart">Let's Go!</button>
+               </Link>
+              </p>
+            </div>
         )}
       </div>
     </div>
