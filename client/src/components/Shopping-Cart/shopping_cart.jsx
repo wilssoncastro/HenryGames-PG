@@ -24,7 +24,6 @@ export default function ShoppingCart() {
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart /* setCart */] = useState(cartFromLocalStorage);
-  console.log('cart LocalStorage ', cartFromLocalStorage)
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
