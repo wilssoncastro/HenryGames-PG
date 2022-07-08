@@ -28,7 +28,7 @@ export function is_authorizated(){
 
 export function getAllVideogames() {
   return async function (dispatch) {
-    let json = await axios("http://localhost:3001/videogames");
+    let json = await axios(`http://localhost:3001/videogames`);
     return dispatch({
       type: "GET_ALL_VIDEOGAMES",
       payload: json.data,
@@ -36,14 +36,25 @@ export function getAllVideogames() {
   };
 }
 
-export function getFilteredVideogames(name, page, sort, order, limit) {
+
+export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
     });
   };
+}
+
+export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
+  //return async function (dispatch) {
+    //let json = await axios(`http://localhost:3001/videogames?name=${name}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    return ({
+      type: "FILTER_BY_GENRE",
+      payload,
+    });
+  //}
 }
 
 export function getGenres() {
@@ -351,6 +362,16 @@ export function comment_info(id_game){
         type: INFO_COMMENT,
         payload: data
       })
+    })
+  }
+}
+
+export function getSales(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/sales`)
+    return dispatch({
+      type: "GET_SALES",
+      payload: json.data,
     })
   }
 }
