@@ -23,7 +23,6 @@ import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
 import ReSendMail from './components/ReSendMail/ReSendMail';
-import Google from './components/Google/Google';
 
 function App() {
   return (
@@ -89,8 +88,6 @@ function App() {
           <Route exact path='/friends/:id' element={<Friends/>}/>
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
           <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
-
-          <Route path='/googleLogin' element={<Google />}/>
 
           {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
