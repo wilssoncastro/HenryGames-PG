@@ -24,7 +24,7 @@ export default function NavBar() {
     let navigate = useNavigate();
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
-    const cartLocal = JSON.parse(localStorage.getItem('cart'));
+    const cartLocal = JSON.parse(localStorage.getItem('cart') || "[]");
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     const user = useSelector((state) => state.my_user)
