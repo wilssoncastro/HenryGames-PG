@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getFilteredVideogames } from '../../redux/actions'
+import React /* { useEffect, useState } */ from 'react';
+//import { Link } from 'react-router-dom';
+import { /* useDispatch */ useSelector } from 'react-redux';
+//import { getFilteredVideogames } from '../../redux/actions'
 import Carousel from 'react-elastic-carousel'
 import Card from '../Card/card';
 
 export default function CarouselFP() {
   
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const videogames = useSelector((state) => state.videogames)
 
   // const [nameF] = useState("")

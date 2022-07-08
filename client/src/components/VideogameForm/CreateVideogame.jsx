@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link */ useNavigate } from "react-router-dom";
 import { getGenres, postVideogame, getEsrb } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import './CreateVideogame.css'
@@ -57,9 +57,6 @@ export default function VideogameCreate() {
     free_to_play: "select",
     on_sale: false,
   });
-
-
-  console.log(input)
 
   useEffect(() => {
     dispatch(getGenres());
@@ -313,7 +310,7 @@ export default function VideogameCreate() {
                 <div>
                   {input.image != "" ? (
                     <div >
-                      <img src={input.image} className="image_form" />
+                      <img src={input.image} className="image_form" alt='' />
                       <button
                         className="botonX"
                         onClick={(e) => handleDeleteImage(e)}

@@ -4,11 +4,11 @@ import { getGenres, putVideogame, getEsrb } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import './CreateVideogame.css'
 import swal from 'sweetalert'
-import {
-  validateAlertName, validateAlertDescription, validateAlertdRelease, validateAlertMainImage,
-  validateAlertShortScreeen, validateAlertFreeToPlay, validateAlertGenres, validateAlertEsrb, validateAlertRequeriments,
-  validateAlertErrors
-} from './alerts'
+// import {
+//   validateAlertName, validateAlertDescription, validateAlertdRelease, validateAlertMainImage,
+//   validateAlertShortScreeen, validateAlertFreeToPlay, validateAlertGenres, validateAlertEsrb, validateAlertRequeriments,
+//   validateAlertErrors
+// } from './alerts'
 
 
 
