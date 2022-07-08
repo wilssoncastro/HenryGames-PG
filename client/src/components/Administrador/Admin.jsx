@@ -8,7 +8,7 @@ import NavBar from "../NavBar/navbar";
 export function Admin() {
 
   const id_user_admin = localStorage.getItem('type')
-  console.log(id_user_admin)
+  //console.log(id_user_admin)
 
   if (id_user_admin) {
     if (id_user_admin === "adm") {

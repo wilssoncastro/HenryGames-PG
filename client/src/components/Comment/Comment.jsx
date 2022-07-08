@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { /* useEffect */ useState } from "react";
+import { useDispatch, /* useSelector */ } from "react-redux";
 import { post_comment } from "../../redux/actions";
-import axios from "axios";
+//import axios from "axios";
 import "./Comment.css"
 
 export default function Comment({id_game}){

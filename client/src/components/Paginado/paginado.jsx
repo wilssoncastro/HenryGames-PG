@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, /* useState */ } from 'react'
 import "./paginado.css"
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllVideogames, getFilteredVideogames } from '../../redux/actions';
+import { getAllVideogames, /* getFilteredVideogames */ } from '../../redux/actions';
 
 export default function Paginado({ limit, page, paginado }) {
 
   const allVideogames = useSelector((state) => state.allVideogames)
-  const videogames = useSelector((state) => state.videogames)
+  //const videogames = useSelector((state) => state.videogames)
   const dispatch = useDispatch()
   useEffect(() => {  
     dispatch(getAllVideogames());

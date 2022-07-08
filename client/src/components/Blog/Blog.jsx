@@ -1,6 +1,6 @@
 import React,  { useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getArticles } from "../../redux/actions/index";
 import styles from "./Blog.module.css";
@@ -10,13 +10,13 @@ import Footer from '../Footer/Footer';
 
 import {
     ScrollContainer,
-    Sticky,
+    //Sticky,
     Animator,
     ScrollPage,
     Fade,
-    MoveOut,
+    //MoveOut,
     FadeIn,
-    ZoomIn,
+    //ZoomIn,
     MoveIn,
     Zoom,
     Move
@@ -32,12 +32,12 @@ export default function Blog() {
     console.log("Articles", allArticles)
 
     useEffect(() => {
-     dispatch(getArticles());
+        dispatch(getArticles());
     }, []);
 
     const Scrll0 = Fade()
     const Scrll1 = Zoom(0, 1)
-    const Scrll2 = Fade()
+    //const Scrll2 = Fade()
     const Scrll3 = FadeIn(0, 1)
 
     return (
@@ -51,7 +51,7 @@ export default function Blog() {
                         <Animator animation={Scrll0}>
 
                             <div>
-                                <img className={styles.img} src={allArticles[0].image} width='700px' />
+                                <img className={styles.img} src={allArticles[0].image} alt='' width='700px' />
                                 <h4>{allArticles[0].name}</h4>
                             </div>
                         </Animator>
@@ -62,21 +62,21 @@ export default function Blog() {
                                 <Animator animation={Scrll1}>
                                     <div className={styles.border}>
                                         <h1>Lanzamientos</h1>
-                                        <img className={styles.img} src={allArticles[1].image} width='450px' />
+                                        <img className={styles.img} src={allArticles[1].image} alt='' width='450px' />
                                         <h4>{allArticles[1].name}</h4>
                                     </div>
                                 </Animator>
                                 <Animator animation={MoveIn(600, 0)}>
                                     <div>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[2].image} width='250px' />
-                                            <div className={styles.subArticle}>
+                                            <img className={styles.img} src={allArticles[2].image} alt='' width='250px' />
+                                            <div className={styles.subArticle}> 
                                                 <h4>{allArticles[2].name}</h4>
                                             </div>
 
                                         </div>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[3].image} width='250px' />
+                                            <img className={styles.img} src={allArticles[3].image} alt='' width='250px' />
                                             <div className={styles.subArticle}>
                                                 <h4>{allArticles[3].name}</h4>
                                             </div>
@@ -93,19 +93,19 @@ export default function Blog() {
                                 <div className={styles.noticias}>
                                     <Animator animation={Move(650, 0)}>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[4].image} width='350px' />
+                                            <img className={styles.img} src={allArticles[4].image} alt='' width='350px' />
                                             <h4>{allArticles[4].name}</h4>
                                         </div>
                                     </Animator>
                                     <Animator animation={Move(0, 650)}>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[5].image} width='350px' />
+                                            <img className={styles.img} src={allArticles[5].image} alt='' width='350px' />
                                             <h4>{allArticles[5].name}</h4>
                                         </div>
                                     </Animator>
                                     <Animator animation={Move(-650, 0)}>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[6].image} width='350px' />
+                                            <img className={styles.img} src={allArticles[6].image} alt='' width='350px' />
                                             <h4>{allArticles[6].name}</h4>
                                         </div>
                                     </Animator>
@@ -122,7 +122,7 @@ export default function Blog() {
                                     </Animator>
                                     <Animator animation={Move(-650, 0)}>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[7].image} width='250px' />
+                                            <img className={styles.img} src={allArticles[7].image} alt='' width='250px' />
                                             <div className={styles.subArticle}>
                                                 <h4>{allArticles[7].name}</h4>
                                             </div>
@@ -130,7 +130,7 @@ export default function Blog() {
                                     </Animator>
                                     <Animator animation={Move(-650, 0)}>
                                         <div className={styles.border}>
-                                            <img className={styles.img} src={allArticles[8].image} width='250px' />
+                                            <img className={styles.img} src={allArticles[8].image} alt='' width='250px' />
                                             <div className={styles.subArticle}>
                                                 <h4>{allArticles[8].name}</h4>
                                             </div>
@@ -139,7 +139,7 @@ export default function Blog() {
                                 </div>
                                 <Animator animation={Move(650, 0)}>
                                     <div className={styles.border}>
-                                        <img className={styles.img} src={allArticles[9].image} width='450px' />
+                                        <img className={styles.img} src={allArticles[9].image} alt='' width='450px' />
                                         <h4>{allArticles[9].name}</h4>
                                     </div>
                                 </Animator>
@@ -152,11 +152,11 @@ export default function Blog() {
                                 <h1>consolas</h1>
                                 <div className={styles.noticias}>
                                     <div className={styles.border}>
-                                        <img className={styles.img} src={allArticles[10].image} width='500px' />
+                                        <img className={styles.img} src={allArticles[10].image} alt='' width='500px' />
                                         <h4>{allArticles[10].name}</h4>
                                     </div>
                                     <div className={styles.border}>
-                                        <img className={styles.img} src={allArticles[11].image} width='500px' />
+                                        <img className={styles.img} src={allArticles[11].image} alt='' width='500px' />
                                         <h4>{allArticles[11].name}</h4>
                                     </div>
                                 </div>
