@@ -105,121 +105,6 @@ export default function SignUp() {
     }
   }
 
-<<<<<<< HEAD
-    return (
-        <div >
-            <div >
-                {/* button navBar */}
-                <div>
-                    <Link to="/">
-                        <div>
-                            <div></div>
-                        </div>
-                    </Link>
-                    <div>
-                        <a href="/log_in" >
-                            Iniciar sesion
-                        </a>
-                    </div>
-                </div>
-
-                {/* Form register */}
-            </div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Escriba su Nombre..."
-                        required
-
-                        value={input.name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        name="lastname"
-                        value={input.lastname}
-                        placeholder="Escriba su apellido..."
-                        required
-                        onChange={handleChange}
-                        
-                    />
-                </div>
-                <div>
-                    <input 
-                        type='text'
-                        name='user'
-                        placeholder="Ingrese su usario..."
-                        value={input.user}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div >
-                    <input
-                        type="email"
-                        name="email"
-                        //className={styles.loginInput}
-                        placeholder="Escriba un e-mail valido..."
-                        required
-                        value={input.email}
-                        onChange={handleChange}
-                        
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-
-                        name="password"
-                        //className={styles.loginInput}
-                        placeholder="Contraseña"
-                        required
-                        value={input.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-
-                        name="repassword"
-                        //className={styles.loginInput}
-                        placeholder="Ingrese de nuevo su contraseña"
-                        required
-                        value={input.repassword}
-                        onChange={handleChange}
-                    />
-                </div>
-                <br />
-                <div>
-                    <select
-                        name="select"
-                        onChange = {e => handleSelect(e)}
-                        defaultValue='Tipo de usuario'
-                    >
-                        <option disabled>Tipo de usuario</option>
-                        <option name='type' value='user'>Jugador</option>
-                        <option name='type' value='adm'>Administrador</option>
-                        
-
-                    </select>
-                </div>
-                <input
-                    type="submit"
-                    value="Registrarse"
-                    //disabled={disableSubmit}
-                    
-                />
-                <br />
-                <br />
-                <p>{errors ? errors.password : 'Faltan datos obligatorios'}</p>
-                
-                <div></div>
-            </form>
-=======
   return (
     <div className="lf-body-login">
       <div className="lf-login-component"> 
@@ -237,7 +122,6 @@ export default function SignUp() {
             <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
           </Link>
         </div>
->>>>>>> dev
 
      
         <div className="lf-right-container">

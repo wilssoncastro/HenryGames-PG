@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCardStatistics, getSales } from "../../redux/actions";
+import { getAllUsers, getCardStatistics, getSales } from "../../redux/actions";
 /* import Card from "../Card/card"; */
 import { Link } from "react-router-dom";
 import BarChart from "../Graphics/BarChart";
@@ -15,11 +15,13 @@ export default function Estadisticas() {
   const dispatch = useDispatch();
   const videogame = useSelector((state) => state.videogames);
   const sales = useSelector((state) => state.sales)
+  const users = useSelector((state) => state.users)
   const [name, setName] = useState("");
 
   useEffect(() => {
     dispatch(getCardStatistics(name));
     dispatch(getSales())
+    dispatch(getAllUsers())
   }, [dispatch, name]);
 
   const handleInputChange = (e) => {
@@ -61,19 +63,21 @@ export default function Estadisticas() {
   for (let i = 0; i < sales.length; i++) {
     const dateA = sales[i].date
     const dateB = sales[i].createdAt
-    if (dateB.slice(5,7) === "04") {
+    if (dateA.slice(5,7) === "04") {
       abril = abril + sales[i].price
     }
-    else if (dateB.slice(5,7) === "05") {
+    else if (dateA.slice(5,7) === "05") {
       mayo = mayo + sales[i].price
     }
-    else if (dateB.slice(5,7) === "06") {
+    else if (dateA.slice(5,7) === "06") {
       junio = junio + sales[i].price
     }
-    else if (dateB.slice(5,7) === "07") {
+    else if (dateA.slice(5,7) === "07") {
       julio = julio + sales[i].price
     }
   }
+
+  console.log(users)
 
 const id_user_admin = localStorage.getItem('type')
 if (id_user_admin) {
@@ -83,7 +87,7 @@ if (id_user_admin === "adm") {
     <div>
       <NavBar />
       <br></br>
-     <div className="containerEstatistics"> 
+      <div className="containerEstatistics"> 
       <input
         placeholder="Search Videogame..."
         value={name}

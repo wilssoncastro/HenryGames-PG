@@ -38,7 +38,7 @@ export default function BarChart({ orderVG }){
     let sales = orderVG.map(e => e.contador)
     let names = orderVG.map(e => e.name.slice(0,5))
     const salesdata= {
-        label: "top sales",
+        label: "Top Sales",
         data: sales
     }
     const data = {

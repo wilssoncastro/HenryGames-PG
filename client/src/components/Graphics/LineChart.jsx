@@ -44,7 +44,7 @@ export default function LineChart({ enero, febrero, marzo, abril, mayo, junio, j
     const scores = [enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre]
     const data = {
             datasets: [{
-                label: "Monthly sales",
+                label: "Sales",
                 data: scores,
                 tension:0.3,
                 borderColor: "rgb(75, 192, 192)",

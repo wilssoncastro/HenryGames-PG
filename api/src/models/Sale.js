@@ -26,9 +26,9 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         date: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             defaultValue: DataTypes.DATEONLY,
-            allowNull: false
+            allowNull: true
         }
     })
 }

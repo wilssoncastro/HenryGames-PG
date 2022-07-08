@@ -19,7 +19,6 @@ export default function CarouselCard() {
 
   useEffect(() => {
     dispatch(getFilteredVideogames(name, tag, esrb, page, sort, order, limit))
-    // dispatch(getAllVideogames(sort, order))
   }, [dispatch, name, tag, esrb, page, sort, order, limit])
   
   return (
