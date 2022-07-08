@@ -17,19 +17,13 @@ import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
 import { Users } from './components/Administrador/Users';
-<<<<<<< HEAD
 //import Comment from './components/Comment/Comment';
-=======
->>>>>>> dev
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
-<<<<<<< HEAD
 import ReSendMail from './components/ReSendMail/ReSendMail';
-=======
 import Google from './components/Google/Google';
->>>>>>> 7dbb5f8b08465f447b83a9901f7979502699cf0a
 
 function App() {
   return (
