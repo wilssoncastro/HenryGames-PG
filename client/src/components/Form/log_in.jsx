@@ -90,7 +90,7 @@ export default function LogIn() {
           <Link to="/home">
             <button className="lf-button-guest">Or enter as a guest</button>
           </Link>
-          <Link>
+          <Link to='/recoverPass'>
             I forget my password
           </Link>
         </div>
