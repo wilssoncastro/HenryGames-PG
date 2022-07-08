@@ -42,7 +42,7 @@ function App() {
           <Route exact path='/store/:id' element={<Detail />} />
 
           {/* Página del admin */}
-          <Route exact path='/admin' element={<Admin />}/>
+          <Route exact path='/admin' element={<Admin/>}/>
           
           {/* Ruta para publicar videogame */}
           <Route exact path='/admin/publishVideogame' element={<VideogameCreate />} />
