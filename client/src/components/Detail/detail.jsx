@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { /* Link */ useParams, useNavigate } from "react-router-dom";
 import {
   addWishList,
   getDetailsVideogame,
@@ -29,15 +29,14 @@ export default function Detail() {
   const { id } = useParams();
   const id_user = localStorage.getItem("id");
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || []);
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart /* setCart */] = useState(cartFromLocalStorage);
 
   const videogame = useSelector((state) => state.details);
   const list = useSelector((state) => state.wishList);
-  const actual_cart = useSelector((state) => state.cart);
+  //const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
-  const is_online = useSelector((state) => state.is_online)
-  console.log(is_online)
+  //const is_online = useSelector((state) => state.is_online)
   let idProfile = localStorage.getItem("id");
 
   useEffect(() => {
@@ -58,7 +57,6 @@ export default function Detail() {
       var respuesta = window.confirm(
         "Are you sure you want to delete the videogame?"
       );
-      console.log(id);
       if (respuesta === true) {
         dispatch(deleteVideogame(id));
         navigate("/home");
@@ -70,14 +68,12 @@ export default function Detail() {
   const handleOnClick = (idGame) => {
     let id = localStorage.getItem("id");
     dispatch(addWishList(id, idGame));
-    console.log("se agrego el juego de la lista");
     navigate(`/store/${idGame}`);
   };
 
   const handleOnClickDelete = (idGame) => {
     let id = localStorage.getItem("id");
     dispatch(deleteWishList(id, idGame));
-    console.log("se elimino el juego de la lista");
     navigate(`/store/${idGame}`);
   };
 
