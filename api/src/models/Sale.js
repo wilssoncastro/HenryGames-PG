@@ -24,7 +24,11 @@ module.exports = (sequelize) => {
         price: {
             type: DataTypes.FLOAT,
             allowNull: false
+        },
+        date: {
+            type: DataTypes.STRING,
+            defaultValue: DataTypes.DATEONLY,
+            allowNull: true
         }
-
     })
 }

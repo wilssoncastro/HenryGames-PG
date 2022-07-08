@@ -52,7 +52,8 @@ router.post('/made/:id_user', async (req, res) => {
                 id_sale: id_sale,
                 id_game:e.id,
                 id_user: id_user,
-                price: e.price
+                price: e.price,
+                date: e.date
             }
         })
         
@@ -76,6 +77,7 @@ router.post('/made/:id_user', async (req, res) => {
         res.json('Compra realizada exitosamente')
     } catch (error) {
         res.status(404).send(error)
+        console.log(error)
     }
 })
 

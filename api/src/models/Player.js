@@ -60,11 +60,11 @@ module.exports = (sequelize) => {
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
-        online:{
+        online: {
             type: DataTypes.BOOLEAN,
             defaultValue: false, 
             allowNull: false
         }
 
-    }, {timestamps: false})
+    }, {timestamps: true})
 }

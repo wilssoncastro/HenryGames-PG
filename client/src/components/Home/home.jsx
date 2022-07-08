@@ -10,8 +10,6 @@ import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
 import './home.css'
 import './carousel.css'
-import CarouselCatCard from '../CarouselCard/CarouselCatCard';
-// import Card from '../Card/card'
 
 export default function Home() {
    
@@ -27,8 +25,8 @@ export default function Home() {
     // const [limit, setLimit] = useState(15);
     
     // useEffect(() => {
-    //     dispatch(getFilteredVideogames(name, page, sort, order, limit))
-    // }, [dispatch, sort, order])
+    //     dispatch(getAllVideogames())
+    // }, [dispatch])
     
     return (
         <div className='background'>
@@ -38,12 +36,11 @@ export default function Home() {
 
             <div className='home-component-box'>
 
-                <div className='home20'>
+                {/* <div className='home20'>
                     <div className='genres-filter'>
                         <div className='filters-column'>
                             <div className='filters-title'>
                                 <span>Genres</span>
-                                <BiIcons.BiTag className="filter-icon"/>
                             </div>
                             <ul className='genres-list'>
                                 <li className='genre-txt' >
@@ -132,7 +129,7 @@ export default function Home() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='home60'>
 
