@@ -51,8 +51,7 @@
  }
 
  .btn_gold:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     color:black;
     transform: scale(1.25);
     background-color: #c7a94b;
@@ -60,7 +59,7 @@
 
 .btn_log_in{
     background-color: royalblue;
-    margin: 10px;    
+    margin: 10px; 
     font-size: 20px;
     padding: 5px;
     text-align: center;
@@ -77,8 +76,7 @@
  }
 
  .btn_log_in:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background: -webkit-linear-gradient(royalblue, rgb(249, 249, 249));
     transform: scale(1.25);
  }
@@ -102,8 +100,7 @@
  }
 
  .btn_sign_up:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     transform: scale(1.25);
     background: -webkit-linear-gradient(rgb(32, 146, 63), rgb(132, 132, 132));
  }

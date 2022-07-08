@@ -42,11 +42,8 @@ router.use('/cart', cartRoutes)
 router.use('/comments', routesComments)
 router.use('/sales', routesSales)
 router.use('/blog', routesBlog)
-<<<<<<< HEAD
 router.use('/', authGoogle)
-=======
 router.use('/library', libraryRoutes)
->>>>>>> dev
 
 router.use('/authentication', registerRoutes)
 

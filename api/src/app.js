@@ -9,6 +9,7 @@ const Strategy = require("passport-local").Strategy;
 const { Player } = require('./db');
 const { SECRET } = process.env
 const bcrypt = require("bcrypt")
+const randomstring = require("randomstring");
 
 const server = express()
 
@@ -79,22 +80,21 @@ passport.use(new GoogleStrategy({
     await Player.findOne({where:{email: profile.email}})
       .then(async (user) => {
         if(!user){
-          console.log('No se encontro el user')
-
+          console.log('registro del user google en la BD')
           const createUserGoogle = await Player.create({
-            //id: '697abc1c-7cab-4cf6-84b8-c792f5282178',
             name: profile.given_name, 
             lastname: profile.family_name, 
             email: profile.email, 
-            profile_pic: profile.picture, 
+            profile_pic: profile.photos[0].value, 
             active: profile.email_verified, 
             user: profile.displayName,
-            password: 'googlepassword'
+            password: randomstring.generate(12),
+            type: 'player'
           })
           return done(null, createUserGoogle)
         }
         if(user){
-            console.log('Se encontro el user')
+            console.log('Se encontro el user de Google')
             return done(null, user)
           }
         })

@@ -1,36 +1,14 @@
 import React from "react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./landing.css";
+import GoogleButton from 'react-google-button'
 
 export default function LandingPage() {
   // falta ternario para saber si ya estas registrado o no. y dependiendo de ahi va a mostrar el registrarse
   // o el login.
 
-  useEffect(() => {
-    const getUser = () =>{
-      fetch('http://localhost:3001/auth/google/protected', {
-        method: 'GET',
-        credentials: 'include',
-        header: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Credentials': true,
-        },
-      }).then((res) => {
-        if (res.status===200) return res.json(); 
-        else throw new Error('authentication has been failed')
-      }).then((resObj) => {
-        console.log(resObj.user) //hay que hacer el localStorage aqui
-      }).catch((error)=> {
-        console.log(error)
-      })
-    }
-    getUser()
-  }, [])
-
   const google = () => {
-    window.open('http://localhost:3001/auth/google')
+    window.location.href = 'http://localhost:3001/auth/google'
   }
 
   return (
@@ -50,7 +28,11 @@ export default function LandingPage() {
           </Link>
         </div>
         <div>
-          <button onClick={() => google()}>Log in with Google</button>
+          <GoogleButton
+            type="dark"
+            label='Log in with Google'
+            onClick={() => {google()}}
+          />
         </div>
       </div>
     </div>

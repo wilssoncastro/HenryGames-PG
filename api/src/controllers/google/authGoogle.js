@@ -18,7 +18,7 @@ router.get('/auth/google',
 //ruta del callback que nos da google
 router.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: CLIENT_URL,
+        successRedirect: CLIENT_URL + 'googleLogin',
         failureRedirect: '/auth/google/failure'
     })
 )
@@ -44,12 +44,12 @@ router.get('/auth/google/protected', isLoggedIn, async (req, res) => {
 })
 
 //cerrar sesion de google
-router.get('/auth/google/logoutGoogle', (req, res) => {
-    /* req.logout() */
-    req.session.destroy(function (err) {
-        res.redirect('/'); 
-    });
-    res.send('CHAU!')
-})
+// router.get('/auth/google/logoutGoogle', (req, res) => {
+//     /* req.logout() */
+//     req.session.destroy(function (err) {
+//         res.redirect('/'); 
+//     });
+//     res.send('CHAU!')
+// })
 
 module.exports = router
