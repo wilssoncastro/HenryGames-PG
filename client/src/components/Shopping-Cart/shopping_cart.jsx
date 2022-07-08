@@ -158,21 +158,23 @@ export default function ShoppingCart() {
             </div>
             <div className="containercard">
               {current_cart.map((game) => (
-                <div className="cardCart">
-                  <Card
-                    key={game.id}
-                    image={game.image}
-                    name={game.name}
-                    price={game.price}
-                    id={game.id}
-                  />
-                  <button
-                    className="buttonRemove"
-                    type="reset"
-                    onClick={() => handleDelete(game.id)}
-                  >
-                    <FaIcons.FaTrashAlt />
-                  </button>
+                <div className="containerCart">
+                  <div className="cardCart">
+                    <Card
+                      key={game.id}
+                      image={game.image}
+                      name={game.name}
+                      price={game.price}
+                      id={game.id}
+                    />
+                    <button
+                      className="buttonRemove"
+                      type="reset"
+                      onClick={() => handleDelete(game.id)}
+                    >
+                      <FaIcons.FaTrashAlt />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
