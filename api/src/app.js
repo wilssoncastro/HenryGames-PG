@@ -91,7 +91,7 @@ passport.use(new GoogleStrategy({
             active: profile.email_verified, 
             user: profile.displayName,
             password: randomstring.generate(12),
-            type: 'player'
+            type: 'user'
           })
           return done(null, createUserGoogle)
         }
