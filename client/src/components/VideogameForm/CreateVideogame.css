@@ -1,20 +1,29 @@
 .videogame_created_container{
     background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');
-background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  overflow-x:hidden;
-  overflow-y: scroll;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  position: relative;
-  z-index: 1;
-font-family: sans-serif;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    font-family: sans-serif;
+    
 }
+
+.cv-body {
+    margin-top: 4em;
+}
+
+
+
 .error{
     color:  red;
 }
+
 .image_form{
     width: 70px;   
     max-height: 120px;
@@ -57,4 +66,68 @@ font-family: sans-serif;
 
 .containerPublishVideogame{
     margin-top: 100px;
+}
+
+
+
+/* CSS BOX SPLIT */
+
+.cv-form-component {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    height: 75vh;
+    width: 65vw;
+    justify-content: center;
+    margin: auto;
+    margin-left: auto;
+    margin-top: 8vh;
+}
+
+.cv-left-container {
+    grid-column-start: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    background: rgb(245, 230, 145);
+    background-color: black; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #fff;
+}
+
+.cv-right-container {
+    background: rgb(245, 230, 145);
+    background: -webkit-linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+    background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+    grid-column-start: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cv-input {
+    /* background-color: rgb(0, 0, 0); */
+    color: black;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 2em;
+}
+
+.cv-form {
+    display: flex;
+    align-items: space-around;
+}
+
+.cv-input-div {
+    
 }

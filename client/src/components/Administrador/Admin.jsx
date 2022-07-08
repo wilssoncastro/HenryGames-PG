@@ -13,40 +13,42 @@ export function Admin() {
   if (id_user_admin) {
     if (id_user_admin === "adm") {
       return (
-        <div>
-          <NavBar/>
-          <div className="administration_comp">
+        <div className="administration_comp">
+          <NavBar />
+          <div className="admin_cont">
             <h2 className="tittle_admin">ADMINISTRATION PAGE</h2>
             <div className="admin_content">
+
+              <Link to="/admin/publishVideogame" style={{ textDecoration: 'none' }}>
+                <div className="admin_option">
+                  <img src="https://cdn.iconscout.com/icon/free/png-256/game-publishing-1467902-1244384.png" alt="" />
+                  <p className="btn_adm">Publish a new videogame</p>
+                </div>
+              </Link>
+
+              <Link to="/admin/statistics"  style={{ textDecoration: 'none' }}>
+                <div className="admin_option">
+                  <img src="https://cdn-icons-png.flaticon.com/512/2040/2040988.png" alt="" />
+                  <p className="btn_adm">View sale statistics</p>
+                </div>
+              </Link>
+                <Link to="/admin/editVideogame"  style={{ textDecoration: 'none' }}>
               <div className="admin_option">
-                <Link to="/admin/publishVideogame">
-                <img src="https://cdn-icons-png.flaticon.com/512/1622/1622508.png" alt="" />
-                  <label className="btn_adm">Publish a new videogame</label>
-                </Link>
-              </div>
-              <div className="admin_option">
-                <Link to="/admin/statistics">
-                <img src="https://cdn-icons-png.flaticon.com/512/2040/2040988.png" alt="" />
-                  <label className="btn_adm">View sale statistics</label>
-                </Link>
-              </div>
-              <div className="admin_option">
-                <Link to="/admin/editVideogame">
                   <img src="https://cdn-icons-png.flaticon.com/512/4414/4414472.png" alt="" />
-                  <label className="btn_adm">Edit videogame</label>
-                </Link>
+                  <p className="btn_adm">Edit videogame</p>
               </div>
-              <div className="admin_option">
-                <Link to="/admin/users">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1622/1622512.png" alt="" />
-                  <label className="btn_adm">Users administration</label>
                 </Link>
-              </div>
+              <Link to="/admin/users"  style={{ textDecoration: 'none' }}>
+                <div className="admin_option">
+                  <img src="https://cdn-icons-png.flaticon.com/512/4919/4919646.png" alt="" />
+                  <p className="btn_adm">Users administration</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
       )
-    }else{      
+    } else {
       return (
         <ComponentError></ComponentError>
       )

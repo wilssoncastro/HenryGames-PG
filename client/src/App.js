@@ -17,12 +17,19 @@ import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
 import { Users } from './components/Administrador/Users';
+<<<<<<< HEAD
 //import Comment from './components/Comment/Comment';
+=======
+>>>>>>> dev
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
+<<<<<<< HEAD
+import ReSendMail from './components/ReSendMail/ReSendMail';
+=======
 import Google from './components/Google/Google';
+>>>>>>> 7dbb5f8b08465f447b83a9901f7979502699cf0a
 
 function App() {
   return (
@@ -42,7 +49,7 @@ function App() {
           <Route exact path='/store/:id' element={<Detail />} />
 
           {/* Página del admin */}
-          <Route exact path='/admin' element={<Admin />}/>
+          <Route exact path='/admin' element={<Admin/>}/>
           
           {/* Ruta para publicar videogame */}
           <Route exact path='/admin/publishVideogame' element={<VideogameCreate />} />
@@ -87,6 +94,7 @@ function App() {
           {/* amigos*/} 
           <Route exact path='/friends/:id' element={<Friends/>}/>
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
+          <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
 
           <Route path='/googleLogin' element={<Google />}/>
 
