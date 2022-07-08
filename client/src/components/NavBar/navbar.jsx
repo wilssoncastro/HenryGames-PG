@@ -52,6 +52,7 @@ export default function NavBar() {
                 localStorage.removeItem('name')
                 localStorage.removeItem('type')
                 localStorage.removeItem('id')
+                localStorage.removeItem('user')
                 dispatch(getUserById())
                 
             }
