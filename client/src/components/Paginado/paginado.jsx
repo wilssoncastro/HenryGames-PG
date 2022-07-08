@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./paginado.css"
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllVideogames } from '../../redux/actions';
+import { getAllVideogames, getFilteredVideogames } from '../../redux/actions';
 
-export default function Paginado({ limit, paginado, page }) {
+export default function Paginado({ limit, page, paginado }) {
+
   const allVideogames = useSelector((state) => state.allVideogames)
+  const videogames = useSelector((state) => state.videogames)
   const dispatch = useDispatch()
-
-
   useEffect(() => {  
     dispatch(getAllVideogames());
   }, [dispatch]);
@@ -16,34 +16,66 @@ export default function Paginado({ limit, paginado, page }) {
   const pageNum5 = []
   const pageQty = allVideogames.length/limit
   const currentPage = (page/limit)
-  
+
   for (let i = 0; i < pageQty; i++) {
-    pageNumbers.push(i + 1);
+    pageNumbers.push(i+1)
   }
-  
-  for (let j = currentPage; j < currentPage + 5; j++) {
-    if ((j-2) > 0 && (j-1) < pageQty) {
+
+  for (let j = currentPage-1; j < currentPage + 4; j++) {
+    if (j > 2 && j < pageQty+1) {
       pageNum5.push(pageNumbers[j-2])
     }
   }
   
-  return (
+  return  (
     <div className='paginado'>
-      <ul className='pagination'>
-        <button className='edge' onClick={() => paginado(1)}>{1}</button>
-        <br/>
+      <ul className="pagination">
         {
-          pageNum5.map(n => (
-            <li className='number' key={n}>
-              <button className='buttonPaginado' onClick={() => paginado(n)}>{n}</button>
-            </li> 
+          pageNumbers.length>1?<button className='edge' onClick={() => paginado(1)}>{1}</button>:null
+        }
+        { 
+          pageNum5.map(number =>(
+            <li className="number" key={number}>
+              <button className="buttonPaginado" onClick={()=> paginado(number)}>{number}</button>
+            </li>
           ))
         }
-        <br/>
         {
           pageNumbers.length>1?<button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>:null
-        }        
+        }
       </ul>
     </div>
   )
+  
+  // for (let i = 0; i < pageQty; i++) {
+  //   pageNumbers.push(i + 1);
+  // }
+  
+  // for (let j = videogamesPerPage; j < videogamesPerPage + 5; j++) {
+  //   if ((j-2) > 0 && (j-1) < pageQty) {
+  //     pageNum5.push(pageNumbers[j-2])
+  //   }
+  // }
+  
+  // return (
+  //   <div className='paginado'>
+  //     <ul className='pagination'>
+  //       <button className='edge' onClick={() => paginado(1)}>{1}</button>
+  //       <br/>
+  //       {
+  //         pageNum5.map(n => (
+  //           <li className='number' key={n}>
+  //             <button className='buttonPaginado' onClick={() => paginado(n)}>{n}</button>
+  //           </li> 
+  //         ))
+  //       }
+  //       <br/>
+  //       {
+  //         <button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>
+  //       }        
+  //     </ul>
+  //   </div>
+  // )
 }
+
+//pageNumbers.length>1?

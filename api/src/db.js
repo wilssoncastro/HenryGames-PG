@@ -51,7 +51,7 @@ Genre.belongsToMany(Videogame, {through: 'Genre_Videogame'})
 // Videogame.belongsToMany(Tag, {through: 'Tag_Videogame'})
 // Esrb.hasMany(Videogame)
 // Videogame.belongsTo(Esrb)
-//------------------SALE 1:1 VIDEOGAME-----------------------
+//------------------VIDEOGAME 1:M SALE-----------------------
 /* Sale.hasOne(Videogame)
 Videogame.belongsTo(Sale)  */
 Videogame.hasMany(Sale)
