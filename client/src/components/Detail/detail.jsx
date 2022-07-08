@@ -136,7 +136,7 @@ export default function Detail() {
               <div className="containerImgList">
 
                 <div>
-                  <img className="image" src={videogame.image} />
+                  <img className="image" src={videogame.image} alt='not found' />
 
                   <div className="buttons">
                     <div>
@@ -259,7 +259,7 @@ export default function Detail() {
               <Carousel focusOnSelect={false} itemsToShow={4}>
                 {videogame.short_screenshots?.map((e) => {
                   return (
-                    <img className="screenshots" src={e} alt="Not found" />
+                    <img className="screenshots" src={e} alt="" />
                   );
                 })}
               </Carousel>

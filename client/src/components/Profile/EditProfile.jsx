@@ -148,7 +148,7 @@ return (
                             <div>
                                 {profile.profile_pic != "" ? (
                                     <div >
-                                        <img src={profile.profile_pic} className="image_form" />
+                                        <img src={profile.profile_pic} className="image_form" alt='' />
                                         <button
                                             className="botonX"
                                             onClick={(e) => handleDeleteImage(e)}
