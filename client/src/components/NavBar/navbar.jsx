@@ -13,6 +13,7 @@ import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
 import * as FiIcons from "react-icons/fi"
 import * as RiIcons from "react-icons/ri"
+import * as IoIcons from "react-icons/io"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -125,7 +126,7 @@ export default function NavBar() {
         {
             title: 'Log Out',
             path: '#',
-            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b'}} />,
+            icon: <FiIcons.FiLogOut/>,
             className: 'log-out-button',
             onClick: logOut,
             loggedIn: true
@@ -247,7 +248,12 @@ export default function NavBar() {
                         </div>
 
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
-                            <h3 className="friendBoxTitle">Friend List</h3>
+                            <div className="friend-list-title-container">
+                                <p className='vacio-FLTC'></p>
+                                <h3 className="friendBoxTitle">Friend List </h3>
+                                <Link className="addIcon" to={`/friends/${id}`}><IoIcons.IoIosAddCircleOutline/></Link>
+                            </div>
+
                             <div className="FriendListBox">                               
                                 {friends&& friends != "No se encontro el usuario" && friends.length?friends.map((e) => {
                                     return (                                      
