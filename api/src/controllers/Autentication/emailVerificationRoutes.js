@@ -99,6 +99,51 @@ router.get('/email/gameActivation/:secretCode/:id_user/:longitude', async(req, r
     }
 })
 
+router.get('/email/reSend/:mail', async(req, res) => {
+    const { mail } = req.params
+    
+
+    try {
+        let user = await Player.findAll({where: {
+            email: mail
+        }})
+
+        
+
+        if(!user)return res.send('No se encontro el usuario')
+
+        const user_id = user[0].dataValues.id
+        
+        const token = user[0].dataValues.secret_token
+        
+        
+        let verification_link = `http://localhost:3000/activation/${user_id}/${token}`
+        
+
+        if(user_id && token && mail){
+            let mail_options = {
+                from: '🎮🕹 <nicolasgonzalezdev@gmail.com> ',
+                to: mail,
+                subject: 'Activacion de Mail',
+                html:`
+                <b>Por favor has click en el siguiente link para verificar su correo</b>
+                <br>
+                <a href="${verification_link}">LINK</a> 
+                `
+            }
+
+            let info = await transporter.sendMail(mail_options, (error, info) => {
+                if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
+            })
+
+            res.json('Mail reenviado');
+        }
+
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 
 
 module.exports = router

@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as GrIcons from 'react-icons/gr';
 
 export default function SignUp() {
   const Swal = require("sweetalert2");
+  const navigate = useNavigate()
 
   function validate(input) {
     let errors = {};
@@ -94,6 +95,9 @@ export default function SignUp() {
     if (Object.keys(errors).length === 0) {
       Swal.fire("Check your email to activate the account!");
       axios.post("http://localhost:3001/authentication/register", input);
+      setTimeout(() => {
+        navigate(`/activation/mail-validation/${input.email}`)
+      },2000)
     } else { 
       console.log("Entrooooo")
       if (errors.password) {
