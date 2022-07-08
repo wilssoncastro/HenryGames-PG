@@ -58,9 +58,6 @@ export default function VideogameCreate() {
     on_sale: false,
   });
 
-
-  console.log(input)
-
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getEsrb());

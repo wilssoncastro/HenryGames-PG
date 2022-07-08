@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/navbar";
 import Card from "../Card/card";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link */ useNavigate } from "react-router-dom";
 import {
   delFromCart,
   getCartById,
   deleteAllFromCart,
   postMercadoPago,
-  is_authorizated,
+  /* is_authorizated */
 } from "../../redux/actions";
 import swal from "sweetalert";
 import "./shoppingcart.css";
@@ -29,8 +29,6 @@ export default function ShoppingCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     if(typeof id_user === "string"){
       dispatch(getCartById(id_user));
-    }else{
-      console.log('estoy en local')
     }
   }, [cart /* dispatch */]);
 
@@ -88,9 +86,7 @@ export default function ShoppingCart() {
 
   const handleClearCart = (e) => {
     if (typeof id_user === "string") {
-      console.log("Entre y paso algo");
       dispatch(deleteAllFromCart(id_user, { games: videogamesInCart }));
-      console.log("mmmm");
     } else {
       localStorage.setItem("cart", []);
     }

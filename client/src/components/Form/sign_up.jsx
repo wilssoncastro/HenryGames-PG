@@ -95,7 +95,7 @@ export default function SignUp() {
       Swal.fire("Check your email to activate the account!");
       axios.post("http://localhost:3001/authentication/register", input);
     } else { 
-      console.log("Entrooooo")
+      //console.log("Entrooooo")
       if (errors.password) {
         log_error = errors.password;
       } else {

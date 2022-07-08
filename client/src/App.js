@@ -17,7 +17,7 @@ import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
 import { Users } from './components/Administrador/Users';
-import Comment from './components/Comment/Comment';
+//import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';

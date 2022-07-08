@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {useMemo} from 'react';
+//import {useMemo} from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -12,7 +12,7 @@ import {
     Title,
     Tooltip,
     Legend,
-    Filler,
+    /* Filler, */
   } from 'chart.js';
 
   import { Line } from "react-chartjs-2"
@@ -40,12 +40,12 @@ const options = {
   }
 }
 
-  const sales = {
-    label: "Total ventas",
-    data:  [],
-    lineTension: 0.3,
-    borderColor: "rgb(75, 192, 192)"
-  };
+  // const sales = {
+  //   label: "Total ventas",
+  //   data:  [],
+  //   lineTension: 0.3,
+  //   borderColor: "rgb(75, 192, 192)"
+  // };
   
   const labels = ["enero","febrero","marzo", "abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
 

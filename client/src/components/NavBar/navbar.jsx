@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FriendList } from "./FriendList";
+//import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -26,7 +26,7 @@ export default function NavBar() {
     const cartLocal = JSON.parse(localStorage.getItem('cart') || "[]");
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
-    const user = useSelector((state) => state.my_user)
+    //const user = useSelector((state) => state.my_user)
     
     //const is_online = useSelector((state) => state.is_online)
     const current_cart = (typeof id === 'object') ? cartLocal : cart
@@ -45,7 +45,7 @@ export default function NavBar() {
         })
         .then((res) => {
             if(res){
-                console.log('removiendo store')
+                //console.log('removiendo store')
                 localStorage.removeItem('profile_pic')
                 localStorage.removeItem('lastname')
                 localStorage.removeItem('name')

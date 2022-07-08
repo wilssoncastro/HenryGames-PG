@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React /* { useEffect, useState } */ from 'react';
+//import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilteredVideogames } from '../../redux/actions'
+//import { getFilteredVideogames } from '../../redux/actions'
 import Carousel from 'react-elastic-carousel'
 import Card from '../Card/card';
 
