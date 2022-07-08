@@ -123,6 +123,7 @@ router.get('/', async (req, res) => {
   //   res.send(videogames)
   // }
 } catch (error) {
+    console.log(error)
     console.log("CATCH")
   }
 })
