@@ -14,7 +14,7 @@ export default function CarouselCard() {
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(200)
   const [sort, setSort] = useState('rating');
   const [order, setOrder] = useState('desc');
 

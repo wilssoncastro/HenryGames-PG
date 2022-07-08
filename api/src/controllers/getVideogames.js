@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
           on_sale: (Math.random() * 10) < 7 ? false : true,
           free_to_play: ftp,
           short_screenshots: e.short_screenshots.map(s => s.image),
-          tags: e.tags.map(t => t.name),
+          tags: e.tags.map(t => t.name.toLowerCase()),
           esrb_rating: e.esrb_rating !== null ? e.esrb_rating.name : "Rating Pending",
           requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en)).filter(b => b != false)),
           contador: 0
@@ -77,22 +77,34 @@ router.get('/', async (req, res) => {
       where.name = { [Op.iLike]: `${name}%` }
     }
     if (esrb) {
-      where.esrb_rating = esrb
+      where.esrb_rating = { [Op.iLike]: `${esrb}%` }
     }
     if (tag) {
-      where.tags = { [Op.contains]: [tag] }
+      let tagL = tag.toLowerCase()
+      where.tags = { [Op.overlap]: [tag, tagL] }
     }
     condition.where = where;
     limit?condition.limit=limit:!condition.limit;
     page?condition.offset=page:!condition.offset;
     sort&&order?condition.order=[[sort, order]]:!condition.order;
-    condition.include = [{
+    gen?condition.include=[{
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+      where: {
+        name: {
+          [Op.in]: [gen],
+        }
+      }
+    }]:condition.include=[{
       model: Genre,
       attributes: ["name"],
       through: {
         attributes: [],
       }
-    }]
+    }] 
 
     //let conVideogames = await videogames.findAll(condition)
     //res.send(conVideogames)
@@ -101,8 +113,9 @@ router.get('/', async (req, res) => {
     //res.send(videogames)
 
     let videogames = await Videogame.findAll(condition)
-    let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-    gen?res.send(gameGenre):res.send(videogames)
+    //let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+    //gen?res.send(gameGenre):res.send(videogames)
+    res.send(videogames)
 
     //-A
   }
