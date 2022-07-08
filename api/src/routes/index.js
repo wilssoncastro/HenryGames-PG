@@ -20,6 +20,10 @@ const mercadopago = require('../controllers/mercadopago')
 const cartRoutes = require('../controllers/cartRoutes')
 const routesBlog = require('../controllers/blog')
 
+//------------------------GOOGLE LOGIN-------------------------------
+const authGoogle = require('../controllers/google/authGoogle.js')
+//----------------------------------------------------------
+
 router.get('/', (req, res) => {
     
     res.json({msg:'HENRYGAMES'})
@@ -38,6 +42,7 @@ router.use('/cart', cartRoutes)
 router.use('/comments', routesComments)
 router.use('/sales', routesSales)
 router.use('/blog', routesBlog)
+router.use('/', authGoogle)
 router.use('/library', libraryRoutes)
 
 router.use('/authentication', registerRoutes)

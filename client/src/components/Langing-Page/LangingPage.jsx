@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./landing.css";
+import GoogleButton from 'react-google-button'
 
 export default function LandingPage() {
   // falta ternario para saber si ya estas registrado o no. y dependiendo de ahi va a mostrar el registrarse
   // o el login.
+
+  const google = () => {
+    window.location.href = 'http://localhost:3001/auth/google'
+  }
+
   return (
     <div className="landing">
       <div className="landing_content">
@@ -20,6 +26,13 @@ export default function LandingPage() {
           <Link to="/sign_up">
             <button class="btn_sign_up">SIGN UP</button>
           </Link>
+        </div>
+        <div>
+          <GoogleButton
+            type="dark"
+            label='Log in with Google'
+            onClick={() => {google()}}
+          />
         </div>
       </div>
     </div>
