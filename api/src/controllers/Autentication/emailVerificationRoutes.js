@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const nodemailer = require('nodemailer')
 const { Player } = require('../../db');
+const randomstring = require("randomstring");
 
 const { MAIL_USER, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN} = process.env
 
@@ -129,6 +130,47 @@ router.get('/email/reSend/:mail', async(req, res) => {
                 <b>Por favor has click en el siguiente link para verificar su correo</b>
                 <br>
                 <a href="${verification_link}">LINK</a> 
+                `
+            }
+
+            let info = await transporter.sendMail(mail_options, (error, info) => {
+                if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
+            })
+
+            res.json('Mail reenviado');
+        }
+
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+router.post('/recovery_password', async(req, res) => {
+    const { mail } = req.body
+
+    try {
+        let user = await Player.findOne({
+            where: {
+                email: mail
+            }
+        })
+
+        if(!user)return res.send('No se encontro el usuario')
+
+        const new_token = await randomstring.generate(7)
+
+        user.secret_token = new_token
+        await user.save()
+
+        if(new_token){
+            let mail_options = {
+                from: '🎮🕹 <nicolasgonzalezdev@gmail.com> ',
+                to: mail,
+                subject: 'Activacion de Mail',
+                html:`
+                <b>Escriba este codigo en HenryGames para modificar su contraseña</b>
+                <br>
+                <h1><b>${new_token}</b></h1> 
                 `
             }
 

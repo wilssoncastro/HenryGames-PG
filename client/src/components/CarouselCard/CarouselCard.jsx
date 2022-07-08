@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllVideogames, getFilteredVideogames } from '../../redux/actions'
+import { /* getAllVideogames */ getFilteredVideogames } from '../../redux/actions'
 import Carousel from 'react-elastic-carousel'
 
 export default function CarouselCard() {
@@ -10,6 +10,7 @@ export default function CarouselCard() {
   const videogames = useSelector((state) => state.videogames)
 
   const [name, setName] = useState("");
+  const [gen, setGen] = useState("")
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
   const [page, setPage] = useState(0)
@@ -18,8 +19,8 @@ export default function CarouselCard() {
   const [order, setOrder] = useState('desc');
 
   useEffect(() => {
-    dispatch(getFilteredVideogames(name, tag, esrb, page, sort, order, limit))
-  }, [dispatch, name, tag, esrb, page, sort, order, limit])
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit))
+  }, [dispatch, name, gen, tag, esrb, page, sort, order, limit])
   
   return (
     <div>

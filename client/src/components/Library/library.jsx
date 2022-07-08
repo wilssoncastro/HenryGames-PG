@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, /* useState */ } from 'react';
 import NavBar from '../NavBar/navbar';
 import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup, Card } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +16,7 @@ export default function Library() {
 
   let my_games = useSelector(state => state.my_games)
 
-  console.log(my_games)
+  //console.log(my_games)
   return (
     <div>
         <NavBar/>
