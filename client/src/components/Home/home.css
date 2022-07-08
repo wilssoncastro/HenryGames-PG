@@ -35,7 +35,7 @@
 }
 
 .genres-filter {
-  justify-content: start;
+  justify-content: flex-start;
   text-decoration: none;
   color: #f4f0f0;
   text-align: start;
@@ -61,7 +61,7 @@
 }
 
 .genres-list {
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 2em;
   display: flex;
   flex-direction: column;
@@ -148,7 +148,7 @@
   flex-wrap: nowrap;
   background-color: #1c1a1a;
   text-decoration: none;
-  justify-content: start;
+  justify-content: flex-start;
   text-align: start;
   max-width: 80em;
   /* object-fit: cover;

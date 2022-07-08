@@ -50,7 +50,7 @@
 
 .left-sections {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     list-style: none;
     height: 60px;
@@ -120,7 +120,7 @@ span {
 
 .nav-text {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     padding: 8px 16px 8px 16px;
     list-style: none;
@@ -190,7 +190,7 @@ span {
     background-color: #060b26;
     width: 100%;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
 }
 
