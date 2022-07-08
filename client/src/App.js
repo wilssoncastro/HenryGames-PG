@@ -23,12 +23,8 @@ import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
 import ReSendMail from './components/ReSendMail/ReSendMail';
-<<<<<<< HEAD
-import Google from './components/Google/Google';
-=======
 //import Google from './components/Google/Google';
 import RecoveryPassword from './components/RecoveryPassword/RecoveryPassword';
->>>>>>> dev
 
 function App() {
   return (
