@@ -242,6 +242,7 @@ module.exports = router;
     //   res.send(videogames);
     // }
 
+    
 //B-
     // router.get('/filter', async (req, res) => {
     //   try {
@@ -275,3 +276,19 @@ module.exports = router;
     //     console.log("catch filter")
     //   }
     // })
+
+
+  // (elena)  const allVideogames = await Videogame.findAll({
+  //     // limit: 10,
+  //     // offset: 10,
+  //     include: [{
+  //         model: Genero,
+  //         where: {
+  //             id: {
+  //                 [Op.in]: [3,4],
+  //             },
+  //         } // conditions
+  //     }]
+  // });
+
+  // https://www.youtube.com/watch?v=2-LISBTczQE

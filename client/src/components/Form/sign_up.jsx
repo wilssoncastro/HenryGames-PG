@@ -99,7 +99,7 @@ export default function SignUp() {
         navigate(`/activation/mail-validation/${input.email}`)
       },2000)
     } else { 
-      console.log("Entrooooo")
+      //console.log("Entrooooo")
       if (errors.password) {
         log_error = errors.password;
       } else {

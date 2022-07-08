@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, getCardStatistics, getSales } from "../../redux/actions";
 /* import Card from "../Card/card"; */
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import BarChart from "../Graphics/BarChart";
 import LineChart from "../Graphics/LineChart";
 import UsersVsSales from "../Graphics/UsersVsSales";
@@ -62,7 +62,7 @@ export default function Estadisticas() {
 
   for (let i = 0; i < sales.length; i++) {
     const dateA = sales[i].date
-    const dateB = sales[i].createdAt
+    //const dateB = sales[i].createdAt
     if (dateA.slice(5,7) === "04") {
       abril = abril + sales[i].price
     }
@@ -136,3 +136,6 @@ return (
 
 
 }
+
+
+
