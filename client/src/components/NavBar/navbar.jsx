@@ -132,18 +132,18 @@ export default function NavBar() {
             loggedIn: true
         },
         {
-            title: 'Log In',
-            path: '/log_in',
-            icon: <FiIcons.FiLogIn />,
-            className: 'log-in-button',
+            title: 'Sign Up',
+            path: '/sign_up',
+            icon: <CgIcons.CgProfile/>,
+            className: 'sign-up-button',
             onClick: showSidebar,
             loggedIn: false
         },
         {
-            title: 'Sign Up',
-            path: '/sign_up',
-            icon: <CgIcons.CgProfile style={{color: '#1a83ff'}}/>,
-            className: 'sign-up-button',
+            title: 'Log In',
+            path: '/log_in',
+            icon: <FiIcons.FiLogIn />,
+            className: 'log-in-button',
             onClick: showSidebar,
             loggedIn: false
         }
@@ -184,12 +184,14 @@ export default function NavBar() {
                         </Link>
 
                         {/* Library section */}
-                        <Link to='/library' className="left-sections">
-                            <BiIcons.BiLibrary className="navbar-left-icons" />
-                            <h3 className="navleft-text">LIBRARY </h3>
-                        </Link>
+                        {id?
+                            (<Link to='/library' className="left-sections">
+                                <BiIcons.BiLibrary className="navbar-left-icons" />
+                                <h3 className="navleft-text">LIBRARY </h3>
+                            </Link>
+                            ) : (<></>)
+                        }
                      </div>
-
 
 
                     <div className="NavBar-center"></div>

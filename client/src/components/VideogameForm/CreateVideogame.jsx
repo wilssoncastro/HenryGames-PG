@@ -288,12 +288,12 @@ export default function VideogameCreate() {
 
   return (
     <div className="videogame_created_container">
+
       <NavBar />
 
-      <p>Please fill out the following form with information about the video game you want to publish</p>
-
-      <div className="cv-body-login">
-        <div className="cv-login-component">
+      <div className="cv-body">
+        <p>Please fill out the following form with information about the video game you want to publish</p>
+        <div className="cv-form-component">
 
           {/* LEFT */}
           <div className="cv-left-container">
@@ -406,15 +406,15 @@ export default function VideogameCreate() {
 
           {/* RIGHT */}
           <div className="cv-right-container">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form className="cv-form" onSubmit={(e) => handleSubmit(e)}>
               <div>
                 <div>
 
                   {/* NAME */}
-                  <div>
-                    <label>Name: </label>
+                  <div className="cv-input-div">
+                    <label>Name</label>
                     <input
-                      className={errors.name ? "input_text_error" : "input_text"}
+                      className={errors.name ? "input_text_error" : "cv-input"}
                       type="text"
                       name="name"
                       placeholder="Videogame name"
@@ -428,7 +428,7 @@ export default function VideogameCreate() {
                   <div>
                     <label>Description</label>
                     <input
-                      className={errors.description ? "input_text_error" : "input_text"}
+                      className={errors.description ? "input_text_error" : "cv-input"}
                       type="text"
                       placeholder="Descripción.."
                       value={input.description}
@@ -443,10 +443,10 @@ export default function VideogameCreate() {
                   <div>
                     <label>Release date</label>
                     <input
-                      className={errors.release_date ? "input_text_error" : "input_text"}
+                      className={errors.release_date ? "input_text_error" : "cv-input"}
                       name="release_date"
                       type="text"
-                      laceholder="DD-MM-YYYY"
+                      placeholder="DD-MM-YYYY"
                       value={input.release_date}
                       onChange={(e) => handleChange(e)}
                     />
@@ -572,14 +572,17 @@ export default function VideogameCreate() {
               </div>
             </form>
           </div>
-            <button className="botonCrear" type="submit">Publish Videogame</button>
-
+        
+        {/* TERMINA FORM */}
         </div>
+
+        <button className="botonCrear" type="submit">Publish Videogame</button>
       </div>
 
       <div className="containerPublishVideogame">
 
       </div>
+
     </div>
   );
 }

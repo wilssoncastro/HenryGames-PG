@@ -241,7 +241,6 @@ span {
 
 .sign-up-button {
     display: flex;
-    justify-content: flex-end;
     margin: 0.5em;
     align-items: center;
     padding: 8px 16px 8px 16px;
@@ -265,8 +264,10 @@ span {
 }
 
 .sign-up-button a:hover {
-    border: 1px solid #1a83ff;
-    color: #1a83ff;
+    /* border: 1px solid #1a83ff;
+    color: #1a83ff; */
+    transition: 350ms;
+    background-color: #1a83ff;
     
 }
 
@@ -274,7 +275,6 @@ span {
 /* Log-In Button */
 .log-in-button {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     padding: 8px 16px 8px 16px;
     list-style: none;
