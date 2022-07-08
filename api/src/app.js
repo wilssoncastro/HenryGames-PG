@@ -9,6 +9,7 @@ const Strategy = require("passport-local").Strategy;
 const { Player } = require('./db');
 const { SECRET } = process.env
 const bcrypt = require("bcrypt")
+const randomstring = require("randomstring");
 
 const server = express()
 
@@ -31,7 +32,7 @@ server.use((req, res, next) => {
   next();
 });
 
-//---------AUTENTHICATION-------------//
+//---------AUTHENTICATION-------------//
 
 passport.use(
   new Strategy(function (username, password, done) {
@@ -63,6 +64,45 @@ passport.use(
 
   })
 )
+
+//---------GOOGLE STRATEGY-------------//
+
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: process.env['GOOGLE_CLIENT_ID'],
+    clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
+    callbackURL: "http://localhost:3001/google/callback",
+    passReqToCallback: true
+  },
+  async function(request, accessToken, refreshToken, profile, done) {
+    console.log('entre en la funcion de GoogleStrategy')
+    await Player.findOne({where:{email: profile.email}})
+      .then(async (user) => {
+        if(!user){
+          console.log('registro del user google en la BD')
+          const createUserGoogle = await Player.create({
+            name: profile.given_name, 
+            lastname: profile.family_name, 
+            email: profile.email, 
+            profile_pic: profile.photos[0].value, 
+            active: profile.email_verified, 
+            user: profile.displayName,
+            password: randomstring.generate(12),
+            type: 'player'
+          })
+          return done(null, createUserGoogle)
+        }
+        if(user){
+            console.log('Se encontro el user de Google')
+            return done(null, user)
+          }
+        })
+      .catch( err => {
+        console.log(err)
+        return done(err)
+      })
+}));
 
 passport.serializeUser(function(user, done) {
   console.log('paso dos de la autenticación')

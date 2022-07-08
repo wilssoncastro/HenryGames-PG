@@ -13,6 +13,7 @@ export const POST_COMMENT = 'POST_COMMENT'
 export const REPORT_COMMENT = 'REPORT_COMMENT'
 export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
+export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -412,4 +413,20 @@ export function deleteFriend(id,idfriend){
 
 //FIN ACTIONS 
 // COMENTARIOS
-//
+
+
+//  ACTIONS
+//  Library
+// 
+
+export function getLibraryById(id_user){
+  return async function(dispatch){
+    return axios.get(`http://localhost:3001/library/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: GET_LIBRARY_BY_ID,
+        payload: data
+      })
+    })
+  }
+}

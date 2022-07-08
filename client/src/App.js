@@ -22,6 +22,7 @@ import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
+import Google from './components/Google/Google';
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
           <Route exact path='/store/:id' element={<Detail />} />
 
           {/* Página del admin */}
-          <Route exact path='/admin' element={<Admin />}/>
+          <Route exact path='/admin' element={<Admin/>}/>
           
           {/* Ruta para publicar videogame */}
           <Route exact path='/admin/publishVideogame' element={<VideogameCreate />} />
@@ -87,7 +88,8 @@ function App() {
           <Route exact path='/friends/:id' element={<Friends/>}/>
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
 
-          
+          <Route path='/googleLogin' element={<Google />}/>
+
           {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
       </div>
