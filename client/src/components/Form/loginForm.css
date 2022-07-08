@@ -28,7 +28,7 @@
     justify-content: center;
     margin: auto;
     margin-left: auto;
-    margin-top: 10em;
+    margin-top: 8vh;
 }
 
 .lf-left-container {
@@ -43,7 +43,7 @@
     top: 0;
     height: 100%;
     background: rgb(245, 230, 145);
-    background-color: rgb(26, 25, 25); 
+    background-color: black; 
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
@@ -67,7 +67,7 @@
 }
 
 .lf-p {
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 100;
     line-height: 20px;
     letter-spacing: 0.5px;
@@ -88,7 +88,6 @@
 .lf-button {
     border-radius: 20px;
     border: 1px solid #ffffff;
-    /* background-color: #000000; */
     color: rgb(0, 0, 0);
     font-size: 12px;
     font-weight: bold;
@@ -96,6 +95,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    margin-top: 1rem;
 }
 
 .lf-button:active {
@@ -108,18 +108,42 @@
     color: #fff;
     background-color: rgb(0, 0, 0);
     border: 1px solid rgb(0, 0, 0);
+    transition: 0.6s;
 }
+
+.buttonAdmin{
+    color: black;
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 3px 8px;
+}
+
+.buttonAdmin:hover{
+    background-color: #c7a94b;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.linkAdmin {
+    margin-top: 5rem;
+}
+
 
 .lf-button-leftside {
     border-radius: 20px;
     border: 1px solid #fff;
     background-color: #fff;
-    color: rgb(245, 230, 145);
-    font-size: 12px;
+    color: black;
+    font-size: 14px;
     font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 18px;
 }
 
 .lf-button-leftside:active {
@@ -132,6 +156,7 @@
     background-color: rgb(245, 230, 145);
     color: black;
     border: 1px solid rgb(245, 230, 145);
+    transition: 0.5s;
 }
 
 .lf-form {
@@ -146,7 +171,7 @@
 
 .lf-input {
     /* background-color: rgb(0, 0, 0); */
-    color: rgb(245, 230, 145);
+    color: black;
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
@@ -187,15 +212,19 @@
     text-transform: uppercase;
     margin-top: 4em;
 }
-
 .lf-button-guest:active {
     transform: scale(0.95);
 }
-
 .lf-button-guest:hover {
     outline: none;
     cursor: pointer;
     background-color: #1a83ff;
     color: rgb(255, 255, 255);
     border: 1px solid #1a83ff;
+    transition: 0.5s;
+}
+
+.errorsLog{
+    color: rgba(255, 58, 58, 0.952);
+    font-family: 'Times New Roman', Times, serif;
 }

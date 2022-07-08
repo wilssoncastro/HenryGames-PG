@@ -1,42 +1,38 @@
-import React, {useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import LogOut from '../LogOut/LogOut';
-import { addManyToCart } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
-import './loginForm.css';
-
+import { addManyToCart } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import "./loginForm.css";
 
 export default function LogIn() {
-
   let navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [input, setInput] = useState({
-    username:'',
-    password:''
-  })
-  
-  const [error, setError] = useState('');
+    username: "",
+    password: "",
+  });
 
-  function handleChange(e){
+  const [error, setError] = useState("");
+
+  function handleChange(e) {
     setInput({
       ...input,
-      [e.target.name]:e.target.value
-    })
+      [e.target.name]: e.target.value,
+    });
   }
 
+  async function onSubmit(e) {
+    e.preventDefault();
 
+    if (input.username && input.password) {
+      let is_authorized = await axios.get("http://localhost:3001/is_online");
 
-  async function onSubmit(e){
-    e.preventDefault()
-
-    if(input.username && input.password){
-      let is_authorized = await axios.get('http://localhost:3001/is_online')
-
-      if((is_authorized.data)){
-        setError('Ya estas logueado')
-      }else{
+      if (is_authorized.data) {
+        setError("You are already register");
+      } else {
         const login = await axios({
           method: "post",
           url: "http://localhost:3001/authentication/login",
@@ -48,8 +44,7 @@ export default function LogIn() {
           return res;
         })
         .catch((error) => console.log(error));
-  
-        
+
         let {log_in, id, name, lastname, type, profile_pic, user} = login.data
               
         if(log_in){
@@ -61,67 +56,72 @@ export default function LogIn() {
           localStorage.setItem('profile_pic', profile_pic)
           localStorage.setItem('user', user)
           carrito = JSON.parse(carrito)
-          console.log(carrito)
-          if(typeof carrito !== 'object'){
-            console.log('no entre')
+
+          if(typeof carrito !== 'object'){   
           }else{
             dispatch(addManyToCart(id, {'games':carrito}))
           }
-          localStorage.setItem('cart', JSON.stringify([]))
-          navigate('/home')
+          localStorage.setItem("cart", JSON.stringify([]));
+          navigate("/home");
         }
-  
-        if(typeof login.data === 'string'){
-          setError(login.data)
+        if (typeof login.data === "string") {
+          setError(login.data);
         }
       }
-
-
-
-    }else{
-      setError('Faltan datos')
+    } else {
+      setError("Missing data");
     }
-
   }
-
+  
   return (
-      <div className="lf-body-login">
-
-
-        <div className='lf-login-component'>
-
-          {/* LEFT */}
-          <div className="lf-left-container">
-            <h1 className='lf-h1'>Welcome Back!</h1>
-            <br />
-            <p className='lf-p'>Please login to your <strong>Henry Games</strong> account with your personal info</p>
-            <br/>
-            <p className='lf-p'>Don't have an account yet?</p>
-            <Link to='/sign_up'><button className='lf-button-leftside'>Sign Up</button></Link>
-            <br />
-            <Link to='/home'><button className='lf-button-guest'>Or enter as a guest</button></Link>
-          </div>
-
-          {/* RIGHT */}
-          <div className="lf-right-container">
-            <form className='lf-form' onSubmit={onSubmit}>
-              <h1 className='lf-h1'>Sign In</h1>
-              <br />
-              {/* <span className='lf-span'>Or use your account</span> */}
-              <input className='lf-input' type="text" name='username' value={input.username} onChange={handleChange} placeholder="Username" />
-              <input className='lf-input' type='password' name='password' value={input.password} onChange={handleChange} placeholder="Password" />
-              <br />
-              <button className='lf-button' type="submit">Log In</button>
-            </form>
-          </div>
-
+    <div className="lf-body-login">
+      <div className="lf-login-component">
+        {/* LEFT */}
+        <div className="lf-left-container">
+          <h1 className="lf-h1">Welcome Back!</h1>
+          <br />
+          <p className="lf-p">Log in to your Henry Games account</p>
+          <br />
+          <p className="lf-p">Don't have an account yet?</p>
+          <Link to="/sign_up">
+            <button className="lf-button-leftside">Sign Up</button>
+          </Link>
+          <br />
+          <Link to="/home">
+            <button className="lf-button-guest">Or enter as a guest</button>
+          </Link>
         </div>
 
-        <p>{error}</p>
-        
-
+        {/* RIGHT */}
+        <div className="lf-right-container">
+          <form className="lf-form" onSubmit={onSubmit}>
+            <h1 className="lf-h1">Sign In</h1>
+            <br />
+            <input
+              className="lf-input"
+              type="text"
+              name="username"
+              value={input.username}
+              onChange={handleChange}
+              placeholder="Username"
+            />
+            <input
+              className="lf-input"
+              type="password"
+              name="password"
+              value={input.password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+            <br />
+            <button className="lf-button" type="submit">
+              Log In
+            </button>
+             {error ? <p className="errorsLog">{error}</p> : <></>}
+          </form>
+        </div>
       </div>
-
+    </div>
   );
 }
-// OPCION "Sign Up" abajo de todo
+

@@ -53,5 +53,8 @@ font-family: sans-serif;
     line-height: 25px;
     padding: 0 40px 0 10px;
     transition: .3s ease all;
-  
+}
+
+.containerPublishVideogame{
+    margin-top: 100px;
 }

@@ -13,6 +13,7 @@ export const POST_COMMENT = 'POST_COMMENT'
 export const REPORT_COMMENT = 'REPORT_COMMENT'
 export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
+export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -28,7 +29,7 @@ export function is_authorizated(){
 
 export function getAllVideogames() {
   return async function (dispatch) {
-    let json = await axios("http://localhost:3001/videogames");
+    let json = await axios(`http://localhost:3001/videogames`);
     return dispatch({
       type: "GET_ALL_VIDEOGAMES",
       payload: json.data,
@@ -36,14 +37,25 @@ export function getAllVideogames() {
   };
 }
 
-export function getFilteredVideogames(name, page, sort, order, limit) {
+
+export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
     });
   };
+}
+
+export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
+  //return async function (dispatch) {
+    //let json = await axios(`http://localhost:3001/videogames?name=${name}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    return ({
+      type: "FILTER_BY_GENRE",
+      payload,
+    });
+  //}
 }
 
 export function getGenres() {
@@ -355,6 +367,16 @@ export function comment_info(id_game){
   }
 }
 
+export function getSales(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/sales`)
+    return dispatch({
+      type: "GET_SALES",
+      payload: json.data,
+    })
+  }
+}
+
 
 export function getFriends(id) {
   return async function (dispatch) {
@@ -391,4 +413,20 @@ export function deleteFriend(id,idfriend){
 
 //FIN ACTIONS 
 // COMENTARIOS
-//
+
+
+//  ACTIONS
+//  Library
+// 
+
+export function getLibraryById(id_user){
+  return async function(dispatch){
+    return axios.get(`http://localhost:3001/library/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: GET_LIBRARY_BY_ID,
+        payload: data
+      })
+    })
+  }
+}

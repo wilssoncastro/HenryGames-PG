@@ -7,6 +7,8 @@ import swal from "sweetalert";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ComponentError } from "./componentError";
+import NavBar from "../NavBar/navbar";
+import './EditVideogame.css';
 
 export default function Edit() {
 
@@ -62,6 +64,8 @@ export default function Edit() {
 
       return (
         <div>
+          <NavBar />
+          <div className="containerEditVideogame">
           <h2>Edit videogame</h2>
           <button onClick={(e) => handleEdit(e)}>Search game to edit</button>
           {
@@ -109,6 +113,7 @@ export default function Edit() {
               }
             </div>
           }
+        </div>
         </div>
       )
     }else{      

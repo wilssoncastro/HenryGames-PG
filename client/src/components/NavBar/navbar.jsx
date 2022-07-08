@@ -149,7 +149,7 @@ export default function NavBar() {
     ]
 
     let sidebarDataInfo = []
-    if (!user) {
+    if (!id) {
         sidebarData.map((e) => {
             if (e.loggedIn == false || !e.loggedIn) {
                 sidebarDataInfo.push(e)
@@ -249,7 +249,7 @@ export default function NavBar() {
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <h3 className="friendBoxTitle">Friend List</h3>
                             <div className="FriendListBox">                               
-                                {friends&&friends.length?friends.map((e) => {
+                                {friends&& friends != "No se encontro el usuario" && friends.length?friends.map((e) => {
                                     return (                                      
                                         <ul>
                                         <li key={e.id} className= "friend-tag">
