@@ -1,9 +1,9 @@
-import { stat } from 'fs'
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
         GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
         DELETE_ALL_FROM_CART,
         IS_ONLINE,
-        INFO_COMMENT
+        INFO_COMMENT,
+        GET_LIBRARY_BY_ID
 } from '../actions/index'
 
 const initialState = {
@@ -20,7 +20,8 @@ const initialState = {
     comments: [],
     is_online: false,
     friends: [],
-    new_comments: []
+    new_comments: [],
+    my_games: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -202,7 +203,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 friends: state.friends.filter(v => v.id !== action.payload.id)
             }
-            
+        case GET_LIBRARY_BY_ID:
+            return {
+                ...state,
+                my_games: action.payload.data.library
+            }
         default:
             return state;
    
