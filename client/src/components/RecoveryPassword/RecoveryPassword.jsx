@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function RecoveryPassword(){
+
+    const navigate = useNavigate()
 
     function validate(input) {
         let error = '';
@@ -24,6 +27,7 @@ export default function RecoveryPassword(){
       });
 
     const [error, setError] = useState('')
+    const [msg, setMsg] = useState('')
 
     function handleChange(e){
         setInput({
@@ -39,21 +43,26 @@ export default function RecoveryPassword(){
           );
     }
 
-    function onSubmit(e){
+    async function onSubmit(e){
         e.preventDefault()
         if(error.length || !input.mail){
-            console.log('No se pudo enviar')
+            setMsg(error)
         }else{
-            console.log('envio')
-            axios.post(`http://localhost:3001/authentication/recovery_password`, input)
-            .then(data => {
-                console.log(data)
-            })
-            .catch(err => console.log(err))
+            
+            let info = await axios.post(`http://localhost:3001/authentication/recovery_password`, input)
+            // .then(data => {
+            //     console.log(data)
+            // })
+            // .catch(err => console.log(err))
             setInput({
                 mail: ""
             })
-            Navigate('/')
+            if(info.data === 'No se encontro el usuario'){
+                setMsg(info.data)
+            }else{
+                setMsg('')
+                navigate(`/recoverPass/${info.data}`)
+            }
         }
     }
 
@@ -71,6 +80,7 @@ export default function RecoveryPassword(){
                 />
 
                 <input type='submit' />
+                {msg && msg}
             </form>
         </div>
     )

@@ -178,7 +178,7 @@ router.post('/recovery_password', async(req, res) => {
                 if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
             })
 
-            res.json('Mail reenviado');
+            res.json(user.id);
         }
 
     } catch (error) {

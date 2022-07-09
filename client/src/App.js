@@ -25,6 +25,7 @@ import ValidationGame from './components/ValidationGame/validationGame';
 import ReSendMail from './components/ReSendMail/ReSendMail';
 //import Google from './components/Google/Google';
 import RecoveryPassword from './components/RecoveryPassword/RecoveryPassword';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
 
           {/* <Route path='/googleLogin' element={<Google />}/> */}
           <Route path='/recoverPass' element={<RecoveryPassword />} />
+          <Route path='/recoverPass/:id_user' element={<ChangePassword />} />
           {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
       </div>
