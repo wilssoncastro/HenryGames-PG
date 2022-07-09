@@ -48,9 +48,9 @@ export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, l
   };
 }
 
-export function getNoLimitFilteredVideogames(name, gen, tag, esrb, page, sort, order) {
+export function getNoLimitFilteredVideogames(name, gen, tag, esrb, sort, order) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&sort=${sort}&order=${order}`);
     return dispatch({
       type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
       payload: json.data
