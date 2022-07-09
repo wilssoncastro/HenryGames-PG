@@ -87,3 +87,42 @@
   transition: 0.5s;
 }
 
+.CartIsEmpty{
+  color: #c0a956;
+  background-color: rgba(0, 0, 0, 0.8);
+  margin-top: 12rem;
+  display: inline-block;
+  padding: 20px;
+  font-size: 45px;
+  border-radius: 12px;
+}
+
+.AddGamesCart{
+  color: #c0a956;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: block;
+  align-items: center;
+  justify-content: center;
+  max-width: max-content;
+  margin-left: 37.5rem;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+
+
+.btnAddToCart{
+  background-color: black;
+  color: #c0a956;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 8px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+.btnAddToCart:hover{
+  transition: 0.7s;
+  background-color: #c0a956;
+  color: black;
+}
+
