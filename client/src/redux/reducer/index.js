@@ -9,6 +9,7 @@ import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART,
 const initialState = {
     allVideogames: [],
     videogames: [],
+    noLimitVideogames: [],
     details: [],
     wishList: [],
     genres: [],
@@ -30,7 +31,7 @@ const rootReducer = (state = initialState, action) => {
         case "GET_ALL_VIDEOGAMES":
             return {
                 ...state,
-                //videogames: action.payload,
+                videogames: action.payload,
                 allVideogames: action.payload,
             }
 
@@ -38,6 +39,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 videogames: action.payload,
+            }
+
+        case "GET_NOLIMIT_FILTERED_VIDEOGAMES":
+            return {
+                ...state,
+                noLimitVideogames: action.payload,
             }
 
         case 'FILTER_BY_GENRE':

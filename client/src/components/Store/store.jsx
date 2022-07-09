@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFilteredVideogames, getAllVideogames, getGenres, /* filterVideogamesByGenre */ } from "../../redux/actions";
+import { getFilteredVideogames, getAllVideogames, getGenres, getNoLimitFilteredVideogames, /* filterVideogamesByGenre */ } from "../../redux/actions";
 // import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
 import Card from "../Card/card.jsx";
 import NavBar from "../NavBar/navbar";
@@ -41,8 +41,9 @@ export default function Store() {
   };
 
   useEffect(() => {
-    dispatch(getAllVideogames())
+    //dispatch(getAllVideogames())
     dispatch(getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit))
+    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, page, sort, order))
     dispatch(getGenres())
   }, [dispatch, name, gen, tag, esrb, page, sort, order, limit])
 
@@ -182,7 +183,7 @@ export default function Store() {
           </select>
         </div>
 
-        <div hidden={name.length > 2 || esrb || tag}>
+        <div hidden={name.length > 2}>
           <button
             className="buttonPrev"
             onClick={(e) => prev(e)}

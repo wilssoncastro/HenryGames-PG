@@ -27,8 +27,8 @@ router.get('/', async (req, res) => {
           image: e.background_image,
           description: e.slug,
           rating: e.rating,
-          price: ftp ? 0 : ((Math.random() * 10).toFixed(2)),
-          on_sale: (Math.random() * 10) < 7 ? false : true,
+          price: ftp ? 0 : ((Math.random() * 10 + 1).toFixed(2)),
+          on_sale: (Math.random() * 10 + 1) < 7 ? false : true,
           free_to_play: ftp,
           short_screenshots: e.short_screenshots.map(s => s.image),
           tags: e.tags.map(t => t.name.toLowerCase()),
@@ -66,59 +66,22 @@ router.get('/', async (req, res) => {
   }
   /////////////////////////////////////////llamado a BD
   else 
-  {
-    const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
-
-    //let videogames = gen?await Videogame.findAll().filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll()
-
-    let condition = {}
-    let where = {}
-    if (name && name.length > 2) {
-      where.name = { [Op.iLike]: `${name}%` }
-    }
-    if (esrb) {
-      where.esrb_rating = { [Op.iLike]: `${esrb}%` }
-    }
-    if (tag) {
-      let tagL = tag.toLowerCase()
-      where.tags = { [Op.overlap]: [tag, tagL] }
-    }
-    condition.where = where;
-    limit?condition.limit=limit:!condition.limit;
-    page?condition.offset=page:!condition.offset;
-    sort&&order?condition.order=[[sort, order]]:!condition.order;
-    gen?condition.include=[{
-      model: Genre,
-      attributes: ["name"],
-      through: {
-        attributes: [],
-      },
-      where: {
-        name: {
-          [Op.in]: [gen],
+  { 
+    let totalData = await Videogame.findAll({
+      include: [{
+        model: Genre,
+        attributes: ["name"],
+        through: {
+          attributes: []
         }
-      }
-    }]:condition.include=[{
-      model: Genre,
-      attributes: ["name"],
-      through: {
-        attributes: [],
-      }
-    }] 
-
-    //let conVideogames = await videogames.findAll(condition)
-    //res.send(conVideogames)
-
-    //let videogames = gen?await Videogame.findAll(condition).filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll(condition)
-    //res.send(videogames)
-
-    let videogames = await Videogame.findAll(condition)
-    //let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-    //gen?res.send(gameGenre):res.send(videogames)
-    res.send(videogames)
+      }]
+    })
+    res.send(totalData)
+  }
+  
 
     //-A
-  }
+  
   // {
   //   const { sort, order } = req.query;
   //   let condition = {}
@@ -138,6 +101,62 @@ router.get('/', async (req, res) => {
 } catch (error) {
     console.log(error)
     console.log("CATCH")
+  }
+})
+
+router.get("/filter", async (req, res) => {
+  try {
+    const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+
+//let videogames = gen?await Videogame.findAll().filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll()
+
+let condition = {}
+let where = {}
+if (name && name.length > 2) {
+  where.name = { [Op.iLike]: `${name}%` }
+}
+if (esrb) {
+  where.esrb_rating = { [Op.iLike]: `${esrb}%` }
+}
+if (tag) {
+  let tagL = tag.toLowerCase()
+  where.tags = { [Op.overlap]: [tag, tagL] }
+}
+condition.where = where;
+limit?condition.limit=limit:!condition.limit;
+page?condition.offset=page:!condition.offset;
+sort&&order?condition.order=[[sort, order]]:!condition.order;
+gen?condition.include=[{
+  model: Genre,
+  attributes: ["name"],
+  through: {
+    attributes: [],
+  },
+  where: {
+    name: {
+      [Op.in]: [gen],
+    }
+  }
+}]:condition.include=[{
+  model: Genre,
+  attributes: ["name"],
+  through: {
+    attributes: [],
+  }
+}] 
+
+//let conVideogames = await videogames.findAll(condition)
+//res.send(conVideogames)
+
+//let videogames = gen?await Videogame.findAll(condition).filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll(condition)
+//res.send(videogames)
+
+let videogames = await Videogame.findAll(condition)
+//let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
+//gen?res.send(gameGenre):res.send(videogames)
+res.send(videogames)
+  } catch (error) {
+    console.log(error)
   }
 })
 
