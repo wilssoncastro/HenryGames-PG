@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, /* useParams */ } from "react-router-dom";
 import swal from "sweetalert";
 import { getWishList, deleteWishList, getUserById } from '../../redux/actions/index';
 import ErrorLogin from "../ErrorLogin.jsx/ErrorLogin";

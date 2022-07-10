@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../NavBar/navbar";
 import Card from "../Card/card";
-import { Link, useNavigate } from "react-router-dom";
+import {  Link , useNavigate } from "react-router-dom";
 import {
   delFromCart,
   getCartById,
   deleteAllFromCart,
   postMercadoPago,
-  is_authorizated,
+  /* is_authorizated */
 } from "../../redux/actions";
 import swal from "sweetalert";
 import "./shoppingcart.css";
@@ -29,8 +29,6 @@ export default function ShoppingCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     if(typeof id_user === "string"){
       dispatch(getCartById(id_user));
-    }else{
-      console.log('estoy en local')
     }
   }, [cart /* dispatch */]);
 
@@ -88,9 +86,7 @@ export default function ShoppingCart() {
 
   const handleClearCart = (e) => {
     if (typeof id_user === "string") {
-      console.log("Entre y paso algo");
       dispatch(deleteAllFromCart(id_user, { games: videogamesInCart }));
-      console.log("mmmm");
     } else {
       localStorage.setItem("cart", []);
     }
@@ -136,11 +132,11 @@ export default function ShoppingCart() {
 
   return (
     <div className="backgroundCart">
-      <div>
+    {/*   <div>
         <NavBar />
-      </div>
+      </div> */}
       <div>
-        {current_cart?.length > 0 ? (
+        {current_cart?.length > 0 ? ( 
           <div className="cart">
             <div className="containerButtonsCart">
               <button 
@@ -162,29 +158,36 @@ export default function ShoppingCart() {
             </div>
             <div className="containercard">
               {current_cart.map((game) => (
-                <div className="cardCart">
-                  <Card
-                    key={game.id}
-                    image={game.image}
-                    name={game.name}
-                    price={game.price}
-                    id={game.id}
-                  />
-                  <button
-                    className="buttonRemove"
-                    type="reset"
-                    onClick={() => handleDelete(game.id)}
-                  >
-                    <FaIcons.FaTrashAlt />
-                  </button>
+                <div className="containerCart">
+                  <div className="cardCart">
+                    <Card
+                      key={game.id}
+                      image={game.image}
+                      name={game.name}
+                      price={game.price}
+                      id={game.id}
+                    />
+                    <button
+                      className="buttonRemove"
+                      type="reset"
+                      onClick={() => handleDelete(game.id)}
+                    >
+                      <FaIcons.FaTrashAlt />
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <div>
-            <h1>No games in cart...</h1>
-          </div>
+            <div className="div">
+              <h2 className="CartIsEmpty">The Cart is Empty..</h2>
+              <p className="AddGamesCart">Do you want to add games to your Cart ?  <br/>
+               <Link to="/store">
+                 <button className="btnAddToCart">Let's Go!</button>
+               </Link>
+              </p>
+            </div>
         )}
       </div>
     </div>

@@ -17,12 +17,15 @@ import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
 import { Users } from './components/Administrador/Users';
+//import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
 import ReSendMail from './components/ReSendMail/ReSendMail';
-import Google from './components/Google/Google';
+//import Google from './components/Google/Google';
+import RecoveryPassword from './components/RecoveryPassword/RecoveryPassword';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 function App() {
   return (
@@ -89,8 +92,9 @@ function App() {
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
           <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
 
-          <Route path='/googleLogin' element={<Google />}/>
-
+          {/* <Route path='/googleLogin' element={<Google />}/> */}
+          <Route path='/recoverPass' element={<RecoveryPassword />} />
+          <Route path='/recoverPass/:id_user' element={<ChangePassword />} />
           {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
       </div>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, /* useSelector */ } from "react-redux";
 import { delete_comment, edit_comment, report_comment} from '../../redux/actions'
 import './Info_Comment.css'
 
@@ -31,7 +31,7 @@ export default function Info_Comment({id, id_user, comment, createdAt, user}){
         
         
         if(error.length === 0 && comment.length !== 0){
-            console.log('Enviado')
+            //console.log('Enviado')
             dispatch(edit_comment(id, {comment:edittedComment}))
             setEditMode(false)
             setError('')
