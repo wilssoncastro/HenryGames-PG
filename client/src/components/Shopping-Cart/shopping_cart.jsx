@@ -115,7 +115,7 @@ export default function ShoppingCart() {
           dispatch(postMercadoPago(carrito))
             .then((data) => {
               console.log(data);
-              window.open(data.data.init_point);
+              window.location.href = data.data.init_point;
             })
             .catch((err) => console.error(err));
           break;
