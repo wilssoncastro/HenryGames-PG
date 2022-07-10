@@ -34,8 +34,8 @@ const router = Router();
 router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     let { userId, token, mail} = req.params
     
-
-    let verification_link = `http://localhost:3000/activation/${userId}/${token}`
+    let CLIENT_URL = 'http://localhost:3000/log_in'
+    //let verification_link = `http://localhost:3000/activation/${userId}/${token}`
     try {
         if( userId && token && mail){
             
@@ -46,7 +46,7 @@ router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
                 html:`
                 <b>Por favor has click en el siguiente link para verificar su correo</b>
                 <br>
-                <a href="${verification_link}">LINK</a> 
+                <a href="${CLIENT_URL}">LINK</a> 
                 `
             }
 

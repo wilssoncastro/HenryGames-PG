@@ -12,7 +12,8 @@ import {
   getCommentsByGame,
   comment_info,
   getCartById,
-  is_authorizated
+  is_authorizated,
+  postMercadoPago
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -121,6 +122,47 @@ export default function Detail() {
     });
   }
 
+  const handleBuyMercadoPago = (videogame) => {
+    const carrito = [videogame]
+    dispatch(postMercadoPago(carrito))
+      .then((data) => {
+        console.log(data);
+        window.location.href = data.data.init_point;
+      })
+    };
+
+    const logInToBuy = () => {
+      swal({
+        title: "You need log in to buy",
+        text: "Not registered yet?",
+        icon: "error",
+        buttons: {
+          login: {
+            text: "Go to log in",
+            value: "log_in",
+          },
+          signup: {
+            text: "Go to sign up",
+            value: "sign_up",
+          },
+          cancel: "Cancel",
+        },
+      }).then((value) => {
+        switch (value) {
+          case "log_in":
+            navigate("/log_in");
+            break;
+  
+          case "sign_up":
+            navigate("/sign_up");
+            break;
+  
+          default:
+            break;
+        }
+      });
+    };
+
   return (
     <div className="allPage">
       <div>
@@ -170,6 +212,15 @@ export default function Detail() {
                     <div>
                       <button
                         className="buttonBuy"
+                        onClick={
+                          typeof idProfile === "string"
+                            ? () => {
+                                handleBuyMercadoPago(videogame);
+                              }
+                            : () => {
+                                logInToBuy();
+                              }
+                        }
                       ><FiIcons.FiDollarSign />
                       </button>
                     </div>
