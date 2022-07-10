@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFilteredVideogames, getAllVideogames, getGenres, /* filterVideogamesByGenre */ } from "../../redux/actions";
-// import { CardImg, CardBody, CardTitle, Button, CardText, CardSubtitle, CardGroup } from 'reactstrap';
+import { getFilteredVideogames, getAllVideogames, getGenres, getNoLimitFilteredVideogames } from "../../redux/actions";
 import Card from "../Card/card.jsx";
 import NavBar from "../NavBar/navbar";
-/* import SearchBar from '../Searchbar/searchbar'; */
 import "./store.css";
 import Paginado from "../Paginado/paginado";
 
 export default function Store() {
   const dispatch = useDispatch();
-  const allVideogames = useSelector((state) => state.allVideogames)
+  const noLimitVG = useSelector((state) => state.noLimitVideogames)
   const videogames = useSelector((state) => state.videogames);
   const allGenres = useSelector((state) => state.genres)
 
@@ -18,39 +16,21 @@ export default function Store() {
   const [gen, setGen] = useState("");
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
+  const [on_sale, setOnSale] = useState("")
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
   const [limit, setLimit] = useState(200)
 
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [videogamesPerPage, setVideogamesPerPage] = useState(limit)
-  // const indexOfLastVideogame = currentPage * videogamesPerPage
-  // const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage
-  // const currentVideogames = allVideogames.slice(indexOfFirstVideogame, indexOfLastVideogame)
-  // const pageQty = allVideogames.length/videogamesPerPage
-  // const pageQty = allVideogames.length/limit
-  // const currentPage = (page/limit)
-
-  // console.log("length = "+ allVideogames.length + " y limit = "+ limit)
-  // console.log("resta = "+ (allVideogames.length-limit))
-  // console.log("page = "+ page)
-  
   const paginado = (pageNum) => {
-    setPage((pageNum-1)*limit);
+    setPage((pageNum - 1) * limit);
   };
 
   useEffect(() => {
-    dispatch(getAllVideogames())
-    dispatch(getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit))
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit))
+    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order))
     dispatch(getGenres())
-  }, [dispatch, name, gen, tag, esrb, page, sort, order, limit])
-
-  // let filterGame = name!==""?currentVideogames.filter((e) => e.name.toLowerCase().includes(name)):currentVideogames
-  // gen!==""?filterGame=filterGame.filter((e) => e.genres.find((e) => e.name === gen)):filterGame=filterGame
-  // tag!==""?filterGame=filterGame.filter((e) => e.tags.find(e => e.toLowerCase().includes(tag))):filterGame=filterGame
-  // esrb!==""?filterGame=filterGame.filter((e) => e.esrb_rating.includes(esrb)):filterGame=filterGame
-  
+  }, [dispatch, name, gen, tag, esrb, on_sale, page, sort, order, limit])
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -65,54 +45,46 @@ export default function Store() {
   const handleLimit = (e) => {
     e.preventDefault();
     setLimit(e.target.value)
-    // setVideogamesPerPage(e.target.value);
-    // setCurrentPage(1)
   }
 
   const prev = (e) => {
     e.preventDefault();
     setPage(page - limit)
-    // setCurrentPage(parseInt(currentPage) - 1)
   }
 
   const next = (e) => {
     e.preventDefault();
     setPage(page + parseInt(limit))
-    // setCurrentPage(parseInt(currentPage) + 1)
   }
 
   const handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
+    setPage(0)
   };
 
   const handleInputTag = (e) => {
     e.preventDefault();
     setTag(e.target.value);
-    // if (e.target.value !== "") {
-    //   setVideogamesPerPage(allVideogames.length)
-    // }
+    setPage(0)
   };
 
-  // const handleGen = (e) => {
-  //   e.preventDefault();
-  //   dispatch(filterVideogamesByGenre(e.target.value))
-  //   //setCurrentPage(1)
-  // }
   const handleGen = (e) => {
     e.preventDefault();
     setGen(e.target.value)
-    // if (e.target.value !== "") {
-    //   setVideogamesPerPage(allVideogames.length)
-    // }
+    setPage(0)
   }
 
   const handleEsrb = (e) => {
     e.preventDefault();
     setEsrb(e.target.value)
-    // if (e.target.value !== "") {
-    //   setVideogamesPerPage(allVideogames.length)
-    // }
+    setPage(0)
+  }
+
+  const handleOnSale = (e) => {
+    e.preventDefault();
+    setOnSale(e.target.value)
+    setPage(0)
   }
 
   return (
@@ -123,7 +95,7 @@ export default function Store() {
       <div className="top-filter">
         <h1>Videogames</h1>
         <div className="containerFilters">
-          
+
           <input
             value={name}
             type="text"
@@ -160,6 +132,11 @@ export default function Store() {
             <option value="Adults Only">Adults Only</option>
           </select>
 
+          <select className="selectPages" onChange={(e) => handleOnSale(e)}>
+            <option value="">All Sales</option>
+            <option value="true">On Sale</option>
+          </select>
+
           <select className="selectPages" onChange={(e) => handleLimit(e)}>
             <option value="200">Games per page</option>
             <option value="10">10</option>
@@ -182,42 +159,45 @@ export default function Store() {
           </select>
         </div>
 
-        <div hidden={name.length > 2 || esrb || tag}>
+        <div hidden={name.length > 2}>
           <button
             className="buttonPrev"
             onClick={(e) => prev(e)}
             disabled={page < 1}
           >
-          PREV
+            PREV
           </button>
           <button
             className="buttonNext"
             onClick={(e) => next(e)}
-            disabled={parseInt(page) >= (allVideogames.length-limit)}
+            disabled={parseInt(page) >= (noLimitVG.length - limit)}
           >
-          NEXT
+            NEXT
           </button>
           <div>
-            <Paginado limit={limit} page={page} paginado={paginado}/>
+            <Paginado limit={limit} page={page} paginado={paginado} />
           </div>
         </div>
       </div>
 
       <div className="containercard">
-        {videogames.map((v, i) => {
-          return (
-            <div>
-              <Card
-                key={v.id}
-                image={v.image}
-                name={v.name}
-                price={v.price}
-                free_to_play={v.free_to_play}
-                id={v.id}
-              />
-            </div>
-          );
-        })}
+        {
+          videogames.map((v, i) => {
+            return (
+              <div>
+                <Card
+                  key={v.id}
+                  image={v.image}
+                  name={v.name}
+                  price={v.price}
+                  free_to_play={v.free_to_play}
+                  on_sale={v.on_sale}
+                  id={v.id}
+                />
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );
