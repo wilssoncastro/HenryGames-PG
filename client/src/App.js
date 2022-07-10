@@ -22,7 +22,7 @@ import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
-import Google from './components/Google/Google';
+import Google from './components/Google/GoogleButton';
 import Chat from './components/ChatRoom/chat'
 
 import ReSendMail from './components/ReSendMail/ReSendMail';

@@ -9,9 +9,6 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.16"
-  },
   "dependencies": {
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
@@ -25,6 +22,7 @@
     "mercadopago": "^1.5.13",
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.5",
+    "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
@@ -32,5 +30,12 @@
     "randomstring": "^1.2.2",
     "sequelize": "^6.21.0",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    
+    "supertest": "^6.0.1",
+    "supertest-session": "^4.1.0"
   }
 }

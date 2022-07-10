@@ -10,10 +10,10 @@ export default function LandingPage({type}) {
     return (
         <fragment>
             <GoogleButton
-            type={type}
-            label='Log in with Google'
-            onClick={() => {google()}}
-          />
+                type={type}
+                label='Log in with Google'
+                onClick={() => {google()}}
+            />
         </fragment>
     )
 }
