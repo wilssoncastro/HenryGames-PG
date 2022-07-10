@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FriendList } from "./FriendList";
+//import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -13,6 +13,7 @@ import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
 import * as FiIcons from "react-icons/fi"
 import * as RiIcons from "react-icons/ri"
+import * as IoIcons from "react-icons/io"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +27,7 @@ export default function NavBar() {
     const cartLocal = JSON.parse(localStorage.getItem('cart') || "[]");
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
-    const user = useSelector((state) => state.my_user)
+    //const user = useSelector((state) => state.my_user)
     
     //const is_online = useSelector((state) => state.is_online)
     const current_cart = (typeof id === 'object') ? cartLocal : cart
@@ -45,12 +46,13 @@ export default function NavBar() {
         })
         .then((res) => {
             if(res){
-                console.log('removiendo store')
+                //console.log('removiendo store')
                 localStorage.removeItem('profile_pic')
                 localStorage.removeItem('lastname')
                 localStorage.removeItem('name')
                 localStorage.removeItem('type')
                 localStorage.removeItem('id')
+                localStorage.removeItem('user')
                 dispatch(getUserById())
                 
             }
@@ -125,24 +127,24 @@ export default function NavBar() {
         {
             title: 'Log Out',
             path: '#',
-            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b'}} />,
+            icon: <FiIcons.FiLogOut/>,
             className: 'log-out-button',
             onClick: logOut,
             loggedIn: true
+        },
+        {
+            title: 'Sign Up',
+            path: '/sign_up',
+            icon: <CgIcons.CgProfile/>,
+            className: 'sign-up-button',
+            onClick: showSidebar,
+            loggedIn: false
         },
         {
             title: 'Log In',
             path: '/log_in',
             icon: <FiIcons.FiLogIn />,
             className: 'log-in-button',
-            onClick: showSidebar,
-            loggedIn: false
-        },
-        {
-            title: 'Sign Up',
-            path: '/sign_up',
-            icon: <CgIcons.CgProfile style={{color: '#1a83ff'}}/>,
-            className: 'sign-up-button',
             onClick: showSidebar,
             loggedIn: false
         }
@@ -183,12 +185,14 @@ export default function NavBar() {
                         </Link>
 
                         {/* Library section */}
-                        <Link to='/library' className="left-sections">
-                            <BiIcons.BiLibrary className="navbar-left-icons" />
-                            <h3 className="navleft-text">LIBRARY </h3>
-                        </Link>
+                        {id?
+                            (<Link to='/library' className="left-sections">
+                                <BiIcons.BiLibrary className="navbar-left-icons" />
+                                <h3 className="navleft-text">LIBRARY </h3>
+                            </Link>
+                            ) : (<></>)
+                        }
                      </div>
-
 
 
                     <div className="NavBar-center"></div>
@@ -247,7 +251,12 @@ export default function NavBar() {
                         </div>
 
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
-                            <h3 className="friendBoxTitle">Friend List</h3>
+                            <div className="friend-list-title-container">
+                                <p className='vacio-FLTC'></p>
+                                <h3 className="friendBoxTitle">Friend List </h3>
+                                <Link className="addIcon" to={`/friends/${id}`}><IoIcons.IoIosAddCircleOutline/></Link>
+                            </div>
+
                             <div className="FriendListBox">                               
                                 {friends&& friends != "No se encontro el usuario" && friends.length?friends.map((e) => {
                                     return (                                      

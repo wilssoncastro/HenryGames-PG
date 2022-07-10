@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { /* Link */ useParams, useNavigate } from "react-router-dom";
 import {
   addWishList,
   getDetailsVideogame,
@@ -12,7 +12,8 @@ import {
   getCommentsByGame,
   comment_info,
   getCartById,
-  is_authorizated
+  is_authorizated,
+  postMercadoPago
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -29,15 +30,14 @@ export default function Detail() {
   const { id } = useParams();
   const id_user = localStorage.getItem("id");
 
-  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || []);
+  const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart /* setCart */] = useState(cartFromLocalStorage);
 
   const videogame = useSelector((state) => state.details);
   const list = useSelector((state) => state.wishList);
-  const actual_cart = useSelector((state) => state.cart);
+  //const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
-  const is_online = useSelector((state) => state.is_online)
-  console.log(is_online)
+  //const is_online = useSelector((state) => state.is_online)
   let idProfile = localStorage.getItem("id");
 
   useEffect(() => {
@@ -58,7 +58,6 @@ export default function Detail() {
       var respuesta = window.confirm(
         "Are you sure you want to delete the videogame?"
       );
-      console.log(id);
       if (respuesta === true) {
         dispatch(deleteVideogame(id));
         navigate("/home");
@@ -70,14 +69,12 @@ export default function Detail() {
   const handleOnClick = (idGame) => {
     let id = localStorage.getItem("id");
     dispatch(addWishList(id, idGame));
-    console.log("se agrego el juego de la lista");
     navigate(`/store/${idGame}`);
   };
 
   const handleOnClickDelete = (idGame) => {
     let id = localStorage.getItem("id");
     dispatch(deleteWishList(id, idGame));
-    console.log("se elimino el juego de la lista");
     navigate(`/store/${idGame}`);
   };
 
@@ -125,6 +122,47 @@ export default function Detail() {
     });
   }
 
+  const handleBuyMercadoPago = (videogame) => {
+    const carrito = [videogame]
+    dispatch(postMercadoPago(carrito))
+      .then((data) => {
+        console.log(data);
+        window.location.href = data.data.init_point;
+      })
+    };
+
+    const logInToBuy = () => {
+      swal({
+        title: "You need log in to buy",
+        text: "Not registered yet?",
+        icon: "error",
+        buttons: {
+          login: {
+            text: "Go to log in",
+            value: "log_in",
+          },
+          signup: {
+            text: "Go to sign up",
+            value: "sign_up",
+          },
+          cancel: "Cancel",
+        },
+      }).then((value) => {
+        switch (value) {
+          case "log_in":
+            navigate("/log_in");
+            break;
+  
+          case "sign_up":
+            navigate("/sign_up");
+            break;
+  
+          default:
+            break;
+        }
+      });
+    };
+
   return (
     <div className="allPage">
       <div>
@@ -140,7 +178,7 @@ export default function Detail() {
               <div className="containerImgList">
 
                 <div>
-                  <img className="image" src={videogame.image} />
+                  <img className="image" src={videogame.image} alt='not found' />
 
                   <div className="buttons">
                     <div>
@@ -174,6 +212,15 @@ export default function Detail() {
                     <div>
                       <button
                         className="buttonBuy"
+                        onClick={
+                          typeof idProfile === "string"
+                            ? () => {
+                                handleBuyMercadoPago(videogame);
+                              }
+                            : () => {
+                                logInToBuy();
+                              }
+                        }
                       ><FiIcons.FiDollarSign />
                       </button>
                     </div>
@@ -263,7 +310,7 @@ export default function Detail() {
               <Carousel focusOnSelect={false} itemsToShow={4}>
                 {videogame.short_screenshots?.map((e) => {
                   return (
-                    <img className="screenshots" src={e} alt="Not found" />
+                    <img className="screenshots" src={e} alt="" />
                   );
                 })}
               </Carousel>

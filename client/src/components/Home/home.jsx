@@ -1,19 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React/*  { useEffect, useState } */ from 'react';
 import NavBar from '../NavBar/navbar'
-import Carousel from 'react-elastic-carousel'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllVideogames, getFilteredVideogames } from '../../redux/actions'
-import * as BiIcons from "react-icons/bi"
+// import Carousel from 'react-elastic-carousel'
+// import { Link } from 'react-router-dom'
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getAllVideogames, getFilteredVideogames } from '../../redux/actions'
+// import * as BiIcons from "react-icons/bi"
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
+import { useEffect } from 'react';
 import './home.css'
 import './carousel.css'
 
 export default function Home() {
-   
 
+    useEffect(() => {
+        const getUser = () =>{
+            fetch('http://localhost:3001/auth/google/protected', {
+                method: 'GET',
+                credentials: 'include',
+                header: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+            },
+        }).then((res) => {
+            if (res.status===200) return res.json(); 
+            else throw new Error('authentication has been failed')
+        }).then((resObj) => {
+            //console.log('info user google ', resObj.user)
+            localStorage.setItem("id", resObj.user.id)
+            localStorage.setItem('name', resObj.user.name)
+            localStorage.setItem('lastname', resObj.user.lastname)
+            localStorage.setItem('type', resObj.user.type)
+            localStorage.setItem('profile_pic', resObj.user.profile_pic)
+            localStorage.setItem('user', resObj.user.email)
+        }).catch((error)=> {
+            console.log(error)
+        })
+        }
+        getUser()
+    }, [])
     
     // const dispatch = useDispatch();
     // const videogames = useSelector((state) => state.videogames)

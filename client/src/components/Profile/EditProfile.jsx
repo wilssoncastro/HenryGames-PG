@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, /* useEffect */ } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, /* useSelector */ } from "react-redux";
 import swal from 'sweetalert'
 import { editProfile } from "../../redux/actions";
 
@@ -148,7 +148,7 @@ return (
                             <div>
                                 {profile.profile_pic != "" ? (
                                     <div >
-                                        <img src={profile.profile_pic} className="image_form" />
+                                        <img src={profile.profile_pic} className="image_form" alt='' />
                                         <button
                                             className="botonX"
                                             onClick={(e) => handleDeleteImage(e)}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFriends, getUserById, getAllUsers, addFriend, deleteFriend } from "../../redux/actions";
-import { Link, useParams } from "react-router-dom";
+import { /* Link */ useParams } from "react-router-dom";
 import "./Friends.css"
 import swal from "sweetalert";
 import NavBar from "../NavBar/navbar";
@@ -96,7 +96,7 @@ export default function Friends() {
 
             <div className="container_all">
                 <div className="user_prof">
-                    <img className="img_profile_friends" src={user.profile_pic} />
+                    <img className="img_profile_friends" src={user.profile_pic} alt='' />
                     <h2>{user.user}</h2>
                 </div>
                 <div className="btns_container">
@@ -114,7 +114,7 @@ export default function Friends() {
                             friends.map(e => {
                                 return (
                                     <div className="friend_box">
-                                        <img className="friend_img" src={e.profile_pic} />
+                                        <img className="friend_img" src={e.profile_pic} alt='' />
                                         <div className="text_frient_container">
                                             <p> user: {e.user} </p>
                                             <p> {e.email}</p>
