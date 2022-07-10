@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as GrIcons from 'react-icons/gr';
-import GoogleButton from '../Google/GoogleButton.jsx'
+import GoogleBtn from '../Google/GoogleButton.jsx'
 
 export default function SignUp() {
   const Swal = require("sweetalert2");
@@ -124,7 +124,7 @@ export default function SignUp() {
             <button className="lf-button-leftside">Sign In</button>
           </Link>
           <div className="GoogleButton">
-            <GoogleButton type='light'/>
+            <GoogleBtn type='light'/>
           </div>
           <Link to="/registerAdmin" className="linkAdmin">
             <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
