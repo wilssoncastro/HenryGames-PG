@@ -22,7 +22,9 @@ const initialState = {
     sales: [],
     is_online: false,
     friends: [],
-    my_games: []
+    my_games: [],
+    my_chat:[],
+    chat_friend:[]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -238,8 +240,26 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 my_games: action.payload.data.library
             }
+        case "GET_CHAT":
+        return{
+            ...state,
+            my_chat: action.payload
+        }
+        case "GET_CHAT_FRIEND":
+        return{
+            ...state,
+            chat_friend: action.payload
+        }
+        case "SEND_MESSAGE":
+        return{
+            ...state,
+            my_chat: state.my_chat.concat(action.payload)
+
+        }
+
         default:
             return state;
+            
 
     }
 }

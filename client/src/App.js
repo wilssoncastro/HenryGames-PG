@@ -23,6 +23,8 @@ import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
 import Google from './components/Google/Google';
+import Chat from './components/ChatRoom/chat'
+
 
 function App() {
   return (
@@ -89,6 +91,9 @@ function App() {
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
 
           <Route path='/googleLogin' element={<Google />}/>
+
+          ///CHAT
+          <Route path='/chat/:id_user/:idF' element={<Chat />}/>
 
           {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
