@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./landing.css";
 import GoogleButton from 'react-google-button'
 import { getAllVideogames } from "../../redux/actions";
+import GoogleButton from '../Google/GoogleButton.jsx'
 
 export default function LandingPage() {
   // falta ternario para saber si ya estas registrado o no. y dependiendo de ahi va a mostrar el registrarse
@@ -35,13 +36,9 @@ export default function LandingPage() {
             <button class="btn_sign_up">SIGN UP</button>
           </Link>
         </div>
-        <div>
-          <GoogleButton
-            type="dark"
-            label='Log in with Google'
-            onClick={() => {google()}}
-          />
-        </div>
+
+          <GoogleButton type='dark'/>
+
       </div>
     </div>
   );

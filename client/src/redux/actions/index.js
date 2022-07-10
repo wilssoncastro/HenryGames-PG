@@ -437,3 +437,39 @@ export function getLibraryById(id_user){
     })
   }
 }
+
+
+////CHAT
+
+export function getChats(id_user, idF){
+  return async function(dispatch){
+    
+    var json = await axios.get(`http://localhost:3001/chat/${id_user}/${idF}`)
+    
+    return dispatch({
+      type: "GET_CHAT",
+      payload: json.data
+  });
+}
+}
+export function getChatsFriend(idF,id_user){
+  return async function(dispatch){
+    var json = await axios.get(`http://localhost:3001/chat/${idF}/${id_user}`)
+     return dispatch({
+      type: "GET_CHAT_FRIEND",
+      payload: json.data
+  });
+}
+}
+
+export function sendMessageChat(id_user, idF, message){
+  return async function(dispatch){
+    var json = await axios.post(`http://localhost:3001/chat/message/${id_user}/${idF}`,message);
+    return dispatch({
+          type: "SEND_MESSAGE",
+          payload: json.data
+      });
+  
+
+  }
+}
