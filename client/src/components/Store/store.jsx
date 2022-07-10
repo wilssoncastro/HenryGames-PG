@@ -16,6 +16,7 @@ export default function Store() {
   const [gen, setGen] = useState("");
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
+  const [on_sale, setOnSale] = useState("")
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
@@ -26,10 +27,10 @@ export default function Store() {
   };
 
   useEffect(() => {
-    dispatch(getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit))
-    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, page, sort, order))
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit))
+    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order))
     dispatch(getGenres())
-  }, [dispatch, name, gen, tag, esrb, page, sort, order, limit])
+  }, [dispatch, name, gen, tag, esrb, on_sale, page, sort, order, limit])
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -80,6 +81,12 @@ export default function Store() {
     setPage(0)
   }
 
+  const handleOnSale = (e) => {
+    e.preventDefault();
+    setOnSale(e.target.value)
+    setPage(0)
+  }
+
   return (
     <div className="background">
       <div className="first-row">
@@ -123,6 +130,11 @@ export default function Store() {
             <option value="Teen">Teen</option>
             <option value="Mature">Mature</option>
             <option value="Adults Only">Adults Only</option>
+          </select>
+
+          <select className="selectPages" onChange={(e) => handleOnSale(e)}>
+            <option value="">All Sales</option>
+            <option value="true">On Sale</option>
           </select>
 
           <select className="selectPages" onChange={(e) => handleLimit(e)}>
@@ -179,6 +191,7 @@ export default function Store() {
                   name={v.name}
                   price={v.price}
                   free_to_play={v.free_to_play}
+                  on_sale={v.on_sale}
                   id={v.id}
                 />
               </div>

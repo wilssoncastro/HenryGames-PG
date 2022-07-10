@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
     let copi = juego
     juego.map((e) => {
       let ftp = e.tags.filter(j => j.name === "Free to Play").length ? true : false
+      let salePrice = ((Math.random()*10)+1).toFixed(2)
       Videogame.findOrCreate({
         where: {
           id: e.id,
@@ -27,8 +28,8 @@ router.get('/', async (req, res) => {
           image: e.background_image,
           description: e.slug,
           rating: e.rating,
-          price: ftp ? 0 : ((Math.random() * 10 + 1).toFixed(2)),
-          on_sale: (Math.random() * 10 + 1) < 7 ? false : true,
+          price: ftp ? 0 : salePrice,
+          on_sale: salePrice > 4 ? false : true,
           free_to_play: ftp,
           short_screenshots: e.short_screenshots.map(s => s.image),
           tags: e.tags.map(t => t.name.toLowerCase()),
@@ -106,7 +107,7 @@ router.get('/', async (req, res) => {
 
 router.get("/filter", async (req, res) => {
   try {
-    const { name, gen, tag, esrb, limit, page, sort, order } = req.query;
+    const { name, gen, tag, esrb, limit, page, sort, order, on_sale } = req.query;
 
 //let videogames = gen?await Videogame.findAll().filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll()
 
@@ -121,6 +122,9 @@ if (esrb) {
 if (tag) {
   let tagL = tag.toLowerCase()
   where.tags = { [Op.overlap]: [tag, tagL] }
+}
+if (on_sale) {
+  where.on_sale = on_sale
 }
 condition.where = where;
 limit?condition.limit=limit:!condition.limit;

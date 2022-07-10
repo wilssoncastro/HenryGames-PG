@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./landing.css";
 import GoogleButton from 'react-google-button'
 import { getAllVideogames } from "../../redux/actions";
-import GoogleButton from '../Google/GoogleButton.jsx'
+//import GoogleBtn from "../Google/GoogleButton";
 
 export default function LandingPage() {
   // falta ternario para saber si ya estas registrado o no. y dependiendo de ahi va a mostrar el registrarse
