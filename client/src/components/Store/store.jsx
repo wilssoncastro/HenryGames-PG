@@ -5,6 +5,7 @@ import Card from "../Card/card.jsx";
 import NavBar from "../NavBar/navbar";
 import "./store.css";
 import Paginado from "../Paginado/paginado";
+import loading from '../../images/loading/Infinity-2.9s-200px.gif'
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -181,7 +182,11 @@ export default function Store() {
       </div>
 
       <div className="containercard">
-        {
+        { !videogames.length ?
+            <div className="loadingStore">
+              <img src={loading} alt=''/>
+            </div>
+            :
           videogames.map((v, i) => {
             return (
               <div>

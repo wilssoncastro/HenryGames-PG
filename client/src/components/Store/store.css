@@ -92,3 +92,9 @@
   transition: 0.5s;
   transform: scale(1.05);
 }
+
+.loadingStore{
+  width: 100vw;
+  padding-top: 20vh;
+  padding-right: 7vh;
+}
