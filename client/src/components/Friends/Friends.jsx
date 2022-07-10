@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFriends, getUserById, getAllUsers, addFriend, deleteFriend } from "../../redux/actions";
-import { /* Link */ useParams } from "react-router-dom";
+import {  Link,  useParams } from "react-router-dom";
 import "./Friends.css"
 import swal from "sweetalert";
 import NavBar from "../NavBar/navbar";
