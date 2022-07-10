@@ -287,6 +287,17 @@ export function editProfile(id,payload){
       })
     }
   }
+
+export function deleteAccount(id) {
+  return async function(dispatch) {
+    var json = await axios.delete(`http://localhost:3001/users/delete?id=${id}`);
+    dispatch({
+      type: "DELETE_ACCOUNT",
+      payload: json.data
+    })
+  }
+}
+
 //COMENTARIOS 
 //FUNCIONES
 //

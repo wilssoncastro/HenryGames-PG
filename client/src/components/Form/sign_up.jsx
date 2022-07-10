@@ -15,13 +15,13 @@ export default function SignUp() {
     if (input.name.length < 2) {
       errors.name = "The name is invalid";
     } else if(!input.name){
-        errors.name = "Please put your name for continue"
+        errors.name = "Please put your name to continue"
     }
 
     if (input.lastname.length < 2) {
       errors.lastname = "The lastname is invalid";
     } else if(!input.lastname){
-        errors.lastname = "Please put your lastname for continue"
+        errors.lastname = "Please put your lastname to continue"
     }
 
     if (!input.user) {
@@ -29,7 +29,7 @@ export default function SignUp() {
     } 
 
     if (!input.email){
-        errors.email = "An email is require"
+        errors.email = "An email is required"
     } else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input.email))
         errors.email = "The email is invalid";  
 
@@ -44,7 +44,7 @@ export default function SignUp() {
       errors.repassword = "The password doesn't match";
     }
     if (!input.type.length) {
-      errors.type = "Falta el type";
+      errors.type = "Type is missing";
     }
     return errors;
   }

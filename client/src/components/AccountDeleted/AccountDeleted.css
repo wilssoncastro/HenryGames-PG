@@ -1,0 +1,39 @@
+.da-body{
+    background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992433619224236072/henry_fonfo-01-01.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    font-family: "Arial Black", Gadget, sans-serif;
+}
+.deleted-message {
+    color: white;
+    margin-left: 40vw;
+    margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.da-return-button {
+    background-color: #1a83ff;
+    color: white;
+    padding: 8px 16px 8px 16px;
+    align-self: center;
+    width: fit-content;
+    text-decoration: none;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+}
+
+
+.da-return-button:hover {
+    transition: 350ms;
+    color: black;
+    background-color: rgb(245, 230, 145);
+}

@@ -24,7 +24,7 @@ import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
 import Google from './components/Google/GoogleButton';
 import Chat from './components/ChatRoom/chat'
-
+import AccountDeleted from './components/AccountDeleted/AccountDeleted';
 import ReSendMail from './components/ReSendMail/ReSendMail';
 //import Google from './components/Google/Google';
 import RecoveryPassword from './components/RecoveryPassword/RecoveryPassword';
@@ -73,6 +73,7 @@ function App() {
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/profile/:id/editprofile' element={<EdiProfile/>}/>
+          <Route exact path='/profile/:id/delete' element={<AccountDeleted/>}/>
 
           {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
