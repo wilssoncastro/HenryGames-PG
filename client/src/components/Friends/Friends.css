@@ -118,7 +118,7 @@ background: linear-gradient(285deg, rgba(255,255,255,1) 14%, rgba(192,169,86,1) 
     flex-direction: row;
     border: #ffffff 4px solid;  
     background: #2c3842;
-    width: 400px;      
+    width: 500px;      
     height: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -231,15 +231,14 @@ background: linear-gradient(285deg, rgba(255,255,255,1) 14%, rgba(192,169,86,1) 
 }
 
 .btn_add_delete_friend{
-    width: 30%;
+    width: 15%;
     height: 40%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
     margin-right: 3px;
-    background: rgb(36,96,208);
-    background: linear-gradient(285deg, rgba(36,96,208,1) 6%, rgba(55,147,224,1) 54%);
-    cursor: pointer;
+    background: rgb(182,139,36);
+background: linear-gradient(285deg, rgba(182,139,36,1) 30%, rgba(176,28,28,1) 59%);
     text-align: center;
     transition: 0.5s;
     background-size: 200% auto;
@@ -251,8 +250,39 @@ background: linear-gradient(285deg, rgba(255,255,255,1) 14%, rgba(192,169,86,1) 
 }
 
 .btn_add_delete_friend:hover{
-    background: rgb(36,96,208);
-    background: linear-gradient(285deg, rgb(0, 89, 255) 6%, rgb(18, 135, 232) 54%);
-    width: 32%;
+    background: rgb(182,139,36);
+    background: linear-gradient(285deg, rgb(248, 25, 0) 30%, rgb(250, 0, 0) 59%);
+    width: 15%;
     height: 42%;
+    cursor: pointer;
+}
+
+.btn_to_message{
+
+    width: 80px;
+    height: 40%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 3px;
+    background: rgb(36,182,144);
+    background: linear-gradient(285deg, rgba(36,182,144,1) 0%, rgba(36,137,182,1) 93%);
+    cursor: pointer;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.btn_to_message:hover{
+
+    background: rgb(36,182,144);
+    background: linear-gradient(285deg, rgb(0, 255, 187) 0%, rgrgb(0, 179, 255)3%);
+    width: 82px;
+    height: 42%;
+    cursor: pointer;
 }
