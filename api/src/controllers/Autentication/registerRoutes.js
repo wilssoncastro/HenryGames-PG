@@ -36,6 +36,10 @@ router.get('/register', (req, res, next) => {
 router.post('/register', isAuthenticated, async (req, res) => {
 
   const { name, lastname, user, password, email, type } = req.body;
+
+  if(type === 'adm' && !admins.includes(email)){
+    return res.send('No tienes los derechos para ser administrador')
+  }
   
     
   if(!name || !lastname || !user || !password || !email || !type){

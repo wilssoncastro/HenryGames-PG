@@ -5,7 +5,7 @@ import axios from "axios";
 import { addManyToCart } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import "./loginForm.css";
-import GoogleButton from '../Google/GoogleButton.jsx'
+import GoogleBtn from '../Google/GoogleButton.jsx'
 
 export default function LogIn() {
   let navigate = useNavigate();
@@ -91,9 +91,7 @@ export default function LogIn() {
           <Link to="/home">
             <button className="lf-button-guest">Or enter as a guest</button>
           </Link>
-          <Link to='/recoverPass'>
-            I forget my password
-          </Link>
+          
         </div>
 
         {/* RIGHT */}
@@ -117,12 +115,14 @@ export default function LogIn() {
               onChange={handleChange}
               placeholder="Password"
             />
-            <br />
             <button className="lf-button" type="submit">
               Log In
             </button>
+            <Link to='/recoverPass'>
+              <button className="lf-button-recovery">I forgot my password</button>
+            </Link>
             <div className="GoogleButton">
-              <GoogleButton type='light'/>
+              <GoogleBtn type='light'/>
             </div>
             {error ? <p className="errorsLog">{error}</p> : <></>}
           </form>
