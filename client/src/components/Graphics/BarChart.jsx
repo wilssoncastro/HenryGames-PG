@@ -25,7 +25,7 @@ import {
 
 const options = {
     fill: true,
-    responsive: false,
+    responsive: true,
     animations: true,
     scales: {
         y:{
@@ -36,7 +36,7 @@ const options = {
 
 export default function BarChart({ orderVG }){
     let sales = orderVG.map(e => e.contador)
-    let names = orderVG.map(e => e.name.slice(0,5))
+    let names = orderVG.map(e => e.name)
     const salesdata= {
         label: "Top Sales",
         data: sales
@@ -45,5 +45,5 @@ export default function BarChart({ orderVG }){
         datasets: [salesdata],
         labels: names,
     }
-    return <Bar data={data} options={options}/>
+    return <Bar data={data} options={options} />
 }

@@ -1,55 +1,110 @@
 import { React, useEffect /* useState */ } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllUsers } from "../../redux/actions";
+import { bannedUser, getAllUsers, unbannedUser } from "../../redux/actions";
 import { ComponentError } from "./componentError";
 import NavBar from "../NavBar/navbar";
 import './Users.css';
+import swal from "sweetalert";
 
 export function Users() {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
-
-  //console.log(users)
+  let id = localStorage.getItem("id");
+  console.log(id)
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
+  let handleClickBan= async function(id) {
+    swal({
+      title: "Banned this user",
+      text: "Are you sure you want to banned this user?",
+      icon: "info",
+      buttons: ["No", "Yes"]
+  }).then(response => {
+      if (response) {
+        dispatch(bannedUser(id))
+          
+        swal({
+          title: "Confirmed",
+          text: "User Unbanned",
+          icon: "success",
+          
+      }).then(reponse => {
+        dispatch(getAllUsers())
+      }
+       
+      )       
+      }
+    })    
+        
+  }
+
+  let handleClickunbanned = async function(id) {
+    swal({
+      title: "Unbanned this user",
+      text: "Are you sure you want to unbanned this user?",
+      icon: "info",
+      buttons: ["No", "Yes"]
+  }).then(response => {
+      if (response) {
+        dispatch(unbannedUser(id))
+        swal({
+          title: "Confirmed",
+          text: "User Unbanned",
+          icon: "success",          
+      }).then(reponse => {
+        dispatch(getAllUsers())
+      }
+       
+      )       
+      }
+    })
+    
+    
+     
+     
+  }
+
   const id_user_admin = localStorage.getItem('type')
   if (id_user_admin) {
     if (id_user_admin === "adm") {
 
+      console.log(users)
       return (
-        <div>
+        <div className="component_users_admin">
           <NavBar />
           <div className="containerUsersAdmin">
           <h3>Users List: </h3>
           <table className="tableUsers">
-            <tr>
-              {users.map((e) => (
-                <div>
-                  <tr>
+            
+          <tr>      
                     <th>Id</th>
                     <th>Users</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Active</th>
                     <th>Banned</th>
-                    <th>Wish List</th>
+                    <th>Options</th>
+                    
                   </tr>
-
+              {users.map((e) => (
+              
                   <tr>
                     <td>{e.id}</td>
                     <td>{e.user}</td>
                     <td>{e.name}</td>
                     <td>{e.email}</td>
-                    <td>{e.active}</td>
-                    <td>{e.banned}</td>
-                    <td>{e.wishs}</td>
+                    {e.active === true?<td>✔</td> : <td>X</td>}
+                    {e.banned === true?<td>✔</td> : <td>X</td>}  
+                    { e.id != id ? e.banned === true?  <td><button onClick={()=> {handleClickunbanned(e.id)}}>Unbanned</button></td> :<td onClick={()=> {handleClickBan(e.id)}}><button>Ban</button></td> : <td>No options</td>}  
+                                 
                   </tr>
-                </div>
+                 
+               
               ))}
-            </tr>
+           
           </table>
         </div>
         </div>

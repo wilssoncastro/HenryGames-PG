@@ -1,11 +1,49 @@
-.tableUsers,td,th {
-    border-collapse: collapse;
-    border: 1px solid black;
-    padding: 10px;
+.component_users_admin{
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');
+    /* background-color: #151414; */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    position: relative;
+    z-index: 1;  
+    font-family: "Arial Black", Gadget, sans-serif;
+    color: aliceblue;
 }
 
+.containerUsersAdmin{
+    background: rgba(0, 0, 0, 0.761);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 70%;
+}
+.tableUsers{  
+   width: 90%;
+   margin: auto;
+   font-size: 12px;
+
+}
+
+.tableUsers,td,th {
+    border-collapse: collapse;
+    border: 1px solid rgb(236,170,13);
+    padding: 10px;
+    
+}
+
+th {
+    background: rgb(236,170,13);
+    background: linear-gradient(285deg, rgba(236,170,13,1) 33%, rgba(246,191,18,1) 74%);
+   
+}
 td {
     text-align: left;
+   
 }
 
 .containerUsersAdmin{

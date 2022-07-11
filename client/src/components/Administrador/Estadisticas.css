@@ -33,4 +33,68 @@
 .estatistics{
     background: rgb(255, 255, 255);
     color: black;
+    min-height: 400px;
 }
+
+.option_statistics{
+background: rgba(0, 0, 0, 0.989);
+color: #eee;
+}
+
+.btn_option{
+    width: 250px;
+    height: 60px;    
+    margin-left: 5px;  
+    margin-right: 5px;
+    margin-bottom: 10px;
+
+    background: rgb(236,170,13);
+    background: linear-gradient(285deg, rgba(236,170,13,1) 33%, rgba(246,191,18,1) 59%);
+    cursor: pointer;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.btn_option:hover{
+    background: rgb(36,96,208);
+    background: linear-gradient(285deg, rgb(0, 89, 255) 6%, rgb(18, 135, 232) 54%);
+    width: 255px;
+    height: 65px;
+}
+
+.card_game_statistics{
+    display: flex;
+    border: #c7a94b 1px solid;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+    }
+
+.card_stadistics{
+    border: #c7a94b 3px solid;
+    width: 300px;
+    height: 200px; 
+    margin: 15px;
+    background: rgba(0, 0, 0, 0.796);   
+    color:#e3b014;
+}
+
+.component_top_videogames{
+    width: 800px;
+    height: 480px;
+    border: #c7a94b 3px solid;
+    margin: 10px;
+    margin-left:auto ;
+    margin-right:auto ;
+    background: rgb(255, 255, 255);
+
+}
+
+

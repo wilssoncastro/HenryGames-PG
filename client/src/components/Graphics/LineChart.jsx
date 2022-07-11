@@ -32,7 +32,7 @@ const labels = ["enero","febrero","marzo", "abril","mayo","junio","julio","agost
 
 const options = {
     fill: true,
-    responsive: false,
+    responsive: true,
     scales: {
         y:{
             min: 0,
