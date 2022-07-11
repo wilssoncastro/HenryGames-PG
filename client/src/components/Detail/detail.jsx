@@ -25,6 +25,7 @@ import Comment from "../Comment/Comment";
 import Info_Comment from "../Info_Comment/Info_Comment";
 import * as BsIcons from "react-icons/bs";
 import * as FiIcons from "react-icons/fi";
+import * as MdIcons from 'react-icons/md';
 import loading from '../../images/loading/Infinity-2.9s-200px.gif'
 
 export default function Detail() {
@@ -174,8 +175,11 @@ export default function Detail() {
 
     function addToLibrary(e){
       e.preventDefault()
-      alert('Juego agregado a tu libreria')
-      dispatch(addGameToLibrary(videogame.id, id_user))
+        dispatch(addGameToLibrary(videogame.id, id_user))
+        swal({
+          title: "Game added to library",
+          icon: "success",
+        })
     }
 
   return (
@@ -202,7 +206,7 @@ export default function Detail() {
 
                   {/* Botones COMPRA WISHLIST Y CART */}
                   <div className="buttons">
-                    <div>
+                    
                       {!list?.find((e) => e.id == videogame.id) ? (
                         <button
                           className="buttonAddWishList"
@@ -218,43 +222,36 @@ export default function Detail() {
                           <BsIcons.BsBookmarkStarFill />
                         </button>
                       )}
-                    </div>
-
-                    <div>
-                      {!cartFromLocalStorage.includes(videogame) ? (
-                        <button
-                          className="buttonCart"
-                          onClick={(e) => HandleAddToCart(e)}
-                        ><BsIcons.BsCartPlus />
-                        </button>
-                      ) : null}
-                    </div>
-
-                    <div>
+                    
                       {videogame.free_to_play ? 
+                          <button className="buttonBuy" onClick={addToLibrary}><MdIcons.MdLibraryAdd /></button>
+                        :
                         <>
-                          <button onClick={addToLibrary}>Add to library</button>
-                        </>:
-                        <>
+                          {!cartFromLocalStorage.includes(videogame) ? (
                             <button
-                            className="buttonBuy"
-                            onClick={
-                              typeof idProfile === "string"
-                                ? () => {
-                                    handleBuyMercadoPago(videogame);
-                                  }
-                                : () => {
-                                    logInToBuy();
-                                  }
-                            }
+                              className="buttonCart"
+                              onClick={(e) => HandleAddToCart(e)}
+                            ><BsIcons.BsCartPlus />
+                            </button>
+                          ) : null}
+
+                          <button
+                          className="buttonBuy"
+                          onClick={
+                            typeof idProfile === "string"
+                              ? () => {
+                                  handleBuyMercadoPago(videogame);
+                                }
+                              : () => {
+                                  logInToBuy();
+                                }
+                          }
                           ><FiIcons.FiDollarSign />
                           </button>
                         </>  
                     }
-                    </div>
                   </div>
                 </div>
-
 
                 <div>
                   <ul className="listDetail1">
