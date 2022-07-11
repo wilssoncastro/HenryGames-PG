@@ -254,7 +254,7 @@ export default function Detail() {
                     {/* Botones COMPRA WISHLIST Y CART */}
 
                     {/* Identifica que el juego x ID YA EXISTE en la library */}
-                    {library.find(e => e.LibraryPlayer.id_game == videogame.id) ?
+                    {library?.find(e => e.LibraryPlayer.id_game == videogame.id) ?
                       <Link to='/library'>
                         <button className="buttonCart">Game in library<MdIcons.MdLibraryAddCheck /></button>
                       </Link>

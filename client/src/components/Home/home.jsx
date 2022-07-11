@@ -15,10 +15,10 @@ import './carousel.css'
 
 export default function Home() {
     const dispatch = useDispatch();
-    
-    // useEffect(() => {
-    //     dispatch(getAllVideogames())
-    // }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getAllVideogames())
+    })
 
     useEffect(() => {
         
