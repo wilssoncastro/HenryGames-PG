@@ -71,7 +71,7 @@ router.get('/email/gameActivation/:secretCode/:id_user/:longitude', async(req, r
 
     const user = await Player.findByPk(id_user)
     let mail = user.email
-    console.log(mail)
+    
 
     const link = `http://localhost:3000/activation/games/${secretCode}/${id_user}/${longitude}`
     
