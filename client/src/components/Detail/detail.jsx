@@ -184,7 +184,6 @@ export default function Detail() {
                   <img className="image" src={videogame.image} alt='not found' />
 
                   {/* Botones COMPRA WISHLIST Y CART */}
-                  {library.includes()}
                   <div className="buttons">
                     <div>
                       {!list?.find((e) => e.id == videogame.id) ? (
