@@ -5,7 +5,7 @@ import Card from "../Card/card.jsx";
 import NavBar from "../NavBar/navbar";
 import "./store.css";
 import Paginado from "../Paginado/paginado";
-import loading from '../../images/loading/Infinity-2.9s-200px.gif'
+import loading from '../../images/loading/Bean Eater-1s-200px.gif'
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -89,7 +89,7 @@ export default function Store() {
   }
 
   return (
-    <div className="background">
+    <div className="backgroundStore">
       <div className="first-row">
         <NavBar />
       </div>
@@ -181,29 +181,31 @@ export default function Store() {
         </div>
       </div>
 
-      <div className="containercard">
+      {/* <div className="containercard"> */}
         { !videogames.length ?
             <div className="loadingStore">
               <img src={loading} alt=''/>
             </div>
             :
-          videogames.map((v, i) => {
-            return (
-              <div>
-                <Card
-                  key={v.id}
-                  image={v.image}
-                  name={v.name}
-                  price={v.price}
-                  free_to_play={v.free_to_play}
-                  on_sale={v.on_sale}
-                  id={v.id}
-                />
-              </div>
-            );
-          })
+            <div className="containercard">
+              {videogames.map((v, i) => {
+                return(
+                  <div>
+                    <Card
+                      key={v.id}
+                      image={v.image}
+                      name={v.name}
+                      price={v.price}
+                      free_to_play={v.free_to_play}
+                      on_sale={v.on_sale}
+                      id={v.id}
+                    />
+                  </div>
+                )
+              })}
+            </div>
         }
-      </div>
+      {/* </div> */}
     </div>
   );
 }
