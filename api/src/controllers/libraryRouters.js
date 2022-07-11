@@ -28,4 +28,23 @@ router.get('/:id_user', async(req, res) =>{
     }
 })
 
+router.put('/addInLibrary/:id_game/:id_user', async(req,res) => {
+    const { id_game } = req.params
+    const { id_user } = req.params
+
+    try {
+        let game = await Videogame.findByPk(id_game)
+        if(!game)return res.send('No se encontro el juego')
+        let user = await Player.findByPk(id_user)
+        if(!user)return res.send('No se encontro el usuario')
+
+        let resultado = await user.addLibrary(game)
+
+        return res.send(resultado)
+
+    } catch (error) {
+        
+    }
+})
+
 module.exports = router

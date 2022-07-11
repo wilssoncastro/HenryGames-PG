@@ -13,7 +13,8 @@ import {
   comment_info,
   getCartById,
   is_authorizated,
-  postMercadoPago
+  postMercadoPago,
+  addGameToLibrary
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -34,6 +35,7 @@ export default function Detail() {
   const [cart /* setCart */] = useState(cartFromLocalStorage);
 
   const videogame = useSelector((state) => state.details);
+  console.log(videogame)
   const list = useSelector((state) => state.wishList);
   //const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
@@ -163,6 +165,12 @@ export default function Detail() {
       });
     };
 
+    function addToLibrary(e){
+      e.preventDefault()
+      alert('Juego agregado a tu libreria')
+      dispatch(addGameToLibrary(videogame.id, id_user))
+    }
+
   return (
     <div className="allPage">
       <div>
@@ -210,19 +218,26 @@ export default function Detail() {
                     </div>
 
                     <div>
-                      <button
-                        className="buttonBuy"
-                        onClick={
-                          typeof idProfile === "string"
-                            ? () => {
-                                handleBuyMercadoPago(videogame);
-                              }
-                            : () => {
-                                logInToBuy();
-                              }
-                        }
-                      ><FiIcons.FiDollarSign />
-                      </button>
+                      {videogame.free_to_play ? 
+                        <>
+                          <button onClick={addToLibrary}>Add to library</button>
+                        </>:
+                        <>
+                            <button
+                            className="buttonBuy"
+                            onClick={
+                              typeof idProfile === "string"
+                                ? () => {
+                                    handleBuyMercadoPago(videogame);
+                                  }
+                                : () => {
+                                    logInToBuy();
+                                  }
+                            }
+                          ><FiIcons.FiDollarSign />
+                          </button>
+                        </>  
+                    }
                     </div>
                   </div>
                 </div>
