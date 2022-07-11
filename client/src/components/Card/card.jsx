@@ -8,6 +8,8 @@ export default function Card({ image, name, price, id, free_to_play, on_sale }) 
     <div className="card">
         <Link className='link' to= {`/store/${id}`}>
           <img className='image' src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
+          <div className='OnSaleTAG'>
+          </div>
           <ul className='textCard'>
             <li className='titleCard'>{name}</li>
             { free_to_play === true ? <li className='priceCard'>Free to Play</li> : <li className='priceCard'>${price}</li> }
