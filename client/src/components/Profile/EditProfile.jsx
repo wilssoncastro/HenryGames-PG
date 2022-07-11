@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, /* useSelector */ } from "react-redux";
 import swal from 'sweetalert'
 import { editProfile } from "../../redux/actions";
+import styles from "./EditProfile.module.css"
 
 
 export default function EditProfile() {
@@ -25,9 +26,10 @@ export default function EditProfile() {
             ...profile,
             [e.target.name]: e.target.value,
         });
+        console.log("profile", profile);
     }
 
-    const handleImage = (e) => {
+    /* const handleImage = (e) => {
         let image = document.getElementById("main_image").value
         if (image != "") {
             {
@@ -37,7 +39,28 @@ export default function EditProfile() {
                 });
             }
         }
-    };
+    }; */
+    async function handleImage(e) {
+        const preview = document.querySelector("img");
+        const fileInput = document.getElementById("image");
+        const file = fileInput.files[0];
+        const reader = await new FileReader();
+        reader.addEventListener(
+            "load",
+            async function () {
+                preview.src = await reader.result;
+                setProfile({
+                    ...profile,
+                    profile_pic: preview.src,
+                });;
+            },
+            false
+        );
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+    }
 
     const handleDeleteImage = (e) => {
         setProfile({
@@ -55,7 +78,7 @@ export default function EditProfile() {
                 buttons: ["No", "Yes"]
             }).then(response => {
                 if (response) {
-                    dispatch(editProfile(id_user,profile));
+                    dispatch(editProfile(id_user, profile));
                     setProfile({
                         name: "",
                         lastname: "",
@@ -73,80 +96,42 @@ export default function EditProfile() {
                 }
             })
         }
-            alertSubmit()
+        alertSubmit()
     }
 
 
 
-return (
-    <div className="videogame_created_container">
-        
+    return (
+        <div className="videogame_created_container">
+            <div className={styles.container}>
+                {!profile.profile_pic ? (
+                    <img
+                        className={styles.avatar}
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqh5pmaPkqtRlk67znEF2s4NADR2URCfOlOQ&usqp=CAU"
+                        alt="avatar"
+                    />
+                ) : (
+                    <img
+                        className={styles.avatar}
+                        src={profile.profile_pic}
+                        alt="tu foto"
 
-        <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
+                    />
+                )}
+                <form onSubmit={(e) => handleSubmit(e)}>
                     <div>
                         <div>
-                            <label>Name: </label>
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Insert you name"
-                                value={profile.name}
-                                onChange={(e) => handleChange(e)}
-                            />
-
-                        </div>
-                        <div>
-                            <label>lastname</label>
-                            <input
-                                type="text"
-                                placeholder="Insert you name last name"
-                                value={profile.lastname}
-                                name="lastname"
-                                onChange={(e) => handleChange(e)}
-                            />
-
-                        </div>
-
-                        <div>
-                            <label>User</label>
-                            <input
-                                type="text"
-                                placeholder="Insert you user name"
-                                value={profile.user}
-                                name="user"
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div>
-
-
-                            <label>Date of Birth</label>
-                            <input
-                                name="date_of_birth"
-                                type="date"
-                                laceholder="DD-MM-YYYY"
-                                value={profile.date_of_birth}
-                                onChange={(e) => handleChange(e)}
-                            />
-                        </div>
-                        <div>
-                            <label>Profile Pic</label>
-                            <input
-                                type="text"
-                                placeholder="Profile Image"
-                                name="image"
-                                id="main_image"
-                            />
-                            <button
-                                className="botonX"
-                                onClick={(e) => handleImage(e)}
-                                type="reset"
-                            >add Image
-                            </button>
                             <div>
-                                {profile.profile_pic != "" ? (
+                                <label className={styles.label}>Name: </label>
+                                <input
+                                    className={styles.input}
+                                    type="text"
+                                    name="name"
+                                    placeholder="Insert you name"
+                                    value={profile.name}
+                                    onChange={(e) => handleChange(e)}
+                                />
+                                {/* {profile.profile_pic != "" ? (
                                     <div >
                                         <img src={profile.profile_pic} className="image_form" alt='' />
                                         <button
@@ -158,40 +143,122 @@ return (
                                         </button>
                                     </div>
                                 ) : ""
-                                }
+                                } */}
 
                             </div>
                             <div>
-                                <label>phone</label>
+                                <label className={styles.label}>lastname</label>
                                 <input
-                                    type="tel"
-                                    placeholder="Insert your phone number"
-                                    value={profile.phone}
-                                    name="phone"
+                                    className={styles.input}
+                                    type="text"
+                                    placeholder="Insert you name last name"
+                                    value={profile.lastname}
+                                    name="lastname"
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
                             <div>
-                                <label>Adress</label>
+                                <label>User</label>
                                 <input
+                                    className={styles.input}
                                     type="text"
-                                    placeholder="Insert you adress"
-                                    value={profile.adress}
-                                    name="adress"
+                                    placeholder="Insert you user name"
+                                    value={profile.user}
+                                    name="user"
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
+                            <div>
+                                <label>Date of Birth</label>
+                                <input
+                                    className={styles.input}
+                                    name="date_of_birth"
+                                    type="date"
+                                    laceholder="DD-MM-YYYY"
+                                    value={profile.date_of_birth}
+                                    onChange={(e) => handleChange(e)}
+                                />
+                            </div>
+                            <div>
+                                <label>Profile Pic</label>
+                                <div /* style={{ height: "180px" }} */>
+                                    <div
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            gap: ".8rem",
+                                            flexDirection: "column",
+                                            justifyContent: "space-around",
+                                            height: "100%",
+                                        }}
+                                    >
+                                        <div /* className={styles.inputFileContainer} */>
+                                            <label htmlFor="image" /* className={styles.formLabel} */>
+                                                <input
+                                                    className={styles.input}
+                                                    type="file"
+                                                    name="photo"
+                                                    id="image"
+                                                    /* className={styles.inputFile} */
+                                                    onChange={(e) => handleImage(e)}
+                                                />
+
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {/* {error.photo && <p className={styles.parrafo}>{error.photo}</p>} */}
+                                </div>
+                                <div>
+                                    <div>
+                                        {profile.profile_pic != "" ? (
+                                            <div >
+
+                                                <button
+                                                    className="botonX"
+                                                    onClick={(e) => handleDeleteImage(e)}
+                                                    type="reset"
+                                                >
+                                                    Delete pic
+                                                </button>
+                                            </div>
+                                        ) : ""
+                                        }
+
+                                    </div>
+                                </div>
+                                <div>
+                                    <label>phone</label>
+                                    <input
+                                        className={styles.input}
+                                        type="tel"
+                                        placeholder="Insert your phone number"
+                                        value={profile.phone}
+                                        name="phone"
+                                        onChange={(e) => handleChange(e)}
+                                    />
+                                </div>
+                                <div>
+                                    <label>Adress</label>
+                                    <input
+                                        className={styles.input}
+                                        type="text"
+                                        placeholder="Insert you adress"
+                                        value={profile.adress}
+                                        name="adress"
+                                        onChange={(e) => handleChange(e)}
+                                    />
+                                </div>
+                            </div>
                         </div>
+                        <button className={styles.submit} type="submit">
+                            Confirm changes
+                        </button>
+                        <Link to={`/profile/${id_user}`}>
+                            <button className={styles.btn}>Back to Profile</button>
+                        </Link>
                     </div>
-                    <button className="botonCrear" type="submit">
-                        Confirm changes
-                    </button>
-                    <Link to={`/profile/${id_user}`}>
-            <button>Back to Profile</button>
-        </Link>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-);
+    );
 }

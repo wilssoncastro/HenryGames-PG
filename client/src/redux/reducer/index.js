@@ -14,9 +14,10 @@ const initialState = {
     wishList: [],
     genres: [],
     esrb: [],
-    articles: [],
-    users: [],
     my_user: {},
+    articles: [],
+    article:[],
+    users: [],
     cart: [],
     comments: [],
     new_comments: [],
@@ -197,19 +198,31 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 comments: state.comments
             }
+         case "GET_ARTICLES":
+                return {
+                    ...state,
+                    articles: action.payload.data
+                }
+        case "FIND_ARTICLE":
+                return{
+                    ...state,
+                    article: action.payload
+                }
+        case "UPDATE_ARTICLE":
+                return {
+                    ...state,
+                };
+        case "SET_ARTICLE":
+                return {
+                    ...state,
+                    article: action.payload
+                };
         case INFO_COMMENT:
             console.log(action.payload.data)
             console.log('Hola')
             return {
                 ...state,
                 new_comments: action.payload.data.comments_videogame
-            }
-
-
-        case "GET_ARTICLES":
-            return {
-                ...state,
-                articles: action.payload.data
             }
 
         case "GET_SALES":

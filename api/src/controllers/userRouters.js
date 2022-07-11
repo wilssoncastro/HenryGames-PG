@@ -150,6 +150,36 @@ router.put('/unbanned/:id_user', async(req, res) => {
     }
 })
 
+//Hacer admin
+
+router.put('/admin/:id_user', async(req, res) => {
+    const { id_user } = req.params
+
+    try {
+        let user = await Player.findByPk(id_user);
+        user.type = 'adm'
+        await user.save()
+        res.send(user)
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+//Sacar admin
+router.put('/user/:id_user', async(req, res) => {
+    const { id_user } = req.params
+
+    try {
+        let user = await Player.findByPk(id_user);
+        user.type = 'user'
+        await user.save()
+        res.send(user)
+    } catch (error) {
+        res.send(error)
+    }
+})
+
+
 
 
 module.exports = router
