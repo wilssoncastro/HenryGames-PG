@@ -109,7 +109,6 @@
     background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
     grid-column-start: 2;
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
@@ -126,8 +125,26 @@
 .cv-form {
     display: flex;
     align-items: space-around;
+    flex-direction: column;
+    margin-top: 1em;
 }
 
 .cv-input-div {
+    flex-basis: 14.285%;
+}
+
+.cv-select-div {
+    flex-basis: 14.285%;
+}   
+
+.cv-select-allitems-box {
+    display: flex;
+} 
+
+.cv-select-item-box {
+    border: 1px solid black;
+    border-radius: 1em;
+    width: fit-content;
     
+    margin: 1px;
 }
