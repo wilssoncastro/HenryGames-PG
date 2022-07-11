@@ -62,6 +62,13 @@ export default function SignUp() {
   const [errors, setErrors] = useState({});
   const [msg, setMsg] = useState('')
 
+  function setType(e){
+    setInput({
+      ...input,
+      type: e.target.name
+    })
+  }
+
   function handleChange(e) {
     setInput({
       ...input,
@@ -93,12 +100,13 @@ export default function SignUp() {
   async function onSubmit(e) {
     e.preventDefault();
     let log_error;
+    console.log(input)
 
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length === 0 && input.name) {
       
       let info = await axios.post("http://localhost:3001/authentication/register", input);
 
-      if(info.data === 'Ya tenemos registros que coincide con el nombre de mail o usuario.'){
+      if(typeof info.data === 'string'){
         setMsg(info.data)
       }else{
         Swal.fire("Check your email to activate the account!");
@@ -108,7 +116,7 @@ export default function SignUp() {
       }
       
     } else { 
-      //console.log("Entrooooo")
+      console.log("Entrooooo")
       if (errors.password) {
         log_error = errors.password;
       } else {
@@ -134,9 +142,7 @@ export default function SignUp() {
           <div className="GoogleButton">
             <GoogleButton type='light'/>
           </div>
-          <Link to="/registerAdmin" className="linkAdmin">
-            <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
-          </Link>
+          
         </div>
 
      
@@ -205,9 +211,12 @@ export default function SignUp() {
               <p className="errorsLog">{errors ? errors.repassword : "Missing data required"}</p>
 
 
-            <button type="submit" className="lf-button">
+            <button type="submit" name='user' className="lf-button" onClick={setType}>
               Sign Up
             </button>
+            {/* <Link to="/registerAdmin" className="linkAdmin"> */}
+            <button type="submit" name='adm' className="buttonAdmin" onClick={setType}> <GrIcons.GrUserAdmin /> I am Admin 😎</button>
+            {/* </Link> */}
             {msg && <p className="errorsLog"> {msg}</p>}
 
 
