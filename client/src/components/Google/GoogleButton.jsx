@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleButton from 'react-google-button'
 
-export default function LandingPage({type}) {
+export default function GoogleBtn({type}) {
 
     const google = () => {
         window.location.href = 'http://localhost:3001/auth/google'

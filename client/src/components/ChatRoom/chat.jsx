@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams , Link} from "react-router-dom";
 
 import { getChats, getChatsFriend, getAllUsers, sendMessageChat } from "../../redux/actions";
 import './Chat.css'
@@ -72,13 +72,10 @@ export default function Chat() {
 
     })
 
-    console.log(chatsSorted)
-    console.log(friendUser, "esdsfzzg")
 
     if (chatsSorted != undefined && document.getElementById("chats")) {
         let mensaje = document.getElementById("chats")
         setTimeout(() => {
-            console.log(mensaje)
             mensaje.scrollTop = mensaje.scrollHeight
         }, 1000);
 
@@ -102,10 +99,10 @@ export default function Chat() {
                 message: ""
             })
             dispatch(getChatsFriend(ids.idF, ids.id_user))
+            dispatch(getChats(ids.id_user, ids.idF))
             if (myUser != undefined) {
                 setTimeout(() => {
                     let mensaje = document.getElementById("chats")
-                    console.log(mensaje)
                     mensaje.scrollTop = mensaje.scrollHeight
                 }, 1000);
 
@@ -131,7 +128,6 @@ export default function Chat() {
         if (myUser != undefined) {
             setTimeout(() => {
                 let mensaje = document.getElementById("chats")
-                console.log(mensaje)
                 mensaje.scrollTop = mensaje.scrollHeight
             }, 1000);
 
@@ -149,15 +145,21 @@ export default function Chat() {
     return (
         <div className="Container_component_chats">
             <NavBar />
-            <div className="tittle_chats">
-
-            </div>
 
             {friendUser != undefined ?
                 <div className="tittle_chats">
+                    <Link to={`/friends/${ids.id_user}`}>
+                    <button className="btn_back_profile">
+                    Back
+            </button>
+            </Link>
                     <h3>You are chatting with {friendUser.user}</h3>
 
-                </div> : <h1 className="tittle_chats"> You have no messages here</h1>}
+                </div> : <div> <button className="btn_back_profile">
+                Back    
+            </button><h1 className="tittle_chats"> You have no messages here</h1>
+            </div>}
+
 
 
             <div className="chats_container" id="chats">
@@ -224,13 +226,14 @@ export default function Chat() {
                     value={chat.message}
                     onChange={(e) => updateMessage(e)}></input>
                 <button
-                 onClick={e => handleRefresh(e)}
-                 className="btn_refresh"
+                    onClick={e => handleRefresh(e)}
+                    className="btn_refresh"
                 >Refresh</button>
                 <button type="submit"
                     className="btn_send_message">
                     Send
                 </button>
+
             </form>
         </div>
 

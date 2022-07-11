@@ -7,9 +7,9 @@ import { editProfile } from "../../redux/actions";
 
 export default function EditProfile() {
     const id_user = localStorage.getItem('id')
-     const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-   const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [profile, setProfile] = useState({
         name: "",

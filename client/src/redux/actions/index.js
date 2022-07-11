@@ -14,6 +14,7 @@ export const REPORT_COMMENT = 'REPORT_COMMENT'
 export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
 export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
+export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -287,6 +288,17 @@ export function editProfile(id,payload){
       })
     }
   }
+
+export function deleteAccount(id) {
+  return async function(dispatch) {
+    var json = await axios.delete(`http://localhost:3001/users/delete?id=${id}`);
+    dispatch({
+      type: "DELETE_ACCOUNT",
+      payload: json.data
+    })
+  }
+}
+
 //COMENTARIOS 
 //FUNCIONES
 //
@@ -433,6 +445,17 @@ export function getLibraryById(id_user){
       dispatch({
         type: GET_LIBRARY_BY_ID,
         payload: data
+      })
+    })
+  }
+}
+
+export function addGameToLibrary(id_game, id_user){
+  return async function(dispatch){
+    return axios.put(`http://localhost:3001/library/addInLibrary/${id_game}/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: ADD_GAME_TO_LIBRARY
       })
     })
   }

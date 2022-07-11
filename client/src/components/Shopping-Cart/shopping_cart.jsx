@@ -132,9 +132,9 @@ export default function ShoppingCart() {
 
   return (
     <div className="backgroundCart">
-    {/*   <div>
+      <div>
         <NavBar />
-      </div> */}
+      </div>
       <div>
         {current_cart?.length > 0 ? ( 
           <div className="cart">
