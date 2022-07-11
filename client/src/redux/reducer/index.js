@@ -172,7 +172,15 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     article: action.payload
                 }
-            
+        case "UPDATE_ARTICLE":
+                return {
+                    ...state,
+                };
+        case "SET_ARTICLE":
+                return {
+                    ...state,
+                    article: action.payload
+                };
         case INFO_COMMENT:
             console.log(action.payload.data)
             console.log('Hola')

@@ -17,6 +17,7 @@ import Edit from './components/Administrador/EditVideogame';
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
 import Article from './components/Blog/Article';
+import EditArticles from './components/Blog/EditArticles';
 import { Users } from './components/Administrador/Users';
 import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
@@ -82,6 +83,7 @@ function App() {
           <Route exact path='/blog' element={<Blog />}/>
 
           <Route exact path= '/blog/:id' element={<Article/>} />
+          <Route exact path= '/blog/editArticles' element={<EditArticles/>} />
 
 
           

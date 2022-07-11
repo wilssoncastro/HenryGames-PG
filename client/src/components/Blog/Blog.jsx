@@ -46,7 +46,7 @@ export default function Blog() {
             {allArticles.length ?
 
                 <div className={styles.container}>
-
+                    
                     <ScrollContainer>
                         <ScrollPage page={0}>
                             <Animator animation={Scrll0}>
@@ -192,8 +192,7 @@ export default function Blog() {
                 </div>
                 :
 
-                <div>
-
+                <div className={styles.loading}>
                     <img src={"https://i.pinimg.com/originals/5c/dd/ad/5cddadeb5ed4d48a582cfeb328160826.gif"} /* width='200px' height='200px' */ />
                     <div><h1>Cargando...</h1></div>
                 </div>

@@ -44,4 +44,25 @@ router.get('/:id', async (req, res) => {
     
 })
 
+router.put('/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+      let updatedArticle = await Article.findOne({
+        where: {
+          id: id,
+        },
+      });
+      await updatedArticle.update({
+        name: req.body.name,
+        contents: req.body.contents,
+        image: req.body.image,
+        
+      });
+      
+      res.send(updatedArticle);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  });
+
 module.exports = router
