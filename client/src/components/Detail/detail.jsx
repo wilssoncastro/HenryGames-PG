@@ -229,6 +229,40 @@ export default function Detail() {
     })
     }
 
+    function logInFirst(){
+      swal({
+      title: 'You must Log In first to add items to your library',
+      text: "What do you want to do next?",
+      icon: "info",
+      buttons: {
+        logIn: {
+          text: "Go to Log In",
+          value: "log_in",
+        },
+        signUp: {
+          text: "Go to Sign Up",
+          value: "sign_up",
+        },
+        cancel: "Cancel",
+      }
+    }).then((value) => {
+      switch (value) {
+        case "log_in":
+          navigate("/log_in");
+          swal("Welcome to Henry Games", "Enjoy!", "success");
+          break;
+
+        case "sign_up":
+          navigate("/sign_up");
+          swal("Welcome to Henry Games", "Enjoy!", "success");
+          break;
+
+        default:
+          break;
+      }
+    })
+    }
+
   return (
     <div className="allPage">
       <div>
@@ -293,7 +327,10 @@ export default function Detail() {
 
                         <div>
                           {videogame.free_to_play ?
-                            <button onClick={addToLibrary} className="buttonCart"><MdIcons.MdLibraryAdd /></button>
+                            id_user?
+                              <button onClick={addToLibrary} className="buttonCart"><MdIcons.MdLibraryAdd /></button> 
+                            : <button onClick={logInFirst} className="buttonCart"><MdIcons.MdLibraryAdd /></button> 
+                            
                             :
                             <>
                               <button
