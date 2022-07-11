@@ -248,15 +248,16 @@ export default function Detail() {
 
                 <div className="containerImgList">
 
-                  <div>
+                  <div className="detail-image-buttons">
                     <img className="image" src={videogame.image} alt='not found' />
 
                     {/* Botones COMPRA WISHLIST Y CART */}
 
                     {/* Identifica que el juego x ID YA EXISTE en la library */}
                     {library?.find(e => e.LibraryPlayer.id_game == videogame.id) ?
-                      <Link to='/library'>
-                        <button className="buttonCart">Game in library<MdIcons.MdLibraryAddCheck /></button>
+                      <Link to='/library' className="button-title-library">
+                        <span className="button-in-library">Game in library</span>
+                        <MdIcons.MdLibraryAddCheck className="button-library-icon"/>
                       </Link>
                       :
 
