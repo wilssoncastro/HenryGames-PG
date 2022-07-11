@@ -105,3 +105,26 @@
     background: -webkit-linear-gradient(rgb(32, 146, 63), rgb(132, 132, 132));
  }
 
+
+ .button-landingPage {
+    border-radius: 20px;
+    /* border: 1px solid #1a83ff; */
+    background-color: #1a83ff;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2em;
+}
+
+.button-landingPage:hover {
+    outline: none;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+    background: -webkit-linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+    background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+}
+
