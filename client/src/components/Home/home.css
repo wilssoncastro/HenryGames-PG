@@ -306,7 +306,7 @@
   /* Firefox */
   * {
     scrollbar-width: auto;
-    scrollbar-color: #f4f0f0;
+    scrollbar-color: red;
     
     }
 

@@ -7,9 +7,9 @@
     height: 4em;
     z-index: 9999; 
     display: flex;
+    justify-content: right;
     align-items: center;
     position:fixed;
-    justify-content: right; 
     
 }
 
