@@ -56,6 +56,7 @@ export default function Detail() {
     }
     dispatch(getCartById(id_user))
     dispatch(is_authorizated())
+    dispatch(getLibraryById(id_user))
 
   }, [dispatch, idProfile, id, cart, id_user]);
 
@@ -133,11 +134,31 @@ export default function Detail() {
 
   const handleBuyMercadoPago = (videogame) => {
     const carrito = [videogame]
-    dispatch(postMercadoPago(carrito))
-      .then((data) => {
-        console.log(data);
-        window.open(data.data.init_point);
+    swal({
+      title: "You will buy this game",
+      text: "Are you sure?",
+      icon: "info",
+      buttons: {
+        sure: {
+          text: 'Yes',
+          value: 'sure'
+        },
+        cancel: 'Cancel'
+      }
+    }).then((value) => {
+      switch (value) {
+        case "sure":
+        dispatch(postMercadoPago(carrito))
+        .then((data) => {
+          console.log(data);
+          window.open(data.data.init_point);
       })
+          break;
+
+        default:
+          break;
+      }
+    });
     };
 
     const logInToBuy = () => {
@@ -165,7 +186,7 @@ export default function Detail() {
           case "sign_up":
             navigate("/sign_up");
             break;
-  
+            
           default:
             break;
         }
@@ -174,8 +195,38 @@ export default function Detail() {
 
     function addToLibrary(e){
       e.preventDefault()
-      alert('Juego agregado a tu libreria')
       dispatch(addGameToLibrary(videogame.id, id_user))
+      swal({
+      title: 'The game was successfully added to your library',
+      text: "What do you want to do next?",
+      icon: "success",
+      buttons: {
+        library: {
+          text: "Go to library",
+          value: "library",
+        },
+        shop: {
+          text: "Go to shop",
+          value: "shop",
+        },
+        cancel: "Cancel",
+      }
+    }).then((value) => {
+      switch (value) {
+        case "library":
+          navigate("/library");
+          swal("Welcome to your library", "Enjoy!", "success");
+          break;
+
+        case "shop":
+          navigate("/store");
+          swal("Welcome to store", "Enjoy!", "success");
+          break;
+
+        default:
+          break;
+      }
+    })
     }
 
   return (
@@ -233,7 +284,9 @@ export default function Detail() {
                     <div>
                       {videogame.free_to_play ? 
                         <>
-                          <button onClick={addToLibrary}>Add to library</button>
+                          {library.find(e => e.LibraryPlayer.id_game == videogame.id) ?
+                         null:
+                         <button onClick={addToLibrary}>Add to library</button> }
                         </>:
                         <>
                             <button
