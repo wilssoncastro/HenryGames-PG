@@ -331,6 +331,38 @@ export function getArticles() {
     });
   };
 }
+
+export function findArticle(id){
+    return async function(dispatch){
+        try{
+            var json =await axios.get(`http://localhost:3001/blog/${id}`);
+            console.log("json", json)
+            return dispatch({
+                type: "FIND_ARTICLE",
+                payload: json.data
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
+export function updateArticle (id, payload)  {
+  return async function (dispatch) {
+    await axios.put(`http://localhost:3001/blog/${id}`, payload);
+    return dispatch({
+      type: "UPDATE_ARTICLE",
+    });
+  };
+};
+
+export function setArticle(payload){
+  return {
+    type:"SET_ARTICLE",
+    payload,
+  }
+}
+
 export function delete_comment(id_comment){
   return function(dispatch){
     return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)
