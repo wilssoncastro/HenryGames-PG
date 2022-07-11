@@ -253,7 +253,7 @@ export default function Detail() {
 
                   {/* Botones COMPRA WISHLIST Y CART */}
                   <div className="buttons">
-                    
+                    <div>
                       {!list?.find((e) => e.id == videogame.id) ? (
                         <button
                           className="buttonAddWishList"
@@ -272,7 +272,7 @@ export default function Detail() {
                     </div>
 
                     <div>
-                      {library.find(e => e.LibraryPlayer.id_game == videogame.id) ? 
+                      {library?.find(e => e.LibraryPlayer.id_game == videogame.id) ? 
                        videogame.free_to_play ? 
                        null : 
                        (
@@ -293,32 +293,31 @@ export default function Detail() {
 
                     <div>
                       {videogame.free_to_play ? 
-                          <button className="buttonBuy" onClick={addToLibrary}><MdIcons.MdLibraryAdd /></button>
-                        :
                         <>
-                          {!cartFromLocalStorage.includes(videogame) ? (
+                          {library?.find(e => e.LibraryPlayer.id_game == videogame.id) ?
+                          <Link to='/library'>
+                            <button className="buttonCart"><MdIcons.MdLibraryAddCheck /></button>
+                          </Link>
+                         :
+                         <button onClick={addToLibrary} className="buttonCart"><MdIcons.MdLibraryAdd /></button> }
+                        </>:
+                        <>
                             <button
-                              className="buttonCart"
-                              onClick={(e) => HandleAddToCart(e)}
-                            ><BsIcons.BsCartPlus />
-                            </button>
-                          ) : null}
-
-                          <button
-                          className="buttonBuy"
-                          onClick={
-                            typeof idProfile === "string"
-                              ? () => {
-                                  handleBuyMercadoPago(videogame);
-                                }
-                              : () => {
-                                  logInToBuy();
-                                }
-                          }
+                            className="buttonBuy"
+                            onClick={
+                              typeof idProfile === "string"
+                                ? () => {
+                                    handleBuyMercadoPago(videogame);
+                                  }
+                                : () => {
+                                    logInToBuy();
+                                  }
+                            }
                           ><FiIcons.FiDollarSign />
                           </button>
                         </>  
                     }
+                    </div>
                   </div>
                 </div>
 
