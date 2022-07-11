@@ -40,8 +40,23 @@ router.put('/addInLibrary/:id_game/:id_user', async(req,res) => {
 
         let resultado = await user.addLibrary(game)
 
-        return res.send(resultado)
+        let desactivated_games = await LibraryPlayer.findAll({
+            where: {
+                id_user: id_user,
+                id_game: id_game
+            }
+        })
 
+        for (let i = 0; i < desactivated_games.length; i++){
+            if((!desactivated_games[i].code) && (!desactivated_games[i].active)){
+                desactivated_games[i].active = true
+                await desactivated_games[i].save()
+            }
+        }
+
+
+
+        return res.send(resultado)
     } catch (error) {
         
     }
