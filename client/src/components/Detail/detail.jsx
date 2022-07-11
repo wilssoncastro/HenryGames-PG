@@ -84,10 +84,14 @@ export default function Detail() {
     if (typeof id_user === 'string') {
       dispatch(addToCart(id_user, id));
     }else{
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([...cartFromLocalStorage, videogame])
-      );
+      const gameInCart = cartFromLocalStorage.map(game => game.id === e.id)
+      console.log(gameInCart)
+      if(!gameInCart){
+        localStorage.setItem(
+          "cart",
+          JSON.stringify([...cartFromLocalStorage, videogame])
+        );
+      }
     }
     
     swal({
