@@ -224,15 +224,6 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 new_comments: action.payload.data.comments_videogame
             }
-<<<<<<< HEAD
-=======
-
-
-        case "GET_ARTICLES":
-            return {
-                ...state,
-                articles: action.payload.data
-            }
 
         case "GET_SALES":
             return {
@@ -286,7 +277,6 @@ const rootReducer = (state = initialState, action) => {
 
         }
 
->>>>>>> dev
         default:
             return state;
             

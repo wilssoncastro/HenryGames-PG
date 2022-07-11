@@ -122,7 +122,6 @@ export default function EditProfile() {
                     <div>
                         <div>
                             <div>
-<<<<<<< HEAD
                                 <label className={styles.label}>Name: </label>
                                 <input
                                     className={styles.input}
@@ -132,8 +131,7 @@ export default function EditProfile() {
                                     value={profile.name}
                                     onChange={(e) => handleChange(e)}
                                 />
-=======
-                                {profile.profile_pic != "" ? (
+                                {/* {profile.profile_pic != "" ? (
                                     <div >
                                         <img src={profile.profile_pic} className="image_form" alt='' />
                                         <button
@@ -145,9 +143,8 @@ export default function EditProfile() {
                                         </button>
                                     </div>
                                 ) : ""
-                                }
+                                } */}
 
->>>>>>> dev
                             </div>
                             <div>
                                 <label className={styles.label}>lastname</label>
