@@ -60,6 +60,7 @@ export default function SignUp() {
   });
 
   const [errors, setErrors] = useState({});
+  const [msg, setMsg] = useState('')
 
   function handleChange(e) {
     setInput({
@@ -89,16 +90,23 @@ export default function SignUp() {
     );
   } */
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     let log_error;
 
     if (Object.keys(errors).length === 0) {
-      Swal.fire("Check your email to activate the account!");
-      axios.post("http://localhost:3001/authentication/register", input);
-      setTimeout(() => {
-        navigate(`/activation/mail-validation/${input.email}`)
-      },2000)
+      
+      let info = await axios.post("http://localhost:3001/authentication/register", input);
+
+      if(info.data === 'Ya tenemos registros que coincide con el nombre de mail o usuario.'){
+        setMsg(info.data)
+      }else{
+        Swal.fire("Check your email to activate the account!");
+        setTimeout(() => {
+          navigate(`/activation/mail-validation/${input.email}`)
+        },2000)
+      }
+      
     } else { 
       //console.log("Entrooooo")
       if (errors.password) {
@@ -200,6 +208,7 @@ export default function SignUp() {
             <button type="submit" className="lf-button">
               Sign Up
             </button>
+            {msg && <p className="errorsLog"> {msg}</p>}
 
 
           </form>
