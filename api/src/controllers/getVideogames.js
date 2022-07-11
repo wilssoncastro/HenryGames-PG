@@ -11,49 +11,62 @@ const getAllApiGames = require('../services/services');
 
 router.get('/', async (req, res) => {
   try {
-  const testGames = await Videogame.findAll()
-  if (!testGames.length) 
-  {
-    console.log('creando juegos en la base de datos')
-    let juego = getAllApiGames()
-    let copi = juego
-    juego.map((e) => {
-      let ftp = e.tags.filter(j => j.name === "Free to Play").length ? true : false
-      let salePrice = ((Math.random()*10)+1).toFixed(2)
-      Videogame.findOrCreate({
-        where: {
-          id: e.id,
-          name: e.name,
-          release_date: e.released,
-          image: e.background_image,
-          description: e.slug,
-          rating: e.rating,
-          price: ftp ? 0 : salePrice,
-          on_sale: salePrice > 4 ? false : true,
-          free_to_play: ftp,
-          short_screenshots: e.short_screenshots.map(s => s.image),
-          tags: e.tags.map(t => t.name.toLowerCase()),
-          esrb_rating: e.esrb_rating !== null ? e.esrb_rating.name : "Rating Pending",
-          requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en)).filter(b => b != false)),
-          contador: 0
-        },
+    const testGames = await Videogame.findAll()
+    if (!testGames.length) {
+      console.log('creando juegos en la base de datos')
+      let juego = getAllApiGames()
+      let copi = juego
+      juego.map((e) => {
+        let ftp = e.tags.filter(j => j.name === "Free to Play").length ? true : false
+        let salePrice = ((Math.random() * 10) + 1).toFixed(2)
+        Videogame.findOrCreate({
+          where: {
+            id: e.id,
+            name: e.name,
+            release_date: e.released,
+            image: e.background_image,
+            description: e.slug,
+            rating: e.rating,
+            price: ftp ? 0 : salePrice,
+            on_sale: salePrice > 4 ? false : true,
+            free_to_play: ftp,
+            short_screenshots: e.short_screenshots.map(s => s.image),
+            tags: e.tags.map(t => t.name.toLowerCase()),
+            esrb_rating: e.esrb_rating !== null ? e.esrb_rating.name : "Rating Pending",
+            requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en)).filter(b => b != false)),
+            contador: 0
+          },
+        })
       })
-    })
-    await Promise.all(juego)
-    console.log('añadiendo generos a videojuegos')
-    let genre = juego.map(e => e.genres.map(g => g.name))
-    for (let i = 0; i < copi.length; i++) {
-      let genreDb = await Genre.findAll({
-        where: {
-          name: genre[i]
+      await Promise.all(juego)
+      console.log('añadiendo generos a videojuegos')
+      let genre = juego.map(e => e.genres.map(g => g.name))
+      for (let i = 0; i < copi.length; i++) {
+        let genreDb = await Genre.findAll({
+          where: {
+            name: genre[i]
+          }
+        });
+        Videogame.findByPk(copi[i].id)
+          .then(response => response.addGenre(genreDb))
+      }
+      console.log('Todos los juegos han sido cargados,⭐️ ¡Ya puedes comprar juegos en la tienda! ⭐️')
+      let totalData = await Videogame.findAll(
+        {
+          include: [{
+            model: Genre,
+            attributes: ["name"],
+            through: {
+              attributes: []
+            }
+          }]
         }
-      });
-      Videogame.findByPk(copi[i].id)
-        .then(response => response.addGenre(genreDb))
+      )
+      res.send(totalData);
     }
-    console.log('Todos los juegos han sido cargados,⭐️ ¡Ya puedes comprar juegos en la tienda! ⭐️')
-    let totalData = await Videogame.findAll(
-      {
+    /////////////////////////////////////////llamado a BD
+    else {
+      let totalData = await Videogame.findAll({
         include: [{
           model: Genre,
           attributes: ["name"],
@@ -61,45 +74,11 @@ router.get('/', async (req, res) => {
             attributes: []
           }
         }]
-      }
-    )
-    res.send(totalData);
-  }
-  /////////////////////////////////////////llamado a BD
-  else 
-  { 
-    let totalData = await Videogame.findAll({
-      include: [{
-        model: Genre,
-        attributes: ["name"],
-        through: {
-          attributes: []
-        }
-      }]
-    })
-    res.send(totalData)
-  }
-  
-
+      })
+      res.send(totalData)
+    }
     //-A
-  
-  // {
-  //   const { sort, order } = req.query;
-  //   let condition = {}
-  //   let where = {}
-  //   condition.where = where;
-  //   sort&&order?condition.order=[[sort, order]]:!condition.order;
-  //   condition.include = {
-  //     model: Genre,
-  //     attributes: ["name"],
-  //     through: {
-  //       attributes: [],
-  //     }
-  //   }
-  //   let videogames = await Videogame.findAll(condition)
-  //   res.send(videogames)
-  // }
-} catch (error) {
+  } catch (error) {
     console.log(error)
     console.log("CATCH")
   }
@@ -109,56 +88,45 @@ router.get("/filter", async (req, res) => {
   try {
     const { name, gen, tag, esrb, limit, page, sort, order, on_sale } = req.query;
 
-//let videogames = gen?await Videogame.findAll().filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll()
-
-let condition = {}
-let where = {}
-if (name && name.length > 2) {
-  where.name = { [Op.iLike]: `${name}%` }
-}
-if (esrb) {
-  where.esrb_rating = { [Op.iLike]: `${esrb}%` }
-}
-if (tag) {
-  let tagL = tag.toLowerCase()
-  where.tags = { [Op.overlap]: [tag, tagL] }
-}
-if (on_sale) {
-  where.on_sale = on_sale
-}
-condition.where = where;
-limit?condition.limit=limit:!condition.limit;
-page?condition.offset=page:!condition.offset;
-sort&&order?condition.order=[[sort, order]]:!condition.order;
-gen?condition.include=[{
-  model: Genre,
-  attributes: ["name"],
-  through: {
-    attributes: [],
-  },
-  where: {
-    name: {
-      [Op.in]: [gen],
+    let condition = {}
+    let where = {}
+    if (name && name.length > 2) {
+      where.name = { [Op.iLike]: `${name}%` }
     }
-  }
-}]:condition.include=[{
-  model: Genre,
-  attributes: ["name"],
-  through: {
-    attributes: [],
-  }
-}] 
-
-//let conVideogames = await videogames.findAll(condition)
-//res.send(conVideogames)
-
-//let videogames = gen?await Videogame.findAll(condition).filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll(condition)
-//res.send(videogames)
-
-let videogames = await Videogame.findAll(condition)
-//let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-//gen?res.send(gameGenre):res.send(videogames)
-res.send(videogames)
+    if (esrb) {
+      where.esrb_rating = { [Op.iLike]: `${esrb}%` }
+    }
+    if (tag) {
+      let tagL = tag.toLowerCase()
+      where.tags = { [Op.overlap]: [tag, tagL] }
+    }
+    if (on_sale) {
+      where.on_sale = on_sale
+    }
+    condition.where = where;
+    limit ? condition.limit = limit : !condition.limit;
+    page ? condition.offset = page : !condition.offset;
+    sort && order ? condition.order = [[sort, order]] : !condition.order;
+    gen ? condition.include = [{
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      },
+      where: {
+        name: {
+          [Op.in]: [gen],
+        }
+      }
+    }] : condition.include = [{
+      model: Genre,
+      attributes: ["name"],
+      through: {
+        attributes: [],
+      }
+    }]
+    let videogames = await Videogame.findAll(condition)
+    res.send(videogames)
   } catch (error) {
     console.log(error)
   }

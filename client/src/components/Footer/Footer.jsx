@@ -1,61 +1,121 @@
 import React from 'react';
-import styles from "./Footer.module.css";
+import * as BsIcons from 'react-icons/bs'
+import styles from "./Footer.css";
+import LinkedinIcon from '../../images/linkedin.png'
+import PostgreIcon from '../../images/postgre.png'
+import CSSIcon from '../../images/css-3.png'
+import ReactIcon from '../../images/physics.png'
+import NodeIcon from '../../images/nodejs.png'
+import JavaScriptIcon from '../../images/js.png'
+import SQLIcon from '../../images/sql-server.png'
+import HTMLIcon from '../../images/html-5.png'
 
 const Footer = () => {
+
+    const spanStyles = {
+        color: "rgb(22, 31, 203)",
+      };
+
+    let integrantes = [
+        {
+            name: 'German Flores',
+            path: 'https://www.linkedin.com/in/germán-flores-47a41296/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Joaquin Palacio',
+            path: 'https://www.linkedin.com/in/joaqu%C3%ADn-palacio-92918a234/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Julian Gomez',
+            path: 'https://www.linkedin.com/in/leandrojuliangomez/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Nicolas Gonzalez',
+            path: 'https://www.linkedin.com/in/nicolás-gonzález-087875177/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Nicolas Tanoira',
+            path: 'https://www.linkedin.com/in/nicotanoira/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Santiago Campos',
+            path: 'https://www.linkedin.com/in/santiago-campos-snels-0919b022b/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Sebastian Garcia',
+            path: 'https://www.linkedin.com/in/juan-sebastian-garcia-lopez-93a611186/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+        {
+            name: 'Wilson Castro',
+            path: 'https://www.linkedin.com/in/wilson-arvey-castro-39a446184/',
+            icon: <BsIcons.BsLinkedin style={spanStyles}/>,
+            className: 'linkedin-name',
+        },
+    ]
+
+
     return (
-        <div className={styles.mainfooter}>
-            <div className={styles.container}>{/* wrapper */}
-                <div className={styles.row}>{/* row */}
-                    {/*  colum1 */}
-                    <div className={styles.col}>{/* column*/}
-                        <h3>Sobre nosotros</h3>
+        <footer className='mainfooter'>
+            <div className='container'>{/* Container de las 3 filas */}
+                {/* <h2>Henry Games</h2> */}
 
-                        <ul className={styles.list}>
-                            <hr />
-                            <li> Nuestro mision es facilitar el acceso a un sitio donde los gamers puedan
-                                encontrar la mayor variedad de juegos de video del mercado, para distintas consolas,
-                                diversos generos, juegos de antaño, ultimas tendencias, intercambios, donaciones y mas !;
-                                ya que podran ver distintas propuestas por parte de los desarrolladores que usan Nuestro
-                                sitio, por lo que la distancia no sera un impedimento
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div className={styles.col}>
-                        <h3>Creadores</h3>
-                        <ul className={styles.list}>
-                            <li>Nicolas Tanoira</li>
-                            <li>German Florez</li>
-                            <li>Julian Gomez</li>
-                            <li>Nicolas Gonzalez</li>
-                            <li>Santiago Campos</li>
-                            <li>Wilson Castro</li>
-                            <li>Sebastian Garcia</li>
-                            <li>Joaquin Hernandez</li>
-
-                        </ul>
-                    </div>
-                    <div className={styles.col}>
-                        <h3>Tecnologias</h3>
-                        <ul className={styles.list}>
-                            <li>Javascript</li>
-                            <li>React</li>
-                            <li>Redux</li>
-                            <li>Node</li>
-                            <li>Express</li>
-                            <li>SQL</li>
-
-                        </ul>
-                    </div>
+                <div className='footer-titles'>
+                    <h2 className='footer-titles-equipo'>Team</h2>
+                    <h2 className='footer-titles-tecnologias'>Technologies</h2>
                 </div>
-                <hr />
-                <div >
-                    <p className={styles.copy}>
-                        &copy;{new Date().getFullYear()} HENRYGAMENS | PG Henry - Grupo 1 | Todos los derechos reservados | Terminos de servicio | Privado
-                    </p>
+                {/* Container del medio */}
+                <div className='creadores-tecnologias-div'>
+                    
+                
+                    {/* Izquierda */}
+                    <ul className='creadores'>
+                        
+                        {integrantes.map((item, index) => {
+                            return (
+                                <li key={index} className={item.className}>
+                                    <a href={item.path}>
+                                        
+                                        <img src={LinkedinIcon} width='25px' height='25px' alt='not found'/>
+                                        <span>{item.name}</span>
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                        
+                    {/* Derecha */}
+                    <div className='tecnologias'>
+                    
+                        <img src={HTMLIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={CSSIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={JavaScriptIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={ReactIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={NodeIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={PostgreIcon} width='75px' height='75px' alt='not found'/>
+                    </div>
+
+                </div>
+
+                    {/* container final */}
+                <div className='final-footer'> 
+                    <p> Copyright &copy;{new Date().getFullYear()} HENRYGAMES | PG Henry | Built by Group 1</p>
                 </div>
             </div>
-        </div>
+        </footer>
     )
 }
 

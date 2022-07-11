@@ -14,6 +14,7 @@ export const REPORT_COMMENT = 'REPORT_COMMENT'
 export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
 export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
+export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -50,20 +51,13 @@ export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort,
 
 export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort, order) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale${on_sale}&sort=${sort}&order=${order}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&sort=${sort}&order=${order}`);
     return dispatch({
       type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
       payload: json.data
     });
   };
 }
-
-// export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
-//   return ({
-//     type: "FILTER_BY_GENRE",
-//     payload,
-//   });
-// }
 
 export function getGenres() {
   return async function (dispatch) {
@@ -444,6 +438,17 @@ export function getLibraryById(id_user){
       dispatch({
         type: GET_LIBRARY_BY_ID,
         payload: data
+      })
+    })
+  }
+}
+
+export function addGameToLibrary(id_game, id_user){
+  return async function(dispatch){
+    return axios.put(`http://localhost:3001/library/addInLibrary/${id_game}/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: ADD_GAME_TO_LIBRARY
       })
     })
   }

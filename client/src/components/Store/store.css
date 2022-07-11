@@ -1,3 +1,17 @@
+.backgroundStore{
+  background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg');
+  background-color: #151414;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x:hidden;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  position: relative;
+  z-index: 1; 
+}
 
 .containercard {
   width: 100vw;
@@ -5,13 +19,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 350px);
   grid-gap: 10px;
-  justify-content: space-evenly;
+  justify-content: center; 
   flex-wrap: wrap;
-  margin: 0;
+  /* margin: 0 4vw; */
 }
 
 .containerFilters{
-  margin-right: 10rem;
+  display: flex;
+  justify-content: center;
 } 
 
 .inputSearchStore{
@@ -30,7 +45,10 @@
   color: #c7a84b;
   height: 2rem;
   font-size: medium;
+  display: flex;
+  justify-content: center;
 }
+
 .selectPages:hover{
   transition: 0.5s;
   background-color: #c7a84b;
@@ -92,3 +110,11 @@
   transition: 0.5s;
   transform: scale(1.05);
 }
+
+.loadingStore{
+  justify-content: center;
+  align-content: center;
+  margin-top: 20vh;
+}
+
+
