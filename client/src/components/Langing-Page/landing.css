@@ -51,16 +51,15 @@
  }
 
  .btn_gold:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     color:black;
-    font-size: 25px;
+    transform: scale(1.25);
     background-color: #c7a94b;
  }
 
 .btn_log_in{
     background-color: royalblue;
-    margin: 10px;    
+    margin: 10px; 
     font-size: 20px;
     padding: 5px;
     text-align: center;
@@ -77,10 +76,9 @@
  }
 
  .btn_log_in:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
-    font-size: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     background: -webkit-linear-gradient(royalblue, rgb(249, 249, 249));
+    transform: scale(1.25);
  }
 
 .btn_sign_up{
@@ -102,9 +100,31 @@
  }
 
  .btn_sign_up:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
-    font-size: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transform: scale(1.25);
     background: -webkit-linear-gradient(rgb(32, 146, 63), rgb(132, 132, 132));
  }
+
+
+ .button-landingPage {
+    border-radius: 20px;
+    /* border: 1px solid #1a83ff; */
+    background-color: #1a83ff;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2em;
+}
+
+.button-landingPage:hover {
+    outline: none;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+    background: -webkit-linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+    background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+}
 

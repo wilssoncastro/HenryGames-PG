@@ -1,15 +1,15 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect /* useState */ } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllUsers } from "../../redux/actions";
 import { ComponentError } from "./componentError";
-
+import NavBar from "../NavBar/navbar";
 import './Users.css';
 
 export function Users() {
   const users = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  console.log(users)
+  //console.log(users)
 
   useEffect(() => {
     dispatch(getAllUsers());
@@ -21,6 +21,8 @@ export function Users() {
 
       return (
         <div>
+          <NavBar />
+          <div className="containerUsersAdmin">
           <h3>Users List: </h3>
           <table className="tableUsers">
             <tr>
@@ -49,6 +51,7 @@ export function Users() {
               ))}
             </tr>
           </table>
+        </div>
         </div>
       );
     }else{      

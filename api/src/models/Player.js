@@ -55,11 +55,16 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false, 
             allowNull: false
-        }
+        },
         
         // friends:{
         //     type: DataTypes.ARRAY(DataTypes.BIGINT)
         // }
+        online: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false, 
+            allowNull: false
+        }
 
-    }, {timestamps: false})
+    }, {timestamps: true})
 }

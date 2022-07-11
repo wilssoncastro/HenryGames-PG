@@ -86,6 +86,7 @@
     color: #f5f5f5;
     font-size: 18px;
     position: relative;
+    flex-basis: 50%;
 }
 
 .userData{
@@ -95,6 +96,7 @@
 
 .userName{
     font-size: 20px;
+    color: #f5f5f5;
 }
 
 .userStatusOnline{
@@ -109,4 +111,21 @@
 
 .FriendListBox{
     overflow-y: scroll;
+    color: #f5f5f5;
+}
+
+.vacio-FLTC {
+    flex-basis: 25%;
+}
+
+.friend-list-title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.addIcon {
+    align-self: center;
+    font-size: 1.2em;
+    flex-basis: 25%;
 }

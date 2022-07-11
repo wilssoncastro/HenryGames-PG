@@ -13,6 +13,8 @@ export const POST_COMMENT = 'POST_COMMENT'
 export const REPORT_COMMENT = 'REPORT_COMMENT'
 export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
+export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
+export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -28,7 +30,7 @@ export function is_authorizated(){
 
 export function getAllVideogames() {
   return async function (dispatch) {
-    let json = await axios("http://localhost:3001/videogames");
+    let json = await axios(`http://localhost:3001/videogames`);
     return dispatch({
       type: "GET_ALL_VIDEOGAMES",
       payload: json.data,
@@ -36,15 +38,33 @@ export function getAllVideogames() {
   };
 }
 
-export function getFilteredVideogames(name, page, sort, order, limit) {
+
+export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
     });
   };
 }
+
+export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort, order) {
+  return async function (dispatch) {
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale${on_sale}&sort=${sort}&order=${order}`);
+    return dispatch({
+      type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
+      payload: json.data
+    });
+  };
+}
+
+// export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
+//   return ({
+//     type: "FILTER_BY_GENRE",
+//     payload,
+//   });
+// }
 
 export function getGenres() {
   return async function (dispatch) {
@@ -268,6 +288,17 @@ export function editProfile(id,payload){
       })
     }
   }
+
+export function deleteAccount(id) {
+  return async function(dispatch) {
+    var json = await axios.delete(`http://localhost:3001/users/delete?id=${id}`);
+    dispatch({
+      type: "DELETE_ACCOUNT",
+      payload: json.data
+    })
+  }
+}
+
 //COMENTARIOS 
 //FUNCIONES
 //
@@ -387,9 +418,113 @@ export function comment_info(id_game){
   }
 }
 
+export function getSales(){
+  return async function(dispatch){
+    let json = await axios.get(`http://localhost:3001/sales`)
+    return dispatch({
+      type: "GET_SALES",
+      payload: json.data,
+    })
+  }
+}
+
+
+export function getFriends(id) {
+  return async function (dispatch) {
+    var json = await axios.get(`http://localhost:3001/friends/${id}`);
+    return dispatch({
+      type: "GET_FRIENDS",
+      payload: json.data,
+      
+    });
+  };
+}
+
+export function addFriend(id, idfriend) {
+  return async function (dispatch) {
+    var json = await axios.post(`http://localhost:3001/friends/addFriend/${id}/${idfriend}`);
+    return dispatch({
+          type: "ADD_FRIEND",
+          payload: json.data
+      });
+  };
+}
+
+export function deleteFriend(id,idfriend){
+  return async function(dispatch){
+      var json = await axios.delete(`http://localhost:3001/friends/delete/${id}/${idfriend}`);
+      return dispatch({
+          type: "DELETE_FRIEND",
+          payload: json.data
+      });
+  }
+}
 
 
 
 //FIN ACTIONS 
 // COMENTARIOS
-//
+
+
+//  ACTIONS
+//  Library
+// 
+
+export function getLibraryById(id_user){
+  return async function(dispatch){
+    return axios.get(`http://localhost:3001/library/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: GET_LIBRARY_BY_ID,
+        payload: data
+      })
+    })
+  }
+}
+
+export function addGameToLibrary(id_game, id_user){
+  return async function(dispatch){
+    return axios.put(`http://localhost:3001/library/addInLibrary/${id_game}/${id_user}`)
+    .then(data => {
+      dispatch({
+        type: ADD_GAME_TO_LIBRARY
+      })
+    })
+  }
+}
+
+
+////CHAT
+
+export function getChats(id_user, idF){
+  return async function(dispatch){
+    
+    var json = await axios.get(`http://localhost:3001/chat/${id_user}/${idF}`)
+    
+    return dispatch({
+      type: "GET_CHAT",
+      payload: json.data
+  });
+}
+}
+export function getChatsFriend(idF,id_user){
+  return async function(dispatch){
+    var json = await axios.get(`http://localhost:3001/chat/${idF}/${id_user}`)
+     return dispatch({
+      type: "GET_CHAT_FRIEND",
+      payload: json.data
+  });
+}
+}
+
+export function sendMessageChat(id_user, idF, message){
+  return async function(dispatch){
+    var json = await axios.post(`http://localhost:3001/chat/message/${id_user}/${idF}`,message);
+    return dispatch({
+          type: "SEND_MESSAGE",
+          payload: json.data
+      });
+  
+
+  }
+}

@@ -8,7 +8,6 @@ export default function Wish_list() {
 
   return (
     <div>
-      {console.log(wish)}
       <div>
         <NavBar />
       </div>

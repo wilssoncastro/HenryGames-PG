@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { Link } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getArticles } from "../../redux/actions/index";
 import styles from "./Blog.module.css";
@@ -10,13 +11,13 @@ import Footer from '../Footer/Footer';
 
 import {
     ScrollContainer,
-    Sticky,
+    //Sticky,
     Animator,
     ScrollPage,
     Fade,
-    MoveOut,
+    //MoveOut,
     FadeIn,
-    ZoomIn,
+    //ZoomIn,
     MoveIn,
     Zoom,
     Move
@@ -37,7 +38,7 @@ export default function Blog() {
 
     const Scrll0 = Fade()
     const Scrll1 = Zoom(0, 1)
-    const Scrll2 = Fade()
+    //const Scrll2 = Fade()
     const Scrll3 = FadeIn(0, 1)
 
     return (

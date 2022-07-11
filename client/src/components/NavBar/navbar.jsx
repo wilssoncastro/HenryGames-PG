@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FriendList } from "./FriendList";
+//import { FriendList } from "./FriendList";
 import { IconContext } from "react-icons/lib";
 import * as FaIcons from "react-icons/fa";
 import * as CgIcons from "react-icons/cg";
@@ -13,20 +13,29 @@ import * as BiIcons from "react-icons/bi"
 import * as AiIcons from "react-icons/ai"
 import * as FiIcons from "react-icons/fi"
 import * as RiIcons from "react-icons/ri"
+import * as IoIcons from "react-icons/io"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
-import { getUserById } from "../../redux/actions";
+import { getFriends, getUserById } from "../../redux/actions";
 
 export default function NavBar() {
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
-    const cartLocal = JSON.parse(localStorage.getItem('cart'));
-    let id = localStorage.getItem("id");
+    const cartLocal = JSON.parse(localStorage.getItem('cart') || "[]");
+    const username = localStorage.getItem('name');
+    const id = localStorage.getItem("id");
+    const typeUser = localStorage.getItem("type");
     const cart = useSelector((state) => state.cart)
-    const user = useSelector((state) => state.my_user)
+    //const user = useSelector((state) => state.my_user)
+    
+    //const is_online = useSelector((state) => state.is_online)
+    const current_cart = (typeof id === 'object') ? cartLocal : cart
+    
+    const friends = useSelector((state) => state.friends) 
+
 
     function logOut(e){
         e.preventDefault()
@@ -39,12 +48,13 @@ export default function NavBar() {
         })
         .then((res) => {
             if(res){
-                console.log('removiendo store')
+                //console.log('removiendo store')
                 localStorage.removeItem('profile_pic')
                 localStorage.removeItem('lastname')
                 localStorage.removeItem('name')
                 localStorage.removeItem('type')
                 localStorage.removeItem('id')
+                localStorage.removeItem('user')
                 dispatch(getUserById())
                 
             }
@@ -57,9 +67,11 @@ export default function NavBar() {
 
     
     useEffect(() => {
-        if (id) {
+        if (id && id != null) {
           dispatch(getUserById(id))          
+          dispatch(getFriends(id))          
         }
+
         
       }, [dispatch, id])
 
@@ -77,7 +89,7 @@ export default function NavBar() {
     // Data for sidebar, can't separate in modules because of onClick hook context import/export
     let sidebarData = [
         {
-            title: 'Profile',
+            title: username,
             path: `/profile/${id}`,
             icon: <CgIcons.CgProfile />,
             className: 'nav-text',
@@ -104,7 +116,8 @@ export default function NavBar() {
             icon: <RiIcons.RiAdminLine />,
             className: 'nav-text',
             onClick: showSidebar,
-            loggedIn: true
+            loggedIn: true,
+            admin: true
         },
         {
             title: 'Friends',
@@ -117,10 +130,18 @@ export default function NavBar() {
         {
             title: 'Log Out',
             path: '#',
-            icon: <FiIcons.FiLogOut style={{color: '#0a7c3b'}} />,
+            icon: <FiIcons.FiLogOut/>,
             className: 'log-out-button',
             onClick: logOut,
             loggedIn: true
+        },
+        {
+            title: 'Sign Up',
+            path: '/sign_up',
+            icon: <CgIcons.CgProfile/>,
+            className: 'sign-up-button',
+            onClick: showSidebar,
+            loggedIn: false
         },
         {
             title: 'Log In',
@@ -129,28 +150,27 @@ export default function NavBar() {
             className: 'log-in-button',
             onClick: showSidebar,
             loggedIn: false
-        },
-        {
-            title: 'Sign Up',
-            path: '/sign_up',
-            icon: <CgIcons.CgProfile style={{color: '#1a83ff'}}/>,
-            className: 'sign-up-button',
-            onClick: showSidebar,
-            loggedIn: false
         }
     ]
 
     let sidebarDataInfo = []
-    if (!user.id) {
+    if (!id) {
         sidebarData.map((e) => {
             if (e.loggedIn == false || !e.loggedIn) {
                 sidebarDataInfo.push(e)
             }
         })
     } else {
+        // if (typeUser === 'adm') {
+        //     sidebarDataInfo.push(sidebarData[3])
+        // }
         sidebarData.map((e) => {
             if (e.loggedIn === true || e.loggedIn == null) {
-                sidebarDataInfo.push(e)
+                if(!e.admin){
+                    sidebarDataInfo.push(e)
+                } else if(typeUser === 'adm'){
+                    sidebarDataInfo.push(e)
+                }
             }
         })
     }
@@ -175,25 +195,14 @@ export default function NavBar() {
                         </Link>
 
                         {/* Library section */}
-                        <Link to='/library' className="left-sections">
-                            <BiIcons.BiLibrary className="navbar-left-icons" />
-                            <h3 className="navleft-text">LIBRARY </h3>
-                        </Link>
-
-                    {/* {!user.id? 
-                    <div>
-                        <Link to="/log_in">
-                            <button className="btn_log_in">LOG IN</button>
-                        </Link>
-                        <Link to="/sign_up">
-                            <button class="btn_sign_up">SIGN UP</button>
-                        </Link>
-                    </div>
-                    : 
-                    <LogOut />
-                    } */}
+                        {id?
+                            (<Link to='/library' className="left-sections">
+                                <BiIcons.BiLibrary className="navbar-left-icons" />
+                                <h3 className="navleft-text">LIBRARY </h3>
+                            </Link>
+                            ) : (<></>)
+                        }
                      </div>
-
 
 
                     <div className="NavBar-center"></div>
@@ -205,12 +214,11 @@ export default function NavBar() {
                         </Link>
 
                         {/* ShoppingCart clickable */}
-
                         {
-                            cartLocal ?
+                            current_cart ?
 
                                 (<Link to="/my_cart">
-                                    {cart.length ? <span className="numC">{cart.length}</span> : null}
+                                    {current_cart && current_cart.length ? <span className="numC">{current_cart.length}</span> : <></>}
                                     <MdIcons.MdShoppingCart className="navbar-icons" />
                                 </Link>) :
                                 (<Link to="/my_cart">
@@ -252,7 +260,34 @@ export default function NavBar() {
                             })}
                         </div>
 
-                        {/* Renderiza componente de lista de amigos */}
+                        <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
+                            <div className="friend-list-title-container">
+                                <p className='vacio-FLTC'></p>
+                                <h3 className="friendBoxTitle">Friend List </h3>
+                                <Link className="addIcon" to={`/friends/${id}`}><IoIcons.IoIosAddCircleOutline/></Link>
+                            </div>
+
+                            <div className="FriendListBox">                               
+                                {friends&& friends != "No se encontro el usuario" && friends.length?friends.map((e) => {
+                                    return (                                      
+                                        <ul>
+                                        <li key={e.id} className= "friend-tag">
+                                            <FaIcons.FaUserFriends/>
+                                                <div className="userData">
+                                                    <span className="userName">{e.user}</span>
+                                                     <span className="userStatusOnline">Online</span> 
+                                                </div>
+                                            
+                                        </li>
+                                    </ul>
+                                      )
+                                }):<p>You have no friends yet</p>}
+                            </div>
+                        </nav> 
+
+
+
+                        {/* Renderiza componente de lista de amigos
                         <nav className={friendBox ? 'friendBox active' : 'friendBox'}>
                             <h3 className="friendBoxTitle">Friend List</h3>
                             <div className="FriendListBox">
@@ -272,7 +307,7 @@ export default function NavBar() {
                                     )
                                 })}
                             </div>
-                        </nav>
+                        </nav> */}
 
                     </ul>
                 </nav>
@@ -280,5 +315,3 @@ export default function NavBar() {
         </div>
     )
 }
-
-

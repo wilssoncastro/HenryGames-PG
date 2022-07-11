@@ -1,49 +1,52 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./paginado.css"
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllVideogames } from '../../redux/actions';
 
-export default function Paginado({ limit, paginado, page }) {
-  const allVideogames = useSelector((state) => state.allVideogames)
-  const dispatch = useDispatch()
+export default function Paginado({ limit, page, paginado }) {
 
+  const videogames = useSelector((state) => state.videogames)
+  const noLimitVG = useSelector((state) => state.noLimitVideogames)
 
-  useEffect(() => {  
-    dispatch(getAllVideogames());
-  }, [dispatch]);
-  
   const pageNumbers = [];
   const pageNum5 = []
-  const pageQty = allVideogames.length/limit
-  const currentPage = (page/limit)
-  
-  for (let i = 0; i < pageQty; i++) {
-    pageNumbers.push(i + 1);
+  const currentPage = (page / limit) + 1
+  const pageQty = Math.ceil((noLimitVG.length) / limit)
+
+  for (let i = 1; i <= pageQty; i++) {
+    pageNumbers.push(i)
   }
-  
+
+  // for (let j = currentPage + 1; j < currentPage + 6; j++) {
+  //   if (j > 2 && j < pageQty + 1) {
+  //     pageNum5.push(pageNumbers[j - 2])
+  //   }
+  // }
+
   for (let j = currentPage; j < currentPage + 5; j++) {
-    if ((j-2) > 0 && (j-1) < pageQty) {
-      pageNum5.push(pageNumbers[j-2])
+    if (j > 1 && j < pageQty) {
+      pageNum5.push(pageNumbers[j - 1])
     }
   }
-  
+
   return (
     <div className='paginado'>
-      <ul className='pagination'>
-        <button className='edge' onClick={() => paginado(1)}>{1}</button>
-        <br/>
-        {
-          pageNum5.map(n => (
-            <li className='number' key={n}>
-              <button className='buttonPaginado' onClick={() => paginado(n)}>{n}</button>
-            </li> 
-          ))
-        }
-        <br/>
-        {
-          pageNumbers.length>1?<button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>:null
-        }        
-      </ul>
+      {
+        pageQty > 1 ? <ul className="pagination">
+          {
+            <button className='edge' onClick={() => paginado(1)}>{1}</button>
+          }
+          {
+            pageNum5.map(number => (
+              <li className="number" key={number}>
+                <button className="buttonPaginado" onClick={() => paginado(number)}>{number}</button>
+              </li>
+            ))
+          }
+          {
+            <button className='edge' onClick={() => paginado(pageNumbers.length)}>{pageNumbers.length}</button>
+          }
+        </ul> : null
+      }
     </div>
   )
 }

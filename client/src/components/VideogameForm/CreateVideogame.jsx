@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { /* Link */ useNavigate } from "react-router-dom";
 import { getGenres, postVideogame, getEsrb } from "../../redux/actions/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import './CreateVideogame.css'
 import swal from 'sweetalert'
+import NavBar from "../NavBar/navbar.jsx";
 import {
   validateAlertName, validateAlertDescription, validateAlertdRelease, validateAlertMainImage,
   validateAlertShortScreeen, validateAlertFreeToPlay, validateAlertGenres, validateAlertEsrb, validateAlertRequeriments,
   validateAlertErrors
 } from './alerts'
+
+import * as MdIcons from 'react-icons/md'
 
 
 
@@ -56,9 +59,6 @@ export default function VideogameCreate() {
     free_to_play: "select",
     on_sale: false,
   });
-
-
-  console.log(input)
 
   useEffect(() => {
     dispatch(getGenres());
@@ -287,52 +287,18 @@ export default function VideogameCreate() {
 
   return (
     <div className="videogame_created_container">
-      <Link to="/admin">
-        <button>Back to Admin page</button>
-      </Link>
 
-      <p>Please fill out the following form with information about the video game you want to publish</p>
+      <NavBar />
 
-      <div>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div>
-            <div>
-              <div>
-                <label>Name: </label>
-                <input
-                  className={errors.name ? "input_text_error" : "input_text"}
-                  type="text"
-                  name="name"
-                  placeholder="Videogame name"
-                  value={input.name}
-                  onChange={(e) => handleChange(e)}
-                />
+      <div className="cv-body">
+        <p>Please fill out the following form with information about the video game you want to publish</p>
+        <div className="cv-form-component">
 
-              </div>
-              <div>
-                <label>Description</label>
-                <input
-                  className={errors.description ? "input_text_error" : "input_text"}
-                  type="text"
-                  placeholder="Descripción.."
-                  value={input.description}
-                  name="description"
-                  onChange={(e) => handleChange(e)}
-                />
+          {/* LEFT */}
+          <div className="cv-left-container">
+            <form onSubmit={(e) => handleSubmit(e)}>
 
-              </div>
-              <div>
-
-                <label>Release date</label>
-                <input
-                  className={errors.release_date ? "input_text_error" : "input_text"}
-                  name="release_date"
-                  type="text"
-                  laceholder="DD-MM-YYYY"
-                  value={input.release_date}
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
+              {/* MAIN IMAGE INPUT */}
               <div>
                 <label>Main image</label>
                 <input
@@ -342,16 +308,11 @@ export default function VideogameCreate() {
                   name="image"
                   id="main_image"
                 />
-                <button
-                  className="botonX"
-                  onClick={(e) => handleImage(e)}
-                  type="reset"
-                >add Image
-                </button>
+                <button className="botonX" onClick={(e) => handleImage(e)} type="reset">add Image</button>
                 <div>
                   {input.image != "" ? (
                     <div >
-                      <img src={input.image} className="image_form" />
+                      <img src={input.image} className="image_form" alt='' />
                       <button
                         className="botonX"
                         onClick={(e) => handleDeleteImage(e)}
@@ -364,36 +325,71 @@ export default function VideogameCreate() {
                   }
 
                 </div>
-              </div>
+                {/* MAIN IMAGE INPUT */}
 
-              <div>
-
-                <div >
-                  <label> Insert 4 short screenshots</label>
-                </div>
+                {/* 4 screenshots */}
                 <div>
 
-                  <input
-                    className="inputImage"
-                    type="text"
-                    placeholder="Insert url image"
-                    name="short_screenshots"
-                    id="Short-Image"
-                  />
-                  <button
-                    className="botonX"
-                    onClick={(e) => handleShortImage(e)}
-                    type="reset"
-                  >add Image
-                  </button>
+                  <div >
+                    <label> Insert 4 short screenshots</label>
+                  </div>
+                  <div>
+
+                    <input
+                      className="inputImage"
+                      type="text"
+                      placeholder="Insert url image"
+                      name="short_screenshots"
+                      id="Short-Image"
+                    />
+                    <button
+                      className="botonX"
+                      onClick={(e) => handleShortImage(e)}
+                      type="reset"
+                    >add Image
+                    </button>
+                  </div>
+                  <div className="screenShots_Image">
+                    {input.short_screenshots.map(e => (
+                      <div>
+                        <img src={e} alt="Image Not Fount" className="image_form" />
+                        <button
+                          className="botonX"
+                          onClick={() => handleDeleteShortImage(e)}
+                          type="reset"
+                        >
+                          X
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
                 </div>
-                <div className="screenShots_Image">
-                  {input.short_screenshots.map(e => (
+                {/* 4 screenshots */}
+
+                {/* TAGS */}
+                <div>
+                  <label>Tags</label>
+                  <input
+                    className="input"
+                    id="tags"
+                    type="text"
+                    placeholder="Write a tag for your game..."
+                    name="tags"
+
+
+                  />
+                  <button className="botonX" onClick={(e) => handleTags(e)} type="reset">add tag</button>
+                </div>
+
+                <div>
+                  <br />
+                  {input.tags.map((e) => (
                     <div>
-                      <img src={e} alt="Image Not Fount" className="image_form" />
+                      <span>{e}</span>
                       <button
                         className="botonX"
-                        onClick={() => handleDeleteShortImage(e)}
+                        onClick={() => handleDeleteTags(e)}
                         type="reset"
                       >
                         X
@@ -401,10 +397,60 @@ export default function VideogameCreate() {
                     </div>
                   ))}
                 </div>
+                {/* TAGS */}
 
               </div>
+            </form>
+          </div>
 
-              <div>
+          {/* RIGHT */}
+          <div className="cv-right-container">
+            <form className="cv-form" onSubmit={(e) => handleSubmit(e)}>
+
+              {/* NAME */}
+              <div className="cv-input-div">
+                <label>Name</label>
+                <input
+                  className={errors.name ? "input_text_error" : "cv-input"}
+                  type="text"
+                  name="name"
+                  placeholder="Videogame name"
+                  value={input.name}
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+              {/* NAME */}
+
+              {/* DESCRIPTION */}
+              <div className="cv-input-div">
+                <label>Description</label>
+                <input
+                  className={errors.description ? "input_text_error" : "cv-input"}
+                  type="text"
+                  placeholder="Descripción.."
+                  value={input.description}
+                  name="description"
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+              {/* DESCRIPTION */}
+
+              {/* RELEASE DATE */}
+              <div className="cv-input-div">
+                <label>Release date</label>
+                <input
+                  className={errors.release_date ? "input_text_error" : "cv-input"}
+                  name="release_date"
+                  type="text"
+                  placeholder="DD-MM-YYYY"
+                  value={input.release_date}
+                  onChange={(e) => handleChange(e)}
+                />
+              </div>
+              {/* RELEASE DATE */}
+
+              {/* FREE TO PLAY */}
+              <div className="cv-select-div">
                 <label>
                   Free to play?
                 </label>
@@ -415,151 +461,120 @@ export default function VideogameCreate() {
 
                 </select>
 
-              </div>
-              <div>
-                {input.free_to_play === false && (
-                  <div>
-                    <label className="labelPrice">Price: </label>
-                    <input
-                      className="inputPrice"
-                      placeholder="Price.."
-                      type='number'
-                      value={input.price}
-                      name="price"
-                      onChange={(e) => handleChangePrice(e)}
-                    />
-                    {errors.price && <p className="error">{errors.price}</p>}
-                    <label className="labelPrice">ARS$</label>
-                  </div>
-                )}
+                {/* PRICE */}
+                <div className="cv-select-div">
+                  {input.free_to_play === false && (
+                    <div>
+                      <label className="labelPrice">Price: </label>
+                      <input
+                        className="inputPrice"
+                        placeholder="Price.."
+                        type='number'
+                        value={input.price}
+                        name="price"
+                        onChange={(e) => handleChangePrice(e)}
+                      />
+                      {errors.price && <p className="error">{errors.price}</p>}
+                      <label className="labelPrice">ARS$</label>
+                    </div>
+                  )}
 
-              </div>
-
-
-            </div>
-
-            <div>
-              <label className="labelGenres">Genres: </label>
-              <br />
-            </div>
-
-            <select className="selectBox" onChange={(e) => handleGenre(e)}>
-              <option disabled={input.genres.length > 0}>Selecciona Género</option>
-              {genres.map((g) => (
-                <option value={g.name}>{g.name}</option>
-              ))}
-            </select>
-
-            <div>
-              <br />
-              {input.genres.map((e) => (
-                <div>
-                  <span>{e}</span>
-                  <button
-                    className="botonX"
-                    onClick={() => handleDeleteGenre(e)}
-                    type="reset"
-                  >
-                    X
-                  </button>
                 </div>
-              ))}
-            </div>
-
-            <div>
-              <label>Tags</label>
-              <input
-                className="input"
-                id="tags"
-                type="text"
-                placeholder="Write a tag for your game..."
-                name="tags"
-
-
-              />
-              <button
-                className="botonX"
-                onClick={(e) => handleTags(e)}
-                type="reset"
-              >add tag
-              </button>
-            </div>
-
-
-            <div>
-              <br />
-              {input.tags.map((e) => (
-                <div>
-                  <span>{e}</span>
-                  <button
-                    className="botonX"
-                    onClick={() => handleDeleteTags(e)}
-                    type="reset"
-                  >
-                    X
-                  </button>
-                </div>
-              ))}
-            </div>
-
-
-            <br />
-            <div>
-              <label>ESRB RATING: </label>
-              <br />
-              <select className="selectBox" onChange={(e) => handleEsrb(e)}>
-                <option disabled={input.esrb_rating == ""} value={"Select ESRB"}>Select ESRB</option>
-                {esrb.map((p) => (
-                  <option className="optionTags" value={p.name}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-              <a href="https://www.esrb.org/ratings-guide/" target="_blank">More information</a>
-
-
-            </div>
-
-
-
-            <div>
-              <br />
-              <div>
-                {input.esrb_rating != "" && (<div><span>{input.esrb_rating}</span>
-                  <button
-                    className="botonX"
-                    onClick={() => handleDeleteEsrb()}
-                    type="reset"
-                  >
-                    X
-                  </button></div>)}
+                {/* PRICE */}
 
               </div>
-            </div>
-            <div>
-              <label>Requirements: </label>
-              <input
-                className="inputDescription"
-                type="text"
-                placeholder="Requirements.."
-                value={input.requirements}
-                name="description"
-                onChange={(e) => handleChangeRequirements(e)}
-              />
-
-            </div>
-
-            {errors.name && <p className="error">{errors.name}</p>}
-            {errors.description && <p className="error">{errors.description}</p>}
-            {errors.release_date && <p className="error">{errors.release_date}</p>}
+              {/* FREE TO PLAY */}
 
 
-            <button className="botonCrear" type="submit">
-              Public Videogame
-            </button>
+
+
+              {/* GENRES */}
+              <div className="cv-select-div">
+                <label className="labelGenres">Genres: </label>
+
+
+                <select className="selectBox" onChange={(e) => handleGenre(e)}>
+                  <option disabled={input.genres.length > 0}>Selecciona Género</option>
+                  {genres.map((g) => (
+                    <option value={g.name}>{g.name}</option>
+                  ))}
+                </select>
+
+                <div className="cv-select-allitems-box">
+                  <br />
+                  {input.genres.map((e) => (
+                    <div className="cv-select-item-box">
+                      <span>{e}</span>
+                      <button className="botonX" onClick={() => handleDeleteGenre(e)} type="reset"><MdIcons.MdCancel/></button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              {/* GENRES */}
+
+              <br />
+
+              {/* RATING */}
+              <div className="cv-select-div">
+                <label>ESRB RATING: </label>
+                <br />
+                <select className="selectBox" onChange={(e) => handleEsrb(e)}>
+                  <option disabled={input.esrb_rating == ""} value={"Select ESRB"}>Select ESRB</option>
+                  {esrb.map((p) => (
+                    <option className="optionTags" value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+                <a href="https://www.esrb.org/ratings-guide/" target="_blank">More information</a>
+
+                <br />
+                <div>
+                  {input.esrb_rating != "" && (<div><span>{input.esrb_rating}</span>
+                    <button
+                      className="botonX"
+                      onClick={() => handleDeleteEsrb()}
+                      type="reset"
+                    >
+                      X
+                    </button></div>)}
+
+                </div>
+              </div>
+              {/* RATING */}
+
+              {/* REQUIREMENTES */}
+              <div className="cv-input-div">
+                <label>Requirements: </label>
+                <input
+                  className="inputDescription"
+                  type="text"
+                  placeholder="Requirements.."
+                  value={input.requirements}
+                  name="description"
+                  onChange={(e) => handleChangeRequirements(e)}
+                />
+
+              </div>
+              {/* REQUIREMENTES */}
+
+              {errors.name && <p className="error">{errors.name}</p>}
+              {errors.description && <p className="error">{errors.description}</p>}
+              {errors.release_date && <p className="error">{errors.release_date}</p>}
+
+            </form>
           </div>
-        </form>
+
+          {/* TERMINA FORM */}
+        </div>
+
+        <button className="botonCrear" type="submit">Publish Videogame</button>
       </div>
+
+      <div className="containerPublishVideogame">
+
+      </div>
+
     </div>
   );
 }

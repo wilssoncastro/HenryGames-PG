@@ -1,224 +1,229 @@
 import React from "react";
-import { useState } from 'react'
-import { Link } from "react-router-dom";
-import axios from 'axios'
-
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import * as GrIcons from 'react-icons/gr';
+import GoogleBtn from '../Google/GoogleButton.jsx'
 
 export default function SignUp() {
-    const Swal = require('sweetalert2')
+  const Swal = require("sweetalert2");
+  const navigate = useNavigate()
 
-    function validate(input){
-        let errors = {}
+  function validate(input) {
+    let errors = {};
 
-        if(input.name.length < 2){
-            errors.name = 'Ingresaste un nombre invalido!'
-        }
-
-        if(input.lastname.length < 2){
-            errors.lastname = 'Ingresaste un apellido invalido!'
-        }
-
-        if(input.user.length < 3){
-            errors.user = 'Debes ingresar un user mas largo!'
-        }
-
-        if(!(input.email) || !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input.email))){
-            errors.email = 'E-Mail invalido!'
-        }
-
-        if(!(input.password) || !(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g.test(input.password))){
-            errors.password = 'Debes ingresar una password con letras y minimo un numero'
-        }
-
-        if((input.password) !== (input.repassword)){
-            errors.repassword = 'No confirmaste tu contraseña'
-        }
-
-        if(!input.type.length){
-            errors.type = 'Falta el type'
-        }
-
-
-        return errors
+    if (input.name.length < 2) {
+      errors.name = "The name is invalid";
+    } else if(!input.name){
+        errors.name = "Please put your name to continue"
     }
 
-    const [input, setInput] = useState({
-      name: '',
-      lastname: '',
-      user:'',
-      email: '',
-      password: '',
-      repassword:'',
-      type:''
-  })
+    if (input.lastname.length < 2) {
+      errors.lastname = "The lastname is invalid";
+    } else if(!input.lastname){
+        errors.lastname = "Please put your lastname to continue"
+    }
 
-    const [errors, setErrors] = useState({});
+    if (!input.user) {
+        errors.user = "You need a username"
+    } 
 
-    function handleChange(e){
-      setInput({
-        ...input,
-        [e.target.name]:e.target.value
-      })
-      
-      
+    if (!input.email){
+        errors.email = "An email is required"
+    } else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input.email))
+        errors.email = "The email is invalid";  
 
-      setErrors(validate({
-          ...input,
-          [e.target.name]:e.target.value
-      }))
+    if (
+      !input.password ||
+      !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/g.test(input.password)
+    ) {
+      errors.password =
+        "Your password must have numbers and letters";
+    }
+    if (input.password !== input.repassword) {
+      errors.repassword = "The password doesn't match";
+    }
+    if (!input.type.length) {
+      errors.type = "Type is missing";
+    }
+    return errors;
   }
 
-  function handleSelect(e){
+  const [input, setInput] = useState({
+    name: "",
+    lastname: "",
+    user: "",
+    email: "",
+    password: "",
+    repassword: "",
+    type: "user",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [msg, setMsg] = useState('')
+
+  function setType(e){
     setInput({
       ...input,
-      type:e.target.value
+      type: e.target.name
     })
-
-    setErrors(validate({
-        ...input,
-        type:e.target.value
-    }))
   }
 
-    function onSubmit(e) {
-        e.preventDefault();
-        let log_error
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
 
-        if((Object.keys(errors).length === 0)){
-            Swal.fire("Verifique su correo para activar la cuenta!")
-            axios.post('http://localhost:3001/authentication/register', input)
-        }else{
-            if(errors.password){
-                log_error = errors.password
-            }else{
-                log_error = 'Faltan datos obligatorios'
-            }
-
-            return log_error
-        }
-        
-    }
-
-    return (
-        <div >
-            <div >
-                {/* button navBar */}
-                <div>
-                    <Link to="/">
-                        <div>
-                            <div></div>
-                        </div>
-                    </Link>
-                    <div>
-                        <a href="/log_in" >
-                            Iniciar sesion
-                        </a>
-                    </div>
-                </div>
-
-                {/* Form register */}
-            </div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Escriba su Nombre..."
-                        required
-
-                        value={input.name}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        name="lastname"
-                        value={input.lastname}
-                        placeholder="Escriba su apellido..."
-                        required
-                        onChange={handleChange}
-                        
-                    />
-                </div>
-                <div>
-                    <input 
-                        type='text'
-                        name='user'
-                        placeholder="Ingrese su usario..."
-                        value={input.user}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div >
-                    <input
-                        type="email"
-                        name="email"
-                        //className={styles.loginInput}
-                        placeholder="Escriba un e-mail valido..."
-                        required
-                        value={input.email}
-                        onChange={handleChange}
-                        
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-
-                        name="password"
-                        //className={styles.loginInput}
-                        placeholder="Contraseña"
-                        required
-                        value={input.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-
-                        name="repassword"
-                        //className={styles.loginInput}
-                        placeholder="Ingrese de nuevo su contraseña"
-                        required
-                        value={input.repassword}
-                        onChange={handleChange}
-                    />
-                </div>
-                <br />
-                <div>
-                    <select
-                        name="select"
-                        onChange = {e => handleSelect(e)}
-                        defaultValue='Tipo de usuario'
-                    >
-                        <option disabled>Tipo de usuario</option>
-                        <option name='type' value='user'>Jugador</option>
-                        <option name='type' value='adm'>Administrador</option>
-                        
-
-                    </select>
-                </div>
-                <input
-                    type="submit"
-                    value="Registrarse"
-                    // disabled={disableSubmit}
-                    
-                />
-                <br />
-                <br />
-                <p>{errors ? errors.password : 'Faltan datos obligatorios'}</p>
-                
-                <div></div>
-            </form>
-
-        </div>
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
     );
-}
+  }
 
-        
-        
-        
-        
-        
+ /*  function handleSelect(e) {
+    setInput({
+      ...input,
+      type: e.target.value,
+    });
+
+    setErrors(
+      validate({
+        ...input,
+        type: e.target.value,
+      })
+    );
+  } */
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    let log_error;
+    console.log(input)
+
+    if (Object.keys(errors).length === 0 && input.name) {
+      
+      let info = await axios.post("http://localhost:3001/authentication/register", input);
+
+      if(typeof info.data === 'string'){
+        setMsg(info.data)
+      }else{
+        Swal.fire("Check your email to activate the account!");
+        setTimeout(() => {
+          navigate(`/activation/mail-validation/${input.email}`)
+        },2000)
+      }
+      
+    } else { 
+      console.log("Entrooooo")
+      if (errors.password) {
+        log_error = errors.password;
+      } else {
+        log_error = "Missing data required";
+      }
+      return log_error;
+    }
+  }
+
+  return (
+    <div className="lf-body-login">
+      <div className="lf-login-component"> 
+
+        <div className="lf-left-container">
+          <h1 className="lf-h1">Hello, Friend!</h1>
+          <p className="lf-p">
+            Enter your details to create a <strong>Henry Games</strong> account!
+          </p>
+          <p className="lf-p">Already have an account?</p>
+          <Link to="/log_in">
+            <button className="lf-button-leftside">Sign In</button>
+          </Link>
+          <div className="GoogleButton">
+            <GoogleBtn type='light'/>
+          </div>
+          
+        </div>
+
+     
+        <div className="lf-right-container">
+          <form className="lf-form" onSubmit={onSubmit}>
+            <h1 className="lf-h1">Create Account</h1>
+            <input
+              className="lf-input"
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={input.name}
+              onChange={handleChange}
+            />
+            
+            <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
+
+            <input
+              className="lf-input"
+              type="text"
+              name="lastname"
+              placeholder="Lastname"
+              value={input.lastname}
+              onChange={handleChange}
+            />
+            <p className="errorsLog">{errors ? errors.lastname : "Missing data required"}</p>
+
+            <input
+              className="lf-input"
+              type="text"
+              name="user"
+              placeholder="Username"
+              value={input.user}
+              onChange={handleChange}
+            />
+            <p className="errorsLog">{errors ? errors.user : "Missing data required"}</p>
+
+            <input
+              className="lf-input"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={input.email}
+              onChange={handleChange}
+            />
+            <p className="errorsLog">{errors ? errors.email : "Missing data required"}</p>
+
+            <input
+              className="lf-input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={input.password}
+              onChange={handleChange}
+            />
+           <p className="errorsLog">{errors ? errors.password : "Missing data required"}</p>
+           
+
+            <input
+              className="lf-input"
+              type="password"
+              name="repassword"
+              placeholder="Confirm password"
+              value={input.repassword}
+              onChange={handleChange}
+              />
+              <p className="errorsLog">{errors ? errors.repassword : "Missing data required"}</p>
+
+
+            <button type="submit" name='user' className="lf-button" onClick={setType}>
+              Sign Up
+            </button>
+            {/* <Link to="/registerAdmin" className="linkAdmin"> */}
+            <button type="submit" name='adm' className="buttonAdmin" onClick={setType}> <GrIcons.GrUserAdmin /> I am Admin 😎</button>
+            {/* </Link> */}
+            {msg && <p className="errorsLog"> {msg}</p>}
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}

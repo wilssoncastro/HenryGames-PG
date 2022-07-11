@@ -19,9 +19,19 @@ import Blog from './components/Blog/Blog';
 import Article from './components/Blog/Article';
 import EditArticles from './components/Blog/EditArticles';
 import { Users } from './components/Administrador/Users';
-import Comment from './components/Comment/Comment';
+//import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
+import  Friends  from './components/Friends/Friends';
+import ValidationGame from './components/ValidationGame/validationGame';
+import Google from './components/Google/GoogleButton';
+import Chat from './components/ChatRoom/chat'
+import AccountDeleted from './components/AccountDeleted/AccountDeleted';
+import ReSendMail from './components/ReSendMail/ReSendMail';
+//import Google from './components/Google/Google';
+import RecoveryPassword from './components/RecoveryPassword/RecoveryPassword';
+import ChangePassword from './components/ChangePassword/ChangePassword';
+
 function App() {
   return (
     <BrowserRouter>
@@ -40,7 +50,7 @@ function App() {
           <Route exact path='/store/:id' element={<Detail />} />
 
           {/* Página del admin */}
-          <Route exact path='/admin' element={<Admin />}/>
+          <Route exact path='/admin' element={<Admin/>}/>
           
           {/* Ruta para publicar videogame */}
           <Route exact path='/admin/publishVideogame' element={<VideogameCreate />} />
@@ -65,6 +75,7 @@ function App() {
           {/* Te manda a tu perfil :)  */}
           <Route exact path='/profile/:id' element={<Profile />}/>
           <Route exact path='/profile/:id/editprofile' element={<EdiProfile/>}/>
+          <Route exact path='/profile/:id/delete' element={<AccountDeleted/>}/>
 
           {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
@@ -85,9 +96,20 @@ function App() {
           <Route exact path= '/blog/:id' element={<Article/>} />
           <Route exact path= '/blog/editArticles' element={<EditArticles/>} />
 
+          {/* amigos*/} 
+          <Route exact path='/friends/:id' element={<Friends/>}/>
+          <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
+          <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
 
-          
-          <Route path='/comment' element={<Comment />} />
+          <Route path='/googleLogin' element={<Google />}/>
+
+          ///CHAT
+          <Route path='/chat/:id_user/:idF' element={<Chat />}/>
+
+          {/* <Route path='/googleLogin' element={<Google />}/> */}
+          <Route path='/recoverPass' element={<RecoveryPassword />} />
+          <Route path='/recoverPass/:id_user' element={<ChangePassword />} />
+          {/* <Route path='/comment' element={<Comment />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

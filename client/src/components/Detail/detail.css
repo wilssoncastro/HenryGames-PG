@@ -241,3 +241,9 @@
     background-color: rgba(0, 0, 0, 0.846);
     border-radius: 2em;
 }
+
+.loadingDetail{
+    justify-content: center;
+    align-content: center;
+    margin-top: 36vh;
+  }
