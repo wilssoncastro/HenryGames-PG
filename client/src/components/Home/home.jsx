@@ -9,6 +9,7 @@ import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
 import { useEffect } from 'react';
+import Footer from '../Footer/Footer';
 import './home.css'
 import './carousel.css'
 
@@ -179,9 +180,7 @@ export default function Home() {
                         <CarouselOS/>
                     </div>
 
-                    <div className='nuestra-info'>
-                        <span className='github-link'>ACA VA EL GITHUB</span>
-                    </div>
+                    <Footer />
                 </div>
 
             </div>
