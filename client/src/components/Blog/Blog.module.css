@@ -13,7 +13,7 @@
     height: 90vh;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+   /*  align-items: center; */
     /* padding-top: 2rem; */
     gap: 3rem;
     
@@ -47,11 +47,237 @@
     border-radius: 1rem;
     margin: 0.2rem;
     padding: 0 0.3rem;
+    transition: all .3s ease;
 }
-.border:hover {filter: saturate(180%);}
+.border:hover{
+    background-color: rgb(255,201,38);
+    box-shadow: 0 1rem 1.5rem rgba(0,0,0, 0.5);
+    cursor: pointer;
+    filter: saturate(1.6);
+    transform: scale(1.05);
+  }
 
 .img{
     border-radius: 2rem;
     margin-top: 1.5rem;
     box-shadow: 1px 0px 22px rgba(77, 78, 78, 0.64);
+}
+
+/* .img:hover{
+    background-color: #1a83ff;
+    box-shadow: 0 1rem 1.5rem rgba(0,0,0, 0.5);
+    cursor: pointer;
+    filter: saturate(1.6);
+    transform: scale(1.05);
+  } */
+  
+
+.container .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 15%);
+}
+.container .label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+
+.container .input {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    /* height: 40px; */
+    color: #fff;
+
+}
+
+
+
+.container .submit{
+    border:none;
+    outline: none;
+    height: 40px;
+    background: #53b80f;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 20px;
+    margin: 4px;
+}
+
+
+
+/* //////////// ESTILOS PARA EL FORMULARIO DE EDICION DE ARTICULOS////////7/ */
+
+.containerAll {
+    background: rgb(255,201,38);
+    background: linear-gradient(90deg, rgba(255,201,38,1) 0%, rgba(199,158,36,1) 100%);
+    height: 700px;
+}
+
+.containerFull {
+   
+    width: 90%;
+    margin: 0 auto;
+   /*  height: 90vh; */
+    display: flex;
+    /* justify-content: space-between; */
+   /*  align-items: center; */
+    gap: 3rem;
+}
+
+.containerForm {
+    width: 400px;
+    height: 550px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position:cover;
+    transform: translate(0%, 10%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+.containerArticle {
+    backdrop-filter: blur(2px);
+    background-color: #00000062;
+    border-radius: 2rem;
+    width: 730px;
+    height: 500px;
+   /*  background: #000; */
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    
+    transform: translate(0%, 5%);
+    /* box-sizing: border-box; */
+    padding: 40px 30px;
+}
+
+/* .containerArticle */ .contenido{
+    
+  width: 100%;
+  height: 200px;
+  overflow: auto;
+  margin-top: 20px;
+  padding: 4px 4px;
+  text-align: left;
+    
+   /*  width: 100%; */
+    /* margin-bottom: 10px; 
+    height: 150px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    overflow:hidden; */
+   
+    /* max-width: 100%; */
+   
+  /* overflow-x: scroll; */
+  
+}
+
+.containerForm .select {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid rgb(255,201,38);
+    background: transparent;
+    outline: none;
+    /* height: 40px; */
+    color: rgb(255, 191, 0);
+
+}
+
+.container .label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+
+.containerForm .input {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    /* height: 40px; */
+    color: #fff;
+
+}
+
+.containerForm .btn{
+    border:none;
+    outline: none;
+    height: 30px;
+    background: #e9b406;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all .3s ease;
+}
+
+
+
+.btn:hover{
+    background-color: rgb(99, 255, 38);
+    cursor: pointer;
+}
+
+.error {
+    color: crimson;
+}
+
+.loading {
+    background-color: #000;
+}
+ 
+
+
+.containerDetail {
+    background: rgb(255,201,38);
+    background: linear-gradient(90deg, rgba(255,201,38,1) 0%, rgba(199,158,36,1) 100%);
+    
+}
+
+.title {
+    padding: 3rem;
+}
+
+.contents {
+    width: 90%;
+    padding-bottom: 3rem;
+   padding-left: 5rem;
+    margin-top: 20px;
+    
+    text-align: left;
+}
+
+.btnBack{
+    border:none;
+    outline: none;
+    height: 30px;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all .3s ease;
+}
+
+
+
+.btnBack:hover{
+    background-color: rgb(218, 218, 218);
+    cursor: pointer;
 }
