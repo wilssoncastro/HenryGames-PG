@@ -157,7 +157,8 @@ export default function SignUp() {
               value={input.name}
               onChange={handleChange}
             />
-             <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
+            
+            <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
 
             <input
               className="lf-input"

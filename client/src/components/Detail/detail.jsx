@@ -14,7 +14,11 @@ import {
   getCartById,
   is_authorizated,
   postMercadoPago,
+<<<<<<< HEAD
+  getLibraryById
+=======
   addGameToLibrary
+>>>>>>> dev
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -33,6 +37,7 @@ export default function Detail() {
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart /* setCart */] = useState(cartFromLocalStorage);
+  const library = useSelector((state) => state.my_games);
 
   const videogame = useSelector((state) => state.details);
   console.log(videogame)
@@ -41,6 +46,7 @@ export default function Detail() {
   const currents_comments = useSelector((state) => state.comments);
   //const is_online = useSelector((state) => state.is_online)
   let idProfile = localStorage.getItem("id");
+
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
@@ -53,7 +59,7 @@ export default function Detail() {
     dispatch(getCartById(id_user))
     dispatch(is_authorizated())
 
-  }, [dispatch, idProfile, id, cart]);
+  }, [dispatch, idProfile, id, cart, id_user]);
 
   const handleDelete = () => {
     function confirm() {
@@ -129,7 +135,7 @@ export default function Detail() {
     dispatch(postMercadoPago(carrito))
       .then((data) => {
         console.log(data);
-        window.location.href = data.data.init_point;
+        window.open(data.data.init_point);
       })
     };
 
@@ -188,6 +194,7 @@ export default function Detail() {
                 <div>
                   <img className="image" src={videogame.image} alt='not found' />
 
+                  {/* Botones COMPRA WISHLIST Y CART */}
                   <div className="buttons">
                     <div>
                       {!list?.find((e) => e.id == videogame.id) ? (
