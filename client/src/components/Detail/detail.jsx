@@ -85,7 +85,6 @@ export default function Detail() {
       dispatch(addToCart(id_user, id));
     }else{
       const gameInCart = cartFromLocalStorage.map(game => game.id === e.id)
-      console.log(gameInCart)
       if(!gameInCart){
         localStorage.setItem(
           "cart",
