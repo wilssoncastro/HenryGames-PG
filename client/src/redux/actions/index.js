@@ -498,7 +498,7 @@ export function bannedUser(id){
   return async function(dispatch){
     var json = await axios.put(`http://localhost:3001/users/ban/${id}`);
     return dispatch({
-          type: "BANNED_USER",
+          type: "BAN_USER",
           payload: json.data
       });
   }
@@ -509,6 +509,25 @@ export function unbannedUser(id){
     return dispatch({
           type: "BANNED_USER",
           id: id,
+          payload: json.data
+      });
+  }
+}
+///////////////////////////////////////// VOLVER ADMIN O VOLVER USER///////////////////////////////
+export function convertToAdmin(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/admin/${id}`);
+    return dispatch({
+          type: "CONVERT_ADM",
+          payload: json.data
+      });
+  }
+}
+export function convertToUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/user/${id}`);
+    return dispatch({
+          type: "CONVERT_USER",
           payload: json.data
       });
   }

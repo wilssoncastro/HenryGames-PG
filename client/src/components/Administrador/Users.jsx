@@ -1,6 +1,6 @@
 import { React, useEffect /* useState */ } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { bannedUser, getAllUsers, unbannedUser } from "../../redux/actions";
+import { bannedUser, convertToAdmin, convertToUser, getAllUsers, unbannedUser } from "../../redux/actions";
 import { ComponentError } from "./componentError";
 import NavBar from "../NavBar/navbar";
 import './Users.css';
@@ -16,7 +16,7 @@ export function Users() {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  let handleClickBan= async function(id) {
+  const handleClickBan= async function(id) {
     swal({
       title: "Banned this user",
       text: "Are you sure you want to banned this user?",
@@ -41,7 +41,7 @@ export function Users() {
         
   }
 
-  let handleClickunbanned = async function(id) {
+  const handleClickunbanned = async function(id) {
     swal({
       title: "Unbanned this user",
       text: "Are you sure you want to unbanned this user?",
@@ -61,12 +61,56 @@ export function Users() {
       )       
       }
     })
-    
-    
-     
      
   }
 
+  const handleClickAdmin= async function(id) {
+    swal({
+      title: "User to admin",
+      text: "Are you sure you want convert this user to admin?",
+      icon: "info",
+      buttons: ["No", "Yes"]
+  }).then(response => {
+      if (response) {
+        dispatch(convertToAdmin(id))
+          
+        swal({
+          title: "Confirmed",
+          text: "This user is admin now",
+          icon: "success",
+          
+      }).then(reponse => {
+        dispatch(getAllUsers())
+      }
+       
+      )       
+      }
+    })    
+  }
+  const handleClickConvertToUser= async function(id) {
+    swal({
+      title: "User to admin",
+      text: "You want this user to not have administrator permissions",
+      icon: "info",
+      buttons: ["No", "Yes"]
+  }).then(response => {
+      if (response) {
+        dispatch(convertToUser(id))
+          
+        swal({
+          title: "Confirmed",
+          text: "This user is admin now",
+          icon: "success",
+          
+      }).then(reponse => {
+        dispatch(getAllUsers())
+      }
+       
+      )       
+      }
+    })    
+        
+  }
   const id_user_admin = localStorage.getItem('type')
   if (id_user_admin) {
     if (id_user_admin === "adm") {
