@@ -1,0 +1,80 @@
+* {
+  list-style: none;
+  text-decoration: none;
+}
+
+.mainfooter{
+  color:rgb(255, 255, 255);
+  background-color: #0d0c0c;
+  padding-top: 0.3em;
+  width: 100vw;
+  margin-top: 10em;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-titles {
+  display: flex;
+}
+
+.footer-titles-equipo {
+  flex-basis: 50%;
+}
+
+.footer-titles-tecnologias {
+  flex-basis: 50%;
+}
+
+.creadores-tecnologias-div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+
+}
+
+.creadores {
+  flex-basis: 50%;
+  display: grid;
+  text-align: start;
+  grid-template-columns: 50% 50%;
+  margin-left: 4em;
+}
+
+.linkedin-name {
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+  padding: 0.2em;
+}
+
+.linkedin-name a {
+  text-decoration: none;
+  color: white;
+}
+
+
+.tecnologias {
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.tecnologias img {
+  margin: 1em;
+  
+}
+
+.final-footer {
+  background-color: black;
+  align-items: center;
+}
+.final-footer p {
+  padding: 0em 0;
+  font-size: 1.2em;
+}
