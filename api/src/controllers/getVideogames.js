@@ -77,26 +77,7 @@ router.get('/', async (req, res) => {
       })
       res.send(totalData)
     }
-
-
     //-A
-
-    // {
-    //   const { sort, order } = req.query;
-    //   let condition = {}
-    //   let where = {}
-    //   condition.where = where;
-    //   sort&&order?condition.order=[[sort, order]]:!condition.order;
-    //   condition.include = {
-    //     model: Genre,
-    //     attributes: ["name"],
-    //     through: {
-    //       attributes: [],
-    //     }
-    //   }
-    //   let videogames = await Videogame.findAll(condition)
-    //   res.send(videogames)
-    // }
   } catch (error) {
     console.log(error)
     console.log("CATCH")
@@ -106,8 +87,6 @@ router.get('/', async (req, res) => {
 router.get("/filter", async (req, res) => {
   try {
     const { name, gen, tag, esrb, limit, page, sort, order, on_sale } = req.query;
-
-    //let videogames = gen?await Videogame.findAll().filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll()
 
     let condition = {}
     let where = {}
@@ -146,16 +125,7 @@ router.get("/filter", async (req, res) => {
         attributes: [],
       }
     }]
-
-    //let conVideogames = await videogames.findAll(condition)
-    //res.send(conVideogames)
-
-    //let videogames = gen?await Videogame.findAll(condition).filter(e => e.genres.find(e => e.name === gen)):await Videogame.findAll(condition)
-    //res.send(videogames)
-
     let videogames = await Videogame.findAll(condition)
-    //let gameGenre = videogames.filter(e => e.genres.find(e => e.name === gen));
-    //gen?res.send(gameGenre):res.send(videogames)
     res.send(videogames)
   } catch (error) {
     console.log(error)

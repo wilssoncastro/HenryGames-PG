@@ -51,20 +51,13 @@ export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort,
 
 export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort, order) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale${on_sale}&sort=${sort}&order=${order}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&sort=${sort}&order=${order}`);
     return dispatch({
       type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
       payload: json.data
     });
   };
 }
-
-// export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
-//   return ({
-//     type: "FILTER_BY_GENRE",
-//     payload,
-//   });
-// }
 
 export function getGenres() {
   return async function (dispatch) {

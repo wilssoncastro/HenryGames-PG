@@ -1,7 +1,7 @@
 /* eslint-disable eqeqeq */
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { /* Link */ useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   addWishList,
   getDetailsVideogame,
@@ -25,6 +25,7 @@ import Comment from "../Comment/Comment";
 import Info_Comment from "../Info_Comment/Info_Comment";
 import * as BsIcons from "react-icons/bs";
 import * as FiIcons from "react-icons/fi";
+import * as MdIcons from "react-icons/md";
 import loading from '../../images/loading/Infinity-2.9s-200px.gif'
 
 export default function Detail() {
@@ -56,6 +57,7 @@ export default function Detail() {
     }
     dispatch(getCartById(id_user))
     dispatch(is_authorizated())
+    dispatch(getLibraryById(id_user))
 
   }, [dispatch, idProfile, id, cart, id_user]);
 
@@ -133,11 +135,31 @@ export default function Detail() {
 
   const handleBuyMercadoPago = (videogame) => {
     const carrito = [videogame]
-    dispatch(postMercadoPago(carrito))
-      .then((data) => {
-        console.log(data);
-        window.open(data.data.init_point);
+    swal({
+      title: "You will buy this game",
+      text: "Are you sure?",
+      icon: "info",
+      buttons: {
+        sure: {
+          text: 'Yes',
+          value: 'sure'
+        },
+        cancel: 'Cancel'
+      }
+    }).then((value) => {
+      switch (value) {
+        case "sure":
+        dispatch(postMercadoPago(carrito))
+        .then((data) => {
+          console.log(data);
+          window.open(data.data.init_point);
       })
+          break;
+
+        default:
+          break;
+      }
+    });
     };
 
     const logInToBuy = () => {
@@ -165,17 +187,46 @@ export default function Detail() {
           case "sign_up":
             navigate("/sign_up");
             break;
-  
+            
           default:
             break;
         }
       });
     };
 
-    function addToLibrary(e){
-      e.preventDefault()
-      alert('Juego agregado a tu libreria')
+    function addToLibrary(){
       dispatch(addGameToLibrary(videogame.id, id_user))
+      swal({
+      title: 'The game was successfully added to your library',
+      text: "What do you want to do next?",
+      icon: "success",
+      buttons: {
+        library: {
+          text: "Go to library",
+          value: "library",
+        },
+        shop: {
+          text: "Go to shop",
+          value: "shop",
+        },
+        cancel: "Cancel",
+      }
+    }).then((value) => {
+      switch (value) {
+        case "library":
+          navigate("/library");
+          swal("Welcome to your library", "Enjoy!", "success");
+          break;
+
+        case "shop":
+          navigate("/store");
+          swal("Welcome to store", "Enjoy!", "success");
+          break;
+
+        default:
+          break;
+      }
+    })
     }
 
   return (
@@ -221,19 +272,34 @@ export default function Detail() {
                     </div>
 
                     <div>
-                      {!cartFromLocalStorage.includes(videogame) ? (
+                      {library.find(e => e.LibraryPlayer.id_game == videogame.id) ? 
+                       videogame.free_to_play ? 
+                       null : 
+                       (
+                        <Link to='/library'>
+                            <button className="buttonCart"><MdIcons.MdLibraryAddCheck /></button>
+                          </Link>
+                       )
+                       : (
+                        videogame.free_to_play ?
+                        null :
                         <button
                           className="buttonCart"
                           onClick={(e) => HandleAddToCart(e)}
                         ><BsIcons.BsCartPlus />
                         </button>
-                      ) : null}
+                      )}
                     </div>
 
                     <div>
                       {videogame.free_to_play ? 
                         <>
-                          <button onClick={addToLibrary}>Add to library</button>
+                          {library.find(e => e.LibraryPlayer.id_game == videogame.id) ?
+                          <Link to='/library'>
+                            <button className="buttonCart"><MdIcons.MdLibraryAddCheck /></button>
+                          </Link>
+                         :
+                         <button onClick={addToLibrary} className="buttonCart"><MdIcons.MdLibraryAdd /></button> }
                         </>:
                         <>
                             <button
