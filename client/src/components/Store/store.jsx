@@ -21,7 +21,7 @@ export default function Store() {
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(200)
+  const [limit, setLimit] = useState(20)
 
   const paginado = (pageNum) => {
     setPage((pageNum - 1) * limit);
