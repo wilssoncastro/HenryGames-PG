@@ -86,22 +86,25 @@ router.get('/', async (req, res) => {
 
 router.get("/filter", async (req, res) => {
   try {
-    const { name, gen, tag, esrb, limit, page, sort, order, on_sale } = req.query;
+    const { name, gen, tag, esrb, limit, page, sort, order, on_sale, free_to_play } = req.query;
 
-    let condition = {}
-    let where = {}
+    let condition = {};
+    let where = {};
     if (name && name.length > 2) {
-      where.name = { [Op.iLike]: `${name}%` }
+      where.name = { [Op.iLike]: `${name}%` };
     }
     if (esrb) {
-      where.esrb_rating = { [Op.iLike]: `${esrb}%` }
+      where.esrb_rating = { [Op.iLike]: `${esrb}%` };
     }
     if (tag) {
-      let tagL = tag.toLowerCase()
-      where.tags = { [Op.overlap]: [tag, tagL] }
+      let tagL = tag.toLowerCase();
+      where.tags = { [Op.overlap]: [tag, tagL] };
     }
     if (on_sale) {
-      where.on_sale = on_sale
+      where.on_sale = on_sale;
+    }
+    if (free_to_play) {
+      where.free_to_play = free_to_play;
     }
     condition.where = where;
     limit ? condition.limit = limit : !condition.limit;
