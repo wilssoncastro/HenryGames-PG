@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as GrIcons from 'react-icons/gr';
+import GoogleButton from '../Google/GoogleButton.jsx'
 
 export default function SignUp() {
   const Swal = require("sweetalert2");
@@ -14,13 +15,13 @@ export default function SignUp() {
     if (input.name.length < 2) {
       errors.name = "The name is invalid";
     } else if(!input.name){
-        errors.name = "Please put your name for continue"
+        errors.name = "Please put your name to continue"
     }
 
     if (input.lastname.length < 2) {
       errors.lastname = "The lastname is invalid";
     } else if(!input.lastname){
-        errors.lastname = "Please put your lastname for continue"
+        errors.lastname = "Please put your lastname to continue"
     }
 
     if (!input.user) {
@@ -28,7 +29,7 @@ export default function SignUp() {
     } 
 
     if (!input.email){
-        errors.email = "An email is require"
+        errors.email = "An email is required"
     } else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input.email))
         errors.email = "The email is invalid";  
 
@@ -43,7 +44,7 @@ export default function SignUp() {
       errors.repassword = "The password doesn't match";
     }
     if (!input.type.length) {
-      errors.type = "Falta el type";
+      errors.type = "Type is missing";
     }
     return errors;
   }
@@ -59,6 +60,7 @@ export default function SignUp() {
   });
 
   const [errors, setErrors] = useState({});
+  const [msg, setMsg] = useState('')
 
   function handleChange(e) {
     setInput({
@@ -88,16 +90,23 @@ export default function SignUp() {
     );
   } */
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     let log_error;
 
     if (Object.keys(errors).length === 0) {
-      Swal.fire("Check your email to activate the account!");
-      axios.post("http://localhost:3001/authentication/register", input);
-      setTimeout(() => {
-        navigate(`/activation/mail-validation/${input.email}`)
-      },2000)
+      
+      let info = await axios.post("http://localhost:3001/authentication/register", input);
+
+      if(info.data === 'Ya tenemos registros que coincide con el nombre de mail o usuario.'){
+        setMsg(info.data)
+      }else{
+        Swal.fire("Check your email to activate the account!");
+        setTimeout(() => {
+          navigate(`/activation/mail-validation/${input.email}`)
+        },2000)
+      }
+      
     } else { 
       //console.log("Entrooooo")
       if (errors.password) {
@@ -122,6 +131,9 @@ export default function SignUp() {
           <Link to="/log_in">
             <button className="lf-button-leftside">Sign In</button>
           </Link>
+          <div className="GoogleButton">
+            <GoogleButton type='light'/>
+          </div>
           <Link to="/registerAdmin" className="linkAdmin">
             <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
           </Link>
@@ -196,6 +208,7 @@ export default function SignUp() {
             <button type="submit" className="lf-button">
               Sign Up
             </button>
+            {msg && <p className="errorsLog"> {msg}</p>}
 
 
           </form>

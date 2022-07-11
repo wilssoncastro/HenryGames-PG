@@ -5,6 +5,7 @@ import axios from "axios";
 import { addManyToCart } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import "./loginForm.css";
+import GoogleButton from '../Google/GoogleButton.jsx'
 
 export default function LogIn() {
   let navigate = useNavigate();
@@ -120,7 +121,10 @@ export default function LogIn() {
             <button className="lf-button" type="submit">
               Log In
             </button>
-             {error ? <p className="errorsLog">{error}</p> : <></>}
+            <div className="GoogleButton">
+              <GoogleButton type='light'/>
+            </div>
+            {error ? <p className="errorsLog">{error}</p> : <></>}
           </form>
         </div>
       </div>

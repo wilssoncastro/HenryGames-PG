@@ -28,7 +28,7 @@ export default function Home() {
             if (res.status===200) return res.json(); 
             else throw new Error('authentication has been failed')
         }).then((resObj) => {
-            console.log('info user google ', resObj.user)
+            //console.log('info user google ', resObj.user)
             localStorage.setItem("id", resObj.user.id)
             localStorage.setItem('name', resObj.user.name)
             localStorage.setItem('lastname', resObj.user.lastname)

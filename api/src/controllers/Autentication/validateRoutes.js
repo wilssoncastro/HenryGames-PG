@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const { Player, LibraryPlayer } = require('../../db')
 const router = Router()
+const bcrypt = require('bcrypt');
 
 //-----------------------------------------------------------------------
 // Esta ruta responde cuando necesito activar una cuenta recién creada y es
@@ -64,6 +65,27 @@ router.get(`/activation/games/:secretCode/:id_user/:longitude`, async(req, res) 
     } catch (error) {
         console.log('mmm')
         res.status(404).send(error)
+    }
+})
+
+router.post('/changePassword/:id_user', async(req, res) => {
+    const {token, password} = req.body
+    const { id_user } = req.params
+    try {
+        const saltRounds = 8;
+        let user = await Player.findByPk(id_user)
+        if(!user)return res.send('No se encontro el usuario')
+
+        if(user.secret_token !== token)return res.send('Token invalido!')
+        let new_password = await bcrypt.hash(password, saltRounds);
+
+        user.password = new_password
+        await user.save()
+
+        return res.send('Su contraseña modificada')
+
+    } catch (error) {
+        
     }
 })
 

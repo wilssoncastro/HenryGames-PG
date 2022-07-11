@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFriends, getUserById, getAllUsers, addFriend, deleteFriend } from "../../redux/actions";
-import { /* Link */ useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Friends.css"
 import swal from "sweetalert";
 import NavBar from "../NavBar/navbar";
@@ -119,6 +119,9 @@ export default function Friends() {
                                             <p> user: {e.user} </p>
                                             <p> {e.email}</p>
                                         </div>
+                                        <Link to = {`/chat/${id}/${e.id}`}>
+                                        <button>Send Message</button>
+                                        </Link>
                                         <button className="btn_add_delete_friend" onClick={() => handleDelete(e.id)}>Delete friend</button>
 
                                     </div>

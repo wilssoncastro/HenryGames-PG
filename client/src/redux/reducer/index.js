@@ -9,6 +9,7 @@ import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART,
 const initialState = {
     allVideogames: [],
     videogames: [],
+    noLimitVideogames: [],
     details: [],
     wishList: [],
     genres: [],
@@ -22,7 +23,9 @@ const initialState = {
     sales: [],
     is_online: false,
     friends: [],
-    my_games: []
+    my_games: [],
+    my_chat:[],
+    chat_friend:[]
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -30,7 +33,7 @@ const rootReducer = (state = initialState, action) => {
         case "GET_ALL_VIDEOGAMES":
             return {
                 ...state,
-                //videogames: action.payload,
+                videogames: action.payload,
                 allVideogames: action.payload,
             }
 
@@ -38,6 +41,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 videogames: action.payload,
+            }
+
+        case "GET_NOLIMIT_FILTERED_VIDEOGAMES":
+            return {
+                ...state,
+                noLimitVideogames: action.payload,
             }
 
         case 'FILTER_BY_GENRE':
@@ -238,8 +247,26 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 my_games: action.payload.data.library
             }
+        case "GET_CHAT":
+        return{
+            ...state,
+            my_chat: action.payload
+        }
+        case "GET_CHAT_FRIEND":
+        return{
+            ...state,
+            chat_friend: action.payload
+        }
+        case "SEND_MESSAGE":
+        return{
+            ...state,
+            my_chat: state.my_chat.concat(action.payload)
+
+        }
+
         default:
             return state;
+            
 
     }
 }

@@ -38,9 +38,9 @@ export function getAllVideogames() {
 }
 
 
-export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, limit) {
+export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
@@ -48,15 +48,22 @@ export function getFilteredVideogames(name, gen, tag, esrb, page, sort, order, l
   };
 }
 
-export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
-  //return async function (dispatch) {
-    //let json = await axios(`http://localhost:3001/videogames?name=${name}&tag=${tag}&esrb=${esrb}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
-    return ({
-      type: "FILTER_BY_GENRE",
-      payload,
+export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort, order) {
+  return async function (dispatch) {
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale${on_sale}&sort=${sort}&order=${order}`);
+    return dispatch({
+      type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
+      payload: json.data
     });
-  //}
+  };
 }
+
+// export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
+//   return ({
+//     type: "FILTER_BY_GENRE",
+//     payload,
+//   });
+// }
 
 export function getGenres() {
   return async function (dispatch) {
@@ -280,6 +287,17 @@ export function editProfile(id,payload){
       })
     }
   }
+
+export function deleteAccount(id) {
+  return async function(dispatch) {
+    var json = await axios.delete(`http://localhost:3001/users/delete?id=${id}`);
+    dispatch({
+      type: "DELETE_ACCOUNT",
+      payload: json.data
+    })
+  }
+}
+
 //COMENTARIOS 
 //FUNCIONES
 //
@@ -428,5 +446,41 @@ export function getLibraryById(id_user){
         payload: data
       })
     })
+  }
+}
+
+
+////CHAT
+
+export function getChats(id_user, idF){
+  return async function(dispatch){
+    
+    var json = await axios.get(`http://localhost:3001/chat/${id_user}/${idF}`)
+    
+    return dispatch({
+      type: "GET_CHAT",
+      payload: json.data
+  });
+}
+}
+export function getChatsFriend(idF,id_user){
+  return async function(dispatch){
+    var json = await axios.get(`http://localhost:3001/chat/${idF}/${id_user}`)
+     return dispatch({
+      type: "GET_CHAT_FRIEND",
+      payload: json.data
+  });
+}
+}
+
+export function sendMessageChat(id_user, idF, message){
+  return async function(dispatch){
+    var json = await axios.post(`http://localhost:3001/chat/message/${id_user}/${idF}`,message);
+    return dispatch({
+          type: "SEND_MESSAGE",
+          payload: json.data
+      });
+  
+
   }
 }
