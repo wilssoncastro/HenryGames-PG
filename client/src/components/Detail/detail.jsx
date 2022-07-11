@@ -14,11 +14,8 @@ import {
   getCartById,
   is_authorizated,
   postMercadoPago,
-<<<<<<< HEAD
-  getLibraryById
-=======
+  getLibraryById,
   addGameToLibrary
->>>>>>> dev
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";

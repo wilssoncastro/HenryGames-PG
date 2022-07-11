@@ -34,11 +34,6 @@ const router = Router();
 router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     let { userId, token, mail} = req.params
     
-<<<<<<< HEAD
-    //let CLIENT_URL = 'http://localhost:3000/log_in'
-=======
-    
->>>>>>> dev
     let verification_link = `http://localhost:3000/activation/${userId}/${token}`
     try {
         if( userId && token && mail){
