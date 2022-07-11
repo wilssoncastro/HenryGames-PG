@@ -59,13 +59,6 @@ export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort
   };
 }
 
-// export function filterVideogamesByGenre(payload, name, tag, esrb, page, sort, order, limit) {
-//   return ({
-//     type: "FILTER_BY_GENRE",
-//     payload,
-//   });
-// }
-
 export function getGenres() {
   return async function (dispatch) {
     var json = await axios.get("http://localhost:3001/genres");
