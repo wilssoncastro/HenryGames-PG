@@ -49,8 +49,7 @@
 .image  {
     width: 500px;
     height: 250px;
-    margin: 10px;
-    margin-left: 1rem;
+    margin: 1em;
 }
 
 .listDetail1{
@@ -87,6 +86,44 @@
     display: flex;
     flex-direction: row;
 }
+
+.detail-image-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-title-library {
+    display: flex;
+    justify-content: center;
+    background-color: #c7a84b;
+    color: black;
+    margin: 1em;
+    border-radius: 8px;
+    font-size: 25px;
+    padding: 0.5rem;
+}
+
+.button-title-library:hover{
+    background-color: #1a83ff;
+    color: rgb(255, 255, 255);
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.button-in-library {
+    font-weight: 2em;
+    border-radius: 8px;
+    font-size: 25px;
+    padding: 0.5rem;
+    border: none;
+}
+
+.button-library-icon {
+    align-self: center;
+    font-size: 1.2em;
+    justify-content: flex-start;
+}
+
 
 .buttons{
     display: flex;
