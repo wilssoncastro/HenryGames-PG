@@ -6,20 +6,8 @@ import Carousel from 'react-elastic-carousel'
 import Card from '../Card/card';
 
 export default function CarouselFP() {
-  
-  //const dispatch = useDispatch();
+
   const videogames = useSelector((state) => state.videogames)
-
-  // const [nameF] = useState("")
-  // const [sort, setSort] = useState('price');
-  // const [order, setOrder] = useState('desc');
-  // const [limit, setLimit] = useState(15);
-  // const [page, setPage] = useState(0)
-  
-  // useEffect(() => {
-  //   dispatch(getFilteredVideogames(nameF, page, sort, order, limit))
-  // }, [dispatch, page, sort, order, limit])
-
   const onsale = videogames.filter((e) => e.free_to_play == true)
   
   return (

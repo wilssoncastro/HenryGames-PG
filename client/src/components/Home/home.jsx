@@ -15,10 +15,6 @@ import './carousel.css'
 
 export default function Home() {
     const dispatch = useDispatch();
-    
-    useEffect(() => {
-        dispatch(getAllVideogames())
-    }, [dispatch])
 
     useEffect(() => {
         
@@ -49,16 +45,6 @@ export default function Home() {
         getUser()
     }, [])
     
-    // const dispatch = useDispatch();
-    // const videogames = useSelector((state) => state.videogames)
-
-    // const [name, setName] = useState('')
-    // const [page, setPage] = useState(0)
-    // const [sort, setSort] = useState('');
-    // const [order, setOrder] = useState('');
-    // const [limit, setLimit] = useState(15);
-    
-    
     return (
         <div className='background'>
             <div>
@@ -66,101 +52,6 @@ export default function Home() {
             </div>
 
             <div className='home-component-box'>
-
-                {/* <div className='home20'>
-                    <div className='genres-filter'>
-                        <div className='filters-column'>
-                            <div className='filters-title'>
-                                <span>Genres</span>
-                            </div>
-                            <ul className='genres-list'>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Action</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Indie</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Adventure</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>RPG</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Strategy</span>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div className='filters-column'>
-                            <div className='filters-title'>
-                                <span>Tags</span>
-                            </div>
-                            <ul className='genres-list'>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Single Player</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Co-Op</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Multiplayer</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>MMO</span>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div className='filters-column'>   
-                            <div className='filters-title'>
-                                <span>ESRB</span>
-                            </div>
-                            <ul className='genres-list'>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Everyone</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>+10</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Mature</span>
-                                    </Link>
-                                </li>
-                                <li className='genre-txt' >
-                                    <Link to="#">
-                                        <span>Adults</span>
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> */}
 
                 <div className='home60'>
 
