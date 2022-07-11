@@ -306,7 +306,7 @@
   /* Firefox */
   * {
     scrollbar-width: auto;
-    scrollbar-color: red;
+    scrollbar-color: #ef0000;
     
     }
 
@@ -314,6 +314,7 @@
   *::-webkit-scrollbar {
     width: 10px;
     position:relative;
+    background-color: #252323d8;
     }
 
   /* *::-webkit-scrollbar-track {
@@ -322,7 +323,7 @@
 
   *::-webkit-scrollbar-thumb {
     background-color: #626262;
-    /* border-radius: 15px; */
+    border-radius: 15px;
     border: 1px solid #626262;
     }
   *::-webkit-scrollbar-thumb:hover {
