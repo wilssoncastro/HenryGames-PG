@@ -16,7 +16,7 @@
 }
 
 .friendBox.active {
-    right: 255px;
+    right: 14.5vw;
     transition: 350ms;
     padding: 0;
     margin: 0;
