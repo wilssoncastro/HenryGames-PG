@@ -13,7 +13,12 @@ import {
   comment_info,
   getCartById,
   is_authorizated,
-  postMercadoPago
+  postMercadoPago,
+<<<<<<< HEAD
+  getLibraryById
+=======
+  addGameToLibrary
+>>>>>>> dev
 } from "../../redux/actions";
 import NavBar from "../NavBar/navbar";
 import "./detail.css";
@@ -33,13 +38,16 @@ export default function Detail() {
 
   const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart") || "[]");
   const [cart /* setCart */] = useState(cartFromLocalStorage);
+  const library = useSelector((state) => state.my_games);
 
   const videogame = useSelector((state) => state.details);
+  console.log(videogame)
   const list = useSelector((state) => state.wishList);
   //const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
   //const is_online = useSelector((state) => state.is_online)
   let idProfile = localStorage.getItem("id");
+
 
   useEffect(() => {
     dispatch(getDetailsVideogame(id));
@@ -52,7 +60,7 @@ export default function Detail() {
     dispatch(getCartById(id_user))
     dispatch(is_authorizated())
 
-  }, [dispatch, idProfile, id, cart]);
+  }, [dispatch, idProfile, id, cart, id_user]);
 
   const handleDelete = () => {
     function confirm() {
@@ -131,7 +139,7 @@ export default function Detail() {
     dispatch(postMercadoPago(carrito))
       .then((data) => {
         console.log(data);
-        window.location.href = data.data.init_point;
+        window.open(data.data.init_point);
       })
     };
 
@@ -167,6 +175,12 @@ export default function Detail() {
       });
     };
 
+    function addToLibrary(e){
+      e.preventDefault()
+      alert('Juego agregado a tu libreria')
+      dispatch(addGameToLibrary(videogame.id, id_user))
+    }
+
   return (
     <div className="allPage">
       <div>
@@ -189,6 +203,7 @@ export default function Detail() {
                 <div>
                   <img className="image" src={videogame.image} alt='not found' />
 
+                  {/* Botones COMPRA WISHLIST Y CART */}
                   <div className="buttons">
                     <div>
                       {!list?.find((e) => e.id == videogame.id) ? (
@@ -219,19 +234,26 @@ export default function Detail() {
                     </div>
 
                     <div>
-                      <button
-                        className="buttonBuy"
-                        onClick={
-                          typeof idProfile === "string"
-                            ? () => {
-                                handleBuyMercadoPago(videogame);
-                              }
-                            : () => {
-                                logInToBuy();
-                              }
-                        }
-                      ><FiIcons.FiDollarSign />
-                      </button>
+                      {videogame.free_to_play ? 
+                        <>
+                          <button onClick={addToLibrary}>Add to library</button>
+                        </>:
+                        <>
+                            <button
+                            className="buttonBuy"
+                            onClick={
+                              typeof idProfile === "string"
+                                ? () => {
+                                    handleBuyMercadoPago(videogame);
+                                  }
+                                : () => {
+                                    logInToBuy();
+                                  }
+                            }
+                          ><FiIcons.FiDollarSign />
+                          </button>
+                        </>  
+                    }
                     </div>
                   </div>
                 </div>

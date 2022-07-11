@@ -25,6 +25,7 @@ export default function NavBar() {
     const [sidebar, setSidebar] = useState(false);
     const [friendBox, setFriendBox] = useState(false);
     const cartLocal = JSON.parse(localStorage.getItem('cart') || "[]");
+    const username = localStorage.getItem('name');
     let id = localStorage.getItem("id");
     const cart = useSelector((state) => state.cart)
     //const user = useSelector((state) => state.my_user)
@@ -87,7 +88,7 @@ export default function NavBar() {
     // Data for sidebar, can't separate in modules because of onClick hook context import/export
     let sidebarData = [
         {
-            title: 'Profile',
+            title: username,
             path: `/profile/${id}`,
             icon: <CgIcons.CgProfile />,
             className: 'nav-text',

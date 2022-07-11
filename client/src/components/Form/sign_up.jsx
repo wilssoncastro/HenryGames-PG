@@ -15,13 +15,13 @@ export default function SignUp() {
     if (input.name.length < 2) {
       errors.name = "The name is invalid";
     } else if(!input.name){
-        errors.name = "Please put your name for continue"
+        errors.name = "Please put your name to continue"
     }
 
     if (input.lastname.length < 2) {
       errors.lastname = "The lastname is invalid";
     } else if(!input.lastname){
-        errors.lastname = "Please put your lastname for continue"
+        errors.lastname = "Please put your lastname to continue"
     }
 
     if (!input.user) {
@@ -29,7 +29,7 @@ export default function SignUp() {
     } 
 
     if (!input.email){
-        errors.email = "An email is require"
+        errors.email = "An email is required"
     } else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input.email))
         errors.email = "The email is invalid";  
 
@@ -44,7 +44,7 @@ export default function SignUp() {
       errors.repassword = "The password doesn't match";
     }
     if (!input.type.length) {
-      errors.type = "Falta el type";
+      errors.type = "Type is missing";
     }
     return errors;
   }
@@ -60,6 +60,14 @@ export default function SignUp() {
   });
 
   const [errors, setErrors] = useState({});
+  const [msg, setMsg] = useState('')
+
+  function setType(e){
+    setInput({
+      ...input,
+      type: e.target.name
+    })
+  }
 
   function handleChange(e) {
     setInput({
@@ -89,18 +97,26 @@ export default function SignUp() {
     );
   } */
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     let log_error;
+    console.log(input)
 
-    if (Object.keys(errors).length === 0) {
-      Swal.fire("Check your email to activate the account!");
-      axios.post("http://localhost:3001/authentication/register", input);
-      setTimeout(() => {
-        navigate(`/activation/mail-validation/${input.email}`)
-      },2000)
+    if (Object.keys(errors).length === 0 && input.name) {
+      
+      let info = await axios.post("http://localhost:3001/authentication/register", input);
+
+      if(typeof info.data === 'string'){
+        setMsg(info.data)
+      }else{
+        Swal.fire("Check your email to activate the account!");
+        setTimeout(() => {
+          navigate(`/activation/mail-validation/${input.email}`)
+        },2000)
+      }
+      
     } else { 
-      //console.log("Entrooooo")
+      console.log("Entrooooo")
       if (errors.password) {
         log_error = errors.password;
       } else {
@@ -126,9 +142,7 @@ export default function SignUp() {
           <div className="GoogleButton">
             <GoogleBtn type='light'/>
           </div>
-          <Link to="/registerAdmin" className="linkAdmin">
-            <button className="buttonAdmin"> <GrIcons.GrUserAdmin /> Are you an administrator? Enter here!</button>
-          </Link>
+          
         </div>
 
      
@@ -143,7 +157,8 @@ export default function SignUp() {
               value={input.name}
               onChange={handleChange}
             />
-             <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
+            
+            <p className="errorsLog">{errors ? errors.name : "Missing data required"} </p>
 
             <input
               className="lf-input"
@@ -197,9 +212,13 @@ export default function SignUp() {
               <p className="errorsLog">{errors ? errors.repassword : "Missing data required"}</p>
 
 
-            <button type="submit" className="lf-button">
+            <button type="submit" name='user' className="lf-button" onClick={setType}>
               Sign Up
             </button>
+            {/* <Link to="/registerAdmin" className="linkAdmin"> */}
+            <button type="submit" name='adm' className="buttonAdmin" onClick={setType}> <GrIcons.GrUserAdmin /> I am Admin 😎</button>
+            {/* </Link> */}
+            {msg && <p className="errorsLog"> {msg}</p>}
 
 
           </form>

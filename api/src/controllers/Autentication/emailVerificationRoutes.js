@@ -34,7 +34,11 @@ const router = Router();
 router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     let { userId, token, mail} = req.params
     
+<<<<<<< HEAD
     //let CLIENT_URL = 'http://localhost:3000/log_in'
+=======
+    
+>>>>>>> dev
     let verification_link = `http://localhost:3000/activation/${userId}/${token}`
     try {
         if( userId && token && mail){
@@ -71,7 +75,7 @@ router.get('/email/gameActivation/:secretCode/:id_user/:longitude', async(req, r
 
     const user = await Player.findByPk(id_user)
     let mail = user.email
-    console.log(mail)
+    
 
     const link = `http://localhost:3000/activation/games/${secretCode}/${id_user}/${longitude}`
     

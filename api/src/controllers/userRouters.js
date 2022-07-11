@@ -68,17 +68,18 @@ router.post('/create', async(req, res) => {
     }
 })
 
+// Borrar usuario
 router.delete('/delete', async (req, res) => {
     const { id } = req.query
 
     try {
         const player = await Player.findByPk(id)
         if(!player){
-            return res.status(404).send('El jugador no existe')
+            return res.status(404).send('El usuario no existe')
         }
 
         await player.destroy()
-        return res.send('El jugador fue eliminado')
+        return res.send('El usuario fue eliminado')
 
     } catch (error) {
         res.send(error)

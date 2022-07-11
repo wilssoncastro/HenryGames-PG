@@ -2,8 +2,8 @@ import React/*  { useEffect, useState } */ from 'react';
 import NavBar from '../NavBar/navbar'
 // import Carousel from 'react-elastic-carousel'
 // import { Link } from 'react-router-dom'
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getAllVideogames, getFilteredVideogames } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllVideogames } from '../../redux/actions'
 // import * as BiIcons from "react-icons/bi"
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
@@ -13,8 +13,14 @@ import './home.css'
 import './carousel.css'
 
 export default function Home() {
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(getAllVideogames())
+    }, [dispatch])
 
     useEffect(() => {
+        
         const getUser = () =>{
             fetch('http://localhost:3001/auth/google/protected', {
                 method: 'GET',
@@ -51,9 +57,6 @@ export default function Home() {
     // const [order, setOrder] = useState('');
     // const [limit, setLimit] = useState(15);
     
-    // useEffect(() => {
-    //     dispatch(getAllVideogames())
-    // }, [dispatch])
     
     return (
         <div className='background'>

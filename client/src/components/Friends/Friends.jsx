@@ -120,7 +120,7 @@ export default function Friends() {
                                             <p> {e.email}</p>
                                         </div>
                                         <Link to = {`/chat/${id}/${e.id}`}>
-                                        <button>Send Message</button>
+                                        <button  className="btn_to_message">Send Message</button>
                                         </Link>
                                         <button className="btn_add_delete_friend" onClick={() => handleDelete(e.id)}>Delete friend</button>
 
