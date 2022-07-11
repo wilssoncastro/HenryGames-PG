@@ -25,6 +25,7 @@ import Comment from "../Comment/Comment";
 import Info_Comment from "../Info_Comment/Info_Comment";
 import * as BsIcons from "react-icons/bs";
 import * as FiIcons from "react-icons/fi";
+import loading from '../../images/loading/Infinity-2.9s-200px.gif'
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -88,10 +89,13 @@ export default function Detail() {
     if (typeof id_user === 'string') {
       dispatch(addToCart(id_user, id));
     }else{
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([...cartFromLocalStorage, videogame])
-      );
+      const gameInCart = cartFromLocalStorage.map(game => game.id === e.id)
+      if(!gameInCart){
+        localStorage.setItem(
+          "cart",
+          JSON.stringify([...cartFromLocalStorage, videogame])
+        );
+      }
     }
     
     swal({
@@ -179,6 +183,11 @@ export default function Detail() {
       <div>
         <NavBar />
       </div>
+      {videogame.length === 0 ?
+        <div className="loadingDetail">
+          <img src={loading} alt=''/>
+        </div>
+        :
       <div className="allDetail">
         {videogame.id == id ? (
           <div className="CardDetail">
@@ -253,8 +262,8 @@ export default function Detail() {
                       <span className="titleList">Price: </span>
                       {videogame.free_to_play === true ? (
                         <span>Free to play</span>
-                      ) : (
-                        <span>${videogame.price}</span>
+                        ) : (
+                          <span>${videogame.price}</span>
                       )}
                     </li>
 
@@ -330,7 +339,7 @@ export default function Detail() {
                 {videogame.short_screenshots?.map((e) => {
                   return (
                     <img className="screenshots" src={e} alt="" />
-                  );
+                    );
                 })}
               </Carousel>
             </div>
@@ -339,15 +348,15 @@ export default function Detail() {
             <div className="requirements">
               {videogame.requirements == '' || videogame.requirements == 'null' ? (
                 <span>The videogame has not specified requirements.</span>
-              ) : (
-                <p>{videogame.requirements}</p>
-              )}
+                ) : (
+                  <p>{videogame.requirements}</p>
+                  )}
             </div>
 
             {videogame.db_created && (
               <button
-                className="deleteButtonDetail"
-                onClick={(e) => handleDelete(e)}
+              className="deleteButtonDetail"
+              onClick={(e) => handleDelete(e)}
               >
                 Delete Videogame
               </button>
@@ -362,7 +371,7 @@ export default function Detail() {
                   createdAt={e.createdAt}
                   user={e.username}
                 />
-              ))}
+                ))}
               
             </div>
 
@@ -372,6 +381,7 @@ export default function Detail() {
           </div>
         ) : null}
       </div>
+      }
     </div>
   );
 }
