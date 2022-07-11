@@ -26,7 +26,8 @@ export default function NavBar() {
     const [friendBox, setFriendBox] = useState(false);
     const cartLocal = JSON.parse(localStorage.getItem('cart') || "[]");
     const username = localStorage.getItem('name');
-    let id = localStorage.getItem("id");
+    const id = localStorage.getItem("id");
+    const typeUser = localStorage.getItem("type");
     const cart = useSelector((state) => state.cart)
     //const user = useSelector((state) => state.my_user)
     
@@ -115,7 +116,8 @@ export default function NavBar() {
             icon: <RiIcons.RiAdminLine />,
             className: 'nav-text',
             onClick: showSidebar,
-            loggedIn: true
+            loggedIn: true,
+            admin: true
         },
         {
             title: 'Friends',
@@ -159,9 +161,16 @@ export default function NavBar() {
             }
         })
     } else {
+        // if (typeUser === 'adm') {
+        //     sidebarDataInfo.push(sidebarData[3])
+        // }
         sidebarData.map((e) => {
             if (e.loggedIn === true || e.loggedIn == null) {
-                sidebarDataInfo.push(e)
+                if(!e.admin){
+                    sidebarDataInfo.push(e)
+                } else if(typeUser === 'adm'){
+                    sidebarDataInfo.push(e)
+                }
             }
         })
     }
