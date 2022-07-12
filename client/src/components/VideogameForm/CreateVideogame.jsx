@@ -146,17 +146,130 @@ export default function VideogameCreate() {
     }
   };
 
-  const handleImage = (e) => {
-    let image = document.getElementById("main_image").value
-    if (image != "") {
-      {
+  // const handleImage = (e) => {
+  //   let image = document.getElementById("main_image").value
+  //   if (image != "") {
+  //     {
+  //       setInput({
+  //         ...input,
+  //         image: image,
+  //       });
+  //     }
+  //   }
+  // };
+
+
+  async function handleImage() {
+    const preview = document.getElementById("imagen_principal");
+
+    const fileInput = document.getElementById("main_image");
+    const file = fileInput.files[0];
+    const reader = await new FileReader();
+    reader.addEventListener(
+      "load",
+      async function () {
+        preview.src = await reader.result;
         setInput({
           ...input,
-          image: image,
-        });
-      }
+          image: preview.src,
+        });;
+      },
+      false
+    );
+    if (file) {
+      reader.readAsDataURL(file);
     }
-  };
+  }
+  async function handleImageOne() {
+    const preview = document.getElementById("image1");
+
+    const fileInput = document.getElementById("Short-Image1");
+    const file = fileInput.files[0];
+    const reader = await new FileReader();
+    reader.addEventListener(
+      "load",
+      async function () {
+        preview.src = await reader.result;
+        setInput({
+          ...input,
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
+        });;
+      },
+      false
+    );
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  async function handleImageTwo() {
+    const preview = document.getElementById("image2");
+
+    const fileInput = document.getElementById("Short-Image2");
+    const file = fileInput.files[0];
+    const reader = await new FileReader();
+    reader.addEventListener(
+      "load",
+      async function () {
+        preview.src = await reader.result;
+        setInput({
+          ...input,
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
+        });;
+      },
+      false
+    );
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  async function handleImageTree() {
+    const preview = document.getElementById("image3");
+
+    const fileInput = document.getElementById("Short-Image3");
+    const file = fileInput.files[0];
+    const reader = await new FileReader();
+    reader.addEventListener(
+      "load",
+      async function () {
+        preview.src = await reader.result;
+        setInput({
+          ...input,
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
+        });;
+      },
+      false
+    );
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+  async function handleImageFour() {
+    const preview = document.getElementById("image4");
+
+    const fileInput = document.getElementById("Short-Image4");
+    const file = fileInput.files[0];
+    const reader = await new FileReader();
+    reader.addEventListener(
+      "load",
+      async function () {
+        preview.src = await reader.result;
+        setInput({
+          ...input,
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
+        });;
+      },
+      false
+    );
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
+
+
+
+
+
   const handleDeleteImage = (e) => {
     setInput({
       ...input,
@@ -291,189 +404,120 @@ export default function VideogameCreate() {
       <NavBar />
 
       <div className="cv-body">
-        <p>Please fill out the following form with information about the video game you want to publish</p>
+
         <div className="cv-form-component">
 
-          
 
-          {/* RIGHT */}
-          <div className="cv-right-container">
+          <div className="containerPublishVideogame">
             <form className="cv-form" onSubmit={(e) => handleSubmit(e)}>
+              <div className="cv-left-container">
+                {/* lEFT */}
+                <p>Please fill out the following form with information about the video game you want to publish</p>
 
-              {/* NAME */}
-              <div className="cv-input-div">
-                <label>Name</label>
-                <input
-                  className={errors.name ? "input_text_error" : "cv-input"}
-                  type="text"
-                  name="name"
-                  placeholder="Videogame name"
-                  value={input.name}
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
-              {/* NAME */}
-
-              {/* DESCRIPTION */}
-              <div className="cv-input-div">
-                <label>Description</label>
-                <input
-                  className={errors.description ? "input_text_error" : "cv-input"}
-                  type="text"
-                  placeholder="Descripción.."
-                  value={input.description}
-                  name="description"
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
-              {/* DESCRIPTION */}
-
-              {/* RELEASE DATE */}
-              <div className="cv-input-div">
-                <label>Release date</label>
-                <input
-                  className={errors.release_date ? "input_text_error" : "cv-input"}
-                  name="release_date"
-                  type="text"
-                  placeholder="DD-MM-YYYY"
-                  value={input.release_date}
-                  onChange={(e) => handleChange(e)}
-                />
-              </div>
-              {/* RELEASE DATE */}
-
-              {/* MAIN IMAGE INPUT */}
-              <div>
-                <label>Main image</label>
-                <input
-                  className="inputImage"
-                  type="text"
-                  placeholder="Main Image"
-                  name="image"
-                  id="main_image"
-                />
-                <button className="botonX" onClick={(e) => handleImage(e)} type="reset">add Image</button>
-                <div>
-                  {input.image != "" ? (
-                    <div >
-                      <img src={input.image} className="image_form" alt='' />
-                      <button
-                        className="botonX"
-                        onClick={(e) => handleDeleteImage(e)}
-                        type="reset"
-                      >
-                        X
-                      </button>
-                    </div>
-                  ) : ""
-                  }
-                </div>
-
-              </div>
-              {/* MAIN IMAGE INPUT */}
-
-              {/* 4 screenshots */}
-              <div>
-
-                <div >
-                  <label> Insert 4 short screenshots</label>
-                </div>
-                <div>
-
+                {/* NAME */}
+                <div className="cv-input-div">
+                  <label>Name</label>
                   <input
-                    className="inputImage"
+                    className={errors.name ? "input_text_error" : "cv-input"}
                     type="text"
-                    placeholder="Insert url image"
-                    name="short_screenshots"
-                    id="Short-Image"
+                    name="name"
+                    placeholder="Videogame name"
+                    value={input.name}
+                    onChange={(e) => handleChange(e)}
                   />
-                  <button
-                    className="botonX"
-                    onClick={(e) => handleShortImage(e)}
-                    type="reset"
-                  >add Image
-                  </button>
                 </div>
-                <div className="screenShots_Image">
-                  {input.short_screenshots.map(e => (
-                    <div>
-                      <img src={e} alt="Image Not Fount" className="image_form" />
-                      <button
-                        className="botonX"
-                        onClick={() => handleDeleteShortImage(e)}
-                        type="reset"
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
+                {/* NAME */}
+
+                {/* DESCRIPTION */}
+                <div className="cv-input-div">
+                  <label>Description</label>
+                  <input
+                    className={errors.description ? "input_text_error" : "cv-input"}
+                    type="text"
+                    placeholder="Descripción.."
+                    value={input.description}
+                    name="description"
+                    onChange={(e) => handleChange(e)}
+                  />
                 </div>
+                {/* DESCRIPTION */}
 
-              </div>
-              {/* 4 screenshots */}
+                {/* RELEASE DATE */}
+                <div className="cv-input-div">
+                  <label>Release date</label>
+                  <input
+                    className={errors.release_date ? "input_text_error" : "cv-input"}
+                    name="release_date"
+                    type="text"
+                    placeholder="DD-MM-YYYY"
+                    value={input.release_date}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                {/* RELEASE DATE */}
 
-              {/* FREE TO PLAY */}
-              <div className="cv-select-div">
-                <label>
-                  Free to play?
-                </label>
-                <select className="selectisfree" onChange={(e) => handleFreeToPlay(e)}>
-                  <option value="Select" >Select:</option>
-                  <option value={true}>YES</option>
-                  <option value={false}>NO</option>
-
-                </select>
-
-                {/* PRICE */}
+                {/* FREE TO PLAY */}
                 <div className="cv-select-div">
-                  {input.free_to_play === false && (
-                    <div>
-                      <label className="labelPrice">Price: </label>
-                      <input
-                        className="inputPrice"
-                        placeholder="Price.."
-                        type='number'
-                        value={input.price}
-                        name="price"
-                        onChange={(e) => handleChangePrice(e)}
-                      />
-                      {errors.price && <p className="error">{errors.price}</p>}
-                      <label className="labelPrice">ARS$</label>
-                    </div>
-                  )}
+                  <label>
+                    Free to play?
+                  </label>
+                  <select className="selectisfree" onChange={(e) => handleFreeToPlay(e)}>
+                    <option value="Select" >Select:</option>
+                    <option value={true}>YES</option>
+                    <option value={false}>NO</option>
+
+                  </select>
+
+                  {/* PRICE */}
+                  <div className="cv-select-div">
+                    {input.free_to_play === false && (
+                      <div>
+                        <label className="labelPrice">Price: </label>
+                        <input
+                          className="inputPrice"
+                          placeholder="Price.."
+                          type='number'
+                          value={input.price}
+                          name="price"
+                          onChange={(e) => handleChangePrice(e)}
+                        />
+                        {errors.price && <p className="error">{errors.price}</p>}
+                        <label className="labelPrice">ARS$</label>
+                      </div>
+                    )}
+
+                  </div>
+                  {/* PRICE */}
 
                 </div>
-                {/* PRICE */}
-
-              </div>
-              {/* FREE TO PLAY */}
+                {/* FREE TO PLAY */}
 
 
 
 
-              {/* GENRES */}
-              <div className="cv-select-div">
-                <label className="labelGenres">Genres: </label>
+                {/* GENRES */}
+                <div className="cv-select-div">
+                  <label className="labelGenres">Genres: </label>
 
 
-                <select className="selectBox" onChange={(e) => handleGenre(e)}>
-                  <option disabled={input.genres.length > 0}>Selecciona Género</option>
-                  {genres.map((g) => (
-                    <option value={g.name}>{g.name}</option>
-                  ))}
-                </select>
+                  <select className="selectBox" onChange={(e) => handleGenre(e)}>
+                    <option disabled={input.genres.length > 0}>Selecciona Género</option>
+                    {genres.map((g) => (
+                      <option value={g.name}>{g.name}</option>
+                    ))}
+                  </select>
 
-                <div className="cv-select-allitems-box">
-                  <br />
-                  {input.genres.map((e) => (
-                    <div className="cv-select-item-box">
-                      <span>{e}</span>
-                      <button className="botonX" onClick={() => handleDeleteGenre(e)} type="reset"><MdIcons.MdCancel /></button>
-                    </div>
-                  ))}
+                  <div className="cv-select-allitems-box">
+                    <br />
+                    {input.genres.map((e) => (
+                      <div className="cv-select-item-box">
+                        <span>{e}</span>
+                        <button className="botonX" onClick={() => handleDeleteGenre(e)} type="reset"><MdIcons.MdCancel /></button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              {/* GENRES */}
+                {/* GENRES */}
 
                 {/* TAGS */}
                 <div>
@@ -487,76 +531,192 @@ export default function VideogameCreate() {
 
 
                   />
-                  <button className="botonX" onClick={(e) => handleTags(e)} type="reset">add tag</button>
+                  <button className="boton_tag" onClick={(e) => handleTags(e)} type="reset">add tag</button>
                 </div>
 
-                <div>
+                <div className="cv-select-allitems-box">
                   <br />
                   {input.tags.map((e) => (
-                    <div>
+                    <div className="cv-select-item-box">
                       <span>{e}</span>
-                      <button
-                        className="botonX"
-                        onClick={() => handleDeleteTags(e)}
-                        type="reset"
-                      >
-                        X
-                      </button>
+                      <button className="botonX" onClick={() => handleDeleteTags(e)} type="reset"><MdIcons.MdCancel /></button>
+
                     </div>
                   ))}
                 </div>
                 {/* TAGS */}
 
-              <br />
-
-              {/* RATING */}
-              <div className="cv-select-div">
-                <label>ESRB RATING: </label>
                 <br />
-                <select className="selectBox" onChange={(e) => handleEsrb(e)}>
-                  <option disabled={input.esrb_rating == ""} value={"Select ESRB"}>Select ESRB</option>
-                  {esrb.map((p) => (
-                    <option className="optionTags" value={p.name}>
-                      {p.name}
-                    </option>
-                  ))}
-                </select>
-                <a href="https://www.esrb.org/ratings-guide/" target="_blank">More information</a>
 
-                <br />
-                <div>
-                  {input.esrb_rating != "" && (<div><span>{input.esrb_rating}</span>
-                    <button
-                      className="botonX"
-                      onClick={() => handleDeleteEsrb()}
-                      type="reset"
-                    >
-                      X
-                    </button></div>)}
+                {/* RATING */}
+                <div className="cv-select-div">
+                  <label>ESRB RATING: </label>
+                  <br />
+                  <select className="selectBox" onChange={(e) => handleEsrb(e)}>
+                    <option disabled={input.esrb_rating == ""} value={"Select ESRB"}>Select ESRB</option>
+                    {esrb.map((p) => (
+                      <option className="optionTags" value={p.name}>
+                        {p.name}
+                      </option>
+                    ))}
+                  </select>
+                  <a href="https://www.esrb.org/ratings-guide/" target="_blank">More information</a>
+
+                  <br />
+                  <div className="cv-select-item-box">
+                    {input.esrb_rating != "" && (<div><span>{input.esrb_rating}</span>
+                      <button
+                        className="botonX"
+                        onClick={() => handleDeleteEsrb()}
+                        type="reset"
+                      >
+                        <MdIcons.MdCancel />
+                      </button></div>)}
+
+                  </div>
+                </div>
+                {/* RATING */}
+
+                {/* REQUIREMENTES */}
+                <div className="cv-input-div">
+                  <label>Requirements: </label>
+                  <input
+                    className="inputDescription"
+                    type="text"
+                    placeholder="Requirements.."
+                    value={input.requirements}
+                    name="description"
+                    onChange={(e) => handleChangeRequirements(e)}
+                  />
 
                 </div>
+                {/* REQUIREMENTES */}
+
+                {errors.name && <p className="error">{errors.name}</p>}
+                {errors.description && <p className="error">{errors.description}</p>}
+                {errors.release_date && <p className="error">{errors.release_date}</p>}
               </div>
-              {/* RATING */}
+              <div className="component_rigth_form">
+                {/* MAIN IMAGE INPUT */}
 
-              {/* REQUIREMENTES */}
-              <div className="cv-input-div">
-                <label>Requirements: </label>
-                <input
-                  className="inputDescription"
-                  type="text"
-                  placeholder="Requirements.."
-                  value={input.requirements}
-                  name="description"
-                  onChange={(e) => handleChangeRequirements(e)}
-                />
+                <div>
+                  <label>Main image</label>
+                  <input
+                    className="inputImage"
+                    type="file"
+                    placeholder="Main Image"
+                    name="image"
+                    id="main_image"
+                    onChange={(e) => handleImage(e)}
+                  />
 
+                  
+
+                    <div className="imagen_principal_container">
+                      <img id="imagen_principal" src={input.image} className="image_form" />
+                      {input.image.length > 0 &&
+
+                        <button className="botonX" onClick={(e) => handleDeleteImage(e)} type="reset"><MdIcons.MdCancel /></button>
+
+                      }
+                    </div>
+
+
+
+                 
+                </div>
+
+                {/* 4 screenshots */}
+                <div >
+
+                  <div >
+                    <label> Insert screenshots</label>
+                  </div>
+                  <div className="container_up_shortsc">
+
+                    <input
+                      className="inputImage"
+                      type="file"
+                      placeholder="Insert url image"
+                      name="short_screenshots"
+                      id="Short-Image1"
+                      onChange={(e) => handleImageOne(e)}
+                    />
+                    <input
+                      className="inputImage"
+                      type="file"
+                      placeholder="Insert url image"
+                      name="short_screenshots"
+                      id="Short-Image2"
+                      onChange={(e) => handleImageTwo(e)}
+                    />
+                    <input
+                      className="inputImage"
+                      type="file"
+                      placeholder="Insert url image"
+                      name="short_screenshots"
+                      id="Short-Image3"
+                      onChange={(e) => handleImageTree(e)}
+                    />
+                    <input
+                      className="inputImage"
+                      type="file"
+                      placeholder="Insert url image"
+                      name="short_screenshots"
+                      id="Short-Image4"
+                      onChange={(e) => handleImageFour(e)}
+                    />
+
+                  </div>
+                  <div className="screenShots_Image">
+
+                    <div >
+                      <img src={input.short_screenshots[0]} id="image1" className="image_form" />
+                      {/* {input.short_screenshots.length > 0 && <button
+      className="botonX"
+      onClick={(e) => handleDeleteShortImage(input.short_screenshots[0])}
+      type="reset"
+    >
+      X
+    </button>
+    } */}
+                      <img src={input.short_screenshots[1]} id="image2" className="image_form" />
+                      {/* {input.short_screenshots.length > 1 && <button
+      className="botonX"
+      onClick={(e) => handleDeleteShortImage(input.short_screenshots[1])}
+      type="reset"
+    >
+      X
+    </button>
+    } */}
+                      <img src={input.short_screenshots[2]} id="image3" className="image_form" />
+                      {/* {input.short_screenshots.length > 2 && <button
+      className="botonX"
+      onClick={(e) => handleDeleteShortImage(input.short_screenshots[2])}
+      type="reset"
+    >
+      X
+    </button>
+    } */}
+                      <img src={input.short_screenshots[3]} id="image4" className="image_form" />
+                      {/* {input.short_screenshots.length > 3 && <button
+      className="botonX"
+      onClick={(e) => handleDeleteShortImage(input.short_screenshots[3])}
+      type="reset"
+    >
+      X
+    </button>
+    } */}
+                    </div>
+
+                  </div>
+                </div>
+
+
+                {/* 4 screenshots */}
+                <button className="botonCrear" type="submit">Publish Videogame</button>
               </div>
-              {/* REQUIREMENTES */}
 
-              {errors.name && <p className="error">{errors.name}</p>}
-              {errors.description && <p className="error">{errors.description}</p>}
-              {errors.release_date && <p className="error">{errors.release_date}</p>}
-              <button className="botonCrear" type="submit">Publish Videogame</button>
 
             </form>
           </div>
@@ -564,7 +724,7 @@ export default function VideogameCreate() {
           {/* TERMINA FORM */}
         </div>
 
-        
+
       </div>
 
       <div className="containerPublishVideogame">
