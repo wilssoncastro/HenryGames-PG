@@ -1,4 +1,4 @@
-import React/*  { useEffect, useState } */ from 'react';
+import React, { useState }  from 'react';
 import NavBar from '../NavBar/navbar'
 // import Carousel from 'react-elastic-carousel'
 // import { Link } from 'react-router-dom'
@@ -8,11 +8,14 @@ import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
 import { useEffect } from 'react';
 import Footer from '../Footer/Footer';
+import swal from "sweetalert";
 import './home.css'
 import './carousel.css'
 
 export default function Home() {
 
+    let [banned, setBanned] = useState(false)
+    const [errorGoogle, setErrorGoogle] = useState(false)
 
     useEffect(() => {
         
@@ -39,15 +42,32 @@ export default function Home() {
                 localStorage.setItem('profile_pic', resObj.user.profile_pic)
                 localStorage.setItem('user', resObj.user.email)
             }
-            else{
-                resObj.message()
+            else if(resObj.banned){
+                //console.log('entre al condicional de baneo')
+                setBanned(true)
             }
-        }).catch((error)=> {
-            console.log(error)
+            else if(!resObj.banned && !resObj.success){
+                setErrorGoogle(true)
+            }
         })
         }
         getUser()
     }, [])
+
+    if(errorGoogle){
+        swal({
+            title: 'We have a problem with your account',
+            text: 'Sorry',
+            icon: "error",
+        })
+    }
+
+    if(banned){
+        swal({
+            title: 'Your account is banned. Can not log in',
+            icon: "error",
+        })
+    }
     
     return (
         <div className='background'>
