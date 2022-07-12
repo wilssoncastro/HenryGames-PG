@@ -31,9 +31,11 @@ font-family: sans-serif;
 }
 .img_profile{
    width: 300px;
+   height: 300px;
    float: left;
    margin: 10px;
    border: #c0a956 4px solid;
+   object-position: center center;
 }
 .text_profile{
     float: left;
