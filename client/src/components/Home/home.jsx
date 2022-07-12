@@ -20,7 +20,7 @@ export default function Home() {
     useEffect(() => {
         
         const getUser = () =>{
-            fetch('http://localhost:3001/auth/google/protected', {
+            fetch('/auth/google/protected', {
                 method: 'GET',
                 credentials: 'include',
                 header: {

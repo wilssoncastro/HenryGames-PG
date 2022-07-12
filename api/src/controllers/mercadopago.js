@@ -41,7 +41,7 @@ let preference = {
         installments: 3 //cuotas
     },
     "back_urls": {
-        "success": "http://localhost:3001/mercadopago/save_data",
+        "success": "/mercadopago/save_data",
         "failure": "http://localhost:3000/home",
         "pending": "http://localhost:3000/home"
     },
@@ -119,7 +119,7 @@ router.get('/save_data', async(req, res) => {
     
 
 
-    res.redirect(`http://localhost:3001/authentication/email/gameActivation/${secret_code}/${id_user}/${longitude}`)
+    res.redirect(`/authentication/email/gameActivation/${secret_code}/${id_user}/${longitude}`)
 })
 
 module.exports = router;

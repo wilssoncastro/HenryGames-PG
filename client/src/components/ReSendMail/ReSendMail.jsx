@@ -7,7 +7,7 @@ export default function ReSendMail(){
     const Swal = require("sweetalert2");
     
     function reSend(){
-        axios.get(`http://localhost:3001/authentication/email/reSend/${mail}`)
+        axios.get(`/authentication/email/reSend/${mail}`)
         .then(data => {
             console.log(data)
         })

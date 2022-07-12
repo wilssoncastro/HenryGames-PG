@@ -4,7 +4,7 @@ import GoogleButton from 'react-google-button'
 export default function GoogleBtn({type}) {
 
     const google = () => {
-        window.location.href = 'http://localhost:3001/auth/google'
+        window.location.href = '/auth/google'
     }
 
     return (

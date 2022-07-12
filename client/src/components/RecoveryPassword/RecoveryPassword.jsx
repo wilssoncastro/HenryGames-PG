@@ -49,7 +49,7 @@ export default function RecoveryPassword(){
             setMsg(error)
         }else{
             
-            let info = await axios.post(`http://localhost:3001/authentication/recovery_password`, input)
+            let info = await axios.post(`/authentication/recovery_password`, input)
             // .then(data => {
             //     console.log(data)
             // })

@@ -25,7 +25,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser(SECRET));
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -74,7 +74,7 @@ let profile_pic_default = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-
 passport.use(new GoogleStrategy({
     clientID: process.env['GOOGLE_CLIENT_ID'],
     clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
-    callbackURL: "http://localhost:3001/google/callback",
+    callbackURL: "/google/callback",
     passReqToCallback: true
   },
   async function(request, accessToken, refreshToken, profile, done) {

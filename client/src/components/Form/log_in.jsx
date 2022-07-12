@@ -29,14 +29,14 @@ export default function LogIn() {
     e.preventDefault();
 
     if (input.username && input.password) {
-      let is_authorized = await axios.get("http://localhost:3001/is_online");
+      let is_authorized = await axios.get("/is_online");
 
       if (is_authorized.data) {
         setError("You are already register");
       } else {
         const login = await axios({
           method: "post",
-          url: "http://localhost:3001/authentication/login",
+          url: "/authentication/login",
           data: input,
           headers: { "X-Requested-With": "XMLHttpRequest" },
           withCredentials: true,
