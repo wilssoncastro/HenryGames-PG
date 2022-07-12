@@ -8,7 +8,6 @@ import {
   getCartById,
   deleteAllFromCart,
   postMercadoPago,
-  /* is_authorizated */
 } from "../../redux/actions";
 import swal from "sweetalert";
 import "./shoppingcart.css";
