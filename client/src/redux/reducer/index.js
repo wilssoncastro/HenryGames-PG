@@ -36,12 +36,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 videogames: action.payload,
                 allVideogames: action.payload,
+                details: [],
             }
 
         case "GET_FILTERED_VIDEOGAMES":
             return {
                 ...state,
                 videogames: action.payload,
+                details: [],
             }
 
         case "GET_NOLIMIT_FILTERED_VIDEOGAMES":
@@ -276,6 +278,7 @@ const rootReducer = (state = initialState, action) => {
             my_chat: state.my_chat.concat(action.payload)
 
         }
+        
 
         default:
             return state;

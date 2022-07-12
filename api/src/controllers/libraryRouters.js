@@ -54,7 +54,8 @@ router.put('/addInLibrary/:id_game/:id_user', async(req,res) => {
             }
         }
 
-
+        game.contador = game.contador+1
+        await game.save()
 
         return res.send(resultado)
     } catch (error) {

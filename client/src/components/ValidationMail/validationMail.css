@@ -1,0 +1,32 @@
+.backgroundLogInValidate{
+    background-color: #fff;
+    background-image: url(https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    justify-content: center;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center; 
+}
+
+
+.ContainerAll{
+    color: #c0a956;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: max-content;
+    font-size: 30px;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin-top: 25vh;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    width: 500px;
+}

@@ -88,7 +88,7 @@ const Footer = () => {
                         {integrantes.map((item, index) => {
                             return (
                                 <li key={index} className={item.className}>
-                                    <a href={item.path}>
+                                    <a href={item.path} target="_blank">
                                         
                                         <img src={LinkedinIcon} width='25px' height='25px' alt='not found'/>
                                         <span>{item.name}</span>

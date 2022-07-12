@@ -7,6 +7,7 @@ import "./store.css";
 import Paginado from "../Paginado/paginado";
 import loading from '../../images/loading/Bean Eater-1s-200px.gif'
 import Footer from '../Footer/Footer';
+import * as GrIcons from 'react-icons/gr'
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -19,20 +20,21 @@ export default function Store() {
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
   const [on_sale, setOnSale] = useState("")
+  const [free_to_play, setFtp] = useState("")
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(20)
+  const [limit, setLimit] = useState("")
 
   const paginado = (pageNum) => {
     setPage((pageNum - 1) * limit);
   };
 
   useEffect(() => {
-    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit))
-    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order))
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
+    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order))
     dispatch(getGenres())
-  }, [dispatch, name, gen, tag, esrb, on_sale, page, sort, order, limit])
+  }, [dispatch, name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit])
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -86,6 +88,12 @@ export default function Store() {
   const handleOnSale = (e) => {
     e.preventDefault();
     setOnSale(e.target.value)
+    setPage(0)
+  }
+  
+  const handleFtp = (e) => {
+    e.preventDefault();
+    setFtp(e.target.value)
     setPage(0)
   }
 
@@ -182,31 +190,30 @@ export default function Store() {
           </div>
         </div>
 
-        {/* <div className="containercard"> */}
-        {!videogames.length ?
-          <div className="loadingStore">
-            <img src={loading} alt='' />
-          </div>
-          :
-          <div className="containercard">
-            {videogames.map((v, i) => {
-              return (
-                <div>
-                  <Card
-                    key={v.id}
-                    image={v.image}
-                    name={v.name}
-                    price={v.price}
-                    free_to_play={v.free_to_play}
-                    on_sale={v.on_sale}
-                    id={v.id}
-                  />
-                </div>
-              )
-            })}
-          </div>
+        { !videogames.length ?
+            <div className="loadingStore">
+              <img src={loading} alt=''/>
+            </div>
+            :
+            <div className="containercard">
+              {videogames.map((v, i) => {
+                return(
+                  <div className="eachCard">
+                    <Card
+                      key={v.id}
+                      image={v.image}
+                      name={v.name}
+                      price={v.price}
+                      free_to_play={v.free_to_play}
+                      on_sale={v.on_sale}
+                      id={v.id}
+                      rating={v.rating}
+                    />
+                  </div>
+                )
+              })}
+            </div>
         }
-        {/* </div> */}
       </div>
       
       <Footer />

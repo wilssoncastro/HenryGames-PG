@@ -1,19 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./card.css"
+import * as FcIcons from 'react-icons/fc'
+import * as IoMdIcons from 'react-icons/io'
 
-export default function Card({ image, name, price, id, free_to_play, on_sale }) {
+export default function Card({ image, name, price, id, free_to_play, on_sale, rating }) {
   
   return (
-    <div className="card">
+    <section className="card">
         <Link className='link' to= {`/store/${id}`}>
-          <img className='image' src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
-          <ul className='textCard'>
+          <img src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
+          { on_sale === true && free_to_play === false ? <p className='onSale'>On Sale</p> : null }
+          <ul className='ContainerText'>
             <li className='titleCard'>{name}</li>
-            { free_to_play === true ? <li className='priceCard'>Free to Play</li> : <li className='priceCard'>{"$" + price}</li> }
-            { on_sale === true ? <li className='onSale'>On Sale</li> : null }
+            <li className='LastRow'>
+              <p className='ratingCard'>{rating} <FcIcons.FcRating /></p>
+              { free_to_play === true ? <p className='priceCard'>Free to Play</p> : <p className='priceCard'>${price}<IoMdIcons.IoMdPricetags/></p> }
+            </li>
           </ul>
         </Link>
-    </div>
+    </section>
   )
 }

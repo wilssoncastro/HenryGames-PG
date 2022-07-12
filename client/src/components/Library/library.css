@@ -64,3 +64,24 @@
     background-color: #c0a956;
     color: black;
 }
+
+.frame{
+    position: fixed;
+    top: 15%;
+    z-index: 1000000000000000000000000000000000000000000000000000000000000000;
+    left: 30%;
+}
+
+.close-button-red{
+    background-color: red;
+    color: white;
+    text-transform: uppercase;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer; 
+}
+
+iframe{
+    border: 1px solid black;
+}

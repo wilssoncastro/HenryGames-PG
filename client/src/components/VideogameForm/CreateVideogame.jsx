@@ -294,114 +294,7 @@ export default function VideogameCreate() {
         <p>Please fill out the following form with information about the video game you want to publish</p>
         <div className="cv-form-component">
 
-          {/* LEFT */}
-          <div className="cv-left-container">
-            <form onSubmit={(e) => handleSubmit(e)}>
-
-              {/* MAIN IMAGE INPUT */}
-              <div>
-                <label>Main image</label>
-                <input
-                  className="inputImage"
-                  type="text"
-                  placeholder="Main Image"
-                  name="image"
-                  id="main_image"
-                />
-                <button className="botonX" onClick={(e) => handleImage(e)} type="reset">add Image</button>
-                <div>
-                  {input.image != "" ? (
-                    <div >
-                      <img src={input.image} className="image_form" alt='' />
-                      <button
-                        className="botonX"
-                        onClick={(e) => handleDeleteImage(e)}
-                        type="reset"
-                      >
-                        X
-                      </button>
-                    </div>
-                  ) : ""
-                  }
-
-                </div>
-                {/* MAIN IMAGE INPUT */}
-
-                {/* 4 screenshots */}
-                <div>
-
-                  <div >
-                    <label> Insert 4 short screenshots</label>
-                  </div>
-                  <div>
-
-                    <input
-                      className="inputImage"
-                      type="text"
-                      placeholder="Insert url image"
-                      name="short_screenshots"
-                      id="Short-Image"
-                    />
-                    <button
-                      className="botonX"
-                      onClick={(e) => handleShortImage(e)}
-                      type="reset"
-                    >add Image
-                    </button>
-                  </div>
-                  <div className="screenShots_Image">
-                    {input.short_screenshots.map(e => (
-                      <div>
-                        <img src={e} alt="Image Not Fount" className="image_form" />
-                        <button
-                          className="botonX"
-                          onClick={() => handleDeleteShortImage(e)}
-                          type="reset"
-                        >
-                          X
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
-                </div>
-                {/* 4 screenshots */}
-
-                {/* TAGS */}
-                <div>
-                  <label>Tags</label>
-                  <input
-                    className="input"
-                    id="tags"
-                    type="text"
-                    placeholder="Write a tag for your game..."
-                    name="tags"
-
-
-                  />
-                  <button className="botonX" onClick={(e) => handleTags(e)} type="reset">add tag</button>
-                </div>
-
-                <div>
-                  <br />
-                  {input.tags.map((e) => (
-                    <div>
-                      <span>{e}</span>
-                      <button
-                        className="botonX"
-                        onClick={() => handleDeleteTags(e)}
-                        type="reset"
-                      >
-                        X
-                      </button>
-                    </div>
-                  ))}
-                </div>
-                {/* TAGS */}
-
-              </div>
-            </form>
-          </div>
+          
 
           {/* RIGHT */}
           <div className="cv-right-container">
@@ -448,6 +341,76 @@ export default function VideogameCreate() {
                 />
               </div>
               {/* RELEASE DATE */}
+
+              {/* MAIN IMAGE INPUT */}
+              <div>
+                <label>Main image</label>
+                <input
+                  className="inputImage"
+                  type="text"
+                  placeholder="Main Image"
+                  name="image"
+                  id="main_image"
+                />
+                <button className="botonX" onClick={(e) => handleImage(e)} type="reset">add Image</button>
+                <div>
+                  {input.image != "" ? (
+                    <div >
+                      <img src={input.image} className="image_form" alt='' />
+                      <button
+                        className="botonX"
+                        onClick={(e) => handleDeleteImage(e)}
+                        type="reset"
+                      >
+                        X
+                      </button>
+                    </div>
+                  ) : ""
+                  }
+                </div>
+
+              </div>
+              {/* MAIN IMAGE INPUT */}
+
+              {/* 4 screenshots */}
+              <div>
+
+                <div >
+                  <label> Insert 4 short screenshots</label>
+                </div>
+                <div>
+
+                  <input
+                    className="inputImage"
+                    type="text"
+                    placeholder="Insert url image"
+                    name="short_screenshots"
+                    id="Short-Image"
+                  />
+                  <button
+                    className="botonX"
+                    onClick={(e) => handleShortImage(e)}
+                    type="reset"
+                  >add Image
+                  </button>
+                </div>
+                <div className="screenShots_Image">
+                  {input.short_screenshots.map(e => (
+                    <div>
+                      <img src={e} alt="Image Not Fount" className="image_form" />
+                      <button
+                        className="botonX"
+                        onClick={() => handleDeleteShortImage(e)}
+                        type="reset"
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+              {/* 4 screenshots */}
 
               {/* FREE TO PLAY */}
               <div className="cv-select-div">
@@ -505,12 +468,44 @@ export default function VideogameCreate() {
                   {input.genres.map((e) => (
                     <div className="cv-select-item-box">
                       <span>{e}</span>
-                      <button className="botonX" onClick={() => handleDeleteGenre(e)} type="reset"><MdIcons.MdCancel/></button>
+                      <button className="botonX" onClick={() => handleDeleteGenre(e)} type="reset"><MdIcons.MdCancel /></button>
                     </div>
                   ))}
                 </div>
               </div>
               {/* GENRES */}
+
+                {/* TAGS */}
+                <div>
+                  <label>Tags</label>
+                  <input
+                    className="input"
+                    id="tags"
+                    type="text"
+                    placeholder="Write a tag for your game..."
+                    name="tags"
+
+
+                  />
+                  <button className="botonX" onClick={(e) => handleTags(e)} type="reset">add tag</button>
+                </div>
+
+                <div>
+                  <br />
+                  {input.tags.map((e) => (
+                    <div>
+                      <span>{e}</span>
+                      <button
+                        className="botonX"
+                        onClick={() => handleDeleteTags(e)}
+                        type="reset"
+                      >
+                        X
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                {/* TAGS */}
 
               <br />
 
@@ -561,6 +556,7 @@ export default function VideogameCreate() {
               {errors.name && <p className="error">{errors.name}</p>}
               {errors.description && <p className="error">{errors.description}</p>}
               {errors.release_date && <p className="error">{errors.release_date}</p>}
+              <button className="botonCrear" type="submit">Publish Videogame</button>
 
             </form>
           </div>
@@ -568,7 +564,7 @@ export default function VideogameCreate() {
           {/* TERMINA FORM */}
         </div>
 
-        <button className="botonCrear" type="submit">Publish Videogame</button>
+        
       </div>
 
       <div className="containerPublishVideogame">

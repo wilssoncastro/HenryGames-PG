@@ -39,9 +39,9 @@ export function getAllVideogames() {
 }
 
 
-export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit) {
+export function getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&free_to_play=${free_to_play}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
@@ -49,9 +49,9 @@ export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort,
   };
 }
 
-export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort, order) {
+export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, sort, order) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&sort=${sort}&order=${order}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&free_to_play=${free_to_play}&sort=${sort}&order=${order}`);
     return dispatch({
       type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
       payload: json.data
@@ -227,7 +227,7 @@ export function addManyToCart(id_user, games){
 
 export function getCardStatistics(name){
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}`);
     return dispatch({
       type: "GET_CARD_STATISTICS",
       payload: json.data
@@ -521,3 +521,47 @@ export function sendMessageChat(id_user, idF, message){
 
   }
 }
+
+
+
+/////////////////////////////////////////////BANNED/////////////////////////
+
+export function bannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/ban/${id}`);
+    return dispatch({
+          type: "BAN_USER",
+          payload: json.data
+      });
+  }
+}
+export function unbannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/unbanned/${id}`);
+    return dispatch({
+          type: "BANNED_USER",
+          id: id,
+          payload: json.data
+      });
+  }
+}
+///////////////////////////////////////// VOLVER ADMIN O VOLVER USER///////////////////////////////
+export function convertToAdmin(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/admin/${id}`);
+    return dispatch({
+          type: "CONVERT_ADM",
+          payload: json.data
+      });
+  }
+}
+export function convertToUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/user/${id}`);
+    return dispatch({
+          type: "CONVERT_USER",
+          payload: json.data
+      });
+  }
+}
+
