@@ -69,7 +69,6 @@ passport.use(
 
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
-let profile_pic_default = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
 
 passport.use(new GoogleStrategy({
     clientID: process.env['GOOGLE_CLIENT_ID'],
