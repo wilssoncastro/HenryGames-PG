@@ -192,9 +192,8 @@ export default function Store() {
           </div>
         </div>
       </div>
-
-      {/* <div className="containercard"> */}
-        { !videogames.length ?
+        { 
+          !videogames.length ?
             <div className="loadingStore">
               <img src={loading} alt=''/>
             </div>
@@ -217,7 +216,6 @@ export default function Store() {
               })}
             </div>
         }
-      {/* </div> */}
     </div>
   );
 }

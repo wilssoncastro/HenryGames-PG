@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
             description: e.slug,
             rating: e.rating,
             price: ftp ? 0 : salePrice,
-            on_sale: salePrice > 4 ? false : true,
+            on_sale: salePrice > 4 || ftp ? false : true,
             free_to_play: ftp,
             short_screenshots: e.short_screenshots.map(s => s.image),
             tags: e.tags.map(t => t.name.toLowerCase()),
