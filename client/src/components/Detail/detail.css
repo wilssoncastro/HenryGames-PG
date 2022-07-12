@@ -44,12 +44,17 @@
     flex-direction: row;
     justify-content: center;
     color: white;
+    
 }
 
 .image  {
     width: 500px;
     height: 250px;
     margin: 1em;
+}
+
+.detail-price-rating-releasedate {
+    /* flex-basis: 33%; */
 }
 
 .listDetail1{
@@ -62,6 +67,10 @@
     align-items: flex-start;
 }
 
+.detail-genres-esrb {
+    flex-basis: 34%;
+}
+
 .listDetail2{
     height: 100%;
     display: flex;
@@ -70,6 +79,14 @@
     justify-content: space-evenly;
     margin: 0 6rem;
     align-items: flex-start;
+    width: 100%;
+}
+
+.listDetail2 li{
+    display: flex;
+    max-width: 500px;
+    max-height: 250px;
+    flex-wrap: wrap;
 }
 
 .titleList{
@@ -80,6 +97,10 @@
     color: #c7a84b;
     cursor:default;
     transition: 0.3s;
+}
+
+.listDetail2 ul{
+    margin-left: 1rem;
 }
 
 .divsListDetail{
@@ -284,3 +305,9 @@
     align-content: center;
     margin-top: 36vh;
   }
+
+.requirements p {
+    display: flex;
+    max-width: 95vw;
+    flex-wrap: wrap;
+}

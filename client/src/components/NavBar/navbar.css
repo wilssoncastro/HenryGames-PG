@@ -326,6 +326,7 @@ span {
     align-items: center;
     padding: 1.5em 16px;
     border-radius: 8px;
+    transition: 250ms;
 }
 
 .log-out-button a:hover {

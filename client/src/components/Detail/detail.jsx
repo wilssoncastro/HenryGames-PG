@@ -354,7 +354,7 @@ export default function Detail() {
                   </div>
 
 
-                  <div>
+                  <div className="detail-price-rating-releasedate">
                     <ul className="listDetail1">
                       <li>
                         <span className="titleList">Price: </span>
@@ -377,21 +377,21 @@ export default function Detail() {
                     </ul>
                   </div>
 
-                  <div>
+                  <div className="detail-genres-esrb">
                     <ul className="listDetail2">
                       <li>
-                        <span className="titleList">Genres:</span>
+                        <span className="titleList">Genres: </span>
                         {videogame.genres?.map((e) => {
                           if (typeof e === "string") {
                             return (
-                              <span className="type" key={e}>
+                              <ul className="detail-genre" key={e}>
                                 {e.replace(e[0], e[0].toUpperCase())} |
-                              </span>
+                              </ul>
                             );
                           } else if (videogame.genres.length > 1) {
-                            return <span key={e.name}>{e.name} | </span>;
+                            return <ul key={e.name}>{e.name} | </ul>;
                           } else {
-                            return <span key={e.name}>{e.name}</span>;
+                            return <ul key={e.name}>{e.name}</ul>;
                           }
                         })}
                       </li>
