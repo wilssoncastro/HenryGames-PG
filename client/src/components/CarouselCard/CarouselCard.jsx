@@ -14,14 +14,15 @@ export default function CarouselCard() {
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
   const [on_sale, setOnSale] = useState("");
+  const [free_to_play, setFtp] = useState("")
   const [page, setPage] = useState(0)
   const [limit, setLimit] = useState(200)
   const [sort, setSort] = useState('rating');
   const [order, setOrder] = useState('desc');
 
   useEffect(() => {
-    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit))
-  }, [dispatch, name, gen, tag, esrb, on_sale, page, sort, order, limit])
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
+  }, [dispatch, name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit])
   
   return (
     <div>

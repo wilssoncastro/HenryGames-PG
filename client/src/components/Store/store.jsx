@@ -6,6 +6,7 @@ import NavBar from "../NavBar/navbar";
 import "./store.css";
 import Paginado from "../Paginado/paginado";
 import loading from '../../images/loading/Bean Eater-1s-200px.gif'
+import * as GrIcons from 'react-icons/gr'
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -18,20 +19,21 @@ export default function Store() {
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
   const [on_sale, setOnSale] = useState("")
+  const [free_to_play, setFtp] = useState("")
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(20)
+  const [limit, setLimit] = useState("")
 
   const paginado = (pageNum) => {
     setPage((pageNum - 1) * limit);
   };
 
   useEffect(() => {
-    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit))
-    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order))
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
+    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order))
     dispatch(getGenres())
-  }, [dispatch, name, gen, tag, esrb, on_sale, page, sort, order, limit])
+  }, [dispatch, name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit])
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -87,6 +89,12 @@ export default function Store() {
     setOnSale(e.target.value)
     setPage(0)
   }
+  
+  const handleFtp = (e) => {
+    e.preventDefault();
+    setFtp(e.target.value)
+    setPage(0)
+  }
 
   return (
     <div className="backgroundStore">
@@ -94,7 +102,6 @@ export default function Store() {
         <NavBar />
       </div>
       <div className="top-filter">
-        <h1>Videogames</h1>
         <div className="containerFilters">
 
           <input
@@ -138,6 +145,11 @@ export default function Store() {
             <option value="true">On Sale</option>
           </select>
 
+          <select className="selectPages" onChange={(e) => handleFtp(e)}>
+            <option value="">All Games</option>
+            <option value="true">Free to Play</option>
+          </select>
+
           <select className="selectPages" onChange={(e) => handleLimit(e)}>
             <option value="200">Games per page</option>
             <option value="10">10</option>
@@ -160,28 +172,27 @@ export default function Store() {
           </select>
         </div>
 
-        <div hidden={name.length > 2}>
+        <div className='Paginated' hidden={name.length > 2}>
           <button
-            className="buttonPrev"
+            className="buttonPrevNext"
             onClick={(e) => prev(e)}
             disabled={page < 1}
           >
-            PREV
+            <GrIcons.GrPrevious size={16}/>
           </button>
+          
+          <Paginado limit={limit} page={page} paginado={paginado} />
+          
           <button
-            className="buttonNext"
+            className="buttonPrevNext"
             onClick={(e) => next(e)}
             disabled={parseInt(page) >= (noLimitVG.length - limit)}
           >
-            NEXT
+            <GrIcons.GrNext size={16}/>
           </button>
-          <div>
-            <Paginado limit={limit} page={page} paginado={paginado} />
-          </div>
         </div>
       </div>
 
-      {/* <div className="containercard"> */}
         { !videogames.length ?
             <div className="loadingStore">
               <img src={loading} alt=''/>
@@ -190,7 +201,7 @@ export default function Store() {
             <div className="containercard">
               {videogames.map((v, i) => {
                 return(
-                  <div>
+                  <div className="eachCard">
                     <Card
                       key={v.id}
                       image={v.image}
@@ -199,13 +210,14 @@ export default function Store() {
                       free_to_play={v.free_to_play}
                       on_sale={v.on_sale}
                       id={v.id}
+                      rating={v.rating}
                     />
                   </div>
                 )
               })}
             </div>
         }
-      {/* </div> */}
+      
     </div>
   );
 }
