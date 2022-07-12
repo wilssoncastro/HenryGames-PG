@@ -2,8 +2,6 @@ import React/*  { useEffect, useState } */ from 'react';
 import NavBar from '../NavBar/navbar'
 // import Carousel from 'react-elastic-carousel'
 // import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllVideogames } from '../../redux/actions'
 // import * as BiIcons from "react-icons/bi"
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
@@ -14,7 +12,6 @@ import './home.css'
 import './carousel.css'
 
 export default function Home() {
-    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -57,6 +54,7 @@ export default function Home() {
             <div>
                 <NavBar/>
             </div>
+
 
             <div className='home-component-box'>
 
