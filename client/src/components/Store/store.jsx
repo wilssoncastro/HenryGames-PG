@@ -19,20 +19,21 @@ export default function Store() {
   const [tag, setTag] = useState("");
   const [esrb, setEsrb] = useState("");
   const [on_sale, setOnSale] = useState("")
+  const [free_to_play, setFtp] = useState("")
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState(20)
+  const [limit, setLimit] = useState("")
 
   const paginado = (pageNum) => {
     setPage((pageNum - 1) * limit);
   };
 
   useEffect(() => {
-    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit))
-    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order))
+    dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
+    dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order))
     dispatch(getGenres())
-  }, [dispatch, name, gen, tag, esrb, on_sale, page, sort, order, limit])
+  }, [dispatch, name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit])
 
   const handleSort = (e) => {
     e.preventDefault();
@@ -88,6 +89,12 @@ export default function Store() {
     setOnSale(e.target.value)
     setPage(0)
   }
+  
+  const handleFtp = (e) => {
+    e.preventDefault();
+    setFtp(e.target.value)
+    setPage(0)
+  }
 
   return (
     <div className="backgroundStore">
@@ -136,6 +143,11 @@ export default function Store() {
           <select className="selectPages" onChange={(e) => handleOnSale(e)}>
             <option value="">All Sales</option>
             <option value="true">On Sale</option>
+          </select>
+
+          <select className="selectPages" onChange={(e) => handleFtp(e)}>
+            <option value="">All Games</option>
+            <option value="true">Free to Play</option>
           </select>
 
           <select className="selectPages" onChange={(e) => handleLimit(e)}>

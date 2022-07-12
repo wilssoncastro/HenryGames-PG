@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import "./paginado.css"
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function Paginado({ limit, page, paginado }) {
 
-  const videogames = useSelector((state) => state.videogames)
   const noLimitVG = useSelector((state) => state.noLimitVideogames)
-
+  
   const pageNumbers = [];
   const pageNum5 = []
   const currentPage = (page / limit) + 1
-  const pageQty = Math.ceil((noLimitVG.length) / limit)
-  
+  const pageQty = limit>0?Math.ceil(noLimitVG.length / limit):1
 
   for (let i = 1; i <= pageQty; i++) {
     pageNumbers.push(i)
   }
-
-  // for (let j = currentPage + 1; j < currentPage + 6; j++) {
-  //   if (j > 2 && j < pageQty + 1) {
-  //     pageNum5.push(pageNumbers[j - 2])
-  //   }
-  // }
 
   for (let j = currentPage; j < currentPage + 5; j++) {
     if (j > 1 && j < pageQty) {
