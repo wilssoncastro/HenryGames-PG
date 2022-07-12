@@ -39,7 +39,6 @@ export default function Detail() {
   const library = useSelector((state) => state.my_games);
 
   const videogame = useSelector((state) => state.details);
-  console.log(videogame)
   const list = useSelector((state) => state.wishList);
   //const actual_cart = useSelector((state) => state.cart);
   const currents_comments = useSelector((state) => state.comments);
