@@ -76,7 +76,7 @@ export default function Info_Comment({id, id_user, comment, createdAt, user}){
                             <>
                                 <button 
                                     onClick={() => click_report(id)}
-                                >Denunciar
+                                >Report
                                 </button>
                             </>)}
                         {
@@ -84,8 +84,8 @@ export default function Info_Comment({id, id_user, comment, createdAt, user}){
                         {
                             its_mine && 
                             <>
-                                <button onClick={() => setEditMode(true)}>Editar</button>
-                                <button onClick={() => clickDelete(id)}>Borrar</button>
+                                <button onClick={() => setEditMode(true)}>Edit</button>
+                                <button onClick={() => clickDelete(id)}>Delete</button>
                             </>
                         }
                         

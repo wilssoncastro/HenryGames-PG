@@ -501,7 +501,7 @@ export default function VideogameCreate() {
 
 
                   <select className="selectBox" onChange={(e) => handleGenre(e)}>
-                    <option disabled={input.genres.length > 0}>Selecciona Género</option>
+                    <option disabled={input.genres.length > 0}>Select Genre</option>
                     {genres.map((g) => (
                       <option value={g.name}>{g.name}</option>
                     ))}
