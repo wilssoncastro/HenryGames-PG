@@ -72,10 +72,10 @@ export default function Home() {
                         <CarouselOS/>
                     </div>
 
-                    <Footer />
                 </div>
 
             </div>
+            <Footer />
         </div>
     )
 }

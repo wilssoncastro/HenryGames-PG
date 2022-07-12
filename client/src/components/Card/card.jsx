@@ -10,7 +10,7 @@ export default function Card({ image, name, price, id, free_to_play, on_sale }) 
           <img className='image' src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
           <ul className='textCard'>
             <li className='titleCard'>{name}</li>
-            { free_to_play === true ? <li className='priceCard'>Free to Play</li> : <li className='priceCard'>${price}</li> }
+            { free_to_play === true ? <li className='priceCard'>Free to Play</li> : <li className='priceCard'>{"$" + price}</li> }
             { on_sale === true ? <li className='onSale'>On Sale</li> : null }
           </ul>
         </Link>

@@ -114,7 +114,7 @@ const Footer = () => {
 
                     {/* container final */}
                 <div className='final-footer'> 
-                    <p> Copyright &copy;{new Date().getFullYear()} HENRYGAMES | PG Henry | Built by Group 1</p>
+                    <p> Copyright &copy;{new Date().getFullYear()} HENRYGAMES | PG Henry | Group 1 FT25a</p>
                 </div>
             </div>
         </footer>
