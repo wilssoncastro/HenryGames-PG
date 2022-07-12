@@ -87,7 +87,7 @@ passport.use(new GoogleStrategy({
             name: profile.given_name, 
             lastname: profile.family_name, 
             email: profile.email, 
-            profile_pic: profile_pic_default, 
+            profile_pic: profile.photos[0].value, 
             active: profile.email_verified, 
             user: profile.displayName,
             password: randomstring.generate(12),
