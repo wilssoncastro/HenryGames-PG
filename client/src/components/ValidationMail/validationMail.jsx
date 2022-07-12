@@ -19,9 +19,9 @@ export default function ValidationMail(){
               return error
             });
         
-        // setTimeout(() => {
-        //     navigate('/log_in')
-        // }, 1000)
+        setTimeout(() => {
+            navigate('/log_in')
+        }, 1000)
       }, [user_id, token]);
       
     return (
