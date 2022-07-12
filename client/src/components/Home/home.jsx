@@ -29,16 +29,22 @@ export default function Home() {
                 'Access-Control-Allow-Credentials': true,
             },
         }).then((res) => {
-            if (res.status===200) return res.json(); 
+            if (res.status===200) {return res.json()}
+            else if(res.status===401) {return res.json()}
             else throw new Error('authentication has been failed')
         }).then((resObj) => {
             //console.log('info user google ', resObj.user)
-            localStorage.setItem("id", resObj.user.id)
-            localStorage.setItem('name', resObj.user.name)
-            localStorage.setItem('lastname', resObj.user.lastname)
-            localStorage.setItem('type', resObj.user.type)
-            localStorage.setItem('profile_pic', resObj.user.profile_pic)
-            localStorage.setItem('user', resObj.user.email)
+            if(resObj.success){
+                localStorage.setItem("id", resObj.user.id)
+                localStorage.setItem('name', resObj.user.name)
+                localStorage.setItem('lastname', resObj.user.lastname)
+                localStorage.setItem('type', resObj.user.type)
+                localStorage.setItem('profile_pic', resObj.user.profile_pic)
+                localStorage.setItem('user', resObj.user.email)
+            }
+            else{
+                resObj.message()
+            }
         }).catch((error)=> {
             console.log(error)
         })

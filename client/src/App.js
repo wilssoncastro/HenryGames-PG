@@ -24,7 +24,6 @@ import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
-import Google from './components/Google/GoogleButton';
 import Chat from './components/ChatRoom/chat'
 import AccountDeleted from './components/AccountDeleted/AccountDeleted';
 import ReSendMail from './components/ReSendMail/ReSendMail';
@@ -100,8 +99,6 @@ function App() {
           <Route exact path='/friends/:id' element={<Friends/>}/>
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
           <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
-
-          <Route path='/googleLogin' element={<Google />}/>
 
           ///CHAT
           <Route path='/chat/:id_user/:idF' element={<Chat />}/>
