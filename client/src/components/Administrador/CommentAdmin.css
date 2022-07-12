@@ -1,0 +1,29 @@
+.list-reported-comments{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.reported-comment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black;
+    padding: 1rem;
+    width: 40%;
+    min-height: 25%;
+    margin: .3rem;
+}
+
+.info-reported-comment, .buttons-reported-comment{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons-reported-comment button{
+    cursor: pointer;
+    margin: .2rem;
+}
+
