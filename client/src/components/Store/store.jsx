@@ -215,8 +215,8 @@ export default function Store() {
             </div>
         }
       </div>
-      
       <Footer />
+      
     </div>
   );
 }

@@ -13,18 +13,9 @@
   z-index: 1; 
 }
 
-.containercard {
-  width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
-  grid-gap: 10px;
-  justify-content: center; 
-  flex-wrap: wrap;
-  /* margin: 0 4vw; */
-}
-
 .top-filter{
   margin-top: 70px;
+  margin-bottom: 1em;
 }
 
 .containerFilters{
@@ -96,13 +87,12 @@
 }
 
 .containercard {
-  width: 99.1vw;
-  height: 100vh;
+  width: 100vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, 350px);
-  justify-content: center;
-  padding: 0;
-  margin-left: 2.5vh;
+  grid-gap: 10px;
+  justify-content: center; 
+  flex-wrap: wrap;
   /* margin: 0 4vw; */
 }
 
