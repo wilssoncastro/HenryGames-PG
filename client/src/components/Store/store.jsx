@@ -6,6 +6,7 @@ import NavBar from "../NavBar/navbar";
 import "./store.css";
 import Paginado from "../Paginado/paginado";
 import loading from '../../images/loading/Bean Eater-1s-200px.gif'
+import * as GrIcons from 'react-icons/gr'
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -94,7 +95,6 @@ export default function Store() {
         <NavBar />
       </div>
       <div className="top-filter">
-        <h1>Videogames</h1>
         <div className="containerFilters">
 
           <input
@@ -160,28 +160,27 @@ export default function Store() {
           </select>
         </div>
 
-        <div hidden={name.length > 2}>
+        <div className='Paginated' hidden={name.length > 2}>
           <button
-            className="buttonPrev"
+            className="buttonPrevNext"
             onClick={(e) => prev(e)}
             disabled={page < 1}
           >
-            PREV
+            <GrIcons.GrPrevious size={16}/>
           </button>
+          
+          <Paginado limit={limit} page={page} paginado={paginado} />
+          
           <button
-            className="buttonNext"
+            className="buttonPrevNext"
             onClick={(e) => next(e)}
             disabled={parseInt(page) >= (noLimitVG.length - limit)}
           >
-            NEXT
+            <GrIcons.GrNext size={16}/>
           </button>
-          <div>
-            <Paginado limit={limit} page={page} paginado={paginado} />
-          </div>
         </div>
       </div>
 
-      {/* <div className="containercard"> */}
         { !videogames.length ?
             <div className="loadingStore">
               <img src={loading} alt=''/>
@@ -190,7 +189,7 @@ export default function Store() {
             <div className="containercard">
               {videogames.map((v, i) => {
                 return(
-                  <div>
+                  <div className="eachCard">
                     <Card
                       key={v.id}
                       image={v.image}
@@ -206,7 +205,7 @@ export default function Store() {
               })}
             </div>
         }
-      {/* </div> */}
+      
     </div>
   );
 }
