@@ -86,12 +86,14 @@ export default function Store() {
   const handleOnSale = (e) => {
     e.preventDefault();
     setOnSale(e.target.value)
+    setFtp("")
     setPage(0)
   }
   
   const handleFtp = (e) => {
     e.preventDefault();
     setFtp(e.target.value)
+    setOnSale("")
     setPage(0)
   }
 
