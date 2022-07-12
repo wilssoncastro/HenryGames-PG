@@ -146,7 +146,7 @@ export default function VideogameEdit() {
 
   async function handleImage() {
     const preview = document.getElementById("imagen_principal");
-    
+
     const fileInput = document.getElementById("main_image");
     const file = fileInput.files[0];
     const reader = await new FileReader();
@@ -167,7 +167,7 @@ export default function VideogameEdit() {
   }
   async function handleImageOne() {
     const preview = document.getElementById("image1");
-    
+
     const fileInput = document.getElementById("Short-Image1");
     const file = fileInput.files[0];
     const reader = await new FileReader();
@@ -177,7 +177,7 @@ export default function VideogameEdit() {
         preview.src = await reader.result;
         setInput({
           ...input,
-          short_screenshots: [...input.short_screenshots.concat(preview.src) ],
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
         });;
       },
       false
@@ -198,7 +198,7 @@ export default function VideogameEdit() {
         preview.src = await reader.result;
         setInput({
           ...input,
-          short_screenshots: [...input.short_screenshots.concat(preview.src) ],
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
         });;
       },
       false
@@ -209,7 +209,7 @@ export default function VideogameEdit() {
   }
   async function handleImageTree() {
     const preview = document.getElementById("image3");
-    
+
     const fileInput = document.getElementById("Short-Image3");
     const file = fileInput.files[0];
     const reader = await new FileReader();
@@ -219,7 +219,7 @@ export default function VideogameEdit() {
         preview.src = await reader.result;
         setInput({
           ...input,
-          short_screenshots: [...input.short_screenshots.concat(preview.src) ],
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
         });;
       },
       false
@@ -230,7 +230,7 @@ export default function VideogameEdit() {
   }
   async function handleImageFour() {
     const preview = document.getElementById("image4");
-    
+
     const fileInput = document.getElementById("Short-Image4");
     const file = fileInput.files[0];
     const reader = await new FileReader();
@@ -240,7 +240,7 @@ export default function VideogameEdit() {
         preview.src = await reader.result;
         setInput({
           ...input,
-          short_screenshots: [...input.short_screenshots.concat(preview.src) ],
+          short_screenshots: [...input.short_screenshots.concat(preview.src)],
         });;
       },
       false
@@ -249,7 +249,7 @@ export default function VideogameEdit() {
       reader.readAsDataURL(file);
     }
   }
-  
+
 
   const handleDeleteImage = (e) => {
     setInput({
@@ -274,7 +274,7 @@ export default function VideogameEdit() {
   };
 
   const handleDeleteShortImage = (element) => {
-  
+
     setInput({
       ...input,
       short_screenshots: input.short_screenshots.filter((e) => e !== element),
@@ -387,7 +387,7 @@ export default function VideogameEdit() {
       <div className="title_form_edit_videogame">
 
         <Link to="/admin">
-          <button>Back to Admin page</button>
+          <button className="button_back_to_Admin" >Back to Admin page</button>
         </Link>
 
         <p>Please fill out the following form with information about the video game you want to edit</p>
@@ -419,18 +419,7 @@ export default function VideogameEdit() {
               />
 
             </div>
-            <div>
 
-              <label>Release date</label>
-              <input
-                className="input_text"
-                name="release_date"
-                type="text"
-                laceholder="DD-MM-YYYY"
-                value={input.release_date}
-                onChange={(e) => handleChange(e)}
-              />
-            </div>
             <div>
               <label>Main image</label>
               <input
@@ -551,6 +540,18 @@ export default function VideogameEdit() {
           </div>
           <div className="form_right">
             <div>
+
+              <label>Release date</label>
+              <input
+                className="input_text"
+                name="release_date"
+                type="date"
+                laceholder="DD-MM-YYYY"
+                value={input.release_date}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div>
               <label>
                 Free to play?
               </label>
@@ -624,7 +625,7 @@ export default function VideogameEdit() {
 
               />
               <button
-                className="botonX"
+                className="boton_tag"
                 onClick={(e) => handleTags(e)}
                 type="reset"
               >add tag
