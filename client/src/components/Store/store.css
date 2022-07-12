@@ -5,9 +5,8 @@
   background-size: cover;
   background-attachment: fixed;
   overflow-x:hidden;
-  overflow-y: scroll;
-  min-height: 56.6vh;
-
+  /* overflow-y: scroll; */
+  min-height: 100vh;
   justify-content: center;
   position: relative;
   z-index: 1; 

@@ -8,6 +8,7 @@ import Paginado from "../Paginado/paginado";
 import loading from '../../images/loading/Bean Eater-1s-200px.gif'
 import Footer from '../Footer/Footer';
 import * as GrIcons from 'react-icons/gr'
+import { FaTruckPickup } from "react-icons/fa";
 
 export default function Store() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function Store() {
   const [sort, setSort] = useState("");
   const [order, setOrder] = useState("");
   const [page, setPage] = useState(0)
-  const [limit, setLimit] = useState("")
+  const [limit, setLimit] = useState(10)
 
   const paginado = (pageNum) => {
     setPage((pageNum - 1) * limit);
@@ -85,15 +86,34 @@ export default function Store() {
     setPage(0)
   }
 
-  const handleOnSale = (e) => {
-    e.preventDefault();
-    setOnSale(e.target.value)
-    setPage(0)
-  }
+  // const handleOnSale = (e) => {
+  //   e.preventDefault();
+  //   setOnSale(e.target.value)
+  //   setFtp(!true)
+  //   setPage(0)
+  // }
   
-  const handleFtp = (e) => {
-    e.preventDefault();
-    setFtp(e.target.value)
+  // const handleFtp = (e) => {
+  //   e.preventDefault();
+  //   setFtp(e.target.value)
+  //   setOnSale(!true)
+  //   setPage(0)
+  // }
+
+  const handleFtpOnSale = (e) => {
+    if(e.target.value === 'ftp'){
+      setFtp(true)
+      setOnSale(false)
+    }
+    if(e.target.value === 'on_sale'){
+      setOnSale(true)
+      setFtp(false)
+      
+    }
+    if(e.target.value === ''){
+      setOnSale('')
+      setFtp('')
+    }
     setPage(0)
   }
 
@@ -103,7 +123,6 @@ export default function Store() {
       <div >
         
         <div className="top-filter">
-          <h1>Videogames</h1>
           <div className="containerFilters">
 
             <input
@@ -142,14 +161,19 @@ export default function Store() {
               <option value="Adults Only">Adults Only</option>
             </select>
 
-            <select className="selectPages" onChange={(e) => handleOnSale(e)}>
+            <select className="selectPages" onChange={(e) => handleFtpOnSale(e)}>
               <option value="">All Sales</option>
-              <option value="true">On Sale</option>
+              <option value="on_sale">On Sale</option>
+              <option value="ftp">Free to Play</option>
             </select>
 
+            {/* <select className="selectPages" onChange={(e) => handleFtp(e)}>
+              <option value="">All Games</option>
+              <option value="true">Free to Play</option>
+            </select> */}
+
             <select className="selectPages" onChange={(e) => handleLimit(e)}>
-              <option value="200">Games per page</option>
-              <option value="10">10</option>
+              <option value="10">Games per page (10)</option>
               <option value="20">20</option>
               <option value="50">50</option>
               <option value="100">100</option>
@@ -169,24 +193,24 @@ export default function Store() {
             </select>
           </div>
 
-          <div hidden={name.length > 2}>
+          <div className='Paginated' hidden={name.length > 2}>
             <button
-              className="buttonPrev"
+              className="buttonPrevNext"
               onClick={(e) => prev(e)}
               disabled={page < 1}
             >
-              PREV
+              <GrIcons.GrPrevious size={16}/>
             </button>
+            
+            <Paginado limit={limit} page={page} paginado={paginado} />
+            
             <button
-              className="buttonNext"
+              className="buttonPrevNext"
               onClick={(e) => next(e)}
               disabled={parseInt(page) >= (noLimitVG.length - limit)}
             >
-              NEXT
+              <GrIcons.GrNext size={16}/>
             </button>
-            <div>
-              <Paginado limit={limit} page={page} paginado={paginado} />
-            </div>
           </div>
         </div>
 
