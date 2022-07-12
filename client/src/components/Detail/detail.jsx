@@ -27,6 +27,7 @@ import * as BsIcons from "react-icons/bs";
 import * as FiIcons from "react-icons/fi";
 import * as MdIcons from "react-icons/md";
 import loading from '../../images/loading/Infinity-2.9s-200px.gif'
+import Footer from '../Footer/Footer';
 
 export default function Detail() {
   const dispatch = useDispatch();

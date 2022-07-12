@@ -26,7 +26,7 @@ function isAuthenticated(req, res, next) {
 //-------------------------------------------------------------------------------
 
 router.get('/register', (req, res, next) => {
-  res.send('No puede realizar un post /register mientras su sesión esté iniciada');
+  res.send("You can't register a new account while your session is still logged.");
 })
 
 //-------------------------------------------------------------------------------
@@ -38,12 +38,12 @@ router.post('/register', isAuthenticated, async (req, res) => {
   const { name, lastname, user, password, email, type } = req.body;
 
   if(type === 'adm' && !admins.includes(email)){
-    return res.send('No tienes los derechos para ser administrador')
+    return res.send("You don't have permissions to access the Admin page")
   }
   
     
   if(!name || !lastname || !user || !password || !email || !type){
-    res.send('Faltan datos obligatorios')
+    res.send('Missing required inputs')
   }
 
   let profile_pic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
@@ -77,7 +77,7 @@ router.post('/register', isAuthenticated, async (req, res) => {
       
       res.redirect(`/authentication/email/activation/${new_user.id}/${promise_pending_array[1]}/${new_user.email}`)
     }else{
-      return res.send('Ya tenemos registros que coincide con el nombre de mail o usuario.');
+      return res.send('An account has already been created with that email or username.');
     }
     
 
