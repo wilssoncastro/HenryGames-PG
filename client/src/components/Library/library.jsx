@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLibraryById } from '../../redux/actions';
 import Footer from '../Footer/Footer';
 import OwnedGame from '../Card/OwnedGame';
-import axios from 'axios';
+
 import './library.css'
 
 export default function Library() {
@@ -16,9 +16,7 @@ export default function Library() {
 
   const id_user = localStorage.getItem('id');
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
+  
 
   useEffect(() =>{
     dispatch(getLibraryById(id_user))
@@ -26,14 +24,15 @@ export default function Library() {
 
   let my_games = useSelector(state => state.my_games)
   
+  
 
-  console.log(my_games)
+  
   return (
     <div className='library-body'>
       <NavBar />
       <div className='library-component'>
         <div>
-          {my_games.length ?
+          {my_games ?
             <div>
               <h1 className='library-title'>My games</h1> 
               <div className="containercard">
@@ -45,6 +44,8 @@ export default function Library() {
                       image={v.image}
                       name={v.name}
                       id={v.id}
+                      setVideo={setVideo}
+                      setVisuality={setVisuality}
                     />
                   </div>
                 )
@@ -62,6 +63,21 @@ export default function Library() {
             </div>
           )}
         </div>
+        {
+          visuality ?
+            <div className='frame'>
+              <button className='close-button-red' onClick={() => setVisuality(false)}>X</button>
+              <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width="700"
+                height="600"
+                src={video ? video : 'https://www.youtube.com/embed/QN3Wv6Gkoic'}
+                autoplay
+              ></iframe>
+            </div>
+            : <></>
+        }
       </div>
       <Footer />
       {/* async function putVideo(e){
