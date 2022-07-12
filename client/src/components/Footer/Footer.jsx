@@ -9,6 +9,7 @@ import NodeIcon from '../../images/nodejs.png'
 import JavaScriptIcon from '../../images/js.png'
 import SQLIcon from '../../images/sql-server.png'
 import HTMLIcon from '../../images/html-5.png'
+import SequelizeIcon from '../../images/sequelize-icon.png'
 
 const Footer = () => {
 
@@ -99,20 +100,21 @@ const Footer = () => {
                         
                     {/* Derecha */}
                     <div className='tecnologias'>
-                    
                         <img src={HTMLIcon} width='75px' height='75px' alt='not found'/>
                         <img src={CSSIcon} width='75px' height='75px' alt='not found'/>
                         <img src={JavaScriptIcon} width='75px' height='75px' alt='not found'/>
                         <img src={ReactIcon} width='75px' height='75px' alt='not found'/>
                         <img src={NodeIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={SQLIcon} width='75px' height='75px' alt='not found'/>
                         <img src={PostgreIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={SequelizeIcon} width='75px' height='75px' alt='not found'/>
                     </div>
 
                 </div>
 
                     {/* container final */}
                 <div className='final-footer'> 
-                    <p> Copyright &copy;{new Date().getFullYear()} HENRYGAMES | PG Henry | Built by Group 1</p>
+                    <p> Copyright &copy;{new Date().getFullYear()} HENRYGAMES | PG Henry | Group 1 FT25a</p>
                 </div>
             </div>
         </footer>

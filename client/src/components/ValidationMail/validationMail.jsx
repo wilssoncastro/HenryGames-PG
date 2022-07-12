@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import './validationMail.css'
+import NavBar from '../NavBar/navbar.jsx'
 
 
 export default function ValidationMail(){
@@ -23,27 +25,18 @@ export default function ValidationMail(){
       }, [user_id, token]);
       
     return (
-        <div >
-      <div >
-        <div >
-          <div >
+        <div className="backgroundLogInValidate">
+
+          <NavBar />
+
+          <div className="ContainerAll">
+            <p>You activated your account successfully!</p>
             <div >
-              {/* <img src={check} alt="" /> */}
+              <a href="/login" style={{ textDecoration: "none" }}>
+                Log In
+              </a>
             </div>
-            <div >
-              <p>Mail validado correctamente!</p>
-              
-              <div >
-                <a href="/login" style={{ textDecoration: "none" }}>
-                  Iniciar sesión
-                </a>
-              </div>
-            </div>
-          </div>
+          </div>   
         </div>
-        
-      </div>
-     
-    </div>
     )
 }
