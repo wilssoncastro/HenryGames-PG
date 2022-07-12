@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         profile_pic:{
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         password:{
             type: DataTypes.STRING,

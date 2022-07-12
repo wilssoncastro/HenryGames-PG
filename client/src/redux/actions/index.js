@@ -227,7 +227,7 @@ export function addManyToCart(id_user, games){
 
 export function getCardStatistics(name){
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}`);
     return dispatch({
       type: "GET_CARD_STATISTICS",
       payload: json.data
@@ -521,3 +521,47 @@ export function sendMessageChat(id_user, idF, message){
 
   }
 }
+
+
+
+/////////////////////////////////////////////BANNED/////////////////////////
+
+export function bannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/ban/${id}`);
+    return dispatch({
+          type: "BAN_USER",
+          payload: json.data
+      });
+  }
+}
+export function unbannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/unbanned/${id}`);
+    return dispatch({
+          type: "BANNED_USER",
+          id: id,
+          payload: json.data
+      });
+  }
+}
+///////////////////////////////////////// VOLVER ADMIN O VOLVER USER///////////////////////////////
+export function convertToAdmin(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/admin/${id}`);
+    return dispatch({
+          type: "CONVERT_ADM",
+          payload: json.data
+      });
+  }
+}
+export function convertToUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/user/${id}`);
+    return dispatch({
+          type: "CONVERT_USER",
+          payload: json.data
+      });
+  }
+}
+

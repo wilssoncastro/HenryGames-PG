@@ -278,6 +278,7 @@ const rootReducer = (state = initialState, action) => {
             my_chat: state.my_chat.concat(action.payload)
 
         }
+        
 
         default:
             return state;

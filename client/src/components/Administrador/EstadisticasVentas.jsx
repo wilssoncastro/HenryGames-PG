@@ -84,7 +84,42 @@ export default function Estadisticas() {
     }
   }
 
-  console.log(users)
+  const handleSale = (e) => {
+    e.preventDefault()
+    setStatistics({
+      gameSales: true,
+      monthlyEarning: false,
+      top: false,
+      userStatistics: false
+    });
+  }
+  const handleMonthly = (e) => {
+    e.preventDefault()
+    setStatistics({
+      gameSales: false,
+      monthlyEarning: true,
+      top: false,
+      userStatistics: false
+    });
+  }
+  const handleTop = (e) => {
+    e.preventDefault()
+    setStatistics({
+      gameSales: false,
+      monthlyEarning: false,
+      top: true,
+      userStatistics: false
+    });
+  }
+  const handleUserStatistics = (e) => {
+    e.preventDefault()
+    setStatistics({
+      gameSales: false,
+      monthlyEarning: false,
+      top: false,
+      userStatistics: true
+    });
+  }
 
   const id_user_admin = localStorage.getItem('type')
   if (id_user_admin) {
@@ -104,50 +139,59 @@ export default function Estadisticas() {
 
             <div className="estatistics">
               <div className="option_statistics">
-                <h4>Select the option you want to see</h4>
-              <button>Game sales</button>
-              <button> Top 10 videogames sales </button>
-              <button>Monthly earnings</button>
-              <button>User statistics and sales per user</button>
+                <h2>Select the option you want to see</h2>
+                <button className="btn_option" onClick={(e) => handleSale(e)}>Game sales</button>
+                <button className="btn_option" onClick={(e) => handleTop(e)}> Top 10 videogames sales </button>
+                <button className="btn_option" onClick={(e) => handleMonthly(e)}>Monthly earnings</button>
+                <button className="btn_option" onClick={(e) => handleUserStatistics(e)}>User statistics and sales per user</button>
               </div>
+
               {statistics.gameSales == true &&
-             
-              <div className="component_search_videogame_sale">
+                <div className="component_search_videogame_sale">
 
-                <input
-                  placeholder="Search Videogame..."
-                  value={name}
-                  type="text"
-                  id="inputName"
-                  onChange={(e) => handleInputChange(e)}
-                />
 
-                <h2> Total Earns: ${(totalGanancias).toFixed(2)}</h2>
-                {
-                  name ?
-                    videogame.map((e) => (
-                      <div>
-                        {/* <Card key={e.id} name={e.name} price={e.price} /> */}
-                        <h3>{e.name} = ${e.price}</h3>
-                        <h4>Sales: {e.contador}</h4>
-                        <h4> Game Earns: ${(e.contador * e.price).toFixed(2)}</h4>
-                      </div>
-                    )) : null
-                }
-              </div>
-               }
-              <div>
-                <h2> Top videojuegos vendidos</h2>
-                <BarChart orderVG={orderVG} />
-              </div>
-              <div>
-                <h2>Ganancias por mes</h2>
-                <LineChart enero={enero} febrero={febrero} marzo={marzo} abril={abril} mayo={mayo} junio={junio} julio={julio} agosto={agosto} septiembre={septiembre} octubre={octubre} noviembre={noviembre} diciembre={diciembre} />
-              </div>
-              <div>
-                <h2>Numero de usuarios y ventas</h2>
-                <UsersVsSales />
-              </div>
+                  <h2> Total Earns: ${(totalGanancias).toFixed(2)}</h2>
+                  <input
+                    placeholder="Search Videogame..."
+                    value={name}
+                    type="text"
+                    id="inputName"
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                  <div className="card_game_statistics">
+                    {
+                      name ?
+                      videogame.map((e) => (
+                        <div className="card_stadistics">
+                          {/* <Card key={e.id} name={e.name} price={e.price} /> */}
+                          <h3>{e.name} = ${e.price}</h3>
+                          <h4>Sales: {e.contador}</h4>
+                          <h4> Game Earns: ${(e.contador * e.price).toFixed(2)}</h4>
+                        </div>
+                      )):null
+
+                    }
+                  </div>
+                </div>
+              }
+              {statistics.top == true &&
+                <div className="component_top_videogames">
+                  <h2> Top videojuegos vendidos</h2>
+                  <BarChart orderVG={orderVG} />
+                </div>
+              }
+              {statistics.monthlyEarning == true &&
+                <div className="component_sales_monthly">
+                  <h2>Ganancias por mes</h2>
+                  <LineChart enero={enero} febrero={febrero} marzo={marzo} abril={abril} mayo={mayo} junio={junio} julio={julio} agosto={agosto} septiembre={septiembre} octubre={octubre} noviembre={noviembre} diciembre={diciembre} />
+                </div>
+              }
+              {statistics.userStatistics == true &&
+                <div className="component_users_numbers">
+                  <h2>Numero de usuarios y ventas</h2>
+                  <UsersVsSales />
+                </div>
+              }
             </div>
           </div>
         </div>
