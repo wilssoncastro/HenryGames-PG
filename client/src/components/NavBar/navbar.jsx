@@ -97,20 +97,6 @@ export default function NavBar() {
             loggedIn: true
         },
         {
-            title: 'Theme',
-            path: '#',
-            icon: <VscIcons.VscColorMode />,
-            className: 'nav-text',
-            onClick: showSidebar,
-        },
-        {
-            title: 'Language',
-            path: '#',
-            icon: <BsIcons.BsTranslate />,
-            className: 'nav-text',
-            onClick: showSidebar
-        },
-        {
             title: 'Admin Tools',
             path: '/admin',
             icon: <RiIcons.RiAdminLine />,
@@ -209,9 +195,9 @@ export default function NavBar() {
 
                     <div className="NavBar-right">
                         {/* Chat clickable */}
-                        <Link to="#">
+                        {/* <Link to="#">
                             <BiIcons.BiChat className="navbar-icons" />
-                        </Link>
+                        </Link> */}
 
                         {/* ShoppingCart clickable */}
                         {

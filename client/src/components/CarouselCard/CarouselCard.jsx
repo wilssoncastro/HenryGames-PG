@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredVideogames } from '../../redux/actions'
 import Carousel from 'react-elastic-carousel'
+import loading from '../../images/loading/Pulse-1.1s-200px.gif'
 
 export default function CarouselCard() {
   
@@ -27,7 +28,9 @@ export default function CarouselCard() {
   return (
     <div>
       <Carousel focusOnSelect={false}>
-      {
+      {!videogames.length ?
+      <img src={loading} alt='' />
+      :
       videogames.slice(0, 6).map((e) => (
         <item>
         <div className='ItemCarousel'>

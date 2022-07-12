@@ -4,11 +4,15 @@
 }
 
 .mainfooter{
-  color:rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
   background-color: #0d0c0c;
   padding-top: 0.3em;
   width: 100vw;
   margin-top: 10em;
+  bottom: 0;
+  margin-bottom: 0;
+  left: 0;
+  right: 0; 
 }
 
 .container{

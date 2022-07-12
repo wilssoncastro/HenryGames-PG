@@ -25,8 +25,9 @@
 }
 
 .image_form{
-    width: 70px;   
-    max-height: 120px;
+    width: 120px;   
+    max-height: 180px;
+    margin: 2px;   
   
 }
 .screenShots_Image{
@@ -53,19 +54,17 @@
 }
 .input_text_error{
     border: 3px solid rgb(255, 0, 0);
-    outline: none;
-    box-shadow: 3px 0px 30px rgba(163,163,163,0.4);
-    width: 400px;
-    background: rgb(255, 255, 255);
-    border-radius: 3px;
-    height: 25px;
-    line-height: 25px;
-    padding: 0 40px 0 10px;
+    color: black;    
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 70%;
+    border-radius: 2em;
     transition: .3s ease all;
 }
 
 .containerPublishVideogame{
     margin-top: 100px;
+    height: 100%;
 }
 
 
@@ -73,43 +72,37 @@
 /* CSS BOX SPLIT */
 
 .cv-form-component {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    height: 75vh;
-    width: 65vw;
+    margin-top: 150px;
+    height: 600px;
+    width: 90%;
     justify-content: center;
     margin: auto;
     margin-left: auto;
     margin-top: 8vh;
 }
 
-.cv-left-container {
-    grid-column-start: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    top: 0;
-    height: 100%;
-    background: rgb(245, 230, 145);
-    background-color: black; 
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 0;
-    color: #fff;
-}
 
-.cv-right-container {
+
+.cv-left-container {
     background: rgb(245, 230, 145);
     background: -webkit-linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
-    background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
-    grid-column-start: 2;
+    background: linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));   
     display: flex;
+    flex-direction: column;
     justify-content: center;
+  
+    width: 60%;
+   
+}
+.component_rigth_form{
+
+    background: rgb(0, 0, 0);
+   color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;  
+    width: 40%;
+    
 }
 
 .cv-input {
@@ -118,15 +111,14 @@
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
-    width: 100%;
+    width: 70%;
     border-radius: 2em;
 }
 
 .cv-form {
-    display: flex;
-    align-items: space-around;
-    flex-direction: column;
+    display: flex;    
     margin-top: 1em;
+    height: 100%;
 }
 
 .cv-input-div {
@@ -144,7 +136,91 @@
 .cv-select-item-box {
     border: 1px solid black;
     border-radius: 1em;
-    width: fit-content;
-    
+    width: fit-content;    
     margin: 1px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container_up_shortsc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen_principal_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+
+}
+
+.botonX{
+    width: 25px;
+    height: 25px;
+    transition: 0.5s;
+    background-size: 200% auto;    
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin: 2px;
+}
+.botonX:hover{
+    background: rgb(206, 22, 22);
+}
+.boton_tag{
+    background: #c7a94b;
+    margin: 10px;    
+    font-size: 15px;
+    padding: 5px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+}
+.boton_tag:hover{
+    background: #247f7f;
+}
+
+.botonCrear{
+    width: 40%;
+    background: rgb(5, 161, 244);
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+}
+.botonCrear:hover{
+    width: 45%;
+    background: rgb(5, 224, 244);
+    margin-left: auto;
+    margin-right: auto;
+    height: 35px;
+    cursor: pointer;    
+}
+.inputDescription{
+    width: 70%;
+    height: 60px
 }

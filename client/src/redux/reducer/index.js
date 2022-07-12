@@ -1,9 +1,11 @@
+import { stat } from 'fs'
 import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART, 
         GET_COMMENTS_BY_GAME,DELETE_COMMENT, POST_COMMENT, EDIT_COMMENT,
         DELETE_ALL_FROM_CART,
         IS_ONLINE,
         INFO_COMMENT,
-        GET_LIBRARY_BY_ID
+        GET_LIBRARY_BY_ID,
+        GET_ALL_COMMENTS
 } from '../actions/index'
 
 const initialState = {
@@ -19,8 +21,9 @@ const initialState = {
     article:[],
     users: [],
     cart: [],
+    all_comments: [],
     comments: [],
-    new_comments: [],
+    //new_comments: [],
     sales: [],
     is_online: false,
     friends: [],
@@ -36,12 +39,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 videogames: action.payload,
                 allVideogames: action.payload,
+                details: [],
             }
 
         case "GET_FILTERED_VIDEOGAMES":
             return {
                 ...state,
                 videogames: action.payload,
+                details: [],
             }
 
         case "GET_NOLIMIT_FILTERED_VIDEOGAMES":
@@ -167,6 +172,13 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 cart: []
             }
+        case GET_ALL_COMMENTS:
+            
+            return {
+                ...state,
+                all_comments: action.payload.data
+                
+            }
         case GET_COMMENTS_BY_GAME:
 
             return {
@@ -174,16 +186,17 @@ const rootReducer = (state = initialState, action) => {
                 comments: action.payload.data
             }
         case DELETE_COMMENT:
+            console.log(action.payload.data)
             return {
                 ...state,
-                comments: state.comments.filter(v => v.id !== action.payload.data.id),
-                new_comments: state.new_comments.filter(v => v.Comment.id !== action.payload.data.id)
+                comments: state.comments.filter(v => v.id !== action.payload.data.id)
+                //new_comments: state.new_comments.filter(v => v.Comment.id !== action.payload.data.id)
             }
         case POST_COMMENT:
             return {
                 ...state,
-                comments: state.comments.concat(action.payload.data),
-                new_comments: state.new_comments.concat({ Comment: action.payload.data })
+                comments: state.comments.concat(action.payload.data)
+                //new_comments: state.new_comments.concat({ Comment: action.payload.data })
             }
         case EDIT_COMMENT:
             console.log(state.comments)
@@ -217,14 +230,6 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     article: action.payload
                 };
-        case INFO_COMMENT:
-            console.log(action.payload.data)
-            console.log('Hola')
-            return {
-                ...state,
-                new_comments: action.payload.data.comments_videogame
-            }
-
         case "GET_SALES":
             return {
                 ...state,
@@ -276,6 +281,7 @@ const rootReducer = (state = initialState, action) => {
             my_chat: state.my_chat.concat(action.payload)
 
         }
+        
 
         default:
             return state;

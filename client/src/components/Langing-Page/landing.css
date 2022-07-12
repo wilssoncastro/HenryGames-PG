@@ -13,6 +13,7 @@
   z-index: 1;
   font-family: "Arial Black", Gadget, sans-serif;
 }
+
 .landing_content{
     display: flex;
     flex-direction: column;
@@ -31,92 +32,18 @@
 .textLanding{
     color: aliceblue;
 }
-.btn_gold{
-    background: -webkit-linear-gradient(#c7a94b, rgb(132, 132, 132));
-    margin: 10px;    
-    font-size: 20px;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: #FFF;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;    
-    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    cursor: pointer;
-    display: inline-block;
-    border-radius: 5px;
- }
-
- .btn_gold:hover{
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    color:black;
-    transform: scale(1.25);
-    background-color: #c7a94b;
- }
-
-.btn_log_in{
-    background-color: royalblue;
-    margin: 10px; 
-    font-size: 20px;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: #FFF;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;    
-    box-shadow: 0 1px 3px royalblue, 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    cursor: pointer;
-     border-radius: 5px;
- }
-
- .btn_log_in:hover{
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    background: -webkit-linear-gradient(royalblue, rgb(249, 249, 249));
-    transform: scale(1.25);
- }
-
-.btn_sign_up{
-    background-color: rgb(38, 148, 56);
-    margin: 10px;    
-    font-size: 20px;
-    padding: 5px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: #FFF;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;    
-    box-shadow: 0 1px 3px rgb(32, 146, 63), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    cursor: pointer;
-     border-radius: 5px;
- }
-
- .btn_sign_up:hover{
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    transform: scale(1.25);
-    background: -webkit-linear-gradient(rgb(32, 146, 63), rgb(132, 132, 132));
- }
-
 
  .button-landingPage {
     border-radius: 20px;
     /* border: 1px solid #1a83ff; */
     background-color: #1a83ff;
     color: rgb(255, 255, 255);
-    font-size: 12px;
+    font-size: 25px;
     font-weight: bold;
     padding: 12px 45px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 2em;
+    margin-top: 4em;
 }
 
 .button-landingPage:hover {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../NavBar/navbar";
+import './RecoveryPassword.css';
 
 
 export default function RecoveryPassword(){
@@ -67,21 +69,28 @@ export default function RecoveryPassword(){
     }
 
     return (
-        <div>
+        <div className="containerForgotPassword">
+            <NavBar />
+            <div className="containerForgotPassword2">
             <form onSubmit={onSubmit}>
                 <label>
-                    Ingrese su correo electronico:
+                    Put your email:
                 </label>
                 <input
                     name='mail'
                     value={input.mail}
                     onChange={handleChange}
-                    placeholder="ejemplo@gmail.com"
+                    placeholder="example@gmail.com"
+                    className="inputMailForgotPassword"
                 />
 
-                <input type='submit' />
+                <input 
+                    type='submit'
+                    className="inputSubmitForgotPassword" 
+                />
                 {msg && msg}
             </form>
+            </div>
         </div>
     )
 }

@@ -40,6 +40,7 @@ export default function EditProfile() {
             }
         }
     }; */
+    
     async function handleImage(e) {
         const preview = document.querySelector("img");
         const fileInput = document.getElementById("image");

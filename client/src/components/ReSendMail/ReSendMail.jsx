@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "../NavBar/navbar";
+import './ReSendMail.css';
 
 export default function ReSendMail(){
     let { mail } = useParams()
@@ -18,10 +20,12 @@ export default function ReSendMail(){
     }
 
     return (
-        <div>
-            <h1>A verification email was sent to your mailbox</h1>
-
-            <p>If you did not receive the email, <button onClick={reSend}>click here</button></p>
+        <div className="containerReSendMail">
+            <NavBar />
+            <div className="containerTextReSend">
+                <h1 className="h1ResendMail">A verification email was sent to your mailbox</h1>
+                <p className="pResendMail">Haven't received our email yet? <button className="btnResendMail" onClick={reSend}>Click Here</button></p>
+            </div>
         </div>
     )
 }

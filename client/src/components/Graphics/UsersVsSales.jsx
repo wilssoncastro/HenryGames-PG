@@ -32,10 +32,11 @@ import { getAllUsers, getCardStatistics, getSales } from "../../redux/actions";
 
 const options = {
   fill: true,
-  responsive: false,
+  responsive: true,
   scales: {
     y:{
       min: 0,
+      
     }
   }
 }

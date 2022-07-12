@@ -15,6 +15,7 @@ export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
 export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
 export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
+export const GET_ALL_COMMENTS = 'GET_ALL_COMMENTS'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -227,7 +228,7 @@ export function addManyToCart(id_user, games){
 
 export function getCardStatistics(name){
   return async function (dispatch) {
-    let json = await axios(`/videogames?name=${name}`);
+    let json = await axios(`/videogames/filter?name=${name}`);
     return dispatch({
       type: "GET_CARD_STATISTICS",
       payload: json.data
@@ -288,6 +289,28 @@ export function deleteAccount(id) {
     dispatch({
       type: "DELETE_ACCOUNT",
       payload: json.data
+    })
+  }
+}
+
+export function banUser(id){
+  return function(dispatch){
+    axios.put(`http://localhost:3001/users/ban/${id}`)
+    .then(data => {
+      dispatch({
+        type: 'BAN_USER'
+      })
+    })
+  }
+}
+
+export function unbanned_user(id){
+  return function(dispatch){
+    axios.put(`http://localhost:3001/users/unbanned/${id}`)
+    .then(data => {
+      dispatch({
+        type: 'UNBANNED_USER'
+      })
     })
   }
 }
@@ -360,6 +383,22 @@ export function setArticle(payload){
   return {
     type:"SET_ARTICLE",
     payload,
+  }
+}
+
+// 
+// COMENTARIOS 
+// 
+
+export function get_all_comments(){
+  return function(dispatch){
+    return axios.get('http://localhost:3001/comments')
+    .then(data => {
+      dispatch({
+        type: GET_ALL_COMMENTS,
+        payload: data
+      })
+    })
   }
 }
 
@@ -521,3 +560,47 @@ export function sendMessageChat(id_user, idF, message){
 
   }
 }
+
+
+
+/////////////////////////////////////////////BANNED/////////////////////////
+
+export function bannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/ban/${id}`);
+    return dispatch({
+          type: "BAN_USER",
+          payload: json.data
+      });
+  }
+}
+export function unbannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/unbanned/${id}`);
+    return dispatch({
+          type: "BANNED_USER",
+          id: id,
+          payload: json.data
+      });
+  }
+}
+///////////////////////////////////////// VOLVER ADMIN O VOLVER USER///////////////////////////////
+export function convertToAdmin(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/admin/${id}`);
+    return dispatch({
+          type: "CONVERT_ADM",
+          payload: json.data
+      });
+  }
+}
+export function convertToUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/user/${id}`);
+    return dispatch({
+          type: "CONVERT_USER",
+          payload: json.data
+      });
+  }
+}
+
