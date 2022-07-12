@@ -44,6 +44,12 @@ export function Admin() {
                   <p className="btn_adm">Users administration</p>
                 </div>
               </Link>
+              <Link to='/admin/comments' style={{ textDecoration: 'none' }}>
+                <div className="admin_option">
+                  <img src="https://img2.freepng.es/20180616/zvl/kisspng-computer-icons-livechat-online-chat-chat-room-comments-5b25ab1bdce400.8565608615291952919048.jpg" alt='' />
+                  <p className="btn_adm">Comment administration</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
