@@ -4,6 +4,7 @@ import { /* useDispatch */ useSelector } from 'react-redux';
 //import { getFilteredVideogames } from '../../redux/actions'
 import Carousel from 'react-elastic-carousel'
 import Card from '../Card/card';
+import loading from '../../images/loading/Pulse-1.1s-200px.gif'
 
 export default function CarouselFP() {
 
@@ -13,7 +14,11 @@ export default function CarouselFP() {
   return (
     <div>
       <Carousel focusOnSelect={false} itemsToShow={5}>
-      {onsale.slice(0, 15).map((e) => (
+      {
+      !videogames.length ?
+      <img src={loading} alt='' />
+      :
+      onsale.slice(0, 15).map((e) => (
         <item>
           
           <Card
@@ -23,6 +28,7 @@ export default function CarouselFP() {
             price={e.price}
             free_to_play={e.free_to_play}
             id={e.id}
+            rating={e.rating}
           />
 
         </item>
