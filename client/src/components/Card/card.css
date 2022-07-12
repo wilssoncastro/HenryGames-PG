@@ -4,6 +4,8 @@
   height: 370px;
   width: 300px;
   border-radius: .5rem;
+  overflow: hidden;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -11,39 +13,64 @@
 }
 
 /* imagen de cada carta */
-.card .image{
+.card img{
   width: 100%;
-  height: 220px;
-  border-radius: .5rem;
-  margin: 0;
+  height: 60%;
   object-position: center center;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+}
+
+.onSale {
+  margin-top: 0;
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 1.3rem;
+  font-size: 15px;
+  background-color: rgb(143, 251, 35);
+  font-weight: bold;
 }
 
 /* container de texto de la carta (nombre y precio) */
-.textCard{
+.card .ContainerText{
+  margin: 0.1rem 0;
+  width: 100%;
+  height: 40%;
   list-style: none;
-  display:flex;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  display: flex;
   flex-direction: column;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card li{
+  /* margin-top: 0.1rem;
+  margin-bottom: 1rem; */
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .titleCard{
-  margin: 1rem 1rem;
-  font-size: 20px;
-  font-weight: bold;
+  height: 70%;
+  width: 100%;
+  justify-content: center;
 }
 
-.titleCardOnSale{
-  color: chartreuse;
-  margin: 1rem 1rem;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.priceCard{
-  margin-bottom: 1rem;
-  font-size: 18px;
-  font-weight: bold;
+.LastRow{
+  height: 30%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .card:hover{
@@ -60,9 +87,3 @@
   text-align: center;
 }
 
-.onSale {
-  color: black;
-  background-color: chartreuse;
-  border-radius: 10%;
-  width: 20%;
-}

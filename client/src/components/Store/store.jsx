@@ -199,6 +199,7 @@ export default function Store() {
                       free_to_play={v.free_to_play}
                       on_sale={v.on_sale}
                       id={v.id}
+                      rating={v.rating}
                     />
                   </div>
                 )
