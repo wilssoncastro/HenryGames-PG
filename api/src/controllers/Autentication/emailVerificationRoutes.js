@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer')
 const { Player } = require('../../db');
 const randomstring = require("randomstring");
 
-const { MAIL_USER, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN} = process.env
+const { MAIL_USER, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN, REFRESH_TOKEN, BASE_URL } = process.env
 
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -34,7 +34,7 @@ const router = Router();
 router.get('/email/activation/:userId/:token/:mail', async(req, res, next) => {
     let { userId, token, mail} = req.params
     
-    let verification_link = `http://localhost:3000/activation/${userId}/${token}`
+    let verification_link = `${BASE_URL}/activation/${userId}/${token}`
     try {
         if( userId && token && mail){
             
@@ -72,7 +72,7 @@ router.get('/email/gameActivation/:secretCode/:id_user/:longitude', async(req, r
     let mail = user.email
     
 
-    const link = `http://localhost:3000/activation/games/${secretCode}/${id_user}/${longitude}`
+    const link = `${BASE_URL}/activation/games/${secretCode}/${id_user}/${longitude}`
     
     try {
         let mail_options = {
@@ -91,7 +91,7 @@ router.get('/email/gameActivation/:secretCode/:id_user/:longitude', async(req, r
             if(error)console.log(error, 'ERROOOOOOOOOOOOOOOOOOOOOOORRRRRRRRRRRRRRRRRRRRRR')
         })
 
-        res.redirect("http://localhost:3000/home")
+        res.redirect(`${BASE_URL}/home`)
 
 
     } catch (error) {
@@ -117,7 +117,7 @@ router.get('/email/reSend/:mail', async(req, res) => {
         const token = user[0].dataValues.secret_token
         
         
-        let verification_link = `http://localhost:3000/activation/${user_id}/${token}`
+        let verification_link = `${BASE_URL}/activation/${user_id}/${token}`
         
 
         if(user_id && token && mail){

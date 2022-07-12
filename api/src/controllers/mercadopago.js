@@ -6,7 +6,7 @@ const randomstring = require("randomstring");
 //SDK mercadopago
 const mercadopago = require('mercadopago');
 
-const { ACCESS_TOKEN_MP } = process.env;
+const { ACCESS_TOKEN_MP, BACK_URL, BASE_URL } = process.env;
 
 //agrega credenciales
 mercadopago.configure({
@@ -41,9 +41,9 @@ let preference = {
         installments: 3 //cuotas
     },
     "back_urls": {
-        "success": "/mercadopago/save_data",
-        "failure": "http://localhost:3000/home",
-        "pending": "http://localhost:3000/home"
+        "success": `${BACK_URL}/mercadopago/save_data`, 
+        "failure": `${BACK_URL}/mercadopago/failure`,    
+        "pending": `${BACK_URL}/mercadopago/pending`
     },
 };
 
@@ -62,7 +62,7 @@ mercadopago.preferences.create(preference)
 });
 });
 
-router.get('/save_data', async(req, res) => {
+router.get('/save_data', async(req, res) => {  // usar un switch
     //console.log('Llegue hasta aca')
     //console.info('lo que me devuelve MP', req.session.passport.user)
     //console.log('hola')
@@ -120,6 +120,14 @@ router.get('/save_data', async(req, res) => {
 
 
     res.redirect(`/authentication/email/gameActivation/${secret_code}/${id_user}/${longitude}`)
+})
+
+router.get("/failure", async (req, res) =>{
+    res.send("payment failure")
+})
+
+router.get("/pending", async (req, res) =>{
+    res.send("payment pending")
 })
 
 module.exports = router;

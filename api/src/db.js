@@ -3,10 +3,12 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, API_KEY, DB_NAME
+  DB_USER, DB_PASSWORD, DB_HOST, API_KEY, DB_NAME, BASE_URL
 } = process.env;
 // const  getAllApiGames = require('./services/services.js');
 // const  axios  = require('axios');
+
+//const BASE_URL = process.env.NODE_BASE_URL ? process.env.NODE_BASE_URL : 'http://localhost:3000'
 
 let sequelize =
   process.env.NODE_ENV === "production"

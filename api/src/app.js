@@ -7,7 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const { Player } = require('./db');
-const { SECRET } = process.env
+const { SECRET, BASE_URL } = process.env
 const bcrypt = require("bcrypt")
 const randomstring = require("randomstring");
 
@@ -25,7 +25,7 @@ server.use(bodyParser.json({ limit: '50mb' }));
 server.use(cookieParser(SECRET));
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', `${BASE_URL}`); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
