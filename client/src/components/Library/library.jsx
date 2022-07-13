@@ -5,48 +5,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLibraryById } from '../../redux/actions';
 import Footer from '../Footer/Footer';
 import OwnedGame from '../Card/OwnedGame';
-import axios from 'axios';
+
 import './library.css'
 
 export default function Library() {
 
   const dispatch = useDispatch()
+  const [visuality, setVisuality] = useState(false)
+  const [video, setVideo] = useState('')
+
   const id_user = localStorage.getItem('id');
-  // const [visuality, setVisuality] = useState(false)
-  // const [video, setVideo] = useState('')
 
-
-  // function getRandomInt(max) {
-  //   return Math.floor(Math.random() * max);
-  // }
+  
 
   useEffect(() =>{
     dispatch(getLibraryById(id_user))
   }, [])
 
   let my_games = useSelector(state => state.my_games)
-
-  // async function putVideo(e){
-  //   console.log(e)
-  //     let videos = (await axios.get(`https://api.rawg.io/api/games/${e}/movies?key=345444feabdc45b185eefff732f7bb27`)).data;
-  //     console.log(videos);
-  //     let length_videos = videos.count;
-  //     let index = getRandomInt(length_videos);
-  //     let game = videos.results;
-  //     let total = game[index];
-  //     setVideo(total.data[480]);
-  //     setVisuality(true);
-  // }
-
+  
   
 
-  console.log(my_games)
+  
   return (
     <div className='library-body'>
       <NavBar />
       <div className='library-component'>
         <div>
-          {my_games.length ?
+          {my_games ?
             <div>
               <h1 className='library-title'>My games</h1> 
               <div className="containercard">
@@ -58,6 +44,8 @@ export default function Library() {
                       image={v.image}
                       name={v.name}
                       id={v.id}
+                      setVideo={setVideo}
+                      setVisuality={setVisuality}
                     />
                   </div>
                 )
@@ -75,9 +63,34 @@ export default function Library() {
             </div>
           )}
         </div>
+        {
+          visuality ?
+            <div className='frame'>
+              <button className='close-button-red' onClick={() => setVisuality(false)}>X</button>
+              <iframe
+                id="inlineFrameExample"
+                title="Inline Frame Example"
+                width="700"
+                height="600"
+                src={video ? video : 'https://www.youtube.com/embed/QN3Wv6Gkoic'}
+                autoplay
+              ></iframe>
+            </div>
+            : <></>
+        }
       </div>
       <Footer />
-      {/*
+      {/* async function putVideo(e){
+        console.log(e)
+    let videos = (await axios.get(`https://api.rawg.io/api/games/${e}/movies?key=345444feabdc45b185eefff732f7bb27`)).data
+      console.log(videos)
+      let length_videos = videos.count
+      let index = getRandomInt(length_videos)
+      let game = videos.results
+      let total = game[index]
+      setVideo(total.data[480])
+      setVisuality(true)
+  }
 
       //console.log(my_games)
       return (

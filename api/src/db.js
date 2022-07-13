@@ -96,17 +96,17 @@ Videogame.belongsToMany(Player,{
 
 //---------------------PLAYER N:M COMMENTS ----------------------------------------//
 
-Player.belongsToMany(Videogame, {
-  as: 'comments_player',
-  foreignKey: 'id_user',
-  through: Comment
-})
+// Player.belongsToMany(Videogame, {
+//   as: 'comments_player',
+//   foreignKey: 'id_user',
+//   through: Comment
+// })
 
-Videogame.belongsToMany(Player,{
-  as: 'comments_videogame',
-  foreignKey: 'id_game',
-  through: Comment
-})
+// Videogame.belongsToMany(Player,{
+//   as: 'comments_videogame',
+//   foreignKey: 'id_game',
+//   through: Comment
+// })
 
 //----------------------PLAYER N:M VIDEOGAMES (LIBRARY) -----------------------------------------//
 

@@ -40,12 +40,14 @@ router.get('/auth/google/protected', isLoggedIn, async (req, res) => {
                 success: true,
                 message: "successfull",
                 user: req.user,
+                banned: false,
                 //cookies: req.cookies
             })
         }
         else{
-            return res.status(200).json({
+            return res.status(401).json({
                 success: false,
+                banned: true,
                 message: 'Your account is banned. Can not log in'
             })
         }
