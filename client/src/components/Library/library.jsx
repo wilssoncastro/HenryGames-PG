@@ -11,20 +11,33 @@ import './library.css'
 export default function Library() {
 
   const dispatch = useDispatch()
-  const [visuality, setVisuality] = useState(false)
-  const [video, setVideo] = useState('')
-
   const id_user = localStorage.getItem('id');
+  // const [visuality, setVisuality] = useState(false)
+  // const [video, setVideo] = useState('')
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
+
+  // function getRandomInt(max) {
+  //   return Math.floor(Math.random() * max);
+  // }
 
   useEffect(() =>{
     dispatch(getLibraryById(id_user))
   }, [])
 
   let my_games = useSelector(state => state.my_games)
+
+  // async function putVideo(e){
+  //   console.log(e)
+  //     let videos = (await axios.get(`https://api.rawg.io/api/games/${e}/movies?key=345444feabdc45b185eefff732f7bb27`)).data;
+  //     console.log(videos);
+  //     let length_videos = videos.count;
+  //     let index = getRandomInt(length_videos);
+  //     let game = videos.results;
+  //     let total = game[index];
+  //     setVideo(total.data[480]);
+  //     setVisuality(true);
+  // }
+
   
 
   console.log(my_games)
@@ -64,17 +77,7 @@ export default function Library() {
         </div>
       </div>
       <Footer />
-      {/* async function putVideo(e){
-        console.log(e)
-    let videos = (await axios.get(`https://api.rawg.io/api/games/${e}/movies?key=345444feabdc45b185eefff732f7bb27`)).data
-      console.log(videos)
-      let length_videos = videos.count
-      let index = getRandomInt(length_videos)
-      let game = videos.results
-      let total = game[index]
-      setVideo(total.data[480])
-      setVisuality(true)
-  }
+      {/*
 
       //console.log(my_games)
       return (
