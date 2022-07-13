@@ -79,7 +79,7 @@ export default function LogIn() {
       <div className="lf-login-component">
         {/* LEFT */}
         <div className="lf-left-container">
-          <h1 className="lf-h1">Welcome Back!</h1>
+          <h1 className="lf-h1">Welcome!</h1>
           <br />
           <p className="lf-p">Log in to your Henry Games account</p>
           <br />

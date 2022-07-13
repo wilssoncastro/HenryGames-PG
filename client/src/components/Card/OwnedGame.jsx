@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
-import "./OwnedGame.css"
 import axios from 'axios';
+import "./OwnedGame.css"
 
 export default function OwnedGame({ image, name, id, setVideo, setVisuality}) {
   
@@ -26,14 +26,15 @@ export default function OwnedGame({ image, name, id, setVideo, setVisuality}) {
 }
 
   return (
-    <div className="og-card">
-        <Link className='og-link' to={`/store/${id}`}>
+    <div>
+        <button onClick={() => putVideo(id)} className='og-card'>
           <img className='og-image' src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
-          </Link>
           <ul className='og-textCard'>
             <li className='og-titleCard'>{name}</li>
-            <button onClick={() => putVideo(id)} className='og-launch'>Launch</button>
+            <li className='og-launch'>Launch</li>
+            {/* <button onClick={() => putVideo(id)} className='og-launch'>Launch</button> */}
           </ul>
+          </button>
         
     </div>
   )
