@@ -7,7 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const { Player } = require('./db');
-const { SECRET, BASE_URL, BACKenv_URL } = process.env
+const { SECRET, BASE_URL, BACK_URL } = process.env
 const bcrypt = require("bcrypt")
 const randomstring = require("randomstring");
 
@@ -15,9 +15,9 @@ const server = express()
 
 server.name = 'API';
 
-//const BACK_URL = BACKb_URL==="http://localhost:3001"?BACKb_URL:null
 const hk_URL = "https://henrygames.herokuapp.com"
-const BACK_URL = process.env.REACT_APP_API || BACKenv_URL
+//const BACKenv_URL = hk_URL || BACK_URL
+const BACKenv_URL = process.env.REACT_APP_API || BACK_URL
 
 // -------------------  MIDDLEWARES------------- cambio
 
