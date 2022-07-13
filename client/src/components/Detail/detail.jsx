@@ -272,7 +272,7 @@ export default function Detail() {
                     </div>
 
                     <div>
-                      {library.find(e => e.LibraryPlayer.id_game == videogame.id) ? 
+                      {library?.find(e => e.LibraryPlayer.id_game == videogame.id) ? 
                        videogame.free_to_play ? 
                        null : 
                        (
@@ -294,7 +294,7 @@ export default function Detail() {
                     <div>
                       {videogame.free_to_play ? 
                         <>
-                          {library.find(e => e.LibraryPlayer.id_game == videogame.id) ?
+                          {library?.find(e => e.LibraryPlayer.id_game == videogame.id) ?
                           <Link to='/library'>
                             <button className="buttonCart"><MdIcons.MdLibraryAddCheck /></button>
                           </Link>
