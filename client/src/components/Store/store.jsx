@@ -32,6 +32,9 @@ export default function Store() {
   };
 
   useEffect(() => {
+    if (!videogames) {
+      getAllVideogames();
+    }
     dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
     dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order))
     dispatch(getGenres())
@@ -146,13 +149,9 @@ export default function Store() {
               {
                 
                 allGenres.map((e) => {
-                  if (e.name === 'Educational' || e.name === 'Card' || e.name === 'Board') {
-                    return
-                  } else {
-                    return (
-                      <option value={e.name}>{e.name}</option>
-                    )
-                  }
+                  return (
+                    <option value={e.name}>{e.name}</option>
+                  ) 
                 })
               }
             </select>

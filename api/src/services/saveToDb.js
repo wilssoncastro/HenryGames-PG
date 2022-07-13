@@ -76,18 +76,7 @@ async function genres(){
         "id": 16,
         "name": "Family"
         },
-        {
-        "id": 17,
-        "name": "Board Games"
-        },
-        {
-        "id": 18,
-        "name": "Educational"
-        },
-        {
-        "id": 19,
-        "name": "Card"
-        }]
+    ]
     let generos =  genres.map(g=> {
        Genre.create(
         {
