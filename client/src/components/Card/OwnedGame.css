@@ -1,5 +1,6 @@
 /* carta entera */
 .og-card {
+    border: none;
     background-color: #1c1a1a;
     height: 370px;
     width: 300px;
@@ -8,6 +9,9 @@
     flex-direction: column;
     justify-content: flex-start;
     transition: all .3s ease;
+    padding: 0;
+    align-items: center;
+    color: white;
 }
 
 /* imagen de cada carta */
@@ -54,4 +58,25 @@
     font-size: 17px;
     margin-top: 18px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.og-button {
+    border: none;
+    background-color: #1c1a1a;
+    height: 370px;
+    width: 300px;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all .3s ease;
+}
+
+.og-button:hover {
+    background-color: #1a83ff;
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: saturate(1.6);
+    transform: scale(1.05);
 }

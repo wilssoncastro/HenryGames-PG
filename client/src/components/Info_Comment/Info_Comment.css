@@ -4,6 +4,7 @@
     padding: 1rem;
     width: 50%;
     height: 10rem;
+    background-color: white;
 }
 
 .info{
@@ -13,15 +14,17 @@
     align-items: left;
     margin-bottom: 1rem;
     text-align: left;
+    
 }
 
 .info p{
     margin: 0;
 }
 
-.body{
+.bodycomment{
     display: flex;
     flex-direction: row;
+    
 }
 
 .msg{

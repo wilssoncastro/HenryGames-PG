@@ -11,9 +11,12 @@ import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
 import LandingPage from './components/Langing-Page/LangingPage';
 import VideogameCreate from './components/VideogameForm/CreateVideogame';
+/*Administradr */
 import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
+import CommentAdmin from './components/Administrador/CommentAdmin';
+/* */
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
 import Article from './components/Blog/Article';
@@ -79,6 +82,7 @@ function App() {
           {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
           <Route exact path='/admin/users' element={<Users />} />
+          <Route exact path='/admin/comments' element={<CommentAdmin />} />
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart />}/>

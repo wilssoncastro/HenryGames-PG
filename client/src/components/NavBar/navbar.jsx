@@ -14,6 +14,7 @@ import * as AiIcons from "react-icons/ai"
 import * as FiIcons from "react-icons/fi"
 import * as RiIcons from "react-icons/ri"
 import * as IoIcons from "react-icons/io"
+import * as ImIcons from "react-icons/im"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -185,6 +186,14 @@ export default function NavBar() {
                             (<Link to='/library' className="left-sections">
                                 <BiIcons.BiLibrary className="navbar-left-icons" />
                                 <h3 className="navleft-text">LIBRARY </h3>
+                            </Link>
+                            ) : (<></>)
+                        }
+                        {id?
+                            (<Link to='/blog' className="left-sections">
+                                
+                                <FaIcons.FaBloggerB className="navbar-left-icons" />
+                                <h3 className="navleft-text">BLOG </h3>
                             </Link>
                             ) : (<></>)
                         }
