@@ -15,7 +15,9 @@ function isLoggedIn(req, res, next) {
 //ruta donde elegimos la cuenta de google
 router.get('/auth/google',
     passport.authenticate('google', 
-        { scope: ['email', 'profile'] })) //el scope es lo que queremos saber de cada cuenta
+        { scope: ['email', 'profile'] }
+    )
+) //el scope es lo que queremos saber de cada cuenta
 
 //ruta del callback que nos da google
 router.get('/auth/google/callback',
