@@ -33,7 +33,7 @@ export default function Article(props) {
     }, [dispatch])
 
     const article = useSelector((state) => state.article)
-    console.log("article", article)
+    console.log("article", article.contents)
 
     const Scrll0 = Fade(0, 1)
     const Scrll1 = FadeIn(0, 1)
@@ -55,20 +55,17 @@ export default function Article(props) {
                     <div className={styles.title}>
                         <h1>{article.name}</h1>
                     </div>
-                    <div>
+                    <div >
                         <ScrollContainer>
                             <ScrollPage page={0}>
                                 <Animator animation={Scrll0}>
                                     <div>
                                         <img src={article.image} width='600px' />
-                                        <h4>publicado el {article.createdAt.slice(0, 10)}</h4>
+                                        <h4>Released {article.createdAt.slice(0, 10)}</h4>
                                     </div>
-                                </Animator>
-                            </ScrollPage>
-                            <ScrollPage page={0}>
-                                <Animator animation={Scrll1}>
+                             
                                     <div className={styles.contents}>
-                                        <h3>{article.contents}</h3>
+                                        <p>{article.contents}</p>
                                     </div>
                                 </Animator>
                             </ScrollPage>
