@@ -15,6 +15,7 @@ export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
 export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
 export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
+export const GET_ALL_COMMENTS = 'GET_ALL_COMMENTS'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -292,6 +293,28 @@ export function deleteAccount(id) {
   }
 }
 
+export function banUser(id){
+  return function(dispatch){
+    axios.put(`http://localhost:3001/users/ban/${id}`)
+    .then(data => {
+      dispatch({
+        type: 'BAN_USER'
+      })
+    })
+  }
+}
+
+export function unbanned_user(id){
+  return function(dispatch){
+    axios.put(`http://localhost:3001/users/unbanned/${id}`)
+    .then(data => {
+      dispatch({
+        type: 'UNBANNED_USER'
+      })
+    })
+  }
+}
+
 //COMENTARIOS 
 //FUNCIONES
 //
@@ -360,6 +383,22 @@ export function setArticle(payload){
   return {
     type:"SET_ARTICLE",
     payload,
+  }
+}
+
+// 
+// COMENTARIOS 
+// 
+
+export function get_all_comments(){
+  return function(dispatch){
+    return axios.get('http://localhost:3001/comments')
+    .then(data => {
+      dispatch({
+        type: GET_ALL_COMMENTS,
+        payload: data
+      })
+    })
   }
 }
 

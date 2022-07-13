@@ -48,6 +48,12 @@ export function Admin() {
                 <div className="admin_option">
                   <img src="https://icon-library.com/images/publication-icon/publication-icon-0.jpg" alt="" />
                   <p className="btn_adm">Publish Article</p>
+                  </div> 
+                </Link>
+              <Link to='/admin/comments' style={{ textDecoration: 'none' }}>
+                <div className="admin_option">
+                  <img src="https://icones.pro/wp-content/uploads/2022/01/icone-de-commentaires-orange.png" alt='' />
+                  <p className="btn_adm">Comment administration</p>
                 </div>
               </Link>
             </div>
