@@ -53,11 +53,14 @@
 
 .cardWishListProfile {
   display: flex;
+  background-color: #151414;
+  margin: 1em;
+  border-radius: 8px;
 }
 
 .h3ProfileWishList {
   margin: 8px;
-  text-decoration: underline;
+  margin-left: 1em;
 }
 .h3ProfileWishList:hover {
   color: #c7a94b;
@@ -67,7 +70,11 @@
 .image-wishListProfile {
   height: 150px;
   width: 250px;
-  margin: 5px;
+  margin: 1em;
+}
+
+.linkNameProfile{
+   color: #fff;
 }
 
 .nameAndPriceProfile {
