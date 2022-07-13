@@ -4,7 +4,7 @@ const passport = require('passport')
 require('../../app.js')
 const { BASE_URL } = process.env
 
-const CLIENT_URL = 'http://localhost:3000/'
+const CLIENT_URL = 'http://localhost:3000'
 
 //middleware
 function isLoggedIn(req, res, next) {
@@ -19,7 +19,7 @@ router.get('/auth/google',
 //ruta del callback que nos da google
 router.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: BASE_URL + '/home',
+        successRedirect: CLIENT_URL + '/home',
         failureRedirect: '/auth/google/failure'
     })
 )
