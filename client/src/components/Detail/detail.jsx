@@ -113,7 +113,7 @@ export default function Detail() {
           text: "Go to shop",
           value: "shop",
         },
-        cancel: "Cancel",
+        cancel: "Stay",
       },
     }).then((value) => {
       switch (value) {

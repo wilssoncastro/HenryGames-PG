@@ -144,10 +144,15 @@ export default function Store() {
             <select className="selectPages" onChange={(e) => handleGen(e)}>
               <option value="">All Genres</option>
               {
+                
                 allGenres.map((e) => {
-                  return (
-                    <option value={e.name}>{e.name}</option>
-                  )
+                  if (e.name === 'Educational' || e.name === 'Card' || e.name === 'Board') {
+                    return
+                  } else {
+                    return (
+                      <option value={e.name}>{e.name}</option>
+                    )
+                  }
                 })
               }
             </select>

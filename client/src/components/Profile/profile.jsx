@@ -47,6 +47,7 @@ export default function Profile() {
             title: "Confirmed",
             text: "Proceding to delete account"
           })
+          
           navigate(`/profile/${id_user}/delete`);
         }
       })
