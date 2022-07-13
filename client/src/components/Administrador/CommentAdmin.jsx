@@ -18,7 +18,9 @@ export default function CommentAdmin(){
     return (
         <div className="div-reported-comments">
             <NavBar />
+            <div className="tittle_component_comments">
             REPORTED COMMENTS
+            </div>
             <ul className="list-reported-comments">
                 {reported_comments.length? 
                 
