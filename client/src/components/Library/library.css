@@ -1,0 +1,87 @@
+.library-body {
+    background-image: url('https://cdn.discordapp.com/attachments/986703536811278446/992436854446112898/bg-01.jpg');
+    background-color: #151414;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+    /* overflow-y: scroll; */
+    min-height: 100vh;
+    justify-content: center;
+    position: relative;
+    z-index: 1; 
+}
+.library-component{
+    padding-bottom: 6em;
+}
+
+.library-title {
+    margin-top: 3em;
+    margin-left: 2.5em;
+    color: rgb(255, 255, 255);
+    background: -webkit-linear-gradient(to right, rgb(245, 230, 145), rgb(181, 166, 83));
+    background: linear-gradient(to top,  rgb(212, 197, 116), rgb(181, 166, 83));
+    border-radius: 4px;
+    width: fit-content;
+    padding: 0.2em 1em;
+}
+
+.library-empty-title{
+    color: #c0a956;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 12rem;
+    display: inline-block;
+    padding: 20px;
+    font-size: 45px;
+    border-radius: 12px;
+}
+
+.library-empty-redirect{
+    color: #c0a956;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: block;
+    align-items: center;
+    justify-content: center;
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.library-empty-button{
+    background-color: black;
+    color: #c0a956;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 8px;
+    border: 1px solid;
+    border-radius: 4px;
+}
+.btnAddToCart:hover{
+    transition: 0.7s;
+    background-color: #c0a956;
+    color: black;
+}
+
+.frame{
+    position: fixed;
+    top: 15%;
+    z-index: 1000000000000000000000000000000000000000000000000000000000000000;
+    left: 30%;
+}
+
+.close-button-red{
+    background-color: red;
+    color: white;
+    text-transform: uppercase;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    cursor: pointer; 
+}
+
+iframe{
+    border: 1px solid black;
+}

@@ -1,0 +1,136 @@
+.container {
+    width: 55%;
+    height: 600px;
+    background: #000;
+    color: #fff;
+    top: 55%;
+    left: 50%;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+}
+
+
+.container .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 3px;
+    position: absolute;
+    top: -50px;
+    left: calc(60% - 15%);
+    margin-left: auto;
+    margin-right: auto;
+}
+.container .label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+
+.container .input {
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    /* height: 40px; */
+    color: #fff;
+
+}
+
+.container .submit{
+    
+    background: linear-gradient(285deg, rgba(4,177,181,1) 33%, rgba(11,144,230,1) 59%);
+    margin: 10px;    
+    font-size: 15px;
+    padding: 5px;
+    text-align: center;
+    transition: 0.5s;     
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+}
+.submit:hover{
+    background: linear-gradient(285deg, rgb(28, 251, 255) 33%, rgb(19, 136, 214) 59%);
+    color: #000;
+    
+}
+
+.container .btn{
+    
+    background: linear-gradient(285deg, rgb(187, 152, 13) 33%, rgb(189, 175, 47) 59%);
+     margin: 10px;    
+     font-size: 15px;
+     padding: 5px;
+     text-align: center;
+     transition: 0.5s;     
+     color: #FFF;
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;    
+     box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+     cursor: pointer;
+     display: inline-block;
+     border-radius: 5px;
+}
+
+.btn:hover{
+    color: #000;
+    background: linear-gradient(285deg, rgb(255, 207, 17) 33%, rgb(255, 230, 0) 59%);
+}
+
+.errors{
+    color: red;
+}
+
+.btn_disabled{
+
+    background: rgb(67, 67, 67);
+     margin: 10px;    
+     font-size: 15px;
+     padding: 5px;
+     text-align: center;
+     transition: 0.5s;     
+     color: #FFF;
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;    
+     box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+     cursor: pointer;
+     display: inline-block;
+     border-radius: 5px;
+}
+.btn_disabled:hover{
+    cursor: not-allowed;
+}
+
+.boton_deleted{
+    background: rgb(135, 22, 22);
+     margin: 10px;    
+     font-size: 15px;
+     padding: 5px;
+     text-align: center;
+     transition: 0.5s;     
+     color: #FFF;
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;    
+     box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+     cursor: pointer;
+     display: inline-block;
+     border-radius: 5px;
+}
+
+.boton_deleted:hover{
+    background: rgb(195, 0, 0);
+    
+}

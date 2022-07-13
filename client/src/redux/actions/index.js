@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DELETE_FROM_CART = 'DELETE_FROM_CART'
@@ -15,6 +16,8 @@ export const IS_ONLINE = 'IS_ONLINE'
 export const INFO_COMMENT = 'INFO_COMMENT'
 export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
 export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
+export const GET_ALL_COMMENTS = 'GET_ALL_COMMENTS'
+export const UNREPORT_COMMENT = 'UNREPORT_COMMENT'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -39,9 +42,9 @@ export function getAllVideogames() {
 }
 
 
-export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort, order, limit) {
+export function getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&free_to_play=${free_to_play}&page=${page}&sort=${sort}&order=${order}&limit=${limit}`);
     return dispatch({
       type: "GET_FILTERED_VIDEOGAMES",
       payload: json.data
@@ -49,9 +52,9 @@ export function getFilteredVideogames(name, gen, tag, esrb, on_sale, page, sort,
   };
 }
 
-export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, sort, order) {
+export function getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, sort, order) {
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&sort=${sort}&order=${order}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}&gen=${gen}&tag=${tag}&esrb=${esrb}&on_sale=${on_sale}&free_to_play=${free_to_play}&sort=${sort}&order=${order}`);
     return dispatch({
       type: "GET_NOLIMIT_FILTERED_VIDEOGAMES",
       payload: json.data
@@ -227,7 +230,7 @@ export function addManyToCart(id_user, games){
 
 export function getCardStatistics(name){
   return async function (dispatch) {
-    let json = await axios(`http://localhost:3001/videogames?name=${name}`);
+    let json = await axios(`http://localhost:3001/videogames/filter?name=${name}`);
     return dispatch({
       type: "GET_CARD_STATISTICS",
       payload: json.data
@@ -292,6 +295,28 @@ export function deleteAccount(id) {
   }
 }
 
+export function banUser(id){
+  return function(dispatch){
+    axios.put(`http://localhost:3001/users/ban/${id}`)
+    .then(data => {
+      dispatch({
+        type: 'BAN_USER'
+      })
+    })
+  }
+}
+
+export function unbanned_user(id){
+  return function(dispatch){
+    axios.put(`http://localhost:3001/users/unbanned/${id}`)
+    .then(data => {
+      dispatch({
+        type: 'UNBANNED_USER'
+      })
+    })
+  }
+}
+
 //COMENTARIOS 
 //FUNCIONES
 //
@@ -331,6 +356,54 @@ export function getArticles() {
     });
   };
 }
+
+export function findArticle(id){
+    return async function(dispatch){
+        try{
+            var json =await axios.get(`http://localhost:3001/blog/${id}`);
+            console.log("json", json)
+            return dispatch({
+                type: "FIND_ARTICLE",
+                payload: json.data
+            })
+        }catch(error){
+            console.log(error)
+        }
+    }
+}
+
+export function updateArticle (id, payload)  {
+  return async function (dispatch) {
+    await axios.put(`http://localhost:3001/blog/${id}`, payload);
+    return dispatch({
+      type: "UPDATE_ARTICLE",
+    });
+  };
+};
+
+export function setArticle(payload){
+  return {
+    type:"SET_ARTICLE",
+    payload,
+  }
+}
+
+// 
+// COMENTARIOS 
+// 
+
+export function get_all_comments(){
+  return function(dispatch){
+    return axios.get('http://localhost:3001/comments')
+    .then(data => {
+      dispatch({
+        type: GET_ALL_COMMENTS,
+        payload: data
+      })
+    })
+  }
+}
+
 export function delete_comment(id_comment){
   return function(dispatch){
     return axios.delete(`http://localhost:3001/comments/deleteComment/${id_comment}`)
@@ -359,9 +432,21 @@ export function report_comment(id_comment){
   return function(dispatch){
     return axios.put(`http://localhost:3001/comments/report_comment/${id_comment}`)
     .then(data => {
-      console.log('Reportado?')
       dispatch({
-        type: REPORT_COMMENT
+        type: REPORT_COMMENT,
+        payload: data
+      })
+    })
+  }
+}
+
+export function unreport_comment(id_comment){
+  return function(dispatch){
+    return axios.put(`http://localhost:3001/comments/unreport_comment/${id_comment}`)
+    .then(data => {
+      dispatch({
+        type: UNREPORT_COMMENT,
+        payload: data
       })
     })
   }
@@ -489,3 +574,47 @@ export function sendMessageChat(id_user, idF, message){
 
   }
 }
+
+
+
+/////////////////////////////////////////////BANNED/////////////////////////
+
+export function bannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/ban/${id}`);
+    return dispatch({
+          type: "BAN_USER",
+          payload: json.data
+      });
+  }
+}
+export function unbannedUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/unbanned/${id}`);
+    return dispatch({
+          type: "BANNED_USER",
+          id: id,
+          payload: json.data
+      });
+  }
+}
+///////////////////////////////////////// VOLVER ADMIN O VOLVER USER///////////////////////////////
+export function convertToAdmin(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/admin/${id}`);
+    return dispatch({
+          type: "CONVERT_ADM",
+          payload: json.data
+      });
+  }
+}
+export function convertToUser(id){
+  return async function(dispatch){
+    var json = await axios.put(`http://localhost:3001/users/user/${id}`);
+    return dispatch({
+          type: "CONVERT_USER",
+          payload: json.data
+      });
+  }
+}
+

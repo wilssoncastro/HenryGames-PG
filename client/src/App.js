@@ -11,18 +11,22 @@ import Store from './components/Store/store'
 import Wishlist from './components/Wish-List/wish_list';
 import LandingPage from './components/Langing-Page/LangingPage';
 import VideogameCreate from './components/VideogameForm/CreateVideogame';
+/*Administradr */
 import Estadisticas from './components/Administrador/EstadisticasVentas';
 import { Admin } from './components/Administrador/Admin';
 import Edit from './components/Administrador/EditVideogame';
+import CommentAdmin from './components/Administrador/CommentAdmin';
+/* */
 import FormEdit from './components/VideogameForm/FormEdit'
 import Blog from './components/Blog/Blog';
+import Article from './components/Blog/Article';
+import EditArticles from './components/Blog/EditArticles';
 import { Users } from './components/Administrador/Users';
 //import Comment from './components/Comment/Comment';
 import ValidationMail from './components/ValidationMail/validationMail'
 import  EdiProfile from './components/Profile/EditProfile';
 import  Friends  from './components/Friends/Friends';
 import ValidationGame from './components/ValidationGame/validationGame';
-import Google from './components/Google/GoogleButton';
 import Chat from './components/ChatRoom/chat'
 import AccountDeleted from './components/AccountDeleted/AccountDeleted';
 import ReSendMail from './components/ReSendMail/ReSendMail';
@@ -78,6 +82,7 @@ function App() {
           {/* componente para ver las estadisiticas, para el admin */}
           <Route exact path='/admin/statistics' element={<Estadisticas />}/>
           <Route exact path='/admin/users' element={<Users />} />
+          <Route exact path='/admin/comments' element={<CommentAdmin />} />
 
           {/* Te manda a tu carrito (larga la pasta monki) */}
           <Route exact path='/my_cart' element={<ShoppingCart />}/>
@@ -91,12 +96,13 @@ function App() {
           {/* ingresar al blog, donde encontraremos articlos, noticias, acerca del mundo gamer */}
           <Route exact path='/blog' element={<Blog />}/>
 
+          <Route exact path= '/blog/:id' element={<Article/>} />
+          <Route exact path= '/blog/editArticles' element={<EditArticles/>} />
+
           {/* amigos*/} 
           <Route exact path='/friends/:id' element={<Friends/>}/>
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
           <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
-
-          <Route path='/googleLogin' element={<Google />}/>
 
           ///CHAT
           <Route path='/chat/:id_user/:idF' element={<Chat />}/>

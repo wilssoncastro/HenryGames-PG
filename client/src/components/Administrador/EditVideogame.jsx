@@ -18,6 +18,11 @@ export default function Edit() {
   const [edit, setEdit] = useState(false);
   const [deleted, setDeleted] = useState(false);
   const videogame = useSelector((state) => state.videogames);
+  const [editDelete, setEditDelete] = useState({
+    edit: false,
+    delete: false
+  })
+
 
 
   useEffect(() => {
@@ -26,7 +31,12 @@ export default function Edit() {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    setEdit(true)
+    setEditDelete({
+      edit: true,
+      delete: false
+    })
+    setName("")
+
   }
 
   const handleInputChange = (e) => {
@@ -36,7 +46,11 @@ export default function Edit() {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    setDeleted(true);
+    setEditDelete({
+      edit: false,
+      delete: true
+    })
+    setName("")
   }
 
   const handleOnClickDelete = (e) => {
@@ -63,60 +77,88 @@ export default function Edit() {
     if (id_user_admin === "adm") {
 
       return (
-        <div>
+        <div className="component_edit_delete_videogame">
           <NavBar />
           <div className="containerEditVideogame">
-          <h2>Edit videogame</h2>
-          <button onClick={(e) => handleEdit(e)}>Search game to edit</button>
-          {
-            edit == true &&
-            <div>
-              <input
-                placeholder="Search Videogame..."
-                value={name}
-                type="text"
-                id="inputName"
-                onChange={(e) => handleInputChange(e)}
-              />
-              {
-                name ? videogame.map((e) => (
-                  <div>
-                    <h3>{e.name}</h3>
-                    <Link to={`/admin/editVideogame/formEdit/${e.id}`}>
-                      <button>Edit</button>
-                    </Link>
-                  </div>
-                )) : null
-              }
-            </div>
-          }
-          <h2>Delete videogame</h2>
 
-          <button onClick={(e) => handleDelete(e)}>Search game to delete</button>
-          {
-            deleted == true &&
-            <div>
-              <input
-                placeholder="Search Videogame..."
-                value={name}
-                type="text"
-                id="inputName"
-                onChange={(e) => handleInputChange(e)}
-              />
-              {
-                name ? videogame.map((e) => (
-                  <div>
-                    <h3>{e.name}</h3>
-                    <button onClick={() => handleOnClickDelete(e.id)}>Delete</button>
-                  </div>
-                )) : null
-              }
+            <div className="option_edit_delete">
+              <div>
+                <h2>Edit videogame</h2>
+                <button
+                className="btn_option_deleted_edit" onClick={(e) => handleEdit(e)}>Search game to edit</button>
+              </div>
+              <div>
+                <h2>Delete videogame</h2>
+                <button className="btn_option_deleted_edit" onClick={(e) => handleDelete(e)}>Search game to delete</button>
+              </div>
             </div>
-          }
-        </div>
+            {
+              editDelete.edit == true &&
+              <div>
+                <p>
+                  Please Type the game you want to edit</p>
+                <input
+                  placeholder="Search Videogame..."
+                  value={name}
+                  type="text"
+                  id="inputName"
+                  className="input_search_edit_deleted"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <div className="cards_edit_delete">
+                {
+               
+                  name && videogame.map((e) => (
+
+                    <div className="card_edit_delete">
+                    
+                      <h3>{e.name}</h3>
+                    
+                      <Link to={`/admin/editVideogame/formEdit/${e.id}`}>
+                        <button className="btn_option_edit">Edit</button>
+                      </Link>
+                    </div>
+                  )) 
+                
+                  
+                }
+                </div>
+                
+              </div>
+            }
+
+
+
+            {
+              editDelete.delete == true &&
+              <div>
+                 <p>
+                  Please Type the game you want to deleted</p>
+                <input
+                  placeholder="Search Videogame..."
+                  value={name}
+                  type="text"
+                  id="inputName"
+                  className="input_search_edit_deleted"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                <div className="cards_edit_delete">
+                {
+                  name && videogame.map((e) => (
+                    <div className="card_edit_delete">
+                      <h3>{e.name}</h3>
+                      <button className="btn_option_deleted" onClick={() => handleOnClickDelete(e.id)}>Delete</button>
+                    </div>
+                  )) 
+                }
+                </div>
+              </div>
+            }
+
+          </div>
         </div>
       )
-    }else{      
+    } else {
       return (
         <ComponentError></ComponentError>
       )

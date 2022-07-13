@@ -162,7 +162,7 @@ export default function Friends() {
                                                     <p>{e.name} {e.lastname}</p>
                                                     <p>user: {e.user}</p>
                                                 </div>
-                                                <button className="btn_add_delete_friend" onClick={() => handleClick(e.id)}>Add friend</button>
+                                                <button className="btn_add_friend" onClick={() => handleClick(e.id)}>Add friend</button>
                                             </div>
                                         )
                                     }) : <h5>User not fount</h5> : ""

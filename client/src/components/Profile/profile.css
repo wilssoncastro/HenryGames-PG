@@ -4,8 +4,8 @@ background-position: center;
   background-size: cover;
   background-attachment: fixed;
   overflow-x:hidden;
-  overflow-y: scroll;
-  height: 100vh;
+  /* overflow-y: scroll; */
+  min-height: 100vh;
   width: 100vw;
   justify-content: center;
   position: relative;
@@ -31,9 +31,11 @@ font-family: sans-serif;
 }
 .img_profile{
    width: 300px;
+   height: 300px;
    float: left;
    margin: 10px;
    border: #c0a956 4px solid;
+   object-position: center center;
 }
 .text_profile{
     float: left;
@@ -49,13 +51,14 @@ font-family: sans-serif;
 }
 
 .btn_profile{
-    background: #c7a94b;
+   background: rgb(4,177,181);
+   background: linear-gradient(285deg, rgba(4,177,181,1) 33%, rgba(11,144,230,1) 59%);
     margin: 10px;    
     font-size: 15px;
     padding: 5px;
     text-align: center;
     transition: 0.5s;
-    background-size: 200% auto;
+    
     color: #FFF;
     box-shadow: 0 0 20px #eee;
     border-radius: 10px;    
@@ -67,10 +70,12 @@ font-family: sans-serif;
  }
 
  .btn_profile:hover{
+   background: rgb(4,177,181);
+background: linear-gradient(285deg, rgb(0, 251, 255) 33%, rrgb(0, 153, 255)59%);
  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
+    
     color:black;
-    font-size: 25px;
+    
     background-color: #c7a94b;
  }
 
@@ -94,14 +99,6 @@ font-family: sans-serif;
 
  .btn_delete:hover{
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 8px 10px 12px;
-    font-size: 25px;
-    background-color: #a11616;
-    text-transform: uppercase;
+    background-color: #ff0000;
+    
  }
-
-
-
-
-
-

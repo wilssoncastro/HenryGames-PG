@@ -44,13 +44,13 @@
     flex-direction: row;
     justify-content: center;
     color: white;
+    
 }
 
 .image  {
     width: 500px;
     height: 250px;
-    margin: 10px;
-    margin-left: 1rem;
+    margin: 1em;
 }
 
 .listDetail1{
@@ -63,6 +63,10 @@
     align-items: flex-start;
 }
 
+.detail-genres-esrb {
+    flex-basis: 34%;
+}
+
 .listDetail2{
     height: 100%;
     display: flex;
@@ -71,6 +75,14 @@
     justify-content: space-evenly;
     margin: 0 6rem;
     align-items: flex-start;
+    width: 100%;
+}
+
+.listDetail2 li{
+    display: flex;
+    max-width: 500px;
+    max-height: 250px;
+    flex-wrap: wrap;
 }
 
 .titleList{
@@ -83,10 +95,52 @@
     transition: 0.3s;
 }
 
+.listDetail2 ul{
+    margin-left: 1rem;
+}
+
 .divsListDetail{
     display: flex;
     flex-direction: row;
 }
+
+.detail-image-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-title-library {
+    display: flex;
+    justify-content: center;
+    background-color: #c7a84b;
+    color: black;
+    margin: 1em;
+    border-radius: 8px;
+    font-size: 25px;
+    padding: 0.5rem;
+}
+
+.button-title-library:hover{
+    background-color: #1a83ff;
+    color: rgb(255, 255, 255);
+    transition: 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.button-in-library {
+    font-weight: 2em;
+    border-radius: 8px;
+    font-size: 25px;
+    padding: 0.5rem;
+    border: none;
+}
+
+.button-library-icon {
+    align-self: center;
+    font-size: 1.2em;
+    justify-content: flex-start;
+}
+
 
 .buttons{
     display: flex;
@@ -247,3 +301,9 @@
     align-content: center;
     margin-top: 36vh;
   }
+
+.requirements p {
+    display: flex;
+    max-width: 95vw;
+    flex-wrap: wrap;
+}
