@@ -27,38 +27,43 @@ export default function Home() {
         console.log("entró al useEffect")
         const getUser = async () => {
             console.log("entró al getUser()")
-            const info = await axios(`${BACK_URL}/auth/google/protected`, {
-                method: 'GET',
-                credentials: 'include',
-                header: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
+            try {
+                
+                const info = await axios(`https://henrygames.herokuapp.com/auth/google/protected`, {
+                    method: 'GET',
+                    credentials: 'include',
+                    header: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': true,
+                    }
+                })
+                console.log("terminó el axios ", info.data)
+                if (info.data.status===200) {
+                    const resObj = await info.data.json()
+                    console.log(resObj+ " if 200")
+                    localStorage.setItem("id", resObj.user.id)
+                    localStorage.setItem('name', resObj.user.name)
+                    localStorage.setItem('lastname', resObj.user.lastname)
+                    localStorage.setItem('type', resObj.user.type)
+                    localStorage.setItem('profile_pic', resObj.user.profile_pic)
+                    localStorage.setItem('user', resObj.user.email)
                 }
-            })
-            console.log("terminó el axios ", info.data)
-            if (info.data.status===200) {
-                const resObj = await info.data.json()
-                console.log(resObj+ " if 200")
-                localStorage.setItem("id", resObj.user.id)
-                localStorage.setItem('name', resObj.user.name)
-                localStorage.setItem('lastname', resObj.user.lastname)
-                localStorage.setItem('type', resObj.user.type)
-                localStorage.setItem('profile_pic', resObj.user.profile_pic)
-                localStorage.setItem('user', resObj.user.email)
+                else if (info.data.status===401) {
+                    const resObj = await info.data.json()
+                    console.log(resObj+ " if 401")
+                    localStorage.setItem("id", resObj.user.id)
+                    localStorage.setItem('name', resObj.user.name)
+                    localStorage.setItem('lastname', resObj.user.lastname)
+                    localStorage.setItem('type', resObj.user.type)
+                    localStorage.setItem('profile_pic', resObj.user.profile_pic)
+                    localStorage.setItem('user', resObj.user.email)
+                }
+            } catch (error) {
+                console.log(error, "este es el error cachado")
             }
-            else if (info.data.status===401) {
-                const resObj = await info.data.json()
-                console.log(resObj+ " if 401")
-                localStorage.setItem("id", resObj.user.id)
-                localStorage.setItem('name', resObj.user.name)
-                localStorage.setItem('lastname', resObj.user.lastname)
-                localStorage.setItem('type', resObj.user.type)
-                localStorage.setItem('profile_pic', resObj.user.profile_pic)
-                localStorage.setItem('user', resObj.user.email)
             }
-        }
-        getUser()
+            getUser()
     }, [])
 
     if(errorGoogle){
