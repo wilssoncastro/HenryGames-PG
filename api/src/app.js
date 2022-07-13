@@ -7,7 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const { Player } = require('./db');
-const { SECRET, BASE_URL } = process.env
+const { SECRET, BASE_URL, BACK_URL } = process.env
 const bcrypt = require("bcrypt")
 const randomstring = require("randomstring");
 
@@ -73,7 +73,7 @@ const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 passport.use(new GoogleStrategy({
     clientID: process.env['GOOGLE_CLIENT_ID'],
     clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
-    callbackURL: "/google/callback",
+    callbackURL: `${BACK_URL}/google/callback`,
     passReqToCallback: true
   },
   async function(request, accessToken, refreshToken, profile, done) {

@@ -19,7 +19,7 @@ router.get('/auth/google',
 //ruta del callback que nos da google
 router.get('/google/callback',
     passport.authenticate('google', {
-        successRedirect: BASE_URL + 'home',
+        successRedirect: BASE_URL + '/home',
         failureRedirect: '/auth/google/failure'
     })
 )
