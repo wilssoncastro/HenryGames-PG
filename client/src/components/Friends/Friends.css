@@ -20,7 +20,7 @@ color: aliceblue;
     margin-left: auto;
     margin-right:auto;
     margin-top: 70px;
-    height: 100%;
+    
     
 }
 .user_prof{
@@ -43,10 +43,10 @@ background: linear-gradient(285deg, rgba(182,151,36,1) 3%, rgba(15,13,3,1) 21%, 
 
 .list_friend_comp{
     display: flex;
-    flex-direction: row;   
+    flex-direction: column;
     width: 80%;
     margin-left: auto;
-    margin-right:auto;  
+    margin-right: auto;
     margin-top: 20px;
     align-items: center;
 }
@@ -119,7 +119,7 @@ background: linear-gradient(285deg, rgba(255,255,255,1) 14%, rgba(192,169,86,1) 
     border: #ffffff 4px solid;  
     background: #2c3842;
     width: 500px;      
-    height: 100px;
+    min-height: 100px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -149,7 +149,7 @@ background: linear-gradient(285deg, rgba(255,255,255,1) 14%, rgba(192,169,86,1) 
     width: 80%;
     margin-left: auto;
     margin-right:auto;    
-    height: 400px;
+    
    
     
 }
@@ -161,6 +161,7 @@ background: linear-gradient(285deg, rgba(255,255,255,1) 14%, rgba(192,169,86,1) 
     margin-right: auto;
     font-size: 23px;
     font-size: 18px;
+    height: 100%;
 }
 
 .tittle_add_friend{
@@ -285,4 +286,28 @@ background: linear-gradient(285deg, rgba(182,139,36,1) 30%, rgba(176,28,28,1) 59
     width: 82px;
     height: 42%;
     cursor: pointer;
+}
+
+.btn_add_friend{
+    width: 15%;
+    height: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 3px;
+    background: linear-gradient(285deg, rgba(36,182,144,1) 0%, rgba(36,137,182,1) 93%);
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+
+}
+
+.btn_add_friend:hover{
+    background: linear-gradient(285deg, rgb(0, 255, 200) 0%, rgb(6, 70, 231) 93%);
 }

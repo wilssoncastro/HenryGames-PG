@@ -114,7 +114,8 @@ router.put('/unreport_comment/:id_comment', async(req, res) => {
         let unreported_comment = await Comment.findByPk(id_comment)
         if(!unreported_comment)return res.status(401).send('El comentario no existe')
 
-        reported_comment.reported = false
+        unreported_comment.reported = false
+        await unreported_comment.save()
         return res.send(unreported_comment)
 
     } catch (error) {
