@@ -16,31 +16,59 @@ import './carousel.css'
 const BACK_URL = process.env.REACT_APP_API || "http://localhost:3001";
 
 export default function Home() {
-    console.log(BACK_URL)
-    console.log(typeof BACK_URL)
+    // console.log(BACK_URL)
+    // console.log(typeof BACK_URL)
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
 
     useEffect(() => {
         
-        const getUser = () =>{
-            fetch(`${BACK_URL}/auth/google/protected`, {
+        // const getUser = () =>{
+        //     fetch(`${BACK_URL}/auth/google/protected`, {
+        //         method: 'GET',
+        //         credentials: 'include',
+        //         header: {
+        //         Accept: 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Credentials': true,
+        //     },
+        // }).then((res) => {
+        //     console.log(res)
+        //     if (res.status===200) {return res.json()}
+        //     //else if(res.status===401) {return res.json()}
+        //     else if(res.status===401) {return "MIERDA"}
+        //     else throw new Error('authentication has been failed')
+        // }).then((resObj) => {
+        //     //console.log('info user google ', resObj.user)
+        //     if(resObj.success){
+        //         localStorage.setItem("id", resObj.user.id)
+        //         localStorage.setItem('name', resObj.user.name)
+        //         localStorage.setItem('lastname', resObj.user.lastname)
+        //         localStorage.setItem('type', resObj.user.type)
+        //         localStorage.setItem('profile_pic', resObj.user.profile_pic)
+        //         localStorage.setItem('user', resObj.user.email)
+        //     }
+        //     else if(resObj.banned){
+        //         //console.log('entre al condicional de baneo')
+        //         setBanned(true)
+        //     }
+        //     else if(!resObj.banned && !resObj.success){
+        //         setErrorGoogle(true)
+        //     }
+        // })
+        // }
+        const getUser = async () => {
+            const info = await fetch(`${BACK_URL}/auth/google/protected`, {
                 method: 'GET',
                 credentials: 'include',
                 header: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': true,
-            },
-        }).then((res) => {
-            console.log(res)
-            if (res.status===200) {return res.json()}
-            //else if(res.status===401) {return res.json()}
-            else if(res.status===401) {return "MIERDA"}
-            else throw new Error('authentication has been failed')
-        }).then((resObj) => {
-            //console.log('info user google ', resObj.user)
-            if(resObj.success){
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                }
+            })
+            if (info.status===200) {
+                const resObj = await info.json()
                 localStorage.setItem("id", resObj.user.id)
                 localStorage.setItem('name', resObj.user.name)
                 localStorage.setItem('lastname', resObj.user.lastname)
@@ -48,14 +76,7 @@ export default function Home() {
                 localStorage.setItem('profile_pic', resObj.user.profile_pic)
                 localStorage.setItem('user', resObj.user.email)
             }
-            else if(resObj.banned){
-                //console.log('entre al condicional de baneo')
-                setBanned(true)
-            }
-            else if(!resObj.banned && !resObj.success){
-                setErrorGoogle(true)
-            }
-        })
+            else if(info.status===401) {return info.json().user}
         }
         getUser()
     }, [])
@@ -80,7 +101,6 @@ export default function Home() {
             <div>
                 <NavBar/>
             </div>
-            <h1>{BACK_URL?BACK_URL:"MECAGOENDIO"}</h1>
 
             <div className='home-component-box'>
 
@@ -91,6 +111,7 @@ export default function Home() {
                         <h1 className='main-carousel-title'>Best rated</h1>
                         <CarouselCard/>
                     </div>
+            <h1>{BACK_URL?BACK_URL:"MECAGOENDIO"}</h1>
                     {/* Carousel secundarios del medio del home */}
                     <div className="CategoryContainerCarousel">
                         <h3 className='category-carousel-title'>Free to Play</h3>
