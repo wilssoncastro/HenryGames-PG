@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { banUser, delete_comment, get_all_comments } from "../../redux/actions";
+import { banUser, delete_comment, get_all_comments, unreport_comment } from "../../redux/actions";
 import './CommentAdmin.css'
 
 export default function CommentAdmin(){
@@ -29,6 +29,7 @@ export default function CommentAdmin(){
                     <div className="buttons-reported-comment">
                         <button onClick={() => {dispatch(delete_comment(e.id))}}>Delete comment</button>
                         <button onClick={() => {dispatch(banUser(e.id_user))}}>Ban User</button>
+                        <button onClick={() => {dispatch(unreport_comment(e.id))}}>Do anything</button>
                     </div>
                     <br></br>
                 </li>

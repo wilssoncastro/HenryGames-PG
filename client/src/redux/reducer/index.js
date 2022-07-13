@@ -5,7 +5,8 @@ import { GET_USER_BY_ID, GET_CART_BY_ID, DELETE_FROM_CART, ADD_TO_CART,
         IS_ONLINE,
         INFO_COMMENT,
         GET_LIBRARY_BY_ID,
-        GET_ALL_COMMENTS
+        GET_ALL_COMMENTS,
+        UNREPORT_COMMENT
 } from '../actions/index'
 
 const initialState = {
@@ -189,8 +190,15 @@ const rootReducer = (state = initialState, action) => {
             console.log(action.payload.data)
             return {
                 ...state,
-                comments: state.comments.filter(v => v.id !== action.payload.data.id)
+                comments: state.comments.filter(v => v.id !== action.payload.data.id),
+                all_comments: state.comments.filter(v => v.id !== action.payload.data.id)
                 //new_comments: state.new_comments.filter(v => v.Comment.id !== action.payload.data.id)
+            }
+        case UNREPORT_COMMENT:
+            return{
+                ...state,
+                comments: state.comments.filter(v => v.id !== action.payload.data.id),
+                all_comments: state.comments.filter(v => v.id !== action.payload.data.id)
             }
         case POST_COMMENT:
             return {

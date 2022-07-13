@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DELETE_FROM_CART = 'DELETE_FROM_CART'
@@ -16,6 +17,7 @@ export const INFO_COMMENT = 'INFO_COMMENT'
 export const GET_LIBRARY_BY_ID = 'GET_LIBRARY_BY_ID'
 export const ADD_GAME_TO_LIBRARY = 'ADD_GAME_TO_LIBRARY'
 export const GET_ALL_COMMENTS = 'GET_ALL_COMMENTS'
+export const UNREPORT_COMMENT = 'UNREPORT_COMMENT'
 
 export function is_authorizated(){
   return async function(dispatch){
@@ -430,9 +432,21 @@ export function report_comment(id_comment){
   return function(dispatch){
     return axios.put(`http://localhost:3001/comments/report_comment/${id_comment}`)
     .then(data => {
-      console.log('Reportado?')
       dispatch({
-        type: REPORT_COMMENT
+        type: REPORT_COMMENT,
+        payload: data
+      })
+    })
+  }
+}
+
+export function unreport_comment(id_comment){
+  return function(dispatch){
+    return axios.put(`http://localhost:3001/comments/unreport_comment/${id_comment}`)
+    .then(data => {
+      dispatch({
+        type: UNREPORT_COMMENT,
+        payload: data
       })
     })
   }
