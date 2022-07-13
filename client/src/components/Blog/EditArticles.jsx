@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Blog.module.css";
 import NavBar from "../NavBar/navbar";
+import Footer from '../Footer/Footer';
 
 
 export default function EditArticles() {
@@ -40,7 +41,7 @@ export default function EditArticles() {
     if (!input.id) {
       setError({
         ...error,
-        id: "no ahi id"
+        id: "You must select an item"
       })
     }
     setInput({
@@ -102,12 +103,13 @@ export default function EditArticles() {
 
 
   return (
-    <div className="container_edit_article_form"> 
-      <NavBar></NavBar>
+    
+     
       <div>
       {allArticles.length ?
       
         <div className={styles.containerAll}>
+           <NavBar/>
           <br />
           <br />
           <Link /* className={styles.btn} */ to='/admin'>
@@ -131,7 +133,7 @@ export default function EditArticles() {
                   })}
                 </select>
                 {/* {error.id && (<p className={styles.parrafo} >{error.id}</p>)} */}
-                <p>{error === "" ? null : error.id}</p>
+                <p className={styles.error}>{error === "" ? null : error.id}</p>
                 <div>
                   <label className={styles.label}>Title</label>
                   <input className={styles.input} name="name" type="text" placeholder="name" onChange={(e) => handleOnChange(e)} />
@@ -162,17 +164,19 @@ export default function EditArticles() {
                   </div>
                 </div>
               </div>
-              {/*  */}
+              
             </div>
           </form>
+          <Footer/>
         </div>
         :
         <div className={styles.loading}>
+          <NavBar/>
           <img src={"https://i.pinimg.com/originals/5c/dd/ad/5cddadeb5ed4d48a582cfeb328160826.gif"} /* width='200px' height='200px' */ />
         </div>
       }
       </div>
 
-    </div>
+    
   )
 }
