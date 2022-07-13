@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { getArticles, updateArticle } from "../../redux/actions/index";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Blog.module.css";
+import NavBar from "../NavBar/navbar";
 
 
 export default function EditArticles() {
@@ -101,19 +102,27 @@ export default function EditArticles() {
 
 
   return (
-    <div>
+    <div className="container_edit_article_form"> 
+      <NavBar></NavBar>
+      <div>
       {allArticles.length ?
+      
         <div className={styles.containerAll}>
+          <br />
+          <br />
+          <Link /* className={styles.btn} */ to='/admin'>
+                        <button className={styles.btnBack}>Back</button>
+                    </Link>
           <form>
             <div className={styles.containerFull}>
               <div className={styles.containerForm}>
                 <div>
                   {/* <p className={input.id !== "" ? null : styles.error}>seleccione el articulo a editar</p> */}
                 </div>
-                {input.id !== "" ? input.name : <p className={styles.error}> seleccione el articulo a editar</p>}
+                {input.id !== "" ? input.name : <p className={styles.error}> Select the article to edit</p>}
                 <select className={styles.select} name="id" onChange={(e) => handleSelect(e)}>
                   <option id="des" disabled>
-                    Articulo...
+                    Article...
                   </option>
                   {allArticles.map((e) => {
                     return (
@@ -124,30 +133,30 @@ export default function EditArticles() {
                 {/* {error.id && (<p className={styles.parrafo} >{error.id}</p>)} */}
                 <p>{error === "" ? null : error.id}</p>
                 <div>
-                  <label className={styles.label}>titulo</label>
+                  <label className={styles.label}>Title</label>
                   <input className={styles.input} name="name" type="text" placeholder="name" onChange={(e) => handleOnChange(e)} />
                 </div>
                 <div>
-                  <label className={styles.label}>contenido</label>
+                  <label className={styles.label}>Content</label>
                   <textarea className={styles.input} name="contents" type="text" placeholder="contents" onChange={(e) => handleOnChange(e)} />
                 </div>
                 <div>
-                  <label className={styles.label}>imagen</label>
+                  <label className={styles.label}>Image</label>
                   <input className={styles.input} name="image" type="text" placeholder="image" onChange={(e) => handleOnChange(e)} />
                 </div>
                 <div>
-                  <button className={styles.btn} type="submit" padding="1rem 1rem" onClick={(e) => handleSubmit(e)}>GUARDAR</button>
+                  <button className={styles.btn} type="submit" padding="1rem 1rem" onClick={(e) => handleSubmit(e)}>PUBLISH</button>
                 </div>
                 {input.name !== "" && input.image !== "" && input.contents !== "" ? null : <p className={styles.error}>{error.name}</p>}
                 {/*  <p className={styles.error}>{error.name === "" ? null : error.name}</p> */}
               </div>
               <div className={styles.containerArticle}>
                 <div>
-                  {input.name === "" ? <h1>(TITULO)</h1> : <p>{input.name}</p>}
+                  {input.name === "" ? <h1>(TITLE)</h1> : <h1>{input.name}</h1>}
                   {/* <p>{input.name ==="" ? TITULO : input.name}</p> */}
                   {input.image !== "" ? <img src={input.image} /* width='200px' */ height='200px' />
-                    : <h1>(IMAGEN)</h1>}
-                  {input.contents === "" ? <h1>(CONTENIDO)</h1> : null}
+                    : <h1>(IMAGE)</h1>}
+                  {input.contents === "" ? <h1>(CONTENT)</h1> : null}
                   <div className={styles.contenido}>
                     {input.name === "" ? null : <p>{input.contents}</p>}
                   </div>
@@ -162,6 +171,7 @@ export default function EditArticles() {
           <img src={"https://i.pinimg.com/originals/5c/dd/ad/5cddadeb5ed4d48a582cfeb328160826.gif"} /* width='200px' height='200px' */ />
         </div>
       }
+      </div>
 
     </div>
   )
