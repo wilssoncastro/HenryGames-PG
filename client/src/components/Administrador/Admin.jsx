@@ -44,6 +44,12 @@ export function Admin() {
                   <p className="btn_adm">Users administration</p>
                 </div>
               </Link>
+              <Link to="/blog/editArticles"  style={{ textDecoration: 'none' }}>
+                <div className="admin_option">
+                  <img src="https://icon-library.com/images/publication-icon/publication-icon-0.jpg" alt="" />
+                  <p className="btn_adm">Publish Article</p>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

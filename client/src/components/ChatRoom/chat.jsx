@@ -83,28 +83,30 @@ export default function Chat() {
 
 
 
-
-
-    // setInterval(() => {
-    //     dispatch(getChatsFriend(ids.idF, ids.id_user))           
-    //  }, 10000);
-
-
     const handleSumbit = (e) => {
         e.preventDefault()
         if (chat.message != "") {
-            dispatch(sendMessageChat(ids.id_user, ids.idF, chat))
+            
+            dispatch(sendMessageChat(ids.id_user, ids.idF, chat)).then( response => {
+
+                dispatch(getChatsFriend(ids.idF, ids.id_user))
+                dispatch(getChats(ids.id_user, ids.idF))
+            }
+            )
             setChat({
                 ...chat,
                 message: ""
             })
-            dispatch(getChatsFriend(ids.idF, ids.id_user))
-            dispatch(getChats(ids.id_user, ids.idF))
+            
+                // dispatch(getChatsFriend(ids.idF, ids.id_user))
+                // dispatch(getChats(ids.id_user, ids.idF))
+            
+           
             if (myUser != undefined) {
                 setTimeout(() => {
                     let mensaje = document.getElementById("chats")
                     mensaje.scrollTop = mensaje.scrollHeight
-                }, 1000);
+                }, 2000);
 
             }
         }

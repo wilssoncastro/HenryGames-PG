@@ -1,7 +1,11 @@
 .container{
     /* background-color: #ffc926; */
-    background: rgb(255,201,38);
-    background: linear-gradient(90deg, rgba(255,201,38,1) 0%, rgba(199,158,36,1) 100%);
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');  
+  background-color: #151414;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+    
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(255, 255, 255);
     padding-top: 6rem;
@@ -30,9 +34,6 @@
     
 }
 
-.flex {
-    /* padding-top: 6rem; */
-}
 
 .subArticle {
     padding-left: 2rem;
@@ -118,19 +119,23 @@
 /* //////////// ESTILOS PARA EL FORMULARIO DE EDICION DE ARTICULOS////////7/ */
 
 .containerAll {
-    background: rgb(255,201,38);
-    background: linear-gradient(90deg, rgba(255,201,38,1) 0%, rgba(199,158,36,1) 100%);
-    height: 700px;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');  
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  
 }
 
 .containerFull {
    
-    width: 90%;
-    margin: 0 auto;
-   /*  height: 90vh; */
+    width: 90%;    
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
-    /* justify-content: space-between; */
-   /*  align-items: center; */
+    flex-direction: row;
+     justify-content: space-evenly; 
+    align-items: center; 
     gap: 3rem;
 }
 
@@ -139,20 +144,19 @@
     height: 550px;
     background: #000;
     color: #fff;
-    top: 50%;
-    left: 50%;
-    position:cover;
+    
     transform: translate(0%, 10%);
     box-sizing: border-box;
     padding: 70px 30px;
 }
 
 .containerArticle {
+    
     backdrop-filter: blur(2px);
     background-color: #00000062;
     border-radius: 2rem;
     width: 730px;
-    height: 500px;
+    height: 600px;
    /*  background: #000; */
     color: #fff;
     top: 50%;
@@ -231,7 +235,7 @@
 
 
 .btn:hover{
-    background-color: rgb(99, 255, 38);
+    background-color: rgb(24, 132, 255);
     cursor: pointer;
 }
 
@@ -246,8 +250,17 @@
 
 
 .containerDetail {
-    background: rgb(255,201,38);
-    background: linear-gradient(90deg, rgba(255,201,38,1) 0%, rgba(199,158,36,1) 100%);
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    position: relative;
+    z-index: 1; 
     
 }
 
@@ -264,20 +277,37 @@
     text-align: left;
 }
 
+
 .btnBack{
-    border:none;
-    outline: none;
-    height: 30px;
-    background: #ffffff;
+    margin-top: 40px;
+    width: 100px;
+    height: 30px;  
+    margin-left: 5px;  
+    margin-right: 5px;
+    margin-bottom: 10px;
+    background: linear-gradient(285deg, rgb(0, 89, 255) 6%, rgb(18, 135, 232) 54%);
+    cursor: pointer;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
     color: rgb(0, 0, 0);
-    font-size: 13px;
-    border-radius: 4px;
-    transition: all .3s ease;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;    
+    box-shadow: 0 1px 3px #c7a94b, 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 
 
 .btnBack:hover{
-    background-color: rgb(218, 218, 218);
+    background: linear-gradient(285deg, rgb(52, 184, 255) 6%, rgb(0, 140, 255) 54%);
     cursor: pointer;
+    color: #eee;
+}
+
+.container_edit_article_form{
+    background-image: url('https://static.vecteezy.com/system/resources/previews/002/203/641/non_2x/elegant-black-and-gold-background-free-vector.jpg');  
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
