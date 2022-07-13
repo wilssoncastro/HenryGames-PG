@@ -1,8 +1,7 @@
 import React, { useState }  from 'react';
 import NavBar from '../NavBar/navbar'
-// import Carousel from 'react-elastic-carousel'
-// import { Link } from 'react-router-dom'
-// import * as BiIcons from "react-icons/bi"
+import { useSelector } from 'react-redux';
+import { getAllVideogames } from '../../redux/actions';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
@@ -16,8 +15,13 @@ export default function Home() {
 
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
+    const videogames = useSelector((state) => state.videogames);
 
     useEffect(() => {
+        if (!videogames) {
+            console.log('Se ejecuto el getAllVideogames')
+            getAllVideogames();
+        }
         
         const getUser = () =>{
             fetch('http://localhost:3001/auth/google/protected', {

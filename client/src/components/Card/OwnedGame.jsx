@@ -27,15 +27,13 @@ export default function OwnedGame({ image, name, id, setVideo, setVisuality}) {
 
   return (
     <div>
-        <button onClick={() => putVideo(id)} className='og-card'>
-          <img className='og-image' src={image} alt='Imagen no encontrada' width='400px' height='220px'/>
-          <ul className='og-textCard'>
-            <li className='og-titleCard'>{name}</li>
-            <li className='og-launch'>Launch</li>
-            {/* <button onClick={() => putVideo(id)} className='og-launch'>Launch</button> */}
-          </ul>
-          </button>
-        
+      <button onClick={() => putVideo(id)} className='og-card'>
+        <img className='og-image' src={image} alt='Imagen no encontrada' width='400px' height='220px' />
+        <ul className='og-textCard'>
+          <li className='og-titleCard'>{name}</li>
+          <li className='og-launch'>Launch</li>
+        </ul>
+      </button>
     </div>
   )
 }

@@ -18,7 +18,7 @@ export default function LandingPage() {
     <div className="landing">
       <div className="landing_content">
         <h1 className="landingH1">WELCOME TO HENRYGAMES</h1>
-        <p className="textLanding">The best games from PC</p>
+        <p className="textLanding">Where your favorite PC games meet one place</p>
         {typeof id_user === 'string' ?
             <Link to="/home">
               <button className="button-landingPage">VIEW STORE</button>
