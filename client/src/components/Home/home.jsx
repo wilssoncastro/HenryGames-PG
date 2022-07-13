@@ -17,7 +17,7 @@ const BACK_URL = process.env.REACT_APP_API || "http://localhost:3001";
 
 export default function Home() {
     console.log(BACK_URL)
-
+    console.log(typeof BACK_URL)
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
 
@@ -80,7 +80,7 @@ export default function Home() {
             <div>
                 <NavBar/>
             </div>
-
+            <h1>{BACK_URL?BACK_URL:"MECAGOENDIO"}</h1>
 
             <div className='home-component-box'>
 

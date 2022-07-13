@@ -10,7 +10,6 @@ const CLIENT_URL = 'http://localhost:3000'
 //middleware
 function isLoggedIn(req, res, next) {
     req.user ? next() : res.sendStatus(401);
-    console.log(req.user)
 }
 
 //ruta donde elegimos la cuenta de google
