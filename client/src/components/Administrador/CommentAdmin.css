@@ -1,3 +1,7 @@
+.div-reported-comments{
+    margin-top: 5rem;
+}
+
 .list-reported-comments{
     display: flex;
     flex-wrap: wrap;
