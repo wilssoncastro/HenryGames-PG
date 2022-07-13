@@ -192,7 +192,7 @@ export default function NavBar() {
                         {id?
                             (<Link to='/blog' className="left-sections">
                                 
-                                <ImIcons.ImBlogger className="navbar-left-icons" />
+                                <FaIcons.FaBloggerB className="navbar-left-icons" />
                                 <h3 className="navleft-text">BLOG </h3>
                             </Link>
                             ) : (<></>)
