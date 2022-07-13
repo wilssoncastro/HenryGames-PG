@@ -15,7 +15,7 @@ const server = express()
 
 server.name = 'API';
 
-// -------------------  MIDDLEWARES-------------
+// -------------------  MIDDLEWARES------------- cambio
 
 // ---------- CORS, COOKIES, JSON Y URLENCODER -----------
 
