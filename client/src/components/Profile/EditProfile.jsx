@@ -30,7 +30,7 @@ export default function EditProfile() {
         else if (!/^([0-9])*$/.test(profile.phone)) {
             errors.phone = 'Only numbers'
         } else if (profile.phone > 0 && !/^\d{10}$/.test(profile.phone)) {
-            errors.phone = "Must have 11 numbers"
+            errors.phone = "Must have 10 numbers"
         }
         console.log(errors)
         return errors
