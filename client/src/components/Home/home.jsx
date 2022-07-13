@@ -15,51 +15,19 @@ import './carousel.css'
 
 const BACK_URL = process.env.REACT_APP_API || "http://localhost:3001";
 
+const google = []
+
 export default function Home() {
 
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
 
     useEffect(() => {
-        
-        // const getUser = () =>{
-        //     fetch(`${BACK_URL}/auth/google/protected`, {
-        //         method: 'GET',
-        //         credentials: 'include',
-        //         header: {
-        //         Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Allow-Credentials': true,
-        //     },
-        // }).then((res) => {
-        //     console.log(res)
-        //     if (res.status===200) {return res.json()}
-        //     //else if(res.status===401) {return res.json()}
-        //     else if(res.status===401) {return "MIERDA"}
-        //     else throw new Error('authentication has been failed')
-        // }).then((resObj) => {
-        //     //console.log('info user google ', resObj.user)
-        //     if(resObj.success){
-        //         localStorage.setItem("id", resObj.user.id)
-        //         localStorage.setItem('name', resObj.user.name)
-        //         localStorage.setItem('lastname', resObj.user.lastname)
-        //         localStorage.setItem('type', resObj.user.type)
-        //         localStorage.setItem('profile_pic', resObj.user.profile_pic)
-        //         localStorage.setItem('user', resObj.user.email)
-        //     }
-        //     else if(resObj.banned){
-        //         //console.log('entre al condicional de baneo')
-        //         setBanned(true)
-        //     }
-        //     else if(!resObj.banned && !resObj.success){
-        //         setErrorGoogle(true)
-        //     }
-        // })
-        // }
-
-
+        //fetch
+        console.log("entró al useEffect")
         const getUser = async () => {
-            const info = await fetch(`${BACK_URL}/auth/google/protected`, {
+            console.log("entró al getUser()")
+            const info = await axios(`${BACK_URL}/auth/google/protected`, {
                 method: 'GET',
                 credentials: 'include',
                 header: {
@@ -68,8 +36,9 @@ export default function Home() {
                     'Access-Control-Allow-Credentials': true,
                 }
             })
-            if (info.status===200) {
-                const resObj = await info.json()
+            console.log("terminó el axios ", info.data)
+            if (info.data.status===200) {
+                const resObj = await info.data.json()
                 console.log(resObj+ " if 200")
                 localStorage.setItem("id", resObj.user.id)
                 localStorage.setItem('name', resObj.user.name)
@@ -78,8 +47,8 @@ export default function Home() {
                 localStorage.setItem('profile_pic', resObj.user.profile_pic)
                 localStorage.setItem('user', resObj.user.email)
             }
-            else if (info.status===401) {
-                const resObj = await info.json()
+            else if (info.data.status===401) {
+                const resObj = await info.data.json()
                 console.log(resObj+ " if 401")
                 localStorage.setItem("id", resObj.user.id)
                 localStorage.setItem('name', resObj.user.name)
@@ -140,3 +109,38 @@ export default function Home() {
         </div>
     )
 }
+
+ // const getUser = () =>{
+        //     fetch(`${BACK_URL}/auth/google/protected`, {
+        //         method: 'GET',
+        //         credentials: 'include',
+        //         header: {
+        //         Accept: 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Credentials': true,
+        //     },
+        // }).then((res) => {
+        //     console.log(res)
+        //     if (res.status===200) {return res.json()}
+        //     //else if(res.status===401) {return res.json()}
+        //     else if(res.status===401) {return "MIERDA"}
+        //     else throw new Error('authentication has been failed')
+        // }).then((resObj) => {
+        //     //console.log('info user google ', resObj.user)
+        //     if(resObj.success){
+        //         localStorage.setItem("id", resObj.user.id)
+        //         localStorage.setItem('name', resObj.user.name)
+        //         localStorage.setItem('lastname', resObj.user.lastname)
+        //         localStorage.setItem('type', resObj.user.type)
+        //         localStorage.setItem('profile_pic', resObj.user.profile_pic)
+        //         localStorage.setItem('user', resObj.user.email)
+        //     }
+        //     else if(resObj.banned){
+        //         //console.log('entre al condicional de baneo')
+        //         setBanned(true)
+        //     }
+        //     else if(!resObj.banned && !resObj.success){
+        //         setErrorGoogle(true)
+        //     }
+        // })
+        // }
