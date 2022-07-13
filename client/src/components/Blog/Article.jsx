@@ -47,25 +47,32 @@ export default function Article(props) {
                 </div>
                 :
                 <div className={styles.containerDetail}>
-
+                    <NavBar/>
                     <Link /* className={styles.btn} */ to='/blog'>
                         <button className={styles.btnBack}>Back</button>
                     </Link>
                     {/*  <div> <NavBar/></div> */}
-                    <div className={styles.title}>
-                        <h1>{article.name}</h1>
-                    </div>
+
                     <div >
                         <ScrollContainer>
                             <ScrollPage page={0}>
                                 <Animator animation={Scrll0}>
+                                    <div className={styles.title}>
+                                        <h1>{article.name}</h1>
+                                    </div>
                                     <div>
                                         <img src={article.image} width='600px' />
-                                        <h4>Released {article.createdAt.slice(0, 10)}</h4>
+                                        
                                     </div>
-                             
-                                    <div className={styles.contents}>
-                                        <p>{article.contents}</p>
+                                </Animator>
+                            </ScrollPage>
+                            <ScrollPage page={1}>
+                                <Animator animation={Scrll0}>
+                                    <div className={styles.contContent}>
+                                        <div className={styles.contents}>
+                                        <h4>Released {article.createdAt.slice(0, 10)}</h4>
+                                            <p>{article.contents}</p>
+                                        </div>
                                     </div>
                                 </Animator>
                             </ScrollPage>
