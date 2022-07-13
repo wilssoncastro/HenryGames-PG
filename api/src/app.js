@@ -17,7 +17,7 @@ server.name = 'API';
 
 //const BACK_URL = BACKb_URL==="http://localhost:3001"?BACKb_URL:null
 const hk_URL = "https://henrygames.herokuapp.com"
-const BACK_URL = BACKenv_URL || hk_URL
+const BACK_URL = process.env.REACT_APP_API || BACKenv_URL
 
 // -------------------  MIDDLEWARES------------- cambio
 
