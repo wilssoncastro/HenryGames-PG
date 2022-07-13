@@ -29,7 +29,7 @@ export default function Home() {
             console.log("entró al getUser()")
             try {
                 
-                const info = await axios(`https://henrygames.herokuapp.com/auth/google/protected`, {
+                const info = await fetch(`https://henrygames.herokuapp.com/auth/google/protected`, {
                     method: 'GET',
                     credentials: 'include',
                     header: {
@@ -38,9 +38,9 @@ export default function Home() {
                         'Access-Control-Allow-Credentials': true,
                     }
                 })
-                console.log("terminó el axios ", info.data)
-                if (info.data.status===200) {
-                    const resObj = await info.data.json()
+                console.log("terminó el axios ", info)
+                if (info.status===200) {
+                    const resObj = await info.json()
                     console.log(resObj+ " if 200")
                     localStorage.setItem("id", resObj.user.id)
                     localStorage.setItem('name', resObj.user.name)
@@ -49,8 +49,8 @@ export default function Home() {
                     localStorage.setItem('profile_pic', resObj.user.profile_pic)
                     localStorage.setItem('user', resObj.user.email)
                 }
-                else if (info.data.status===401) {
-                    const resObj = await info.data.json()
+                else if (info.status===401) {
+                    const resObj = await info.json()
                     console.log(resObj+ " if 401")
                     localStorage.setItem("id", resObj.user.id)
                     localStorage.setItem('name', resObj.user.name)
@@ -149,3 +149,5 @@ export default function Home() {
         //     }
         // })
         // }
+
+        // vercel error redirect_uri_mismatch
