@@ -6,10 +6,10 @@ const randomstring = require("randomstring");
 //SDK mercadopago
 const mercadopago = require('mercadopago');
 
-const { ACCESS_TOKEN_MP, BACKenv_URL, BASE_URL } = process.env;
+const { ACCESS_TOKEN_MP, BACK_URL, BASE_URL } = process.env;
 
 const hk_URL = "https://henrygames.herokuapp.com"
-const BACK_URL = hk_URL?hk_URL:BACKenv_URL
+//const BACK_URL = hk_URL?hk_URL:BACKenv_URL
 
 //agrega credenciales
 mercadopago.configure({
