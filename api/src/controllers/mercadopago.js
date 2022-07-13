@@ -119,7 +119,7 @@ router.get('/save_data', async(req, res) => {  // usar un switch
     
 
 
-    res.redirect(`/authentication/email/gameActivation/${secret_code}/${id_user}/${longitude}`)
+    res.redirect(`${BACK_URL}/authentication/email/gameActivation/${secret_code}/${id_user}/${longitude}`)
 })
 
 router.get("/failure", async (req, res) =>{
