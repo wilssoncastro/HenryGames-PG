@@ -56,6 +56,8 @@ export default function Home() {
         //     }
         // })
         // }
+
+
         const getUser = async () => {
             const info = await fetch(`${BACK_URL}/auth/google/protected`, {
                 method: 'GET',
@@ -68,6 +70,7 @@ export default function Home() {
             })
             if (info.status===200) {
                 const resObj = await info.json()
+                console.log(resObj+ " if 200")
                 localStorage.setItem("id", resObj.user.id)
                 localStorage.setItem('name', resObj.user.name)
                 localStorage.setItem('lastname', resObj.user.lastname)
@@ -75,8 +78,9 @@ export default function Home() {
                 localStorage.setItem('profile_pic', resObj.user.profile_pic)
                 localStorage.setItem('user', resObj.user.email)
             }
-            else if(info.status===401) {
+            else if (info.status===401) {
                 const resObj = await info.json()
+                console.log(resObj+ " if 401")
                 localStorage.setItem("id", resObj.user.id)
                 localStorage.setItem('name', resObj.user.name)
                 localStorage.setItem('lastname', resObj.user.lastname)
