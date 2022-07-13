@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
             short_screenshots: e.short_screenshots.map(s => s.image),
             tags: e.tags.map(t => t.name.toLowerCase()),
             esrb_rating: e.esrb_rating !== null ? e.esrb_rating.name : "Rating Pending",
-            requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en)).filter(b => b != false)),
+            requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en).split("<strong>").join(" ").split("</strong>").join(" ").split("\"").join("").split("\\t").join("").split("<li>").join("").split("</li>").join("").split("<ul>").join("").split("</ul>").join("").split("<br><ul class=\\bb_ul\\>").join("").split("<br>").join("").split("{minimum:").join("").split("}").join("").split(",recommended:").join(".")).filter(b => b != false)),
             contador: 0
           },
         })
@@ -299,3 +299,5 @@ module.exports = router;
   // });
 
   // https://www.youtube.com/watch?v=2-LISBTczQE
+
+  // requirements: (e.platforms.map(p => p.platform.name === "PC" && JSON.stringify(p.requirements_en).split("<strong>").join(" ").split("</strong>").join(" ").split("\"").join("").split("\\t").join("").split("<li>").join("").split("</li>").join("").split("<ul>").join("").split("</ul>").join("").split("<br><ul class=\\bb_ul\\>").join("").split("<br>").join("").split("{").join("").split("}").join("")).filter(b => b != false)),
