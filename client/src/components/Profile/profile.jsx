@@ -19,7 +19,7 @@ export default function Profile() {
 
   let list = useSelector((state) => state.wishList);
   let user = useSelector((state) => state.my_user);
-
+  console.log(list);
   useEffect(() => {
     if (id_user) {
       dispatch(getUserById(id_user));
@@ -110,17 +110,21 @@ export default function Profile() {
               </div>
             </div>
             <div className="wish_list_container">
-              <h3 className="h3ProfileWishList">Wish List :</h3>
+              <h3 className="h3ProfileWishList">Wish List </h3>
               {list?.length ? (
                 list?.map((e) => (
                   <div className="cardWishListProfile">
+                    <Link to={`/store/${e.id}`}>
                     <img
                       className="image-wishListProfile"
                       src={e.image}
                       alt=""
                     />
+                    </Link>
                     <div className="nameAndPriceProfile">
+                    <Link className="linkNameProfile" to={`/store/${e.id}`}>
                       <h2>{e.name}</h2>
+                      </Link>
                       <h4>${e.price}</h4>
                       <button
                         className="btn_profileDeleteWishListProfile"
