@@ -7,13 +7,15 @@ const session = require("express-session");
 const passport = require("passport");
 const Strategy = require("passport-local").Strategy;
 const { Player } = require('./db');
-const { SECRET, BASE_URL, BACK_URL } = process.env
+const { SECRET, BASE_URL, BACKb_URL } = process.env
 const bcrypt = require("bcrypt")
 const randomstring = require("randomstring");
 
 const server = express()
 
 server.name = 'API';
+
+const BACK_URL = BACKb_URL==="http://localhost:3001"?BACKb_URL:null
 
 // -------------------  MIDDLEWARES------------- cambio
 

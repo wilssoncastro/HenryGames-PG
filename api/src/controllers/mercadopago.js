@@ -6,7 +6,9 @@ const randomstring = require("randomstring");
 //SDK mercadopago
 const mercadopago = require('mercadopago');
 
-const { ACCESS_TOKEN_MP, BACK_URL, BASE_URL } = process.env;
+const { ACCESS_TOKEN_MP, BACKb_URL, BASE_URL } = process.env;
+
+const BACK_URL = BACKb_URL==="http://localhost:3001"?BACKb_URL:null
 
 //agrega credenciales
 mercadopago.configure({
