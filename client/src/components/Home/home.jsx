@@ -3,6 +3,7 @@ import NavBar from '../NavBar/navbar'
 // import Carousel from 'react-elastic-carousel'
 // import { Link } from 'react-router-dom'
 // import * as BiIcons from "react-icons/bi"
+import axios from "axios"
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
@@ -12,7 +13,10 @@ import swal from "sweetalert";
 import './home.css'
 import './carousel.css'
 
+const BACK_URL = process.env.REACT_APP_API || "http://localhost:3001";
+
 export default function Home() {
+    console.log(BACK_URL)
 
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
@@ -20,7 +24,7 @@ export default function Home() {
     useEffect(() => {
         
         const getUser = () =>{
-            fetch('/auth/google/protected', {
+            fetch(`${BACK_URL}/auth/google/protected`, {
                 method: 'GET',
                 credentials: 'include',
                 header: {
@@ -29,8 +33,10 @@ export default function Home() {
                 'Access-Control-Allow-Credentials': true,
             },
         }).then((res) => {
+            console.log(res)
             if (res.status===200) {return res.json()}
-            else if(res.status===401) {return res.json()}
+            //else if(res.status===401) {return res.json()}
+            else if(res.status===401) {return "MIERDA"}
             else throw new Error('authentication has been failed')
         }).then((resObj) => {
             //console.log('info user google ', resObj.user)

@@ -2,13 +2,15 @@ const { Router } = require('express')
 const router = Router()
 const passport = require('passport')
 require('../../app.js')
-const { BASE_URL } = process.env
+const { BASE_URL, BACK_URL } = process.env
 
 const CLIENT_URL = 'http://localhost:3000'
+
 
 //middleware
 function isLoggedIn(req, res, next) {
     req.user ? next() : res.sendStatus(401);
+    console.log(req.user)
 }
 
 //ruta donde elegimos la cuenta de google

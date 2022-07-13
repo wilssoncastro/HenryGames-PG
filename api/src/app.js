@@ -17,7 +17,6 @@ server.name = 'API';
 
 const hk_URL = "https://henrygames.herokuapp.com"
 //const BACKenv_URL = hk_URL || BACK_URL
-const BACKenv_URL = process.env.REACT_APP_API || BACK_URL
 
 // -------------------  MIDDLEWARES------------- cambio
 
