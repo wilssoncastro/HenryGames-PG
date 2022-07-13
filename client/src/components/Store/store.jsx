@@ -117,6 +117,21 @@ export default function Store() {
     setPage(0)
   }
 
+  // const handleRefresh = (e) => {
+  //   e.preventDefault();
+  //   // dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
+  //   setName('')
+  //   setGen('')
+  //   setTag('')
+  //   setEsrb('')
+  //   setOnSale('')
+  //   setFtp('')
+  //   setSort('')
+  //   setOrder('')
+  //   setPage(0)
+  //   setLimit(10)
+  // }
+
   return (
     <div className="backgroundStore">
       <NavBar />
@@ -192,6 +207,8 @@ export default function Store() {
               <option value="DESC">Downward</option>
             </select>
           </div>
+
+          {/* <button onClick={(e) => handleRefresh(e)}>Reset</button> */}
 
           <div className='Paginated' hidden={name.length > 2}>
             <button
