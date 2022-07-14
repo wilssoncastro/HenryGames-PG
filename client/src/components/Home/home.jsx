@@ -59,6 +59,12 @@ export default function Home() {
             else if(resObj.banned){
                 //console.log('entre al condicional de baneo')
                 setBanned(true)
+                localStorage.removeItem("id")
+                localStorage.removeItem('name')
+                localStorage.removeItem('lastname')
+                localStorage.removeItem('type')
+                localStorage.removeItem('profile_pic')
+                localStorage.removeItem('user')
             }
             else if(!resObj.banned && !resObj.success){
                 setErrorGoogle(true)
