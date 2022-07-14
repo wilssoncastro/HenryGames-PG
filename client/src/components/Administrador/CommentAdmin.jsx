@@ -7,12 +7,14 @@ import './CommentAdmin.css'
 
 export default function CommentAdmin(){
     const dispatch = useDispatch()
-    const all_comments = useSelector(state => state.all_comments)
+    const all_comments = useSelector(state => state.all_comments.filter(e => e.reported))
+    
     useEffect(() => {
         dispatch(get_all_comments())
-    },[])  
+    },[dispatch, get_all_comments])
+    
 
-    let reported_comments = all_comments.filter(e => e.reported)
+    //let reported_comments = all_comments.filter(e => e.reported)
 
     
     return (
@@ -22,9 +24,10 @@ export default function CommentAdmin(){
             REPORTED COMMENTS
             </div>
             <ul className="list-reported-comments">
-                {reported_comments.length? 
+                {all_comments.length? 
                 
-                reported_comments.map(e => 
+                all_comments.map(e => 
+                e.reported ? 
                 <li className="reported-comment">
                     <div className="info-reported-comment">
                         <p>User: {e.username}</p>
@@ -37,6 +40,7 @@ export default function CommentAdmin(){
                     </div>
                     <br></br>
                 </li>
+                :<></>
                     )
                 : <li>No reported comments</li>
             }

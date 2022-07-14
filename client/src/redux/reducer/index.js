@@ -191,14 +191,13 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 comments: state.comments.filter(v => v.id !== action.payload.data.id),
-                all_comments: state.comments.filter(v => v.id !== action.payload.data.id)
-                //new_comments: state.new_comments.filter(v => v.Comment.id !== action.payload.data.id)
+                all_comments: state.all_comments.filter(v => v.id !== action.payload.data.id)
             }
         case UNREPORT_COMMENT:
             return{
                 ...state,
                 comments: state.comments.filter(v => v.id !== action.payload.data.id),
-                all_comments: state.comments.filter(v => v.id !== action.payload.data.id)
+                all_comments: state.all_comments.filter(v => v.id !== action.payload.data.id)
             }
         case POST_COMMENT:
             return {
