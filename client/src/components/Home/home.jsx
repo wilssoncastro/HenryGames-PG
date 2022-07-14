@@ -37,16 +37,17 @@ export default function Home() {
             console.log("entró al getUser()")
             try {
                 
-                const info = await axios.get(`https://henrygames.herokuapp.com/auth/google/protected`).data
-                //{
-                    // method: 'GET',
-                    // credentials: 'include',
-                    // header: {
-                    //     Accept: 'application/json',
-                    //     'Content-Type': 'application/json',
-                    //     'Access-Control-Allow-Credentials': true,
-                    // }
-                //}
+                const info = await axios.get(`https://henrygames.herokuapp.com/auth/google/protected`,
+                    {
+                        method: 'GET',
+                        credentials: 'include',
+                        header: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Credentials': true,
+                        }
+                    }
+                ).data
                 console.log("terminó el axios ", info)
                 if (info.status===200) {
                     const resObj = await info.json()
