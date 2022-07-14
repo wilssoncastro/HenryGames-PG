@@ -37,7 +37,7 @@ export default function Home() {
             console.log("entró al getUser()")
             try {
                 
-                const info = await axios(`https://henrygames.herokuapp.com/auth/google/protected` 
+                const info = await axios.get(`https://henrygames.herokuapp.com/auth/google/protected` 
                 //{
                     // method: 'GET',
                     // credentials: 'include',
@@ -48,7 +48,7 @@ export default function Home() {
                     // }
                 //}
                 )
-                console.log("terminó el axios ", info)
+                console.log("terminó el axios ", info.data)
                 if (info.data.status===200) {
                     const resObj = await info.data.json()
                     console.log(resObj+ " if 200")
@@ -60,6 +60,7 @@ export default function Home() {
                     localStorage.setItem('user', resObj.user.email)
                 }
                 else if (info.data.status===401) {
+                    console.log("este es el if 401")
                     const resObj = await info.data.json()
                     console.log(resObj+ " if 401")
                     // localStorage.setItem("id", resObj.user.id)
