@@ -75,8 +75,8 @@ export default function Blog() {
                                             <div className={styles.border}>
                                                 <Link to={"/blog/" + allArticles[1].id}>
                                                 <h1>Releases</h1>
-                                                    <img className={styles.img} src={allArticles[1].image} width='450px' />
-                                                    <h4>{allArticles[1].name}</h4>
+                                                <img className={styles.img} src={allArticles[1].image} width='450px' />
+                                                <h4>{allArticles[1].name}</h4>
                                                 </Link>
                                             </div>
                                         </Animator>
@@ -86,7 +86,7 @@ export default function Blog() {
                                                     <Link to={"/blog/" + allArticles[2].id}>
                                                         <img className={styles.img} src={allArticles[2].image} width='250px' />
                                                         <div className={styles.subArticle}>
-                                                            <h4>{allArticles[2].name}</h4>
+                                                        <h4>{allArticles[2].name}</h4>
                                                         </div>
                                                     </Link>
                                                 </div>

@@ -53,30 +53,15 @@ export default function Article(props) {
                     </Link>
                     {/*  <div> <NavBar/></div> */}
 
-                    <div >
-                        <ScrollContainer>
-                            <ScrollPage page={0}>
-                                <Animator animation={Scrll0}>
-                                    <div className={styles.title}>
-                                        <h1>{article.name}</h1>
-                                    </div>
-                                    <div>
-                                        <img src={article.image} width='600px' />
-                                        
-                                    </div>
-                                </Animator>
-                            </ScrollPage>
-                            <ScrollPage page={1}>
-                                <Animator animation={Scrll0}>
-                                    <div className={styles.contContent}>
-                                        <div className={styles.contents}>
-                                        <h4>Released {article.createdAt.slice(0, 10)}</h4>
-                                            <p>{article.contents}</p>
-                                        </div>
-                                    </div>
-                                </Animator>
-                            </ScrollPage>
-                        </ScrollContainer>
+                    <div className={styles.blogcontainer}>
+                        <h1>{article.name}</h1>
+                        <img src={article.image} width='600px' />
+                        <div className={styles.contContent}>
+                            <div className={styles.contents}>
+                            <h4>Released {article.createdAt.slice(0, 10)}</h4>
+                            <p>{article.contents}</p>
+                            </div>
+                        </div>
                     </div>
                     <Footer />
                 </div>
