@@ -89,6 +89,17 @@ export default function Store() {
     setPage(0)
   }
 
+  const handleOnSale = (e) => {
+    e.preventDefault();
+    setOnSale(e.target.value)
+    setFtp("")
+    setPage(0)
+  }
+  
+  const handleFtp = (e) => {
+    e.preventDefault();
+    setFtp(e.target.value)
+    setOnSale("")
   // const handleOnSale = (e) => {
   //   e.preventDefault();
   //   setOnSale(e.target.value)
@@ -101,7 +112,7 @@ export default function Store() {
   //   setFtp(e.target.value)
   //   setOnSale(!true)
   //   setPage(0)
-  // }
+  }
 
   const handleFtpOnSale = (e) => {
     if(e.target.value === 'ftp'){
