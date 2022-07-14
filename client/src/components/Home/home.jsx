@@ -37,7 +37,7 @@ export default function Home() {
             console.log("entró al getUser()")
             try {
                 
-                const info = await axios(`https://henrygames.herokuapp.com/auth/google/protected`,
+                const info = await fetch(`https://henrygames.herokuapp.com/auth/google/protected`,
                     {
                         method: 'GET',
                         credentials: 'include',
@@ -47,7 +47,7 @@ export default function Home() {
                             'Access-Control-Allow-Credentials': true,
                         }
                     }
-                ).data.json()
+                ).json()
                 console.log("terminó el axios ", info)
                 if (info.success === true) {
                     const resObj = info
@@ -61,7 +61,7 @@ export default function Home() {
                 }
                 else if (info.success === false) {
                     console.log("este es el if 401")
-                    const resObj = info.json()
+                    const resObj = info
                     console.log(resObj+ " if 401")
                     // localStorage.setItem("id", resObj.user.id)
                     // localStorage.setItem('name', resObj.user.name)
