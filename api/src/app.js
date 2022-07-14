@@ -10,7 +10,6 @@ const { Player } = require('./db');
 const { SECRET } = process.env
 const bcrypt = require("bcrypt")
 const randomstring = require("randomstring");
-const cors = require("cors");
 
 const server = express()
 
@@ -20,7 +19,6 @@ server.name = 'API';
 
 // ---------- CORS, COOKIES, JSON Y URLENCODER -----------
 
-server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: '50mb' }));
