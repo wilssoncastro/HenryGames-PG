@@ -6,7 +6,7 @@ import './Info_Comment.css'
 export default function Info_Comment({id, id_user, comment, createdAt, user}){
     const dispatch = useDispatch()
     let [edit_mode, setEditMode] = useState(false)
-    let [edittedComment, setEditedComment] = useState(comment)
+    let [edittedComment, setEditedComment] = useState('')
     let [error, setError] = useState('');
 
     let idProfile = localStorage.getItem("id");
@@ -65,18 +65,18 @@ export default function Info_Comment({id, id_user, comment, createdAt, user}){
                 <p>{ its_mine ? 'Tú' : user }</p>
                 <p>{createdAt}</p>
             </div>
-            <div className="body">
+            <div className="bodycomment">
                 {!edit_mode ?
                     <>
                     <div className="msg">
-                        {edittedComment}
+                        {!edittedComment ? comment : edittedComment}
                     </div>
                     <div className="options">
                     {!is_auhorized ? <></> : (!its_mine &&
                             <>
                                 <button 
                                     onClick={() => click_report(id)}
-                                >Denunciar
+                                >Report
                                 </button>
                             </>)}
                         {
@@ -84,8 +84,8 @@ export default function Info_Comment({id, id_user, comment, createdAt, user}){
                         {
                             its_mine && 
                             <>
-                                <button onClick={() => setEditMode(true)}>Editar</button>
-                                <button onClick={() => clickDelete(id)}>Borrar</button>
+                                <button onClick={() => setEditMode(true)}>Edit</button>
+                                <button onClick={() => clickDelete(id)}>Delete</button>
                             </>
                         }
                         

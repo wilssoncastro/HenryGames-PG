@@ -4,18 +4,43 @@ import { useDispatch, /* useSelector */ } from "react-redux";
 import swal from 'sweetalert'
 import { editProfile } from "../../redux/actions";
 import styles from "./EditProfile.module.css"
+import NavBar from "../NavBar/navbar";
 
 
 export default function EditProfile() {
     const id_user = localStorage.getItem('id')
     const dispatch = useDispatch();
 
+    const [errors, setErrors] = useState("")
+
+    const validate = (profile) => {
+        let errors = {};
+        if (! /^[a-zA-Z ]*$/.test(profile.name)) {
+            errors.name = 'Only letters are accepted'
+        }
+        else if (! /^[a-zA-Z ]*$/.test(profile.lastname)) {
+            errors.lastname = 'Only letters are accepted'
+        } else if (profile.name?.length > 15) {
+            errors.name = "Maximum 15 letters are allowed"
+        }
+        else if (profile.lastname?.length > 15) {
+            errors.lastname = "Maximum 15 letters are allowed"
+        }
+
+        else if (!/^([0-9])*$/.test(profile.phone)) {
+            errors.phone = 'Only numbers'
+        } else if (profile.phone > 0 && !/^\d{10}$/.test(profile.phone)) {
+            errors.phone = "Must have 10 numbers"
+        }
+        console.log(errors)
+        return errors
+    }
+
     const navigate = useNavigate();
 
     const [profile, setProfile] = useState({
         name: "",
         lastname: "",
-        user: "",
         profile_pic: "",
         date_of_birth: "",
         phone: "",
@@ -26,7 +51,12 @@ export default function EditProfile() {
             ...profile,
             [e.target.name]: e.target.value,
         });
-        console.log("profile", profile);
+        setErrors(
+            validate({
+                ...profile,
+                [e.target.name]: e.target.value,
+            })
+        );
     }
 
     /* const handleImage = (e) => {
@@ -40,8 +70,9 @@ export default function EditProfile() {
             }
         }
     }; */
+
     async function handleImage(e) {
-        const preview = document.querySelector("img");
+        const preview = document.getElementById("image");
         const fileInput = document.getElementById("image");
         const file = fileInput.files[0];
         const reader = await new FileReader();
@@ -69,6 +100,7 @@ export default function EditProfile() {
         });
     };
     const handleSubmit = (e) => {
+
         e.preventDefault();
         function alertSubmit() {
             swal({
@@ -82,7 +114,6 @@ export default function EditProfile() {
                     setProfile({
                         name: "",
                         lastname: "",
-                        user: "",
                         profile_pic: "",
                         date_of_birth: "",
                         phone: "",
@@ -101,8 +132,11 @@ export default function EditProfile() {
 
 
 
+
     return (
         <div className="videogame_created_container">
+            <NavBar></NavBar>
+
             <div className={styles.container}>
                 {!profile.profile_pic ? (
                     <img
@@ -115,6 +149,7 @@ export default function EditProfile() {
                         className={styles.avatar}
                         src={profile.profile_pic}
                         alt="tu foto"
+                        id="imagen_avatar"
 
                     />
                 )}
@@ -131,19 +166,7 @@ export default function EditProfile() {
                                     value={profile.name}
                                     onChange={(e) => handleChange(e)}
                                 />
-                                {/* {profile.profile_pic != "" ? (
-                                    <div >
-                                        <img src={profile.profile_pic} className="image_form" alt='' />
-                                        <button
-                                            className="botonX"
-                                            onClick={(e) => handleDeleteImage(e)}
-                                            type="reset"
-                                        >
-                                            X
-                                        </button>
-                                    </div>
-                                ) : ""
-                                } */}
+                                {errors.name && <p className={styles.errors}>{errors.name}</p>}
 
                             </div>
                             <div>
@@ -156,17 +179,7 @@ export default function EditProfile() {
                                     name="lastname"
                                     onChange={(e) => handleChange(e)}
                                 />
-                            </div>
-                            <div>
-                                <label>User</label>
-                                <input
-                                    className={styles.input}
-                                    type="text"
-                                    placeholder="Insert you user name"
-                                    value={profile.user}
-                                    name="user"
-                                    onChange={(e) => handleChange(e)}
-                                />
+                                {errors.lastname && <p className={styles.errors}>{errors.lastname}</p>}
                             </div>
                             <div>
                                 <label>Date of Birth</label>
@@ -214,7 +227,7 @@ export default function EditProfile() {
                                             <div >
 
                                                 <button
-                                                    className="botonX"
+                                                    className={styles.boton_deleted}
                                                     onClick={(e) => handleDeleteImage(e)}
                                                     type="reset"
                                                 >
@@ -236,6 +249,7 @@ export default function EditProfile() {
                                         name="phone"
                                         onChange={(e) => handleChange(e)}
                                     />
+                                    {errors.phone && <p className={styles.errors}>{errors.phone}</p>}
                                 </div>
                                 <div>
                                     <label>Adress</label>
@@ -250,12 +264,16 @@ export default function EditProfile() {
                                 </div>
                             </div>
                         </div>
-                        <button className={styles.submit} type="submit">
-                            Confirm changes
-                        </button>
+                        {(errors.name || errors.lastname || errors.phone )||( profile.name == "" && profile.lastname == "" &&profile.profile_pic == "" &&profile.phone == ""&& profile.adress == "")?
+                        <button className={styles.btn_disabled} disabled >Confirm changes</button>
+                        :<button className={styles.submit} type="submit"> Confirm changes </button>
+                            }
+
+                        
                         <Link to={`/profile/${id_user}`}>
                             <button className={styles.btn}>Back to Profile</button>
                         </Link>
+
                     </div>
                 </form>
             </div>

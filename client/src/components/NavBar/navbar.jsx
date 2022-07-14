@@ -14,6 +14,7 @@ import * as AiIcons from "react-icons/ai"
 import * as FiIcons from "react-icons/fi"
 import * as RiIcons from "react-icons/ri"
 import * as IoIcons from "react-icons/io"
+import * as ImIcons from "react-icons/im"
 import './navbar.css';
 import './friendlist.css'
 import { useDispatch, useSelector } from "react-redux";
@@ -56,13 +57,12 @@ export default function NavBar() {
                 localStorage.removeItem('id')
                 localStorage.removeItem('user')
                 dispatch(getUserById())
-                
+                navigate('/')
             }
             
         })
         .catch(err => console.log(err))
 
-        navigate('/')
     }
 
     
@@ -95,20 +95,6 @@ export default function NavBar() {
             className: 'nav-text',
             onClick: showSidebar,
             loggedIn: true
-        },
-        {
-            title: 'Theme',
-            path: '#',
-            icon: <VscIcons.VscColorMode />,
-            className: 'nav-text',
-            onClick: showSidebar,
-        },
-        {
-            title: 'Language',
-            path: '#',
-            icon: <BsIcons.BsTranslate />,
-            className: 'nav-text',
-            onClick: showSidebar
         },
         {
             title: 'Admin Tools',
@@ -202,6 +188,12 @@ export default function NavBar() {
                             </Link>
                             ) : (<></>)
                         }
+                        
+                        <Link to='/blog' className="left-sections">
+                            <FaIcons.FaBloggerB className="navbar-left-icons" />
+                            <h3 className="navleft-text">BLOG </h3>
+                        </Link>
+                            
                      </div>
 
 
@@ -209,9 +201,9 @@ export default function NavBar() {
 
                     <div className="NavBar-right">
                         {/* Chat clickable */}
-                        <Link to="#">
+                        {/* <Link to="#">
                             <BiIcons.BiChat className="navbar-icons" />
-                        </Link>
+                        </Link> */}
 
                         {/* ShoppingCart clickable */}
                         {

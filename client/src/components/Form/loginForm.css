@@ -58,6 +58,7 @@
 
 .lf-h1 {
     font-weight: bold;
+    font-size: 45px;
     margin: 0;
     color: #fff;
 }
@@ -118,6 +119,7 @@
     text-decoration: none;
     border-radius: 10px;
     padding: 3px 8px;
+    margin-top: 1rem;
 }
 
 .buttonAdmin:hover{

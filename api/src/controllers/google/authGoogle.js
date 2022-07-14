@@ -27,29 +27,31 @@ router.get('/google/callback',
 router.get('/auth/google/failure', (req, res) => {
     res.status(401).json({
         success: false,
-        message: "failure",
+        message: "account not found",
     })
 })
 
 //en caso de que salga bien el inicio de sesion, esto es a donde nos llevara el callback
 router.get('/auth/google/protected', isLoggedIn, async (req, res) => {
+
     if(req.user){
-        res.status(200).json({
-            success: true,
-            message: "successfull",
-            user: req.user,
-            //cookies: req.cookies
-        })
+        if(!req.user.banned){
+            res.status(200).json({
+                success: true,
+                message: "successfull",
+                user: req.user,
+                banned: false,
+                //cookies: req.cookies
+            })
+        }
+        else{
+            return res.status(401).json({
+                success: false,
+                banned: true,
+                message: 'Your account is banned. Can not log in'
+            })
+        }
     }
 })
-
-//cerrar sesion de google
-// router.get('/auth/google/logoutGoogle', (req, res) => {
-//     /* req.logout() */
-//     req.session.destroy(function (err) {
-//         res.redirect('/'); 
-//     });
-//     res.send('CHAU!')
-// })
 
 module.exports = router

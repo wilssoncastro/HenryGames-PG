@@ -1,0 +1,62 @@
+/* carta entera */
+.og-card {
+    border: none;
+    background-color: #1c1a1a;
+    height: 370px;
+    width: 300px;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all .3s ease;
+    padding: 0;
+    align-items: center;
+    color: white;
+}
+
+/* imagen de cada carta */
+.og-card .og-image {
+    width: 100%;
+    height: 220px;
+    border-radius: .5rem;
+    margin: 0;
+    object-position: center center;
+}
+
+/* container de texto de la carta (nombre y precio) */
+.og-textCard {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.og-titleCard {
+    margin: 1rem 1rem;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.og-card:hover {
+    background-color: #1a83ff;
+    box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    filter: saturate(1.6);
+    transform: scale(1.05);
+}
+
+.og-link,
+.og-card h2,
+.og-card h4,
+.og-card p {
+    text-decoration: none;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.og-launch {
+    font-size: 17px;
+    margin-top: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}

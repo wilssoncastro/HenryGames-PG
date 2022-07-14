@@ -57,7 +57,7 @@ export default function Chat() {
         }
     }
 
-
+    
 
     let chatsSorted = allChats.sort(function (a, b) {
 
@@ -72,8 +72,11 @@ export default function Chat() {
 
     })
 
+    
+
 
     if (chatsSorted != undefined && document.getElementById("chats")) {
+        
         let mensaje = document.getElementById("chats")
         setTimeout(() => {
             mensaje.scrollTop = mensaje.scrollHeight
@@ -83,28 +86,31 @@ export default function Chat() {
 
 
 
-
-
-    // setInterval(() => {
-    //     dispatch(getChatsFriend(ids.idF, ids.id_user))           
-    //  }, 10000);
-
-
     const handleSumbit = (e) => {
         e.preventDefault()
         if (chat.message != "") {
+            
             dispatch(sendMessageChat(ids.id_user, ids.idF, chat))
+            dispatch(getChatsFriend(ids.idF, ids.id_user))
+            dispatch(getChats(ids.id_user, ids.idF))  
+            
+            
             setChat({
                 ...chat,
                 message: ""
             })
-            dispatch(getChatsFriend(ids.idF, ids.id_user))
-            dispatch(getChats(ids.id_user, ids.idF))
+            
+                // dispatch(getChatsFriend(ids.idF, ids.id_user))
+                // dispatch(getChats(ids.id_user, ids.idF))
+            
+           
             if (myUser != undefined) {
                 setTimeout(() => {
                     let mensaje = document.getElementById("chats")
                     mensaje.scrollTop = mensaje.scrollHeight
-                }, 1000);
+                   
+                    
+                }, 2000);
 
             }
         }
@@ -115,6 +121,7 @@ export default function Chat() {
     const handleRefresh = (e) => {
         e.preventDefault()
         dispatch(getChatsFriend(ids.idF, ids.id_user))
+        dispatch(getChats(ids.id_user, ids.idF))
     }
 
 
@@ -164,7 +171,7 @@ export default function Chat() {
 
             <div className="chats_container" id="chats">
 
-                {chatsSorted.length > 1 && myUser && chatsSorted.map(e =>
+                {chatsSorted.length > 0 && myUser && chatsSorted.map(e =>
                     <div >
                         {
                             <div className="chats" >

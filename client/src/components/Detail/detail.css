@@ -24,6 +24,7 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 2em;
+    box-shadow: 0px 10px 30px rgba(27, 26, 26, 0.856);
 }
 
 .name {
@@ -44,6 +45,7 @@
     flex-direction: row;
     justify-content: center;
     color: white;
+    
 }
 
 .image  {
@@ -62,6 +64,10 @@
     align-items: flex-start;
 }
 
+.detail-genres-esrb {
+    flex-basis: 34%;
+}
+
 .listDetail2{
     height: 100%;
     display: flex;
@@ -70,6 +76,14 @@
     justify-content: space-evenly;
     margin: 0 6rem;
     align-items: flex-start;
+    width: 100%;
+}
+
+.listDetail2 li{
+    display: flex;
+    max-width: 500px;
+    max-height: 250px;
+    flex-wrap: wrap;
 }
 
 .titleList{
@@ -80,6 +94,10 @@
     color: #c7a84b;
     cursor:default;
     transition: 0.3s;
+}
+
+.listDetail2 ul{
+    margin-left: 1rem;
 }
 
 .divsListDetail{
@@ -219,6 +237,8 @@
     background-color: rgba(15, 15, 15, 0.979);
     border-radius: 0.5rem;
     padding: 0.8rem 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(27, 26, 26, 0.856);
 }
 
 .descriptionH3{
@@ -238,6 +258,7 @@
     padding: 0.2rem 1rem;
     color: white;
     background-color: rgba(15, 15, 15, 0.979);
+    box-shadow: 0px 10px 30px rgba(27, 26, 26, 0.856);
 }
 
 .screenshots{
@@ -255,6 +276,7 @@
     padding: 0.5em;
     border-radius: 1em;
     margin-top: 1em;
+    box-shadow: 0px 10px 30px rgba(27, 26, 26, 0.856);
 }
 .requirements{
     margin: auto;
@@ -263,6 +285,7 @@
     padding: 1rem 1rem;
     color: white;
     background-color: rgba(15, 15, 15, 0.979);
+    box-shadow: 0px 10px 30px rgba(27, 26, 26, 0.856);
 }
 
 .all_comments{
@@ -277,6 +300,7 @@
     padding-top: 2em;
     background-color: rgba(0, 0, 0, 0.846);
     border-radius: 2em;
+    box-shadow: 0px 10px 30px rgba(27, 26, 26, 0.856);
 }
 
 .loadingDetail{
@@ -284,3 +308,9 @@
     align-content: center;
     margin-top: 36vh;
   }
+
+.requirements p {
+    display: flex;
+    max-width: 95vw;
+    flex-wrap: wrap;
+}

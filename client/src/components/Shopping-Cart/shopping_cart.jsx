@@ -8,7 +8,6 @@ import {
   getCartById,
   deleteAllFromCart,
   postMercadoPago,
-  /* is_authorizated */
 } from "../../redux/actions";
 import swal from "sweetalert";
 import "./shoppingcart.css";
@@ -166,6 +165,7 @@ export default function ShoppingCart() {
                       name={game.name}
                       price={game.price}
                       id={game.id}
+                      rating={game.rating}
                     />
                     <button
                       className="buttonRemove"

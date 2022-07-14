@@ -100,7 +100,6 @@ export default function SignUp() {
   async function onSubmit(e) {
     e.preventDefault();
     let log_error;
-    console.log(input)
 
     if (Object.keys(errors).length === 0 && input.name) {
       
@@ -216,7 +215,9 @@ export default function SignUp() {
               Sign Up
             </button>
             {/* <Link to="/registerAdmin" className="linkAdmin"> */}
-            <button type="submit" name='adm' className="buttonAdmin" onClick={setType}> <GrIcons.GrUserAdmin /> I am Admin 😎</button>
+            <button type="submit" name='adm' className="buttonAdmin" onClick={setType}>
+                I am Admin <GrIcons.GrUserAdmin />
+              </button>
             {/* </Link> */}
             {msg && <p className="errorsLog"> {msg}</p>}
 
