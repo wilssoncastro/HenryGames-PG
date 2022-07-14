@@ -37,8 +37,9 @@ router.get('/auth/google/failure', (req, res) => {
 
 //en caso de que salga bien el inicio de sesion, esto es a donde nos llevara el callback
 router.get('/auth/google/protected', isLoggedIn, async (req, res) => {
-
+    console.log("entró el router protected")
     if(req.user){
+        console.log("entro al if req.user", req.user)
         if(!req.user.banned){
             res.status(200).json({
                 success: true,
@@ -55,6 +56,9 @@ router.get('/auth/google/protected', isLoggedIn, async (req, res) => {
                 message: 'Your account is banned. Can not log in'
             })
         }
+    }
+    else {
+        console.log("no entro al req.user")
     }
 })
 
