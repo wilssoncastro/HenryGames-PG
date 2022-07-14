@@ -26,7 +26,7 @@ export default function Home() {
         
         const getUser = () =>{
             //console.log('entro al getUser')
-            fetch('http://localhost:3001/auth/google/protected', {
+            fetch('/google/protected', {
                 method: 'GET',
                 credentials: 'include',
                 header: {
