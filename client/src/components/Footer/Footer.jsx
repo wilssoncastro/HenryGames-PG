@@ -76,7 +76,9 @@ const Footer = () => {
                 {/* <h2>Henry Games</h2> */}
 
                 <div className='footer-titles'>
-                    <h2 className='footer-titles-equipo'>Team</h2>
+                    <a className='footer-titles-equipo' href='https://github.com/nicolasgonzalez98/HenryGames-PG'>
+                        <img className='github-image' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf5-S3ffFPLWSu6s5ImXQU-MLPb3y4FkQbqQ&usqp=CAU' width='65px' height='65px' alt='not found' />
+                    </a>
                     <h2 className='footer-titles-tecnologias'>Technologies</h2>
                 </div>
                 {/* Container del medio */}
