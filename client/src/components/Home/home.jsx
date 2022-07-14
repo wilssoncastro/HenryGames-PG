@@ -47,7 +47,7 @@ export default function Home() {
                             'Access-Control-Allow-Credentials': true,
                         }
                     }
-                ).json()
+                )
                 console.log("terminó el axios ", info)
                 if (info.success === true) {
                     const resObj = info
