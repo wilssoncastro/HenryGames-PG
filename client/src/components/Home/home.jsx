@@ -18,12 +18,14 @@ export default function Home() {
     const videogames = useSelector((state) => state.videogames);
 
     useEffect(() => {
+        //console.log('entro al useEffect')
         if (!videogames) {
             console.log('Se ejecuto el getAllVideogames')
             getAllVideogames();
         }
         
         const getUser = () =>{
+            //console.log('entro al getUser')
             fetch('http://localhost:3001/auth/google/protected', {
                 method: 'GET',
                 credentials: 'include',
@@ -32,9 +34,17 @@ export default function Home() {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': true,
             },
-        }).then((res) => {
-            if (res.status===200) {return res.json()}
-            else if(res.status===401) {return res.json()}
+            }).then((res) => {
+            //console.log(res, ' paso el fetch')
+            
+            if (res.status===200) {
+                //console.log(res.json(), 'entro al 200')
+                return res.json()
+            }
+            else if(res.status===401) {
+                //console.log(res.json(), 'entro al 401')
+                return res.json()
+            }
             else throw new Error('authentication has been failed')
         }).then((resObj) => {
             //console.log('info user google ', resObj.user)

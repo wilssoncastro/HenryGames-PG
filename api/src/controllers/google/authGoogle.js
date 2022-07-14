@@ -16,7 +16,7 @@ router.get('/auth/google',
         { scope: ['email', 'profile'] })) //el scope es lo que queremos saber de cada cuenta
 
 //ruta del callback que nos da google
-router.get('/google/callback',
+router.get('/auth/google/callback',
     passport.authenticate('google', {
         successRedirect: CLIENT_URL + 'home',
         failureRedirect: '/auth/google/failure'
