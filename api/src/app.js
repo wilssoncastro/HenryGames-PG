@@ -15,9 +15,6 @@ const server = express()
 
 server.name = 'API';
 
-const hk_URL = "https://henrygames.herokuapp.com"
-//const BACKenv_URL = hk_URL || BACK_URL
-
 // -------------------  MIDDLEWARES------------- cambio
 
 // ---------- CORS, COOKIES, JSON Y URLENCODER -----------
@@ -76,7 +73,7 @@ const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 passport.use(new GoogleStrategy({
     clientID: process.env['GOOGLE_CLIENT_ID'],
     clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
-    callbackURL: `${BACK_URL}/google/callback`,
+    callbackURL: `/google/callback`,
     //callbackURL: `${BACK_URL}/auth/google/callback`,
     passReqToCallback: true
   },
