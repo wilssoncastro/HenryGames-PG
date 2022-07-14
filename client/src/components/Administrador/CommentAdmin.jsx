@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { banUser, delete_comment, get_all_comments, unreport_comment } from "../../redux/actions";
+import NavBar from "../NavBar/navbar";
 import './CommentAdmin.css'
 
 export default function CommentAdmin(){
@@ -15,8 +16,11 @@ export default function CommentAdmin(){
 
     
     return (
-        <div>
+        <div className="div-reported-comments">
+            <NavBar />
+            <div className="tittle_component_comments">
             REPORTED COMMENTS
+            </div>
             <ul className="list-reported-comments">
                 {reported_comments.length? 
                 

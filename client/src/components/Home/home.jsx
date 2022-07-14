@@ -4,6 +4,8 @@ import NavBar from '../NavBar/navbar'
 // import { Link } from 'react-router-dom'
 // import * as BiIcons from "react-icons/bi"
 import axios from "axios"
+import { useSelector } from 'react-redux';
+import { getAllVideogames } from '../../redux/actions';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
@@ -21,6 +23,12 @@ export default function Home() {
 
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
+    const videogames = useSelector((state) => state.videogames);
+
+    if (!videogames.length) {
+        console.log('Se ejecuto el getAllVideogames')
+        getAllVideogames();
+    }
 
     useEffect(() => {
         //fetch

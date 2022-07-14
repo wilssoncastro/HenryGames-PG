@@ -100,7 +100,6 @@ export default function SignUp() {
   async function onSubmit(e) {
     e.preventDefault();
     let log_error;
-    console.log(input)
 
     if (Object.keys(errors).length === 0 && input.name) {
       
