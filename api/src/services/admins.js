@@ -6,7 +6,7 @@ let admins = [
     'delta_sebastian@hotmail.com',
     'santiagocampossnels@gmail.com',
     'wilssoncastro@gmail.com',
-    'germanfivic@gmail'
+    'germanfivic@gmail.com'
 ]
 
 module.exports = admins
