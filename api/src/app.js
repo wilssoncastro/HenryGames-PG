@@ -10,6 +10,7 @@ const { Player } = require('./db');
 const { SECRET } = process.env
 const bcrypt = require("bcrypt")
 const randomstring = require("randomstring");
+const cors = require("cors");
 
 const server = express()
 
@@ -19,6 +20,7 @@ server.name = 'API';
 
 // ---------- CORS, COOKIES, JSON Y URLENCODER -----------
 
+server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(express.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: '50mb' }));
@@ -73,7 +75,7 @@ const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 passport.use(new GoogleStrategy({
     clientID: process.env['GOOGLE_CLIENT_ID'],
     clientSecret: process.env['GOOGLE_CLIENT_SECRET'],
-    callbackURL: "http://localhost:3001/google/callback",
+    callbackURL: "http://localhost:3001/auth/google/callback",
     passReqToCallback: true
   },
   async function(request, accessToken, refreshToken, profile, done) {
