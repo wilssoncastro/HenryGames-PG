@@ -35,7 +35,7 @@ export default function Home() {
             console.log("entró al getUser()")
             try {
                 //const info = await fetch(`${BACK_URL}/auth/google/protected`,
-                const info = await fetch(`https://henrygames.herokuapp.com/auth/google/protected`,
+                const info = await fetch(`/google/protected`,
                     {
                         method: 'GET',
                         credentials: 'include',
