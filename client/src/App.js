@@ -104,7 +104,7 @@ function App() {
           <Route path='/activation/games/:secretCode/:id_user/:longitude' element={<ValidationGame />}/>
           <Route path='/activation/mail-validation/:mail' element={<ReSendMail />}/>
 
-          ///CHAT
+          {/* ///CHAT */}
           <Route path='/chat/:id_user/:idF' element={<Chat />}/>
 
           {/* <Route path='/googleLogin' element={<Google />}/> */}
