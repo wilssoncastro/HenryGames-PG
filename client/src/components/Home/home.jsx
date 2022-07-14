@@ -17,8 +17,6 @@ import './carousel.css'
 
 const BACK_URL = process.env.REACT_APP_API || "http://localhost:3001";
 
-const google = []
-
 export default function Home() {
 
     let [banned, setBanned] = useState(false)
@@ -36,8 +34,8 @@ export default function Home() {
         const getUser = async () => {
             console.log("entró al getUser()")
             try {
-                const info = await fetch(`http://localhost:3001/auth/google/protected`,
-                //const info = await fetch(`https://henrygames.herokuapp.com/auth/google/protected`,
+                //const info = await fetch(`${BACK_URL}/auth/google/protected`,
+                const info = await fetch(`https://henrygames.herokuapp.com/auth/google/protected`,
                     {
                         method: 'GET',
                         credentials: 'include',
@@ -63,18 +61,12 @@ export default function Home() {
                     console.log("este es el if 401")
                     const resObj = info
                     console.log(resObj+ " if 401")
-                    // localStorage.setItem("id", resObj.user.id)
-                    // localStorage.setItem('name', resObj.user.name)
-                    // localStorage.setItem('lastname', resObj.user.lastname)
-                    // localStorage.setItem('type', resObj.user.type)
-                    // localStorage.setItem('profile_pic', resObj.user.profile_pic)
-                    // localStorage.setItem('user', resObj.user.email)
                 }
             } catch (error) {
                 console.log(error, "este es el error cachado")
             }
-            }
-            getUser()
+        }
+        getUser()
     }, [])
 
     if(errorGoogle){
