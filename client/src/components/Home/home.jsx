@@ -34,8 +34,8 @@ export default function Home() {
         const getUser = async () => {
             console.log("entró al getUser()")
             try {
-                //const info = await fetch(`${BACK_URL}/auth/google/protected`,
-                const info = await fetch(`/google/protected`,
+                const info = await fetch(`${BACK_URL}/auth/google/protected`,
+                //const info = await fetch(`auth/google/protected`,
                     {
                         method: 'GET',
                         credentials: 'include',
@@ -45,23 +45,35 @@ export default function Home() {
                             'Access-Control-Allow-Credentials': true,
                         }
                     }
-                )
-                console.log("terminó el axios ", info)
-                if (info.success === true) {
-                    const resObj = info
-                    console.log(resObj+ " if 200")
-                    localStorage.setItem("id", resObj.user.id)
-                    localStorage.setItem('name', resObj.user.name)
-                    localStorage.setItem('lastname', resObj.user.lastname)
-                    localStorage.setItem('type', resObj.user.type)
-                    localStorage.setItem('profile_pic', resObj.user.profile_pic)
-                    localStorage.setItem('user', resObj.user.email)
-                }
-                else if (info.success === false) {
-                    console.log("este es el if 401")
-                    const resObj = info
-                    console.log(resObj+ " if 401")
-                }
+                ).then((res) => {
+                    if (res.status===200) {
+                        console.log(res.json, 'entro al 200')
+                        return res.json()
+                    }
+                    else if(res.status===401) {
+                        console.log(res, 'entro al 401')
+                        return res.json()
+                    }
+                    else throw new Error ("authentication has failed")
+                }).then((resObj) => {
+                    console.log("terminó el axios ")
+                    if (resObj.success) {
+                        console.log(resObj+ " if 200")
+                        localStorage.setItem("id", resObj.user.id)
+                        localStorage.setItem('name', resObj.user.name)
+                        localStorage.setItem('lastname', resObj.user.lastname)
+                        localStorage.setItem('type', resObj.user.type)
+                        localStorage.setItem('profile_pic', resObj.user.profile_pic)
+                        localStorage.setItem('user', resObj.user.email)
+                    }
+                    else if (resObj.banned) {
+                        console.log("este es el if banned")
+                        console.log(resObj+ " if banned")
+                    }
+                    else {
+                        setErrorGoogle(true)
+                    }
+                })
             } catch (error) {
                 console.log(error, "este es el error cachado")
             }
