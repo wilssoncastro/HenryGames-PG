@@ -47,10 +47,10 @@ export default function Home() {
                             'Access-Control-Allow-Credentials': true,
                         }
                     }
-                ).data
+                ).data.json()
                 console.log("terminó el axios ", info)
-                if (info.status===200) {
-                    const resObj = await info.json()
+                if (info.success === true) {
+                    const resObj = info
                     console.log(resObj+ " if 200")
                     localStorage.setItem("id", resObj.user.id)
                     localStorage.setItem('name', resObj.user.name)
@@ -59,9 +59,9 @@ export default function Home() {
                     localStorage.setItem('profile_pic', resObj.user.profile_pic)
                     localStorage.setItem('user', resObj.user.email)
                 }
-                else if (info.status===401) {
+                else if (info.success === false) {
                     console.log("este es el if 401")
-                    const resObj = await info.json()
+                    const resObj = info.json()
                     console.log(resObj+ " if 401")
                     // localStorage.setItem("id", resObj.user.id)
                     // localStorage.setItem('name', resObj.user.name)
