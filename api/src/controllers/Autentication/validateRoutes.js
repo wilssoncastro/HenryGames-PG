@@ -74,15 +74,15 @@ router.post('/changePassword/:id_user', async(req, res) => {
     try {
         const saltRounds = 8;
         let user = await Player.findByPk(id_user)
-        if(!user)return res.send('No se encontro el usuario')
+        if(!user)return res.send('User not found')
 
-        if(user.secret_token !== token)return res.send('Token invalido!')
+        if(user.secret_token !== token)return res.send('Token invalid!')
         let new_password = await bcrypt.hash(password, saltRounds);
 
         user.password = new_password
         await user.save()
 
-        return res.send('Su contraseña modificada')
+        return res.send('Your password has been changed')
 
     } catch (error) {
         

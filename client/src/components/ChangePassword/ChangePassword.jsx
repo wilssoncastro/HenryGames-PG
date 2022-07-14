@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./ChangePassword.css"
+import NavBar from "../NavBar/navbar";
 const Swal = require("sweetalert2");
 
 export default function ChangePassword() {
@@ -76,6 +77,7 @@ export default function ChangePassword() {
 
   return (
     <div className="changePasswordBody">
+      <NavBar />
       <div className="changePasswordContainer">
         <h1>An email has been sent</h1>
         <form className="changePasswordForm" onSubmit={onSubmit}>
