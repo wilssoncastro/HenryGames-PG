@@ -77,7 +77,7 @@ router.get('/', async (req, res) => {
       })
       res.send(totalData)
     }
-    //-A
+    //-A  
   } catch (error) {
     console.log(error)
     console.log("CATCH")
