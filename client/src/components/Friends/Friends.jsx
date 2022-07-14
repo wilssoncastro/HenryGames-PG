@@ -26,7 +26,8 @@ export default function Friends() {
         copied: false,
     })
     let users = allUsers.filter(e => e.id !== id)
-    let usersfiltered = users.filter(e => e.id.includes(friend) || e.user.includes(friend))
+    let usersfiltered = users.filter(e => e.id.includes(friend) || e.user.toLowerCase().includes(friend.toLowerCase()))
+   
 
     useEffect(() => {
         dispatch(getFriends(id))
@@ -35,8 +36,10 @@ export default function Friends() {
     }, [dispatch, id])
 
     const handleInputChange = (e) => {
+       
         e.preventDefault();
         setFriend(e.target.value);
+        
     }
     const handleClick = (idFriend) => {
         if (friends.find(e => e.id === idFriend)) {
