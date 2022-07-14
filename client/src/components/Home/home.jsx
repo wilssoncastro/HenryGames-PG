@@ -37,7 +37,7 @@ export default function Home() {
             console.log("entró al getUser()")
             try {
                 
-                const info = await axios.get(`https://henrygames.herokuapp.com/auth/google/protected`,
+                const info = await axios(`https://henrygames.herokuapp.com/auth/google/protected`,
                     {
                         method: 'GET',
                         credentials: 'include',
