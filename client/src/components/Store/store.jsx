@@ -32,6 +32,9 @@ export default function Store() {
   };
 
   useEffect(() => {
+    if (!videogames) {
+      getAllVideogames();
+    }
     dispatch(getFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order, limit))
     dispatch(getNoLimitFilteredVideogames(name, gen, tag, esrb, on_sale, free_to_play, page, sort, order))
     dispatch(getGenres())
@@ -86,6 +89,17 @@ export default function Store() {
     setPage(0)
   }
 
+  const handleOnSale = (e) => {
+    e.preventDefault();
+    setOnSale(e.target.value)
+    setFtp("")
+    setPage(0)
+  }
+  
+  const handleFtp = (e) => {
+    e.preventDefault();
+    setFtp(e.target.value)
+    setOnSale("")
   // const handleOnSale = (e) => {
   //   e.preventDefault();
   //   setOnSale(e.target.value)
@@ -98,7 +112,7 @@ export default function Store() {
   //   setFtp(e.target.value)
   //   setOnSale(!true)
   //   setPage(0)
-  // }
+  }
 
   const handleFtpOnSale = (e) => {
     if(e.target.value === 'ftp'){
@@ -144,10 +158,11 @@ export default function Store() {
             <select className="selectPages" onChange={(e) => handleGen(e)}>
               <option value="">All Genres</option>
               {
+                
                 allGenres.map((e) => {
                   return (
                     <option value={e.name}>{e.name}</option>
-                  )
+                  ) 
                 })
               }
             </select>

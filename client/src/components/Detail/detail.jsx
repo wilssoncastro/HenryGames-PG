@@ -75,6 +75,7 @@ export default function Detail() {
   };
 
   const handleOnClick = (idGame) => {
+    
     let id = localStorage.getItem("id");
     dispatch(addWishList(id, idGame));
     navigate(`/store/${idGame}`);
@@ -86,17 +87,21 @@ export default function Detail() {
     navigate(`/store/${idGame}`);
   };
 
-  function HandleAddToCart(e) {
-    e.preventDefault();
-    if (typeof id_user === 'string') {
+  function HandleAddToCart() {
+
+    if (id_user) {
       dispatch(addToCart(id_user, id));
     }else{
-      const gameInCart = cartFromLocalStorage.map(game => game.id === e.id)
-      if(!gameInCart){
+      if(cartFromLocalStorage.length) {
         localStorage.setItem(
           "cart",
           JSON.stringify([...cartFromLocalStorage, videogame])
         );
+      } else {
+        localStorage.setItem(
+          "cart",
+          JSON.stringify([videogame])
+        )
       }
     }
     
@@ -113,7 +118,7 @@ export default function Detail() {
           text: "Go to shop",
           value: "shop",
         },
-        cancel: "Cancel",
+        cancel: "Stay",
       },
     }).then((value) => {
       switch (value) {
@@ -296,7 +301,10 @@ export default function Detail() {
                         :
   
                         <div className="buttons">
-                          <div>
+
+                          {/* WISHLIST */}
+                          {id_user?
+                          (<div>
                             {!list?.find((e) => e.id == videogame.id) ? (
                               <button
                                 className="buttonAddWishList"
@@ -311,9 +319,12 @@ export default function Detail() {
                               >
                                 <BsIcons.BsBookmarkStarFill />
                               </button>
-                            )}
-                          </div>
-  
+                            )} 
+                          </div>) : <></>
+                          }
+
+
+                          {/* CART */}
                           <div>
                             {videogame.free_to_play ?
                               null :
@@ -325,6 +336,7 @@ export default function Detail() {
                             }
                           </div>
   
+                          {/* BUY */}
                           <div>
                             {videogame.free_to_play ?
                               id_user?

@@ -10,6 +10,7 @@ import JavaScriptIcon from '../../images/js.png'
 import SQLIcon from '../../images/sql-server.png'
 import HTMLIcon from '../../images/html-5.png'
 import SequelizeIcon from '../../images/sequelize-icon.png'
+import ReduxIcon from '../../images/ReduxIcon.png'
 
 const Footer = () => {
 
@@ -104,6 +105,7 @@ const Footer = () => {
                         <img src={CSSIcon} width='75px' height='75px' alt='not found'/>
                         <img src={JavaScriptIcon} width='75px' height='75px' alt='not found'/>
                         <img src={ReactIcon} width='75px' height='75px' alt='not found'/>
+                        <img src={ReduxIcon} width='75px' height='75px' alt='not found'/>
                         <img src={NodeIcon} width='75px' height='75px' alt='not found'/>
                         <img src={SQLIcon} width='75px' height='75px' alt='not found'/>
                         <img src={PostgreIcon} width='75px' height='75px' alt='not found'/>

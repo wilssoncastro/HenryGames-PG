@@ -57,13 +57,12 @@ export default function NavBar() {
                 localStorage.removeItem('id')
                 localStorage.removeItem('user')
                 dispatch(getUserById())
-                
+                navigate('/')
             }
             
         })
         .catch(err => console.log(err))
 
-        navigate('/')
     }
 
     
@@ -189,14 +188,12 @@ export default function NavBar() {
                             </Link>
                             ) : (<></>)
                         }
-                        {id?
-                            (<Link to='/blog' className="left-sections">
-                                
-                                <ImIcons.ImBlogger className="navbar-left-icons" />
-                                <h3 className="navleft-text">BLOG </h3>
-                            </Link>
-                            ) : (<></>)
-                        }
+                        
+                        <Link to='/blog' className="left-sections">
+                            <FaIcons.FaBloggerB className="navbar-left-icons" />
+                            <h3 className="navleft-text">BLOG </h3>
+                        </Link>
+                            
                      </div>
 
 

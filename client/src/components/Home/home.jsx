@@ -1,8 +1,7 @@
 import React, { useState }  from 'react';
 import NavBar from '../NavBar/navbar'
-// import Carousel from 'react-elastic-carousel'
-// import { Link } from 'react-router-dom'
-// import * as BiIcons from "react-icons/bi"
+import { useSelector } from 'react-redux';
+import { getAllVideogames } from '../../redux/actions';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx'
 import CarouselFP from '../CarouselCard/CarouselCardFP.jsx'
 import CarouselOS from '../CarouselCard/CarouselCardOS.jsx'
@@ -16,11 +15,17 @@ export default function Home() {
 
     let [banned, setBanned] = useState(false)
     const [errorGoogle, setErrorGoogle] = useState(false)
+    const videogames = useSelector((state) => state.videogames);
 
     useEffect(() => {
-        console.log('entro al useEffect')
+        //console.log('entro al useEffect')
+        if (!videogames) {
+            console.log('Se ejecuto el getAllVideogames')
+            getAllVideogames();
+        }
+        
         const getUser = () =>{
-            console.log('entro al getUser')
+            //console.log('entro al getUser')
             fetch('http://localhost:3001/auth/google/protected', {
                 method: 'GET',
                 credentials: 'include',
@@ -30,14 +35,14 @@ export default function Home() {
                 'Access-Control-Allow-Credentials': true,
             },
             }).then((res) => {
-            console.log(res, ' paso el fetch')
+            //console.log(res, ' paso el fetch')
             
             if (res.status===200) {
-                console.log(res.json(), 'entro al 200')
+                //console.log(res.json(), 'entro al 200')
                 return res.json()
             }
             else if(res.status===401) {
-                console.log(res.json(), 'entro al 401')
+                //console.log(res.json(), 'entro al 401')
                 return res.json()
             }
             else throw new Error('authentication has been failed')

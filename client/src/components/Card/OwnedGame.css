@@ -1,5 +1,6 @@
 /* carta entera */
 .og-card {
+    border: none;
     background-color: #1c1a1a;
     height: 370px;
     width: 300px;
@@ -8,6 +9,9 @@
     flex-direction: column;
     justify-content: flex-start;
     transition: all .3s ease;
+    padding: 0;
+    align-items: center;
+    color: white;
 }
 
 /* imagen de cada carta */
