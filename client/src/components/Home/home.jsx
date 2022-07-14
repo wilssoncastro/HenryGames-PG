@@ -10,6 +10,8 @@ import Footer from '../Footer/Footer';
 import swal from "sweetalert";
 import './home.css'
 import './carousel.css'
+import axios from 'axios'
+const URL_BASE = process.env.REACT_APP_API || "http://localhost:3001"
 
 export default function Home() {
 
@@ -23,8 +25,8 @@ export default function Home() {
             getAllVideogames();
         }
         
-        const getUser = () =>{
-            fetch('http://localhost:3001/auth/google/protected', {
+        async function getUser(){
+            fetch(`${URL_BASE}/auth/google/protected`, {
                 method: 'GET',
                 credentials: 'include',
                 header: {

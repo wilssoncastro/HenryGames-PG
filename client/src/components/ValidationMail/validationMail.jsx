@@ -11,7 +11,7 @@ export default function ValidationMail(){
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3001/authentication/activation/${user_id}/${token}`)
+            .get(`/authentication/activation/${user_id}/${token}`)
             .then((response) => {
              return response.data
             })

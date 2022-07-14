@@ -55,7 +55,7 @@ export default function ChangePassword(){
     async function onSubmit(e){
         e.preventDefault()
         if (Object.keys(errors).length === 0 && input.token){
-            const info = await axios.post(`http://localhost:3001/authentication//changePassword/${id_user}`,input)
+            const info = await axios.post(`/authentication//changePassword/${id_user}`,input)
 
             if(info.data === 'Su contraseña fue modificada'){
                 setMsg('')

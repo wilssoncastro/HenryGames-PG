@@ -8,7 +8,7 @@ export default function ValidationGame(){
 
     useEffect(() => {
         axios
-            .get(`http://localhost:3001/authentication/activation/games/${secretCode}/${id_user}/${longitude}`)
+            .get(`/authentication/activation/games/${secretCode}/${id_user}/${longitude}`)
             .then((response) => {
                 return response.data
             })

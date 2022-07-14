@@ -103,7 +103,7 @@ export default function SignUp() {
 
     if (Object.keys(errors).length === 0 && input.name) {
       
-      let info = await axios.post("http://localhost:3001/authentication/register", input);
+      let info = await axios.post("/authentication/register", input);
 
       if(typeof info.data === 'string'){
         setMsg(info.data)

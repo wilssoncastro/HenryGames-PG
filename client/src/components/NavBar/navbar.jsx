@@ -43,7 +43,7 @@ export default function NavBar() {
 
         axios({
             method: 'post',
-            url: 'http://localhost:3001/authentication/logout',
+            url: '/authentication/logout',
             headers: {'X-Requested-With': 'XMLHttpRequest'},
             withCredentials: true
         })
