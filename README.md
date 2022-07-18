@@ -48,12 +48,11 @@ Landing Page
 <img src ="https://media.discordapp.net/attachments/969781799876177925/998722218588635136/unknown.png?width=1091&height=559"/>
 Home
 
-<img src ="[https://media.discordapp.net/attachments/969781799876177925/998722218588635136/unknown.png?width=1091&height=559](https://media.discordapp.net/attachments/969781799876177925/998723194842271864/unknown.png?width=927&height=469)"/>
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998723194842271864/unknown.png?width=927&height=469"/>
 
 
-
-
--Reseñas hacer reseñas
+-Store
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998723786608218302/unknown.png?width=904&height=469"/>
 
 Mercado Pago
 mercado pago
