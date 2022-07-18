@@ -29,15 +29,14 @@ Crear un archivo .env con las variables de entorno necesarias para la conexion a
   DB_PASSWORD
   DB_HOST
   API_KEY(API OBTENIDA EN 
-MAIL_USER=nicolasgonzalezdev@gmail.com
-CLIENT_ID=127347722329-a6uc4sri8t59nhji4i061nmhlr7hcd72.apps.googleusercontent.com
-CLIENT_SECRET=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
-ACCESS_TOKEN=ya29.a0ARrdaM_6ZY7IZ2V7-aM1S-1Ha2ZQo5ylEg_RwTCNrNTbK62SkDmOmFZq7pAu-tWWETv5UgrGllt76PeJxPOOaOY5S6RSeAjj_A-BEZm_ryX0Vp2LdSjCLjzhctqmzFEs90geWhp5RfHmS7wSdJ5i8It-Edcu
-REFRESH_TOKEN=04cRJ-vwYIVQqCgYIARAAGAQSNwF-L9Ir3LXz6tTFCpwdbNeP7z1Ju5_aVdsn6pC5mEQt3nWB4WkAfuJ6ayIE8rmSM5KKzyFmIaI
-SECRET=080898280474
-ACCESS_TOKEN_MP=TEST-2809055800099969-062912-645a61b1b4f71cae86a33ec966809f04-487805973
-GOOGLE_CLIENT_ID=1068714746325-oo9eg04cqgvfljp14dgjrbgaego7osqp.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
+MAIL_USER
+CLIENT_ID
+CLIENT_SECRET
+ACCESS_TOKEN
+REFRESH_TOKEN
+ACCESS_TOKEN_MP
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
 )
 Crear una base de datos con el nombre de la aplicacion y la contraseña.
 Volver al proyecto y dividir la terminal en dos
@@ -48,6 +47,9 @@ Landing Page
 
 <img src ="https://media.discordapp.net/attachments/969781799876177925/998722218588635136/unknown.png?width=1091&height=559"/>
 Home
+
+<img src ="[https://media.discordapp.net/attachments/969781799876177925/998722218588635136/unknown.png?width=1091&height=559](https://media.discordapp.net/attachments/969781799876177925/998723194842271864/unknown.png?width=927&height=469)"/>
+
 
 
 
