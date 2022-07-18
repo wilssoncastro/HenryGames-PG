@@ -48,7 +48,8 @@ Landing Page
 landingPage
 
 Home
-home home
+<img src ="https://discord.com/channels/969781799876177920/969781799876177925/998722218882256967"/>
+
 
 -Reseñas hacer reseñas
 
