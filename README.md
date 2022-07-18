@@ -45,10 +45,10 @@ En la primer terminal ejecutar el comando: cd api y ejecutar el comando: npm ins
 En la segunda terminal ejecutar el comando: cd client y ejecutar el comando: npm install para instalar las dependencias y ejecutar el comando: npm start para iniciar el servidor.
 Imagenes
 Landing Page
-landingPage
 
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998722218588635136/unknown.png?width=1091&height=559"/>
 Home
-<img src ="https://discord.com/channels/969781799876177920/969781799876177925/998722218882256967"/>
+
 
 
 -Reseñas hacer reseñas
