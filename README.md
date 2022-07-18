@@ -51,14 +51,25 @@ Home
 <img src ="https://media.discordapp.net/attachments/969781799876177925/998723194842271864/unknown.png?width=927&height=469"/>
 
 
--Store
+Store
+
 <img src ="https://media.discordapp.net/attachments/969781799876177925/998723786608218302/unknown.png?width=904&height=469"/>
 
-Mercado Pago
-mercado pago
+Detail game
 
-Perfil Administrador
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998724193598308402/unknown.png?width=991&height=469"/>
+
+
+
+Perfil 
+
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998725276219486319/unknown.png?width=894&height=469"/>
+
+
 perfil administrador
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998724581835690024/unknown.png?width=736&height=468"/>
 
-Perfil Instructor
-perfil instructor
+
+Chat con amigos
+<img src ="https://media.discordapp.net/attachments/969781799876177925/998725681485717664/unknown.png?width=1016&height=429"/>
+
